@@ -4,6 +4,15 @@ require('../model/userModel.php');
 require_once("../controller/panierController.php");
 
 
+function assignPanierToUser(PDO $bdd){
+  if(isset($_SESSION['panier'])){
+    for($i = 0; $i < sizeof($_SESSION['panier']); $i++){
+      addItemToPanierById($bdd, $_SESSION['panier'][$i]['ID_produit'], $_SESSION['panier'][$i]['qte_panier_ligne']);
+    }
+    unset($_SESSION['panier']);
+  }
+}
+
 /**
  * Connection de l'utilisateur retourne un element HTML
  *
@@ -20,7 +29,7 @@ function connectUser($bdd, $array){
       if(password_verify($user['mdp'], $bddInfo['mdp_user'])){
         $_SESSION['user'] = $bddInfo;
 
-        //recuperer le panier !!
+        assignPanierToUser($bdd);
 
         unset($_SESSION['user']['mdp_user']);
         unset($_SESSION['panier']);

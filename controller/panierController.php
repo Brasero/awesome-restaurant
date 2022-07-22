@@ -4,6 +4,79 @@ require_once('../model/produitModel.php');
 require_once('../model/panierModel.php');
 
 
+function dispatch(PDO $bdd, string $action, $payload){
+  switch($action){
+
+    case 'increaseProd':
+      increaseProd($bdd, $payload);
+      break;
+
+    case 'decreaseProd':
+      decreaseProd($bdd, $payload);
+      break;
+  }
+}
+
+function decreaseProd(PDO $bdd, int $idProd): void {
+  //user connecté
+  if(isset($_SESSION['user']['ID_user'])){
+    $panier = getPanierOfUserById($bdd, $_SESSION['user']['ID_user']);
+    $IdPanier = $panier['ID_panier'];
+    $qte = getQteOfProd($bdd, $idProd, $IdPanier);
+
+    if($qte['qte_panier_ligne'] > 1){
+      $action = 'decrease';
+    } else {
+      $action = 'suppr';
+    }
+
+    setQteProdLess($bdd, $idProd, $IdPanier, $action);
+    //user non connecté
+  } else {
+    for( $i = 0; $i < sizeof($_SESSION['panier']); $i++){
+      if($_SESSION['panier'][$i]['ID_produit'] == $idProd){
+        if($_SESSION['panier'][$i]['qte_panier_ligne'] > 1){
+          $_SESSION['panier'][$i]['qte_panier_ligne']--;
+        } else {
+          unset($_SESSION['panier'][$i]);
+        }
+      }
+    }
+  }
+
+  header('Location: index.php?page=panier&message=true');
+}
+
+function increaseProd(PDO $bdd, int $idProd){
+  if(isset($_SESSION['user']['ID_user'])){
+
+    $panier = getPanierOfUserById($bdd, $_SESSION['user']['ID_user']);
+    $IdPanier = $panier['ID_panier'];
+    if(setQteProdMore($bdd, $IdPanier, $idProd)){
+      header('Location: index.php?page=panier&message=true');
+    } else {
+      header('Location: index.php?page=panier&message=false');
+    }
+
+  } else {
+    for( $i = 0; $i < sizeof($_SESSION['panier']); $i++){
+      if($_SESSION['panier'][$i]['ID_produit'] == $idProd){
+        $_SESSION['panier'][$i]['qte_panier_ligne']++;
+        break;
+      }
+    }
+  }
+
+  header('Location: index.php?page=panier&message=true');
+}
+
+/**
+ * Renvoi les informations du panier d'un client en fonction de son ID 
+ *
+ * @param PDO $bdd
+ * @param int $idUser
+ * @return array
+ */
 function getPanierByUserId($bdd, $idUser){
   $panier = getPanierOfUserById($bdd, $idUser);
 
@@ -15,13 +88,13 @@ function produitList($bdd){
 }
 
 /**
- * Ajoute un produit au panier de l'utilisateur
+ * Ajoute un produit au panier de l'utilisateur grace à l'id du produit
  *
  * @param PDO $bdd
  * @param int $id
  * @return string
  */
-function addItemToPanierById($bdd, $id){
+function addItemToPanierById($bdd, $id, $qte){
   $produit = getProduitById($bdd, $id);
   
   if(isset($_SESSION['user'])){
@@ -32,10 +105,10 @@ function addItemToPanierById($bdd, $id){
       //creer un panier
       setNewPanier($bdd, $_SESSION['user']['ID_user']);
       $panier = getPanierByUserId($bdd, $_SESSION['user']['ID_user']);
-      setNewProduitToPanier($bdd, $panier['ID_panier'], $produit['ID_produit']);
+      setNewProduitToPanier($bdd, $panier['ID_panier'], $produit['ID_produit'], $qte);
     } else {
       //ajouter un produit au panier
-      setNewProduitToPanier($bdd, $panier['ID_panier'], $produit['ID_produit']);
+      setNewProduitToPanier($bdd, $panier['ID_panier'], $produit['ID_produit'], $qte);
     }
 
   } else {
@@ -62,6 +135,12 @@ function addItemToPanierById($bdd, $id){
   }
 }
 
+/**
+ * Récupere le panier d'un utilisateur soit en SESSION soit en BDD
+ *
+ * @param PDO $bdd
+ * @return array|bool
+ */
 function getPanier($bdd){
   if(isset($_SESSION['user'])){
     $produitList = getPanierContentByUserId($bdd, $_SESSION['user']['ID_user']);
@@ -82,3 +161,6 @@ function getPanier($bdd){
   }
 }
 
+if(isset($_GET['action'])){
+  dispatch($bdd->connection, $_GET['action'], $_GET['idProd']);
+}

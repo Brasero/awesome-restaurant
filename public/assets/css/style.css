@@ -323,8 +323,10 @@ header > .navBar > .linkList > .active > .navHref {
 
 .itemList > .item > .qte > .decreaseButton, .itemList > .item > .qte > .increaseButton{
   height: 100%;
+  appearance: unset;
   background: transparent;
   border: none;
+  width: 45px;
 }
 
 .itemList > .item > .qte > .decreaseButton > button{

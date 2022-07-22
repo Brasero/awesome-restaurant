@@ -2,9 +2,7 @@
 require('../controller/panierController.php');
 $produits = produitList($bdd->connection);
 if (isset($_GET['addItem'])) {
-  addItemToPanierById($bdd->connection, $_GET['addItem']);
-
-  var_dump($_SESSION);
+  addItemToPanierById($bdd->connection, $_GET['addItem'], 1);
 }
 ?>
 

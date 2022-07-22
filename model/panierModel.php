@@ -62,7 +62,7 @@ function checkIfProductInPanierExist($bdd, $idProd, $idPanier){
   return $query->fetch(PDO::FETCH_ASSOC);
 }
 
-function setNewProduitToPanier($bdd, $idPanier, $idProduit){
+function setNewProduitToPanier($bdd, $idPanier, $idProduit, $qte){
 
   $existPanier = checkIfProductInPanierExist($bdd, $idProduit, $idPanier);
 
@@ -80,7 +80,7 @@ function setNewProduitToPanier($bdd, $idPanier, $idProduit){
     $query = $bdd->prepare($str);
     $query->bindValue(':idPanier', $idPanier, PDO::PARAM_INT);
     $query->bindValue(':idProd', $idProduit, PDO::PARAM_INT);
-    $query->bindValue(':qte', 1, PDO::PARAM_INT);
+    $query->bindValue(':qte', $qte, PDO::PARAM_INT);
   
     $query->execute();
   }
@@ -90,9 +90,100 @@ function setNewProduitToPanier($bdd, $idPanier, $idProduit){
   $str = 'UPDATE panier SET total_panier = total_panier + :prix WHERE ID_panier = :id';
 
   $query = $bdd->prepare($str);
-  $query->bindValue(':prix', $produit['prix_produit'], PDO::PARAM_STR);
+  $query->bindValue(':prix', $produit['prix_produit'] * $qte, PDO::PARAM_STR);
   $query->bindValue(':id', $idPanier, PDO::PARAM_INT);
 
   $query->execute();
  
+}
+
+/**
+ * Augmente la quantité d'un produit dans un panier
+ *
+ * @param PDO $bdd
+ * @param integer $idPanier
+ * @param integer $idProd
+ * @return boolean
+ */
+function setQteProdMore(PDO $bdd, int $idPanier, int $idProd): bool{
+  $str = 'UPDATE panier_ligne SET qte_panier_ligne = qte_panier_ligne + 1 WHERE ID_panier_panier_ligne = :idPanier AND ID_produit_panier_ligne = :idProd';
+
+  $query = $bdd->prepare($str);
+
+  $query->bindValue(':idPanier', $idPanier, PDO::PARAM_INT);
+  $query->bindValue(':idProd', $idProd, PDO::PARAM_INT);
+
+  if($query->execute()){
+    $prod = getProduitById($bdd, $idProd);
+    $str = 'UPDATE panier SET total_panier  = total_panier + :prix WHERE ID_panier = :id';
+
+    $query = $bdd->prepare($str);
+
+    $query->bindValue(':prix', $prod['prix_produit'], PDO::PARAM_STR);
+    $query->bindValue(':id', $idPanier, PDO::PARAM_INT);
+
+    return $query->execute();
+  }
+
+  return false;
+}
+
+function getQteOfProd(PDO $bdd, int $idProd, int $idPanier){
+  $str = 'SELECT qte_panier_ligne FROM panier_ligne WHERE ID_produit_panier_ligne = :idProd AND ID_panier_panier_ligne = :idPanier';
+
+  $query = $bdd->prepare($str);
+
+  $query->bindValue(':idProd', $idProd, PDO::PARAM_INT);
+  $query->bindValue(':idPanier', $idPanier, PDO::PARAM_INT);
+
+  $query->execute();
+
+  $response = $query->fetch(PDO::FETCH_ASSOC);
+
+  return $response;
+}
+
+function setQteProdLess(PDO $bdd, int $idProd, int $idPanier, string $action){
+
+  $endRequest = ' WHERE ID_produit_panier_ligne = :idProd AND ID_panier_panier_ligne = :idPanier';
+
+  $produit = getProduitById($bdd, $idProd);
+
+  if($action == 'decrease'){
+    $str = 'UPDATE panier_ligne SET qte_panier_ligne = qte_panier_ligne -1';
+  } elseif($action == 'suppr'){
+    $str = 'DELETE FROM panier_ligne';
+  }
+
+  $str .= $endRequest;
+
+  $query = $bdd->prepare($str);
+
+  $query->bindValue(':idProd', $idProd, PDO::PARAM_INT);
+  $query->bindValue(':idPanier', $idPanier, PDO::PARAM_INT);
+
+  if($query->execute()){
+
+    $panier = getPanierOfUserById($bdd, $_SESSION['user']['ID_user']);
+
+    if($action == 'suppr'){
+      if($produit['prix_produit'] == $panier['total_panier']){
+        $str = 'DELETE FROM panier WHERE ID_panier = :id';
+        $query = $bdd->prepare($str);
+
+        $query->bindValue(':id', $idPanier, PDO::PARAM_INT);
+
+        return $query->execute();
+      }
+    } 
+
+    $str = 'UPDATE panier SET total_panier = total_panier - :prix WHERE ID_panier = :id';
+
+    $query = $bdd->prepare($str);
+
+    $query->bindValue(':id', $idPanier, PDO::PARAM_INT);
+    $query->bindValue(':prix', $produit['prix_produit'], PDO::PARAM_STR);
+
+    return $query->execute();
+  }
 }

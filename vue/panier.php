@@ -23,13 +23,17 @@ $total = 0;
                     <?= $item['prix_produit'] ?> €
                 </div>
                 <div class="qte">
-                    <span class="decreaseButton">
-                        <button role="button" id="<?= $item['ID_produit'] ?>-minus">-</button>
-                    </span>
+                    <a href="index.php?page=panier&action=decreaseProd&idProd=<?= $item['ID_produit'] ?>" >
+                        <span class="decreaseButton">
+                            <button role="button" id="<?= $item['ID_produit'] ?>-minus">-</button>
+                        </span>
+                    </a>
                         <?= $item['qte_panier_ligne'] ?>
-                    <span class="increaseButton">
-                        <button role="button" id="<?= $item['ID_produit'] ?>-plus">+</button>
-                    </span>
+                    <a href="index.php?page=panier&action=increaseProd&idProd=<?= $item['ID_produit'] ?>">
+                        <span class="increaseButton">
+                            <button role="button" id="<?= $item['ID_produit'] ?>-plus">+</button>
+                        </span>
+                    </a>
                 </div>
                 <div class="action">
                     <button class="deleteButton" id="<?= $item['ID_produit'] ?>-delete">
