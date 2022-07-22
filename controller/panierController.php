@@ -3,7 +3,14 @@
 require_once('../model/produitModel.php');
 require_once('../model/panierModel.php');
 
-
+/**
+ * Reducteur d'action, filtre l'action à effectuer en fonction de l'action qui lui aura été passée
+ *
+ * @param PDO $bdd
+ * @param string $action Action à efectuer
+ * @param  $payload Données à transmettre à la fonction appelée
+ * @return void
+ */
 function dispatch(PDO $bdd, string $action, $payload){
   switch($action){
 

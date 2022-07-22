@@ -1,6 +1,14 @@
 <?php
 require_once('../model/produitModel.php');
 
+
+/**
+ * Récupere le panier d'un utilisateur en base de données
+ *
+ * @param PDO $bdd
+ * @param int $id
+ * @return array|bool
+ */
 function getPanierOfUserById($bdd, $id){
   $str = 'SELECT * FROM panier WHERE ID_user_panier = :id';
 
@@ -19,6 +27,13 @@ function getPanierOfUserById($bdd, $id){
   }
 }
 
+/**
+ * Récupere et retourne toute les info d'un panier (produit y compris) en fonction de l'id de l'utilisateur
+ *
+ * @param PDO $bdd
+ * @param int $id
+ * @return array
+ */
 function getPanierContentByUserId($bdd, $id){
   $str = 'SELECT *
           FROM panier 
@@ -50,6 +65,14 @@ function setNewPanier($bdd, $idUser){
   $query->execute();
 }
 
+/**
+ * Recuperer puis renvois une ligne d'enregistrement de la table panier_ligne si le produit existe dans le panier du client , renvoir false sinon
+ *
+ * @param PDO $bdd
+ * @param int $idProd Identifiant du produit recherché
+ * @param int $idPanier Identifiant du panier client 
+ * @return void
+ */
 function checkIfProductInPanierExist($bdd, $idProd, $idPanier){
   $str = 'SELECT * FROM panier_ligne WHERE ID_panier_panier_ligne = :idPanier AND ID_produit_panier_ligne = :idProd';
 
@@ -62,6 +85,15 @@ function checkIfProductInPanierExist($bdd, $idProd, $idPanier){
   return $query->fetch(PDO::FETCH_ASSOC);
 }
 
+/**
+ * Insére un nouveau produit dans le panier du client, si le produit y est déjà présent, incrémente seulement sa quantité
+ *
+ * @param PDO $bdd
+ * @param int $idPanier Identifiant du panier client 
+ * @param int $idProduit Identifiant du produit à ajouté
+ * @param int $qte Quantité à ajouté au panier
+ * @return bool
+ */
 function setNewProduitToPanier($bdd, $idPanier, $idProduit, $qte){
 
   $existPanier = checkIfProductInPanierExist($bdd, $idProduit, $idPanier);
@@ -128,6 +160,14 @@ function setQteProdMore(PDO $bdd, int $idPanier, int $idProd): bool{
   return false;
 }
 
+/**
+ * Retourn la quantité d'un produit dans le panier 
+ *
+ * @param PDO $bdd
+ * @param integer $idProd Identifiant du produit recherché
+ * @param integer $idPanier Identifiant du panier client
+ * @return bool
+ */
 function getQteOfProd(PDO $bdd, int $idProd, int $idPanier){
   $str = 'SELECT qte_panier_ligne FROM panier_ligne WHERE ID_produit_panier_ligne = :idProd AND ID_panier_panier_ligne = :idPanier';
 
@@ -143,6 +183,16 @@ function getQteOfProd(PDO $bdd, int $idProd, int $idPanier){
   return $response;
 }
 
+
+/**
+ * Décrémente la quantité d'un produit dans un panier, si il n'y en avais qu'un, supprime le produit du panier client 
+ *
+ * @param PDO $bdd
+ * @param integer $idProd Identifiant du produit 
+ * @param integer $idPanier Identifiant du panier client
+ * @param string $action Action a efectuer (decrease OR suppr)
+ * @return bool
+ */
 function setQteProdLess(PDO $bdd, int $idProd, int $idPanier, string $action){
 
   $endRequest = ' WHERE ID_produit_panier_ligne = :idProd AND ID_panier_panier_ligne = :idPanier';
