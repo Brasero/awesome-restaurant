@@ -36,9 +36,11 @@ $total = 0;
                     </a>
                 </div>
                 <div class="action">
-                    <button class="deleteButton" id="<?= $item['ID_produit'] ?>-delete">
-                        Supprimer
-                    </button>
+                    <a href="index.php?page=panier&action=supprProd&idProd=<?= $item['ID_produit'] ?>">
+                        <button class="deleteButton" id="<?= $item['ID_produit'] ?>-delete">
+                            Supprimer
+                        </button>
+                    </a>
                 </div>
             </li>
 

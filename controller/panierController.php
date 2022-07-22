@@ -21,6 +21,30 @@ function dispatch(PDO $bdd, string $action, $payload){
     case 'decreaseProd':
       decreaseProd($bdd, $payload);
       break;
+
+    case 'supprProd':
+      supprProd($bdd, $payload);
+      break;
+  }
+}
+
+function supprProd(PDO $bdd, int $idProd): bool {
+  if(isset($_SESSION['user']['ID_user'])){
+    $panier = getPanierOfUserById($bdd, $_SESSION['user']['ID_user']);
+    $idPanier = $panier['ID_panier'];
+    setSupprProd($bdd, $idProd, $idPanier);
+    return true;
+  } else {
+    $done = false;
+    for($i = 0; $i < sizeof($_SESSION['panier']); $i++){
+      if($_SESSION['panier'][$i]['ID_produit'] == $idProd){
+        unset($_SESSION['panier'][$i]);
+        $done = true;
+        break;
+      }
+    }
+
+    return $done;
   }
 }
 

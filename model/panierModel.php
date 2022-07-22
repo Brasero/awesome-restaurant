@@ -237,3 +237,17 @@ function setQteProdLess(PDO $bdd, int $idProd, int $idPanier, string $action){
     return $query->execute();
   }
 }
+
+function setSupprProd(PDO $bdd, int $idProd, int $idPanier){
+  $qte = getQteOfProd($bdd, $idProd, $idPanier);
+
+  for($i = $qte['qte_panier_ligne']; $i > 0; $i--){
+    $action = 'decrease';
+    if($i == 1){
+      $action = 'suppr';
+    }
+
+    setQteProdLess($bdd, $idProd, $idPanier, $action);
+  }
+
+}
