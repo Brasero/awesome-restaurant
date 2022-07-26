@@ -28,6 +28,13 @@ function dispatch(PDO $bdd, string $action, $payload){
   }
 }
 
+/**
+ * Supprime un produit dans le panier
+ *
+ * @param PDO $bdd
+ * @param integer $idProd
+ * @return boolean
+ */
 function supprProd(PDO $bdd, int $idProd): bool {
   if(isset($_SESSION['user']['ID_user'])){
     $panier = getPanierOfUserById($bdd, $_SESSION['user']['ID_user']);
@@ -48,6 +55,15 @@ function supprProd(PDO $bdd, int $idProd): bool {
   }
 }
 
+
+
+/**
+ * Réduit la quantité du produit, si le produit était en unique exemplaire le supprime du panier
+ *
+ * @param PDO $bdd
+ * @param integer $idProd
+ * @return void
+ */
 function decreaseProd(PDO $bdd, int $idProd): void {
   //user connecté
   if(isset($_SESSION['user']['ID_user'])){
@@ -78,6 +94,14 @@ function decreaseProd(PDO $bdd, int $idProd): void {
   header('Location: index.php?page=panier&message=true');
 }
 
+
+/**
+ * Incrémente la quantité d'un produit dans le panier
+ *
+ * @param PDO $bdd
+ * @param integer $idProd
+ * @return void
+ */
 function increaseProd(PDO $bdd, int $idProd){
   if(isset($_SESSION['user']['ID_user'])){
 
@@ -192,6 +216,8 @@ function getPanier($bdd){
   }
 }
 
+
+//Détécte la demande d'une action ($_GET[action]) et appel la fonction correspondante
 if(isset($_GET['action'])){
   dispatch($bdd->connection, $_GET['action'], $_GET['idProd']);
 }
