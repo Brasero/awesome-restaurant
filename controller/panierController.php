@@ -51,6 +51,14 @@ function supprProd(PDO $bdd, int $idProd): bool {
       }
     }
 
+    foreach($_SESSION['panier'] as $key => $item){
+      if($item['ID_produit'] == $idProd){
+        unset($_SESSION['panier'][$key]);
+        $done = true;
+        break;
+      }
+    }
+
     return $done;
   }
 }
@@ -80,12 +88,12 @@ function decreaseProd(PDO $bdd, int $idProd): void {
     setQteProdLess($bdd, $idProd, $IdPanier, $action);
     //user non connecté
   } else {
-    for( $i = 0; $i < sizeof($_SESSION['panier']); $i++){
-      if($_SESSION['panier'][$i]['ID_produit'] == $idProd){
-        if($_SESSION['panier'][$i]['qte_panier_ligne'] > 1){
-          $_SESSION['panier'][$i]['qte_panier_ligne']--;
+    foreach($_SESSION['panier'] as $key => $item){
+      if($item['ID_produit'] == $idProd){
+        if($_SESSION['panier'][$key]['qte_panier_ligne'] > 1){
+          $_SESSION['panier'][$key]['qte_panier_ligne']--;
         } else {
-          unset($_SESSION['panier'][$i]);
+          unset($_SESSION['panier'][$key]);
         }
       }
     }
@@ -114,9 +122,10 @@ function increaseProd(PDO $bdd, int $idProd){
     }
 
   } else {
-    for( $i = 0; $i < sizeof($_SESSION['panier']); $i++){
-      if($_SESSION['panier'][$i]['ID_produit'] == $idProd){
-        $_SESSION['panier'][$i]['qte_panier_ligne']++;
+
+    foreach($_SESSION['panier'] as $key => $item){
+      if($item['ID_produit'] == $idProd){
+        $_SESSION['panier'][$key]['qte_panier_ligne']++;
         break;
       }
     }
@@ -169,9 +178,10 @@ function addItemToPanierById($bdd, $id, $qte){
   } else {
     if(isset($_SESSION['panier'])){
       $exist = false;
-      for($i = 0; $i < sizeof($_SESSION['panier']); $i++){
-        if($_SESSION['panier'][$i]['ID_produit'] == $produit['ID_produit']){
-          $_SESSION['panier'][$i]['qte_panier_ligne'] = $_SESSION['panier'][$i]['qte_panier_ligne'] + 1;
+      
+      foreach($_SESSION['panier'] as $key => $item){
+        if($item['ID_produit'] == $produit['ID_produit']){
+          $_SESSION['panier'][$key]['qte_panier_ligne'] = $_SESSION['panier'][$key]['qte_panier_ligne'] + 1;
           $exist = true;
           break;
         }
