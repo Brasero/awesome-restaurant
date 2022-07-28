@@ -6,8 +6,8 @@ require_once("../controller/panierController.php");
 
 function assignPanierToUser(PDO $bdd){
   if(isset($_SESSION['panier'])){
-    for($i = 0; $i < sizeof($_SESSION['panier']); $i++){
-      addItemToPanierById($bdd, $_SESSION['panier'][$i]['ID_produit'], $_SESSION['panier'][$i]['qte_panier_ligne']);
+    foreach($_SESSION['panier'] as $item){
+      addItemToPanierById($bdd, $item['ID_produit'], $item['qte_panier_ligne']);
     }
     unset($_SESSION['panier']);
   }
@@ -24,7 +24,7 @@ function connectUser($bdd, $array){
   if(isset($array['mail'], $_POST['mdp'])){
     $user['mail'] = strip_tags($array['mail']);
     $user['mdp'] = $array['mdp'];
-    $bddInfo = getUser($bdd, $user['mail']);
+    $bddInfo = '';//Définir les informations de l'utilisateur
     if($bddInfo != false){
       if(password_verify($user['mdp'], $bddInfo['mdp_user'])){
         $_SESSION['user'] = $bddInfo;

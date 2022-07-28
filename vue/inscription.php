@@ -1,6 +1,5 @@
 <?php
 require('../controller/inscriptionController.php');
-newUser($bdd->connection, $_POST);
 ?>
 
 
