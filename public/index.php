@@ -20,7 +20,7 @@ $bdd = new Database('exemple_panier', 'root', '', 'localhost');
   <header class="navContainer">
     <nav class="navBar">
       <div class="brand">
-        Exemple de panier
+        Burger compagny
       </div>
       <ul class="linkList">
       <?php
