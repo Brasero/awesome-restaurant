@@ -48,6 +48,12 @@ $bdd = new Database('exemple_panier', 'root', '', 'localhost');
                     >
                         <li>Produits</li>
                     </a>
+                    <a href="index.php?page=ingredient" 
+                    class="navLink
+                        <?= (isset($_GET['page']) && $_GET['page'] == 'ingredient') ? 'active' : '' ?>"
+                    >
+                        <li>Ingrédients</li>
+                    </a>
                     <a href="index.php?page=stats" 
                     class="navLink
                         <?= (isset($_GET['page']) && $_GET['page'] == 'stats') ? 'active' : '' ?>"
@@ -58,9 +64,20 @@ $bdd = new Database('exemple_panier', 'root', '', 'localhost');
                 </ul>
             </nav>
             <div class="container">
-                <h1>
-                    Contenu
-                </h1>
+                <?php
+
+                    if(isset($_GET['page'])){
+                        switch($_GET['page']){
+                            case 'ingredient':
+                                include('../../vue/dash/ingredient.php');
+                                break;
+                        }
+                    } else {
+                        include('');
+                    }
+
+
+                ?>
             </div>
         </div>
 
