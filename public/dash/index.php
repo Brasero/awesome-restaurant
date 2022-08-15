@@ -14,6 +14,7 @@ $bdd = new Database('exemple_panier', 'root', '', 'localhost');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="./assets/css/ingredient.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <title>Burger Compagny</title>
 </head>
 <body>
@@ -25,6 +26,10 @@ $bdd = new Database('exemple_panier', 'root', '', 'localhost');
         <div class="main">
             <nav class="navBar">
                 <ul class="navLinks">
+                    <div class="toggleButton" onclick="toggleNav()">
+                        <div class="top"></div>
+                        <div class="bottom"></div>
+                    </div>
                     <div class="brand">
                         <h1>Burger Compagny</h1>
                     </div>
@@ -35,33 +40,57 @@ $bdd = new Database('exemple_panier', 'root', '', 'localhost');
                                     : 
                                     'active' ?>
                         " >
-                        <li>Dashboard</li>
+                        <li>
+                            <i class="bi bi-speedometer2"></i>
+                            <span>Dashboard</span>
+                        </li>
                     </a>
                     <a href="index.php?page=clients" 
                     class="navLink
                         <?= (isset($_GET['page']) && $_GET['page'] == 'clients') ? 'active' : '' ?> "
                     >
-                        <li>Clients</li>
+                        <li>
+                            <i class="bi bi-person-circle">
+                            </i>
+                            <span>Clients</span>
+                        </li>
                     </a>
                     <a href="index.php?page=produits" 
                     class="navLink
                         <?= (isset($_GET['page']) && $_GET['page'] == 'produits') ? 'active' : '' ?>"
                     >
-                        <li>Produits</li>
+                        <li><i><img src="https://img.icons8.com/cotton/64/000000/junk-food--v2.png"/></i><span>Produits</span></li>
                     </a>
                     <a href="index.php?page=ingredient" 
                     class="navLink
                         <?= (isset($_GET['page']) && $_GET['page'] == 'ingredient') ? 'active' : '' ?>"
                     >
-                        <li>Ingrédients</li>
+                        <li>
+                            <i>
+                                <img src="https://img.icons8.com/color/48/000000/lettuce.png"/>
+                            </i>
+                            <span>
+                                Ingrédients
+                            </span>
+                        </li>
                     </a>
                     <a href="index.php?page=stats" 
                     class="navLink
                         <?= (isset($_GET['page']) && $_GET['page'] == 'stats') ? 'active' : '' ?>"
                     >
-                        <li>Statistiques</li>
+                        <li>
+                            <i class="bi bi-graph-up"></i>
+                            <span>
+                            Statistiques
+                            </span>
+                        </li>
                     </a>
-                    <a href="../../controller/deconnexionController.php" class="navLink deconnect"><li>Deconnexion</li></a>
+                    <a href="../../controller/deconnexionController.php" class="navLink deconnect">
+                        <li>
+                            <i class="bi bi-box-arrow-left"></i>
+                            <span>Déconnexion</span>
+                        </li>
+                    </a>
                 </ul>
             </nav>
             <div class="container">
@@ -93,6 +122,8 @@ $bdd = new Database('exemple_panier', 'root', '', 'localhost');
     }
 
     ?>
+
+    <script type="text/javascript" src="./assets/js/toggleNav.js"></script>
 
 </body>
 </html>

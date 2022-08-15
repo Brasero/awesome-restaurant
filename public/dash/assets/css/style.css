@@ -41,16 +41,91 @@ body {
   height: 100%;
   padding: 0;
   overflow: hidden;
+  transition: var(--transition);
 }
 
 .main > .navBar .brand{
   text-align: center;
   color: var(--text-color-light);
   padding: 10px;
+  transition: var(--transition);
+}
+
+.main > .navBar.active, .main > .navBar > .navLinks.active{
+  width: 80px;
+}
+
+.main > .navBar > .navLinks.active .brand{
+  display: none;
+}
+
+.main > .navBar > .navLinks.active .navLink li span {
+  display: none;
+}
+
+.main > .navBar > .navLinks .navLink li i{
+  font-size: 2rem;
+}
+
+.main > .navBar > .navLinks .navLink.active li *{
+  background: transparent;
+}
+
+.main > .navBar > .navLinks.active .navLink.active li *{
+  background: transparent;
+}
+
+/** ----- TOGGLE BUTTON ----- **/
+
+.main > .navBar > .navLinks .toggleButton {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.main > .navBar > .navLinks .toggleButton .top{
+  width: 100%;
+  height: 5px;
+  transition: var(--transition);
+  position: relative;
+  transform-origin: center;
+  top: 50%;
+  left: 50%;
+  background: var(--text-color-light);
+  transform: translate(-50%, -50%) rotate(45deg); 
+}
+
+.main > .navBar > .navLinks .toggleButton .bottom{
+  width: 100%;
+  height: 5px;
+  transition: var(--transition);
+  position: relative;
+  top: 12%;
+  left: 50%;
+  background: var(--text-color-light);
+  transform: translate(-50%, -50%) rotate(135deg);
+}
+
+.main > .navBar > .navLinks .toggleButton.active .top, .main > .navBar > .navLinks .toggleButton.active .bottom{
+  position: unset;
+  transform: unset;
+}
+
+/** ------ END ------- **/
+
+.main > .navBar > .navLinks .navLink li i img {
+  max-height: 40px;
 }
 
 .main > .navBar > .navLinks {
   position: fixed;
+  transition: var(--transition);
   top: 0;
   left: 0;
   height: 100%;
@@ -69,10 +144,19 @@ body {
   text-align: right;
   display: flex;
   justify-content: flex-end;
+  gap: 10px;
   align-items: center;
   color: var(--text-color-light);
   transition: var(--transition);
   text-decoration: none;
+}
+
+.main > .navBar > .navLinks  .navLink li {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
 }
 
 .main > .navBar > .navLinks  .navLink.deconnect{
@@ -90,7 +174,7 @@ body {
 }
 
 .main > .navBar > .navLinks  .navLink.active{
-  background: linear-gradient(90deg, transparent 1%, var(--text-color-light) 50%);
+  background: var(--text-color-light);
   color: var(--color-highlights);
   position: relative;
 }
