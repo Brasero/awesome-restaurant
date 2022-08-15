@@ -24,10 +24,10 @@ $bdd = new Database('exemple_panier', 'root', '', 'localhost');
 
         <div class="main">
             <nav class="navBar">
-                <div class="brand">
-                    <h1>Burger Compagny</h1>
-                </div>
                 <ul class="navLinks">
+                    <div class="brand">
+                        <h1>Burger Compagny</h1>
+                    </div>
                     <a href="index.php?page=dashboard" 
                         class="navLink 
                             <?= isset($_GET['page']) ? 
