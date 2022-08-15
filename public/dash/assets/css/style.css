@@ -189,32 +189,20 @@ header > .navBar > .linkList > .active > .navHref {
 
 
 /**------ Inscription Page -------**/
-.inscriptionContainer {
-  max-width: 500px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-inline: auto;
-}
+
 
 .formTitle {
   background-color: transparent;
   color: white;
   margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  align-items: center;
+  text-align: right;
+  padding: 25px 10px;
 }
 
-.inscriptionContainer > .signForm {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-width: 500px;
-  margin-top: 50px;
-  padding: 15px 15px;
-  background-color: rgba(0,0,0,0.1);
-  border-radius: 15px;
-  border: 1px solid transparent;
-}
 
 .signForm > .inputGroup {
   width: 100%;
@@ -246,26 +234,6 @@ header > .navBar > .linkList > .active > .navHref {
   background: white;
 }
 
-.propItem{
-  transition: all 500ms ease-in-out;
-}
-
-.propItem:hover{
-  background:rgb(96, 167, 172);
-  color: white;
-}
-
-.proposition{
-  display: none;
-  position: absolute;
-  top: 45px;
-  left: 0;
-  z-index: 10;
-  width: 100%;
-  max-height: 150px;
-  overflow-y: scroll;
-  padding-inline: 5px;
-}
 
 .inputGroup > label > input::placeholder{
   opacity: 0;
@@ -364,6 +332,7 @@ label:focus-within {
   justify-content: center;
   align-items: center;
   margin-inline: auto;
+  height: 100vh;
 }
 
 .connexionContainer > .loginForm {
@@ -375,7 +344,7 @@ label:focus-within {
   gap: 15px;
   margin-top: 50px;
   padding: 10px 15px;
-  background-color: #99a9aa;
+  background-color: var(--color-highlights);
   border-radius: 15px;
   border: 1px solid transparent;
 }
@@ -389,7 +358,6 @@ label:focus-within {
   height: 35px;
   border: none;
   border-radius: 15px;
-  font-weight: bold;
   font-size: 1.1rem;
   color: var(--text-color-light);
 }

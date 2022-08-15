@@ -10,7 +10,7 @@ if(isset($_POST['mail'], $_POST['mdp'])){
 
 
 <div class="connexionContainer">
-    <h1 class="connexionTitle">
+    <h1 class="formTitle">
         Administration Burger Compagny
     </h1>
   <form action="" method="POST" class="loginForm">
