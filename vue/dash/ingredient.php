@@ -12,7 +12,7 @@
         <div class="card">Ajout Type ingrédient</div>
     </div>
     <div class="ingredientCardDeck">
-        <div class="table"></div>
-        <div class="table"></div>
+        <div class="table">Type ingredient Liste</div>
+        <div class="table">Ingredient liste</div>
     </div>
 </div>
