@@ -20,11 +20,11 @@ function assignPanierToUser(PDO $bdd){
  * @param array $array
  * @return string
  */
-function connectUser($bdd, $array){
+function connectUser(PDO $bdd, array $array){
   if(isset($array['mail'], $_POST['mdp'])){
     $user['mail'] = strip_tags($array['mail']);
     $user['mdp'] = $array['mdp'];
-    $bddInfo = '';//Définir les informations de l'utilisateur
+    $bddInfo = getUserByEmail($bdd, $user['mail']);
     if($bddInfo != false){
       if(password_verify($user['mdp'], $bddInfo['mdp_user'])){
         $_SESSION['user'] = $bddInfo;
@@ -35,10 +35,10 @@ function connectUser($bdd, $array){
         unset($_SESSION['panier']);
         header('Location: index.php');
       } else {
-        return '<span class="errorMessage">Mauvais mot de passe</span>';
+        return '<span class="error">Mauvais mot de passe</span>';
       }
     }else{
-      return '<span class="errorMessage">Adresse mail inconnue</span>';
+      return '<span class="error">Adresse mail inconnue</span>';
     }
   }
 }

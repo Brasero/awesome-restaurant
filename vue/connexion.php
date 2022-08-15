@@ -1,6 +1,7 @@
 <?php
 require('../controller/connexionController.php');
 
+echo connectUser($bdd->connection, $_POST);
 ?>
 
 

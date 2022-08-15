@@ -1,7 +1,9 @@
 <?php
 require('../controller/inscriptionController.php');
 
-createNewUser($bdd->connection, $_POST);
+if(isset($_POST['nom'])){
+  echo createNewUser($bdd->connection, $_POST);
+}
 ?>
 
 
@@ -19,6 +21,12 @@ createNewUser($bdd->connection, $_POST);
       <label for="prenom" class="inputLabel">
         <input type="text" class="signInput" id="prenom" name="prenom" placeholder="Prénom">
         <span>Prénom</span>
+      </label>
+    </div>
+    <div class="inputGroup">
+      <label for="tel" class="inputLabel">
+        <input type="number" class="signInput" id="tel" name="tel" placeholder="Portable">
+        <span>Portable</span>
       </label>
     </div>
     <div class="inputGroup">
@@ -63,27 +71,34 @@ createNewUser($bdd->connection, $_POST);
       <div class="villeAndCp">
         <div class="inputGroup">
           <label for="adresseVille" class="inputLabel">
-            <input type="text" class="signInput" id="adresseVille" name="adresseVille" placeholder="Ville" autocomplete="address-level2">
+            <input type="text" class="signInput" id="adresseVille" name="adresseVille" placeholder="Ville" autocomplete="address-level2"
+            onkeyup="getVilleByName()" 
+            onfocus="closeProp()"
+            >
             <span>Ville</span>
           </label>
+          <div class="proposition" id="villeProp"></div>
         </div>
         <div class="inputGroup">
           <label for="adresseCp" class="inputLabel">
-            <input type="text" class="signInput" id="adresseCp" name="adresseCp" placeholder="Code postal" autocomplete="postal-code">
+            <input type="text" class="signInput" id="adresseCp" name="adresseCp" placeholder="Code postal" autocomplete="postal-code"
+            onkeyup="getVilleByCp()"
+            onfocus="closeProp()">
             <span>Code postal</span>
           </label>
+          <div class="proposition" id="cpProp"></div>
         </div>
       </div>
       <div class="passwordGroup">
         <div class="inputGroup">
           <label for="mdp" class="inputLabel">
-            <input type="password" name="mdp" id="mdp" name="mdp" placeholder="Mot de passe" class="signInput">
+            <input type="password" name="mdp" id="mdp" placeholder="Mot de passe" class="signInput">
             <span>Mot de passe</span>
           </label>
         </div>
         <div class="inputGroup">
           <label for="confirmMdp" class="inputLabel">
-            <input type="password" name="confirmMdp" name="confirmMdp" id="confirmMdp" placeholder="Confirmer mot de passe" class="signInput">
+            <input type="password" name="confirmMdp" id="confirmMdp" placeholder="Confirmer mot de passe" class="signInput">
             <span>Confirmer mot de passe</span>
           </label>
         </div>
@@ -94,3 +109,5 @@ createNewUser($bdd->connection, $_POST);
     </button>
   </form>
 </div>
+
+<script type="text/javascript" src="./assets/js/ville.js"></script>

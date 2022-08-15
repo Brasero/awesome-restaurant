@@ -3,7 +3,7 @@ session_start();
 require('../model/config/Database.php');
 $bdd = new Database('exemple_panier', 'root', '', 'localhost');
 
-
+var_dump($_SESSION);
 ?>
 
 <!DOCTYPE html>

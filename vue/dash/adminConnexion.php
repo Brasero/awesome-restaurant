@@ -1,21 +1,37 @@
 <?php
 
+require_once('../../controller/dash/adminConnexionController.php');
 
+if(isset($_POST['mail'], $_POST['mdp'])){
+    connectAdmin($bdd->connection, $_POST);
+}
 
 ?>
 
 
-<form action="" method="POST">
+<div class="connexionContainer">
+    <h1 class="connexionTitle">
+        Administration Burger Compagny
+    </h1>
+  <form action="" method="POST" class="loginForm">
     <div class="inputGroup">
-        <label for="mail" class="inputLabel">Adresse Mail</label>
-        <input type="text" id="mail" class="inputField">
-    </div>
-    <div class="inputGroup">
-        <label for="mdp" class="inputLabel">Mot de passe</label>
-        <input type="text" id="mdp" class="inputField">
+      <label for="mail" class="inputLabel">
+      <input type="email" name="mail" id="mail" placeholder="Email" class="signInput">
+        <span>Email</span>
+      </label>
     </div>
 
-    <div class="inputButtonGroup">
-        <button type="submit" class="submitButton">Accédez</button>
+    <div class="inputGroup">
+      <label for="mdp" class="inputLabel">
+        <input type="password" name="mdp" placeholder="Mot de passe" id="mdp" class="signInput">
+        <span>Mot de passe</span>
+      </label>
     </div>
-</form>
+    
+    
+    
+    <button type="submit" class="loginButton">
+      Connexion
+    </button>
+  </form>
+</div>
