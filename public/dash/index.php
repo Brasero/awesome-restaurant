@@ -13,6 +13,7 @@ $bdd = new Database('exemple_panier', 'root', '', 'localhost');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/ingredient.css">
     <title>Burger Compagny</title>
 </head>
 <body>
