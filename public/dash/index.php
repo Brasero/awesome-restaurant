@@ -13,6 +13,7 @@ $bdd = new Database('exemple_panier', 'root', '', 'localhost');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/ingredient.css">
     <title>Burger Compagny</title>
 </head>
 <body>
@@ -23,10 +24,10 @@ $bdd = new Database('exemple_panier', 'root', '', 'localhost');
 
         <div class="main">
             <nav class="navBar">
-                <div class="brand">
-                    <h1>Burger Compagny</h1>
-                </div>
                 <ul class="navLinks">
+                    <div class="brand">
+                        <h1>Burger Compagny</h1>
+                    </div>
                     <a href="index.php?page=dashboard" 
                         class="navLink 
                             <?= isset($_GET['page']) ? 
@@ -48,6 +49,12 @@ $bdd = new Database('exemple_panier', 'root', '', 'localhost');
                     >
                         <li>Produits</li>
                     </a>
+                    <a href="index.php?page=ingredient" 
+                    class="navLink
+                        <?= (isset($_GET['page']) && $_GET['page'] == 'ingredient') ? 'active' : '' ?>"
+                    >
+                        <li>Ingrédients</li>
+                    </a>
                     <a href="index.php?page=stats" 
                     class="navLink
                         <?= (isset($_GET['page']) && $_GET['page'] == 'stats') ? 'active' : '' ?>"
@@ -58,9 +65,20 @@ $bdd = new Database('exemple_panier', 'root', '', 'localhost');
                 </ul>
             </nav>
             <div class="container">
-                <h1>
-                    Contenu
-                </h1>
+                <?php
+
+                    if(isset($_GET['page'])){
+                        switch($_GET['page']){
+                            case 'ingredient':
+                                include('../../vue/dash/ingredient.php');
+                                break;
+                        }
+                    } else {
+                        include('');
+                    }
+
+
+                ?>
             </div>
         </div>
 
