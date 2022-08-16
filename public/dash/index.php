@@ -24,9 +24,9 @@ $bdd = new Database('exemple_panier', 'root', '', 'localhost');
         ?>
 
         <div class="main">
-            <nav class="navBar">
-                <ul class="navLinks">
-                    <div class="toggleButton" onclick="toggleNav()">
+            <nav class="navBar active">
+                <ul class="navLinks active">
+                    <div class="toggleButton active" onclick="toggleNav()">
                         <div class="top"></div>
                         <div class="bottom"></div>
                     </div>
