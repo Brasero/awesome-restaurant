@@ -148,4 +148,54 @@ function addNewIngredient(PDO $bdd, array $data) : string {
     }
 }
 
+
+/**
+ * Traite la modification de nom de type d'ingrédient, vérifie au préalable que le nom n'existe pas déjà en base de donnée
+ *
+ * @param PDO $bdd
+ * @param array $data
+ * @return string retourne un élément HTML à afficher
+ */
+function updateTypeIngredientName(PDO $bdd, array $data): string{
+    $type = [];
+    $type['nom'] = strtolower(htmlspecialchars(strip_tags($data['ingredientTypeNomUpdate'])));
+    $type['id'] = intval(strip_tags($data['ingredientTypeIdUpdate']));
+
+    $types = getTypes($bdd);
+
+    $exist = function ($types, $name){
+        foreach($types as $type){
+            if(in_array($name, $type)){
+                return true;
+            }
+        }
+        return false;
+    };
+
+    if(!$exist($types, $type['nom'])){
+        if(setIngredientTypeName($bdd, $type)){
+            return "<span class='success'>
+                        <span class='message'>
+                            Modification enregistrée.
+                        </span>
+                        <span class='progressBar'></span>
+                    </span>";
+        } else {
+            return "<span class='error'>
+                        <span class='message'>
+                            Une erreur s'est produite, réessayez.
+                        </span>
+                        <span class='progressBar'></span>
+                    </span>";
+        }
+    } else {
+        return "<span class='error'>
+                    <span class='message'>
+                        Ce type d'ingrédient existe déjà.
+                    </span>
+                    <span class='progressBar'></span>
+                </span>";
+    }
+}
+
 ?>

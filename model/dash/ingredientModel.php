@@ -69,4 +69,24 @@ function getIngredients(PDO $bdd) : array {
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
 
+/**
+ * Modifie le nom d'un type d'ingrédient en BDD
+ *
+ * @param PDO $bdd
+ * @param array $data tableau de données ayant les index : id, nom
+ * @return boolean retourne true si la modification est efféctuée sinon retourne false
+ */
+function setIngredientTypeName(PDO $bdd, array $data): bool{
+    $str = 'UPDATE type_ingredient 
+            SET nom_type_ingredient = :nom 
+            WHERE ID_type_ingredient = :id';
+
+    $query = $bdd->prepare($str);
+
+    $query->bindValue(':nom', $data['nom'], PDO::PARAM_STR);
+    $query->bindValue(':id', $data['id'], PDO::PARAM_INT);
+    var_dump($data);
+    return $query->execute();
+}
+
 ?>
