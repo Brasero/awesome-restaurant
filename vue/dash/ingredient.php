@@ -14,6 +14,12 @@ if(isset($_POST['ingredientNom'], $_POST['ingredientType'], $_POST['ingredientPr
     echo addNewIngredient($bdd->connection, $_POST);
 }
 
+//Soummission du formulaire modal d'update type ingrédient
+if(isset($_POST['ingredientTypeIdUpdate'], $_POST['ingredientTypeNomUpdate']) && !empty($_POST['ingredientTypeNomUpdate'])){
+    echo updateTypeIngredientName($bdd->connection, $_POST);
+}
+
+//Recupération de tout les type !!!! Efféctué après toute insertion ou modification au dessus
 $types = getAllType($bdd->connection);
 
 ?>
@@ -79,11 +85,76 @@ $types = getAllType($bdd->connection);
         </div>
     </div>
     <div class="ingredientCardDeck">
-        <div class="table">Type ingredient Liste</div>
         <div class="table">Ingredient liste</div>
+        <div class="table">
+            <table class="ingredientTypeTable ingredientTableStyle">
+                <h4 class="title" style="padding: 20px 15px; text-align: center;">
+                    Liste type ingrédient
+                </h4>
+                <tbody>
+                    <tr class="colonneTitleContainer">
+                        <th class="colonneTitleItem">Nom</th>
+                        <th class="colonneTitleItem">Action</th>
+                    </tr>
+                    
+                    <?php foreach($types as $type){ ?>
+                        <tr class="ingredientTypeItem" 
+                            id="type-<?= $type['id'] ?>" >
+
+                            <td class="ingredientTypePart">
+                                <?= $type['nom'] ?>
+                            </td>
+                            <td class="ingredientTypePart buttonGroup">
+                                <button class="actionButton updateButton" onclick="openModal(event ,'type', <?= $type['id'] ?>)"
+                                data-nomtype="<?= $type['nom'] ?>">
+                                    Modifier
+                                </button>
+                                <button class="actionButton deleteButton">
+                                    Supprimer
+                                </button>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
+
+
+<!-- Emplacement des modal de modification -->
+<div class="modalContainer hiddenModal">
+    <div class="modalUpdateType">
+        <div class="modalHead">
+            <div class="modalTitle">
+                Modifier un type d'ingrédient
+            </div>
+            <button class="closeModalButton" onclick="closeModal()">
+                &times;
+            </button>
+        </div>
+        <div class="modalBody">
+            <form action="" method="POST" class="updateTypeForm">
+                <input type="hidden" id="ingredientTypeIdUpdate" name="ingredientTypeIdUpdate" value="">
+                <div class="inputGroup">
+                    <label for="ingredientTypeNomUpdate" class="inputLabel">
+                        <input type="text" class="inputItem" name="ingredientTypeNomUpdate"
+                        id="ingredientTypeNomUpdate" value="" placeholder="Nom" required />
+                        <span>Nom</span>
+                    </label>
+                </div>
+                <button type="submit" class="addButton">
+                    Modifier
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- FIN emplacement des modal de modification -->
 
 <script type="text/javascript" src="./assets/js/priceCheck.js"></script>
 
 <script type="text/javascript" src="./assets/js/toastController.js"></script>
+
+<script type="text/javascript" src="./assets/js/controlModalIngredient.js"></script>

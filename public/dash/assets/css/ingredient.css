@@ -62,7 +62,7 @@
 }
 
 .main > .container .error, .main > .container .success{
-    position: absolute;
+    position: fixed;
     top: 25px; 
     right: 15px;
     min-width: 100px;
@@ -122,3 +122,133 @@
 .main > .container .hidden{
     opacity: 0;
 }
+
+.main > .container .table{
+    min-width: 40%;
+}
+
+.main > .container .ingredientTableStyle{
+    width: 100%;
+    background-color: var(--color-highlights);
+    padding: 25px 20px;
+    border-radius: 15px;
+    overflow: hidden;
+    color: var(--text-color-light);
+    border-collapse: collapse;
+}
+
+.main > .container .table table.ingredientTableStyle .title{
+    text-align: center;
+    width: 100%;
+    padding: 25px 15px;
+}
+
+.main > .container .ingredientTableStyle .colonneTitleContainer .colonneTitleItem, 
+.main > .container .ingredientTableStyle .ingredientTypeItem .ingredientTypePart{
+    background-color: var(--color-highlights);
+    text-align: center;
+    padding: 5px 8px;
+}
+
+.main > .container .ingredientTableStyle .ingredientTypeItem .ingredientTypePart{
+    font-weight: 100;
+}
+
+.main > .container .ingredientTableStyle .colonneTitleContainer .colonneTitleItem{
+    border-bottom: 1px solid var(--text-color-light);
+}
+
+.main > .container .ingredientTableStyle .ingredientTypeItem .buttonGroup{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.main > .container .ingredientTableStyle .ingredientTypeItem .ingredientTypePart .actionButton{
+    padding: 4px 6px;
+    border-radius: 5px;
+    border: none;
+    letter-spacing: 1px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 1s ease-in-out;
+}
+
+.main > .container .ingredientTableStyle .ingredientTypeItem .ingredientTypePart .deleteButton{
+    background: linear-gradient(90deg, transparent, var(--text-red));
+    background-position: left;
+    background-size: 10000px;
+    color: var(--text-color-light);
+}
+
+.main > .container .ingredientTableStyle .ingredientTypeItem .ingredientTypePart .deleteButton:hover{
+    background-position: 400px;
+    transform: scale(1.1);
+}
+
+.main > .container .ingredientTableStyle .ingredientTypeItem .ingredientTypePart .updateButton:hover{
+    transform: scale(1.1);
+}
+
+.main > .container .modalContainer.hiddenModal{
+    display: none;
+}
+
+.main > .container .modalContainer{
+    position: fixed;
+    background: transparent;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+.main > .container .modalUpdateType{
+    position: relative;
+    width: 30%;
+    border-radius: 15px;
+    background: var(--color-highlights);
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+    overflow: hidden;
+    
+}
+.main > .container .modalUpdateType .modalHead, 
+.main > .container .modalUpdateType .modalBody form, 
+.main > .container .modalUpdateType .modalHead .modalTitle{
+    background: var(--color-highlights);
+}
+
+.main > .container .modalUpdateType .modalHead{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    padding-left: 70px;
+    padding-top: 25px;
+    padding-right: 25px;
+}
+
+.main > .container .modalUpdateType .modalHead .closeModalButton {
+    width: 25px;
+    aspect-ratio: 1/1;
+    border: none;
+    border-radius: 100px;
+}
+.main > .container .modalUpdateType .modalHead .modalTitle {
+    color: var(--text-color-light);
+    font-size: 1.7rem;
+    letter-spacing: 1px;
+}
+
+.main > .container .modalUpdateType .modalBody{
+    padding: 35px 70px;
+    background-color: var(--color-highlights);
+}
+
+
