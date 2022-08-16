@@ -10,8 +10,8 @@ if(isset($_POST['ingredientTypeNom']) && !empty($_POST['ingredientTypeNom'])){
 }
 
 //Soummission du formulaire ajout d'ingrédient
-if(isset($_POST['ingredientNom'], $_POST['ingredientType'])){
-
+if(isset($_POST['ingredientNom'], $_POST['ingredientType'], $_POST['ingredientPrix'])){
+    echo addNewIngredient($bdd->connection, $_POST);
 }
 
 $types = getAllType($bdd->connection);
@@ -33,6 +33,13 @@ $types = getAllType($bdd->connection);
                         <input type="text" class="inputItem" name="ingredientNom"
                         id="ingredientNom" placeholder="Nom" required />
                         <span>Nom</span>
+                    </label>
+                </div>
+                <div class="inputGroup">
+                    <label for="ingredientPrix" class="inputLabel">
+                        <input type="text" class="inputItem" name="ingredientPrix"
+                        id="ingredientPrix" placeholder="Prix" required onkeypress="checkPrice(event); return false;" />
+                        <span>Prix</span>
                     </label>
                 </div>
                 <div class="typeChoice">
@@ -76,3 +83,7 @@ $types = getAllType($bdd->connection);
         <div class="table">Ingredient liste</div>
     </div>
 </div>
+
+<script type="text/javascript" src="./assets/js/priceCheck.js"></script>
+
+<script type="text/javascript" src="./assets/js/toastController.js"></script>
