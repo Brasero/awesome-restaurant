@@ -158,7 +158,7 @@ function addNewIngredient(PDO $bdd, array $data) : string {
  */
 function updateTypeIngredientName(PDO $bdd, array $data): string{
     $type = [];
-    $type['nom'] = strtolower(htmlspecialchars(strip_tags($data['ingredientTypeNomUpdate'])));
+    $type['nom'] = strtolower(htmlentities(strip_tags($data['ingredientTypeNomUpdate'])));
     $type['id'] = intval(strip_tags($data['ingredientTypeIdUpdate']));
 
     $types = getTypes($bdd);

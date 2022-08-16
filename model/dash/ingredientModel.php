@@ -85,7 +85,6 @@ function setIngredientTypeName(PDO $bdd, array $data): bool{
 
     $query->bindValue(':nom', $data['nom'], PDO::PARAM_STR);
     $query->bindValue(':id', $data['id'], PDO::PARAM_INT);
-    var_dump($data);
     return $query->execute();
 }
 
