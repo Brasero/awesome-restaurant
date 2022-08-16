@@ -5,7 +5,7 @@ require_once('../../controller/dash/ingredientController.php');
 
 
 //Soummission du formulaire ajout de type d'ingrédient
-if(isset($_POST['ingredientTypeNom'])){
+if(isset($_POST['ingredientTypeNom']) && !empty($_POST['ingredientTypeNom'])){
     echo addTypeIngredient($bdd->connection, $_POST['ingredientTypeNom']);
 }
 
@@ -31,7 +31,7 @@ $types = getAllType($bdd->connection);
                 <div class="inputGroup">
                     <label for="ingredientNom" class="inputLabel">
                         <input type="text" class="inputItem" name="ingredientNom"
-                        id="ingredientNom" placeholder="Nom" />
+                        id="ingredientNom" placeholder="Nom" required />
                         <span>Nom</span>
                     </label>
                 </div>
@@ -41,7 +41,7 @@ $types = getAllType($bdd->connection);
                     </label>
                     <select 
                     class="inputItem" name="ingredientType"
-                    id="ingredientType" placeholder="Type d'ingrédient" default="false">
+                    id="ingredientType" placeholder="Type d'ingrédient" default="false" required>
                         <option class="typeOption" value="false">....</option>
                         <?php foreach ($types as $type){ ?>
                             <option value="<?= $type['id'] ?>"><?= $type['nom'] ?></option>
@@ -61,7 +61,7 @@ $types = getAllType($bdd->connection);
                 <div class="inputGroup">
                     <label for="ingredientTypeNom" class="inputLabel">
                         <input type="text" class="inputItem" name="ingredientTypeNom"
-                        id="ingredientTypeNom" placeholder="Nom" />
+                        id="ingredientTypeNom" placeholder="Nom" required />
                         <span>Nom</span>
                     </label>
                 </div>
