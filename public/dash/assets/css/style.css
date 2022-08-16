@@ -91,6 +91,7 @@ body {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  z-index: 20;
 }
 
 .main > .navBar > .navLinks .toggleButton .top{
@@ -140,6 +141,7 @@ body {
   align-items: flex-end;
   padding: 1rem 0;
   overflow: hidden;
+  z-index: 10;
 }
 
 .main > .navBar > .navLinks  .navLink {
