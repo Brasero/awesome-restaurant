@@ -148,6 +148,25 @@ function addNewIngredient(PDO $bdd, array $data) : string {
     }
 }
 
+function getAllIngredient(PDO $bdd) : array{
+    $prod = getIngredients($bdd);
+
+    $traitedProd = [];
+
+    foreach($prod as $p){
+        $np = [];
+        $np['id'] = $p['ID_ingredient'];
+        $np['nom'] = $p['nom_ingredient'];
+        $np['prix'] = $p['prix_ingredient'];
+        $np['dispo'] = $p['dispo_ingredient'];
+        $np['type'] = $p['nom_type_ingredient'];
+
+        array_push($traitedProd, $np);
+    }
+
+    return $traitedProd;
+}
+
 
 /**
  * Traite la modification de nom de type d'ingrédient, vérifie au préalable que le nom n'existe pas déjà en base de donnée

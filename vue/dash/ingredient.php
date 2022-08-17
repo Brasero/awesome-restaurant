@@ -21,7 +21,7 @@ if(isset($_POST['ingredientTypeIdUpdate'], $_POST['ingredientTypeNomUpdate']) &&
 
 //Recupération de tout les type !!!! Efféctué après toute insertion ou modification au dessus
 $types = getAllType($bdd->connection);
-
+$ingredient = getAllIngredient($bdd->connection);
 ?>
 
 <div class="ingredientContainer">
@@ -89,7 +89,7 @@ $types = getAllType($bdd->connection);
         <div class="table">
             <table class="ingredientTypeTable ingredientTableStyle">
                 <h4 class="title" style="padding: 20px 15px; text-align: center;">
-                    Liste type ingrédient
+                    Liste ingrédients
                 </h4>
                 <tbody>
                     <tr class="colonneTitleContainer">
@@ -97,7 +97,7 @@ $types = getAllType($bdd->connection);
                         <th class="colonneTitleItem">Action</th>
                     </tr>
                     
-                    <?php foreach($types as $type){ ?>
+                    <?php foreach($ingredient as $type){ ?>
                         <tr class="ingredientTypeItem" 
                             id="type-<?= $type['id'] ?>" >
 
