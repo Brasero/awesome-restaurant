@@ -1,0 +1,99 @@
+.produitContainer{
+    width:100%;
+    height: 100%;
+    padding-left: 50px;
+}
+
+.produitcontainer > .produitTitle{
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.produitContainer > .produitCardDeck{
+    min-height: 400px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.produitContainer > .produitCardDeck > .card{
+    min-width: 250px;
+    aspect-ratio: 1/1;
+    background: var(--color-highlights);
+    padding: 15px 20px;
+    border-radius: 15px;
+    justify-content: flex-start;
+}
+
+.main > .container > .produitConatiner > .produitCardDeck > .card > *{
+    background-color: transparent;
+}
+
+.main > .container > .produitConatiner > .produitCardDeck > .card > .formTitle{
+    margin-top: 0;
+}
+
+.main > .containe > .produitTableStyle{
+    width: 100%;
+    background-color: var(--color-highlights);
+    padding: 25px 20px;
+    border-radius: 15px;
+    overflow: hidden;
+    color: var(--text-color-light);
+    border-collapse: collapse;
+}
+
+.main > .container .table table.produitTableStyle .title{
+    text-align: center;
+    width: 100%;
+    padding: 25px 15px;
+}
+
+.main > .container .produitTableStyle .colonneTitleContainer .colonneTitleItem,
+.main > .container .produitTableStyle .produitTypeItem .produitTypePart{
+    background-color: var(--color-highlights);
+    text-align: center;
+    padding: 5px 8px;
+}
+
+.main > .container .produitTableStyle .produitTypeItem .produitTypePart{
+    font-weight: 100;
+}
+
+.main > .container .produitTableStyle .colonneTitleContainer .colonneTitleItem{
+    border-bottom: 1px solid var(--text-color-light);
+}
+
+.main > .container .produitTableStyle .produitTypeItem .buttonGroup{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.main > .container .produitTableStyle .produitTypeItem .produitTypePart .actionButton{
+    padding: 4px 6px;
+    border-radius: 5px;
+    border: none;
+    letter-spacing: 1px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 1s ease-in-out;
+}
+.main > .container .produitTableStyle .produitTypeItem .produitTypePart .deleteButton{
+    background: linear-gradient(90deg, transparent, var(--text-red));
+    background-position: left;
+    background-size: 10000px;
+    color: var(--text-color-light);
+}
+.main > .container .produitTableStyle .produitTypeItem .produitTypePart .deleteButton:hover{
+    background-position: 400px;
+    transform: scale(1.1);
+}
+
+.main > .container .produitTableStyle .produitTypeItem .produitTypePart .updateButton:hover{
+    transform: scale(1.1);
+}

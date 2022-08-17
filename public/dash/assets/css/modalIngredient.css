@@ -1,0 +1,76 @@
+
+.main > .container .modalContainer.hiddenModal{
+    display: none;
+}
+
+.main > .container .modalContainer{
+    position: fixed;
+    background: transparent;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    z-index: 100;
+}
+
+.main > .container .modalUpdateType{
+    position: relative;
+    width: 30%;
+    border-radius: 15px;
+    background: var(--color-highlights);
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+    overflow: hidden;
+    
+}
+.main > .container .modalUpdateType .modalHead, 
+.main > .container .modalUpdateType .modalBody form, 
+.main > .container .modalUpdateType .modalHead .modalTitle{
+    background: var(--color-highlights);
+}
+
+.main > .container .modalUpdateType .modalHead{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    padding-left: 70px;
+    padding-top: 25px;
+    padding-right: 25px;
+}
+
+.main > .container .modalUpdateType .modalHead .closeModalButton {
+    width: 25px;
+    aspect-ratio: 1/1;
+    border: none;
+    border-radius: 100px;
+}
+.main > .container .modalUpdateType .modalHead .modalTitle {
+    color: var(--text-color-light);
+    font-size: 1.7rem;
+    letter-spacing: 1px;
+}
+
+.main > .container .modalUpdateType .modalBody{
+    padding: 35px 70px;
+    background-color: var(--color-highlights);
+}
+
+
+
+
+
+/** ------ MEDIA QUERIES ------ **/
+
+/** ------ SM SIZE ------- **/
+
+@media screen AND (max-width: 500px) {
+    
+    .main > .container .modalUpdateType{
+        width: 100%;
+    }
+}
