@@ -22,7 +22,7 @@
                 </div>
                 <div class="typeChoice">
                     <label for="categorieType">
-                        <span>Type de catégorie</span>
+                        <span>Catégorie</span>
                     </label>
                     <select name="categorieType" id="categorieType" class="inputItem" placeholder="Type de categorie" default="false" required>
                         <option value="false" class="typeOption">....</option>
@@ -35,7 +35,7 @@
         </div>
         <div class="card">
             <h4 class="formTitle">
-                Ajouter type de categorie
+                Ajouter categorie
             </h4>
             <form action="" method="POST">
                 <div class="inputGroup">
@@ -56,13 +56,13 @@
             <table class="categorieTypeTable categorieTableStyle">
                 <h4 class="title" style="padding:
                 20px 15px; text-align: center;">
-                    Liste type categorie
+                    Liste categorie
                 </h4>
                 <tbody>
                     <tr class="colonneTitleContainer">
-                        <th class="coloneTitleItem">Nom
+                        <th class="colonneTitleItem">Nom
                         </th>
-                        <th class="coloneTitleItem">Action</th>
+                        <th class="colonneTitleItem">Action</th>
                     </tr>
                 </tbody>
             </table>
