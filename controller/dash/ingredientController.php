@@ -148,6 +148,18 @@ function addNewIngredient(PDO $bdd, array $data) : string {
     }
 }
 
+/**
+ * Retourne un tableau avec tout les ingrédient ainsi que leur type ingredient respectif, chaque ingrédient aura les index :
+ * id
+ * nom
+ * prix
+ * dispo
+ * type
+ * idType
+ *
+ * @param PDO $bdd
+ * @return array 
+ */
 function getAllIngredient(PDO $bdd) : array{
     $prod = getIngredients($bdd);
 
@@ -156,10 +168,11 @@ function getAllIngredient(PDO $bdd) : array{
     foreach($prod as $p){
         $np = [];
         $np['id'] = $p['ID_ingredient'];
-        $np['nom'] = $p['nom_ingredient'];
+        $np['nom'] = ucfirst($p['nom_ingredient']);
         $np['prix'] = $p['prix_ingredient'];
         $np['dispo'] = $p['dispo_ingredient'];
-        $np['type'] = $p['nom_type_ingredient'];
+        $np['type'] = ucfirst($p['nom_type_ingredient']);
+        $np['idType'] = $p['ID_type_ingredient'];
 
         array_push($traitedProd, $np);
     }

@@ -21,7 +21,7 @@ if(isset($_POST['ingredientTypeIdUpdate'], $_POST['ingredientTypeNomUpdate']) &&
 
 //Recupération de tout les type !!!! Efféctué après toute insertion ou modification au dessus
 $types = getAllType($bdd->connection);
-$ingredient = getAllIngredient($bdd->connection);
+$ingredients = getAllIngredient($bdd->connection);
 ?>
 
 <div class="ingredientContainer">
@@ -94,22 +94,39 @@ $ingredient = getAllIngredient($bdd->connection);
                 <tbody>
                     <tr class="colonneTitleContainer">
                         <th class="colonneTitleItem">Nom</th>
+                        <th class="colonneTitleItem">Prix</th>
+                        <th class="colonneTitleItem">Disponibilité</th>
+                        <th class="colonneTitleItem">Type</th>
                         <th class="colonneTitleItem">Action</th>
                     </tr>
                     
-                    <?php foreach($ingredient as $type){ ?>
+                    <?php foreach($ingredients as $ingredient){ ?>
                         <tr class="ingredientTypeItem" 
-                            id="type-<?= $type['id'] ?>" >
+                            id="ingredient-<?= $ingredient['id'] ?>" >
 
                             <td class="ingredientTypePart">
-                                <?= $type['nom'] ?>
+                                <?= $ingredient['nom'] ?>
+                            </td>
+                            <td class="ingredientTypePart">
+                                <?= $ingredient['prix'] ?>
+                            </td>
+                            <td class="ingredientTypePart">
+                                <?= intval($ingredient['dispo']) == 1 ? 
+                                        "<span class='itemDisponible'></span>"
+                                    :
+                                        "<span class='itemIndisponible'></span>"
+                                ?>
+                            </td>
+                            <td class="ingredientTypePart">
+                                <?= $ingredient['type'] ?>
                             </td>
                             <td class="ingredientTypePart buttonGroup">
-                                <button class="actionButton updateButton" onclick="openModal(event ,'type', <?= $type['id'] ?>)"
-                                data-nomtype="<?= $type['nom'] ?>">
+                                <button class="actionButton updateButton" onclick="openModal(event ,'ingredient', <?= $ingredient['id'] ?>)"
+                                data-nomingredient="<?= $ingredient['nom'] ?>" 
+                                data-prixingredient="<?= $ingredient['prix'] ?>">
                                     Modifier
                                 </button>
-                                <button class="actionButton deleteButton" onclick="supprItem('typeIngredient', <?= $type['id'] ?>)">
+                                <button class="actionButton deleteButton" onclick="supprItem('ingredient', <?= $ingredient['id'] ?>)">
                                     Supprimer
                                 </button>
                             </td>

@@ -134,3 +134,32 @@
 .main > .container .ingredientTableStyle .ingredientTypeItem .ingredientTypePart .updateButton:hover{
     transform: scale(1.1);
 }
+
+/**---------------Style for on/off diode-----------------------**/
+
+.main > .container .ingredientTableStyle .ingredientTypeItem .ingredientTypePart:nth-child(3){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main > .container .ingredientTableStyle .ingredientTypeItem .ingredientTypePart .itemDisponible, 
+.main > .container .ingredientTableStyle .ingredientTypeItem .ingredientTypePart .itemIndisponible{
+    width: 20%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    border: 1px solid silver;
+    box-shadow: inset 2px 1px 3px rgb(0 0 0 / 20%)
+}
+
+.main > .container .ingredientTableStyle .ingredientTypeItem .ingredientTypePart .itemDisponible{
+    background: radial-gradient(var(--text-color-light) 3%, 
+        var(--text-green)) bottom right 200px;
+}
+
+.main > .container .ingredientTableStyle .ingredientTypeItem .ingredientTypePart .itemIndisponible{
+    background: radial-gradient(var(--text-color-light) 3%, 
+        var(--text-red)) bottom right 200px;
+}
+
+/**---------------END Style for on/off diode-----------------------**/
