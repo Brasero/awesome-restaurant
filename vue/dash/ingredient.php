@@ -85,7 +85,7 @@ $types = getAllType($bdd->connection);
         </div>
     </div>
     <div class="ingredientCardDeck">
-        <div class="table">Ingredient liste</div>
+        <!-- Liste ingrédient. -->
         <div class="table">
             <table class="ingredientTypeTable ingredientTableStyle">
                 <h4 class="title" style="padding: 20px 15px; text-align: center;">
@@ -118,6 +118,44 @@ $types = getAllType($bdd->connection);
                 </tbody>
             </table>
         </div>
+        <!-- Fin liste ingrédient -->
+
+        <!-- Liste types ingrédients -->
+        <div class="table">
+            <table class="ingredientTypeTable ingredientTableStyle">
+                <h4 class="title" style="padding: 20px 15px; text-align: center;">
+                    Liste type ingrédient
+                </h4>
+                <tbody>
+                    <tr class="colonneTitleContainer">
+                        <th class="colonneTitleItem">Nom</th>
+                        <th class="colonneTitleItem">Action</th>
+                    </tr>
+                    
+                    <?php foreach($types as $type){ ?>
+                        <tr class="ingredientTypeItem" 
+                            id="type-<?= $type['id'] ?>" >
+
+                            <td class="ingredientTypePart">
+                                <?= $type['nom'] ?>
+                            </td>
+                            <td class="ingredientTypePart buttonGroup">
+                                <button class="actionButton updateButton" onclick="openModal(event ,'type', <?= $type['id'] ?>)"
+                                data-nomtype="<?= $type['nom'] ?>">
+                                    Modifier
+                                </button>
+                                <button class="actionButton deleteButton" onclick="supprItem('typeIngredient', <?= $type['id'] ?>)">
+                                    Supprimer
+                                </button>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Fin liste type ingredient -->
+
     </div>
 </div>
 
