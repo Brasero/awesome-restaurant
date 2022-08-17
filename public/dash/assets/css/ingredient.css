@@ -75,6 +75,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
+    z-index: 5;
 }
 
 .main > .container .error{
@@ -150,6 +151,10 @@
     padding: 5px 8px;
 }
 
+.main > .container .ingredientTableStyle .ingredientTypeItem{
+    background: var(--color-highlights);
+}
+
 .main > .container .ingredientTableStyle .ingredientTypeItem .ingredientTypePart{
     font-weight: 100;
 }
@@ -206,6 +211,7 @@
     justify-content: center;
     align-items: center;
     backdrop-filter: blur(5px);
+    z-index: 100;
 }
 
 .main > .container .modalUpdateType{
@@ -252,3 +258,16 @@
 }
 
 
+
+
+
+/** ------ MEDIA QUERIES ------ **/
+
+/** ------ SM SIZE ------- **/
+
+@media screen AND (max-width: 500px) {
+    
+    .main > .container .modalUpdateType{
+        width: 100%;
+    }
+}
