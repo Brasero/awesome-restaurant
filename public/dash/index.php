@@ -98,6 +98,9 @@ $bdd = new Database('exemple_panier', 'root', '', 'localhost');
                         case 'ingredient':
                             include('../../vue/dash/ingredient.php');
                             break;
+                        case 'produits':
+                            include('../../vue/dash/produit.php');
+                            break;
                     }
                 } else {
                     include('');
