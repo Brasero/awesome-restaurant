@@ -14,6 +14,9 @@ $bdd = new Database('exemple_panier', 'root', '', 'localhost');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="./assets/css/ingredient.css">
+    <link rel="stylesheet" href="./assets/css/formulaire.css">
+    <link rel="stylesheet" href="./assets/css/toast.css">
+    <link rel="stylesheet" href="./assets/css/modalIngredient.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <title>Burger Compagny</title>
 </head>
