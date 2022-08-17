@@ -198,4 +198,8 @@ function updateTypeIngredientName(PDO $bdd, array $data): string{
     }
 }
 
+function deleteTypeIngredient(PDO $bdd, int $id){
+    return setTypeIngredientNull($bdd, intval($id));
+}
+
 ?>

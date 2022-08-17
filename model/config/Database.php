@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Créer une connexion à la base de données l'objet PDO est enregistré dans $connection
+ */
 class Database{
 
 

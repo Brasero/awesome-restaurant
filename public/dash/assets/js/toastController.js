@@ -7,10 +7,12 @@ function setToastDisparition(){
 
     if(elementSuccess != null){
         elementSuccess.classList.add('hidden')
+        setTimeout(() => {elementSuccess.remove()}, 500)
     }
 
     if(elementError != null){
         elementError.classList.add('hidden')
+        setTimeout(() => {elementError.remove()}, 500)
     }
 }
 

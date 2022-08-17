@@ -109,7 +109,7 @@ $types = getAllType($bdd->connection);
                                 data-nomtype="<?= $type['nom'] ?>">
                                     Modifier
                                 </button>
-                                <button class="actionButton deleteButton">
+                                <button class="actionButton deleteButton" onclick="supprItem('typeIngredient', <?= $type['id'] ?>)">
                                     Supprimer
                                 </button>
                             </td>
@@ -158,3 +158,4 @@ $types = getAllType($bdd->connection);
 <script type="text/javascript" src="./assets/js/toastController.js"></script>
 
 <script type="text/javascript" src="./assets/js/controlModalIngredient.js"></script>
+<script type="text/javascript" src="./assets/js/suppressionAjax.js"></script>
