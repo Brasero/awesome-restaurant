@@ -15,11 +15,12 @@
 
 .ingredientContainer > .ingredientTitle .bottom,
 .ingredientContainer > .ingredientTitle .top{
-    font-family: 'Aboreto', cursive;
+    font-family: var(--font-secondary);
 }
 
 .ingredientContainer > .ingredientTitle .bottom{
     color: var(--bg-color);
+    font-family: var(--font-primary);
 }
 
 .ingredientContainer > .ingredientCardDeck{
@@ -47,7 +48,7 @@
 
 .main > .container > .ingredientContainer > .ingredientCardDeck > .card > .formTitle{
     margin-top: 0;
-    font-family: 'Aboreto', cursive;
+    font-family: var(--font-secondary);
 }
 
 .main > .container .addButton{

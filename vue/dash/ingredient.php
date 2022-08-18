@@ -109,7 +109,7 @@ $ingredients = getAllIngredient($bdd->connection);
                                 <?= $ingredient['nom'] ?>
                             </td>
                             <td class="ingredientTypePart">
-                                <?= $ingredient['prix'] ?>
+                                <?= number_format($ingredient['prix'], 2, ',', '.') ?> €
                             </td>
                             <td class="ingredientTypePart">
                                 <?= intval($ingredient['dispo']) == 1 ? 
@@ -124,7 +124,9 @@ $ingredients = getAllIngredient($bdd->connection);
                             <td class="ingredientTypePart buttonGroup">
                                 <button class="actionButton updateButton" onclick="openModal(event ,'ingredient', <?= $ingredient['id'] ?>)"
                                 data-nomingredient="<?= $ingredient['nom'] ?>" 
-                                data-prixingredient="<?= $ingredient['prix'] ?>">
+                                data-prixingredient="<?= $ingredient['prix'] ?>" 
+                                data-dispoingredient="<?= $ingredient['dispo'] ?>" 
+                                data-idtypeingredient="<?= $ingredient['idType'] ?>">
                                     Modifier
                                 </button>
                                 <button class="actionButton deleteButton" onclick="supprItem('ingredient', <?= $ingredient['id'] ?>)">
@@ -179,13 +181,15 @@ $ingredients = getAllIngredient($bdd->connection);
 
 
 <!-- Emplacement des modal de modification -->
-<div class="modalContainer hiddenModal">
+
+<!-- MODAL Modification Type ingredient -->
+<div class="modalContainer hiddenModal" id="modalTypeIngredient">
     <div class="modalUpdateType">
         <div class="modalHead">
             <div class="modalTitle">
                 Modifier un type d'ingrédient
             </div>
-            <button class="closeModalButton" onclick="closeModal()">
+            <button class="closeModalButton" onclick="closeModalType()">
                 &times;
             </button>
         </div>
@@ -206,6 +210,61 @@ $ingredients = getAllIngredient($bdd->connection);
         </div>
     </div>
 </div>
+
+<!-- Fin Modal modification type ingredient -->
+
+<!-- Modal modification ingredient -->
+
+<div class="modalContainer hiddenModal" id="modalIngredient">
+    <div class="modalUpdateType">
+        <div class="modalHead">
+            <div class="modalTitle">
+                Modifier un ingrédient
+            </div>
+            <button class="closeModalButton" onclick="closeModalIngredient()">
+                &times;
+            </button>
+        </div>
+        <div class="modalBody">
+            <form action="" method="POST" class="updateTypeForm">
+                <input type="hidden" id="ingredientIdUpdate" name="ingredientIdUpdate" value="">
+                <div class="inputGroup">
+                    <label for="ingredientNomUpdate" class="inputLabel">
+                        <input type="text" class="inputItem" name="ingredientNomUpdate"
+                        id="ingredientNomUpdate" value="" placeholder="Nom" required />
+                        <span>Nom</span>
+                    </label>
+                </div>
+                <div class="inputGroup">
+                    <label for="ingredientPrixUpdate" class="inputLabel">
+                        <input type="text" class="inputItem" name="ingredientPrixUpdate"
+                        id="ingredientPrixUpdate" value="" placeholder="Prix" required />
+                        <span>Prix</span>
+                    </label>
+                </div>
+                <div class="inputGroup">
+                    <label for="ingredientDispoUpdate" class="inputLabel">
+                        <input type="text" class="inputItem" name="ingredientDispoUpdate"
+                        id="ingredientDispoUpdate" value="" placeholder="Disponibilité" required />
+                        <span>Disponibilité</span>
+                    </label>
+                </div>
+                <div class="inputGroup">
+                    <label for="ingredientIdTypeUpdate" class="inputLabel">
+                        <input type="text" class="inputItem" name="ingredientIdTypeUpdate"
+                        id="ingredientIdTypeUpdate" value="" placeholder="IdType" required />
+                        <span>IdType</span>
+                    </label>
+                </div>
+                <button type="submit" class="addButton">
+                    Modifier
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Fin modal modification ingredient -->
 
 <!-- FIN emplacement des modal de modification -->
 
