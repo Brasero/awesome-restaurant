@@ -88,6 +88,24 @@ function setIngredientTypeName(PDO $bdd, array $data): bool{
     return $query->execute();
 }
 
+function setIngredient(PDO $bdd, array $data): bool{
+    $str = 'UPDATE ingredient 
+            SET nom_ingredient = :nom,
+            prix_ingredient = :prix,
+            dispo_ingredient = :dispo,
+            ID_type_ingredient = :idType
+            WHERE ID_ingredient = :id';
+
+    $query = $bdd->prepare($str);
+
+    $query->bindValue(':nom', $data['nom'], PDO::PARAM_STR);
+    $query->bindValue(':prix', $data['prix'], PDO::PARAM_STR);
+    $query->bindValue(':dispo', $data['dispo'], PDO::PARAM_BOOL);
+    $query->bindValue(':idType', $data['type'], PDO::PARAM_INT);
+    $query->bindValue(':id', $data['id'], PDO::PARAM_INT);
+    return $query->execute();
+}
+
 
 function setTypeIngredientNull(PDO $bdd, int $id){
     $str = 'DELETE FROM type_ingredient WHERE ID_type_ingredient = :id';

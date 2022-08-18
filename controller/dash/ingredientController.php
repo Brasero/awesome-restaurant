@@ -148,6 +148,38 @@ function addNewIngredient(PDO $bdd, array $data) : string {
     }
 }
 
+/**
+ * Retourne un tableau avec tout les ingrédient ainsi que leur type ingredient respectif, chaque ingrédient aura les index :
+ * id
+ * nom
+ * prix
+ * dispo
+ * type
+ * idType
+ *
+ * @param PDO $bdd
+ * @return array 
+ */
+function getAllIngredient(PDO $bdd) : array{
+    $prod = getIngredients($bdd);
+
+    $traitedProd = [];
+
+    foreach($prod as $p){
+        $np = [];
+        $np['id'] = $p['ID_ingredient'];
+        $np['nom'] = ucfirst($p['nom_ingredient']);
+        $np['prix'] = $p['prix_ingredient'];
+        $np['dispo'] = $p['dispo_ingredient'];
+        $np['type'] = ucfirst($p['nom_type_ingredient']);
+        $np['idType'] = $p['ID_type_ingredient'];
+
+        array_push($traitedProd, $np);
+    }
+
+    return $traitedProd;
+}
+
 
 /**
  * Traite la modification de nom de type d'ingrédient, vérifie au préalable que le nom n'existe pas déjà en base de donnée
@@ -189,6 +221,54 @@ function updateTypeIngredientName(PDO $bdd, array $data): string{
                     </span>";
         }
     } else {
+        return "<span class='error'>
+                    <span class='message'>
+                        Ce type d'ingrédient existe déjà.
+                    </span>
+                    <span class='progressBar'></span>
+                </span>";
+    }
+}
+
+function updateIngredient(PDO $bdd, array $data){
+    $ingredient = [];
+    $ingredient['nom'] = strtolower(htmlentities(strip_tags($data['ingredientNomUpdate'])));
+    $ingredient['prix'] = str_replace(',', '.', $data['ingredientPrixUpdate']);
+    $ingredient['dispo'] = isset($data['ingredientDispoUpdate']);
+    $ingredient['type'] = intval($data['ingredientType']);
+    $ingredient['id'] = intval($data['ingredientIdUpdate']);
+
+    // var_dump($ingredient);
+    // die();
+
+    $ingredients = getIngredients($bdd);
+
+    $exist = function ($ingredients, $name, $id){
+        foreach($ingredients as $ingredient){
+            if(in_array($name, $ingredient) && !in_array($id, $ingredient)){
+                return true;
+            }
+        }
+        return false;
+    };
+
+    if(!$exist($ingredients, $ingredient['nom'], $ingredient['id'])){
+        if(setIngredient($bdd, $ingredient)){
+            return "<span class='success'>
+                        <span class='message'>
+                            Modification enregistrée.
+                        </span>
+                        <span class='progressBar'></span>
+                    </span>";
+        } else {
+            return "<span class='error'>
+                        <span class='message'>
+                            Une erreur s'est produite, réessayez.
+                        </span>
+                        <span class='progressBar'></span>
+                    </span>";
+        }     
+    } else{
         return "<span class='error'>
                     <span class='message'>
                         Ce type d'ingrédient existe déjà.

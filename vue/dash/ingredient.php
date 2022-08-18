@@ -16,17 +16,28 @@ if(isset($_POST['ingredientNom'], $_POST['ingredientType'], $_POST['ingredientPr
 
 //Soummission du formulaire modal d'update type ingrédient
 if(isset($_POST['ingredientTypeIdUpdate'], $_POST['ingredientTypeNomUpdate']) && !empty($_POST['ingredientTypeNomUpdate'])){
-    echo updateTypeIngredientName($bdd->connection, $_POST);
+    updateTypeIngredientName($bdd->connection, $_POST);
+}
+
+//Soummission du formulaire modal d'update type ingrédient
+if(isset(
+    $_POST['ingredientNomUpdate'], 
+    $_POST['ingredientPrixUpdate'], 
+    $_POST['ingredientType'],
+    $_POST['ingredientIdUpdate']
+    )){
+    echo updateIngredient($bdd->connection, $_POST);    
 }
 
 //Recupération de tout les type !!!! Efféctué après toute insertion ou modification au dessus
 $types = getAllType($bdd->connection);
-
+$ingredients = getAllIngredient($bdd->connection);
 ?>
 
 <div class="ingredientContainer">
     <h1 class="ingredientTitle">
-        Gestion des ingrédients
+        <span class="top">Gestion des</span>
+        <span class="bottom">ingrédients</span> 
     </h1>
     <div class="ingredientCardDeck">
         <div class="card">
@@ -85,7 +96,61 @@ $types = getAllType($bdd->connection);
         </div>
     </div>
     <div class="ingredientCardDeck">
-        <div class="table">Ingredient liste</div>
+        <!-- Liste ingrédient. -->
+        <div class="table">
+            <table class="ingredientTypeTable ingredientTableStyle">
+                <h4 class="title" style="padding: 20px 15px; text-align: center;">
+                    Liste ingrédients
+                </h4>
+                <tbody>
+                    <tr class="colonneTitleContainer">
+                        <th class="colonneTitleItem">Nom</th>
+                        <th class="colonneTitleItem">Prix</th>
+                        <th class="colonneTitleItem">Disponibilité</th>
+                        <th class="colonneTitleItem">Type</th>
+                        <th class="colonneTitleItem">Action</th>
+                    </tr>
+                    
+                    <?php foreach($ingredients as $ingredient){ ?>
+                        <tr class="ingredientTypeItem" 
+                            id="ingredient-<?= $ingredient['id'] ?>" >
+
+                            <td class="ingredientTypePart">
+                                <?= $ingredient['nom'] ?>
+                            </td>
+                            <td class="ingredientTypePart">
+                                <?= number_format($ingredient['prix'], 2, ',', '.') ?> €
+                            </td>
+                            <td class="ingredientTypePart">
+                                <?= intval($ingredient['dispo']) == 1 ? 
+                                        "<span class='itemDisponible'></span>"
+                                    :
+                                        "<span class='itemIndisponible'></span>"
+                                ?>
+                            </td>
+                            <td class="ingredientTypePart">
+                                <?= $ingredient['type'] ?>
+                            </td>
+                            <td class="ingredientTypePart buttonGroup">
+                                <button class="actionButton updateButton" onclick="openModal(event ,'ingredient', <?= $ingredient['id'] ?>)"
+                                data-nomingredient="<?= $ingredient['nom'] ?>" 
+                                data-prixingredient="<?= $ingredient['prix'] ?>" 
+                                data-dispoingredient="<?= $ingredient['dispo'] ?>" 
+                                data-idtypeingredient="<?= $ingredient['idType'] ?>">
+                                    Modifier
+                                </button>
+                                <button class="actionButton deleteButton" onclick="supprItem('ingredient', <?= $ingredient['id'] ?>)">
+                                    Supprimer
+                                </button>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+        <!-- Fin liste ingrédient -->
+
+        <!-- Liste types ingrédients -->
         <div class="table">
             <table class="ingredientTypeTable ingredientTableStyle">
                 <h4 class="title" style="padding: 20px 15px; text-align: center;">
@@ -118,18 +183,23 @@ $types = getAllType($bdd->connection);
                 </tbody>
             </table>
         </div>
+
+        <!-- Fin liste type ingredient -->
+
     </div>
 </div>
 
 
 <!-- Emplacement des modal de modification -->
-<div class="modalContainer hiddenModal">
+
+<!-- MODAL Modification Type ingredient -->
+<div class="modalContainer hiddenModal" id="modalTypeIngredient">
     <div class="modalUpdateType">
         <div class="modalHead">
             <div class="modalTitle">
                 Modifier un type d'ingrédient
             </div>
-            <button class="closeModalButton" onclick="closeModal()">
+            <button class="closeModalButton" onclick="closeModalType()">
                 &times;
             </button>
         </div>
@@ -150,6 +220,66 @@ $types = getAllType($bdd->connection);
         </div>
     </div>
 </div>
+
+<!-- Fin Modal modification type ingredient -->
+
+<!-- Modal modification ingredient -->
+
+<div class="modalContainer hiddenModal" id="modalIngredient">
+    <div class="modalUpdateType">
+        <div class="modalHead">
+            <div class="modalTitle">
+                Modifier un ingrédient
+            </div>
+            <button class="closeModalButton" onclick="closeModalIngredient()">
+                &times;
+            </button>
+        </div>
+        <div class="modalBody">
+            <form action="" method="POST" class="updateTypeForm">
+                <input type="hidden" id="ingredientIdUpdate" name="ingredientIdUpdate" value="">
+                <div class="inputGroup">
+                    <label for="ingredientNomUpdate" class="inputLabel">
+                        <input type="text" class="inputItem" name="ingredientNomUpdate"
+                        id="ingredientNomUpdate" value="" placeholder="Nom" required />
+                        <span>Nom</span>
+                    </label>
+                </div>
+                <div class="inputGroup">
+                    <label for="ingredientPrixUpdate" class="inputLabel">
+                        <input type="text" class="inputItem" name="ingredientPrixUpdate"
+                        id="ingredientPrixUpdate" value="" placeholder="Prix" required />
+                        <span>Prix</span>
+                    </label>
+                </div>
+                <label for="ingredientDispoUpdate" class="dispoLabel">
+                    <input type="checkbox" name="ingredientDispoUpdate" id="ingredientDispoUpdate">
+                    <span class="circleOnOff">
+                        <span class="onOffTick"></span>
+                    </span>
+                </label>
+                <div class="typeChoice">
+                    <label for="ingredientTypeModif">
+                        <span>Type d'ingrédient</span>
+                    </label>
+                    <select 
+                    class="inputItem" name="ingredientType"
+                    id="ingredientTypeModif" placeholder="Type d'ingrédient" default="false" required>
+                        <option class="typeOption" value="false">....</option>
+                        <?php foreach ($types as $type){ ?>
+                            <option id="ingredientTypeModifOption-<?= $type['id'] ?>" value="<?= $type['id'] ?>"><?= $type['nom'] ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+                <button type="submit" class="addButton">
+                    Modifier
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Fin modal modification ingredient -->
 
 <!-- FIN emplacement des modal de modification -->
 
