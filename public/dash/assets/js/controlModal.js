@@ -12,8 +12,8 @@ function openModal(e, action, id){
     }
     else if(action == 'categorie'){
         var modalContainer = document.querySelector('.modalContainer');
-        var input = document.querySelector('#categorieNomUptade');
-        var idInput = document.querySelector('#categorieIdUptade');
+        var input = document.querySelector('#categorieNomUpdate');
+        var idInput = document.querySelector('#categorieIdUpdate');
         var targetButton = e.target;
         var name = targetButton.getAttribute('data-nomcategorie')
 

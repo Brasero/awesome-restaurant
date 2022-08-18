@@ -89,7 +89,7 @@ $categories = getAllCategorie($bdd->connection);
                                 <button class="actionButton updateButton" onclick="openModal(event, 'categorie', <?= $categorie['id'] ?>)" data-nomcategorie="<?= $categorie['nom'] ?>">
                                     Modifier
                                 </button>
-                                <button class="actionButton deleteButton" onclick="supprItem('categorie, <?= $categorie['id'] ?>')">
+                                <button class="actionButton deleteButton" onclick="supprItem('categorie', <?= $categorie['id'] ?>)">
                                     Supprimer
                                 </button>
                             </td>
@@ -104,7 +104,7 @@ $categories = getAllCategorie($bdd->connection);
 
 <!-- Emplacement des modal de modofication -->
 <div class="modalContainer hiddenModal">
-    <div class="modalUptadeType">
+    <div class="modalUpdateType">
         <div class="modalHead">
             <div class="modalTitle">
                 Modifier une catégorie
@@ -115,10 +115,11 @@ $categories = getAllCategorie($bdd->connection);
         </div>
         <div class="modalBody">
             <form action="" method="POST" class="uptadeTypeForm">
-                <input type="hidden" id="categorieIdUptade" name="categorieIdUptade" value="">
+                <input type="hidden" id="categorieIdUpdate" name="categorieIdUpdate" value="">
                 <div class="inputGroup">
                     <label for="categorieNomUpdate" class="inputLabel">
                         <input type="text" class="inputItem" name="categorieNomUpdate" id="categorieNomUpdate" value="" placeholder="Nom" required />
+                        <span>Nom</span>
                     </label>
                 </div>
                 <button type="submit" class="addButton">
