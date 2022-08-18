@@ -26,7 +26,8 @@ $ingredients = getAllIngredient($bdd->connection);
 
 <div class="ingredientContainer">
     <h1 class="ingredientTitle">
-        Gestion des ingrédients
+        <span class="top">Gestion des</span>
+        <span class="bottom">ingrédients</span> 
     </h1>
     <div class="ingredientCardDeck">
         <div class="card">

@@ -5,8 +5,21 @@
 }
 
 .ingredientContainer > .ingredientTitle{
-    text-align: center;
+    text-align: left;
     text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.ingredientContainer > .ingredientTitle .bottom,
+.ingredientContainer > .ingredientTitle .top{
+    font-family: 'Aboreto', cursive;
+}
+
+.ingredientContainer > .ingredientTitle .bottom{
+    color: var(--bg-color);
 }
 
 .ingredientContainer > .ingredientCardDeck{
@@ -34,6 +47,7 @@
 
 .main > .container > .ingredientContainer > .ingredientCardDeck > .card > .formTitle{
     margin-top: 0;
+    font-family: 'Aboreto', cursive;
 }
 
 .main > .container .addButton{
