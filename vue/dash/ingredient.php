@@ -5,17 +5,17 @@ require_once('../../controller/dash/ingredientController.php');
 
 
 //Soummission du formulaire ajout de type d'ingrédient
-if(isset($_POST['ingredientTypeNom']) && !empty($_POST['ingredientTypeNom'])){
+if (isset($_POST['ingredientTypeNom']) && !empty($_POST['ingredientTypeNom'])) {
     echo addTypeIngredient($bdd->connection, $_POST['ingredientTypeNom']);
 }
 
 //Soummission du formulaire ajout d'ingrédient
-if(isset($_POST['ingredientNom'], $_POST['ingredientType'], $_POST['ingredientPrix'])){
+if (isset($_POST['ingredientNom'], $_POST['ingredientType'], $_POST['ingredientPrix'])) {
     echo addNewIngredient($bdd->connection, $_POST);
 }
 
 //Soummission du formulaire modal d'update type ingrédient
-if(isset($_POST['ingredientTypeIdUpdate'], $_POST['ingredientTypeNomUpdate']) && !empty($_POST['ingredientTypeNomUpdate'])){
+if (isset($_POST['ingredientTypeIdUpdate'], $_POST['ingredientTypeNomUpdate']) && !empty($_POST['ingredientTypeNomUpdate'])) {
     echo updateTypeIngredientName($bdd->connection, $_POST);
 }
 
@@ -30,21 +30,19 @@ $types = getAllType($bdd->connection);
     </h1>
     <div class="ingredientCardDeck">
         <div class="card">
-        <h4 class="formTitle">
+            <h4 class="formTitle">
                 Ajouter un ingrédient
             </h4>
             <form action="" method="post">
                 <div class="inputGroup">
                     <label for="ingredientNom" class="inputLabel">
-                        <input type="text" class="inputItem" name="ingredientNom"
-                        id="ingredientNom" placeholder="Nom" required />
+                        <input type="text" class="inputItem" name="ingredientNom" id="ingredientNom" placeholder="Nom" required />
                         <span>Nom</span>
                     </label>
                 </div>
                 <div class="inputGroup">
                     <label for="ingredientPrix" class="inputLabel">
-                        <input type="text" class="inputItem" name="ingredientPrix"
-                        id="ingredientPrix" placeholder="Prix" required onkeypress="checkPrice(event); return false;" />
+                        <input type="text" class="inputItem" name="ingredientPrix" id="ingredientPrix" placeholder="Prix" required onkeypress="checkPrice(event); return false;" />
                         <span>Prix</span>
                     </label>
                 </div>
@@ -52,11 +50,9 @@ $types = getAllType($bdd->connection);
                     <label for="ingredientType">
                         <span>Type d'ingrédient</span>
                     </label>
-                    <select 
-                    class="inputItem" name="ingredientType"
-                    id="ingredientType" placeholder="Type d'ingrédient" default="false" required>
+                    <select class="inputItem" name="ingredientType" id="ingredientType" placeholder="Type d'ingrédient" default="false" required>
                         <option class="typeOption" value="false">....</option>
-                        <?php foreach ($types as $type){ ?>
+                        <?php foreach ($types as $type) { ?>
                             <option value="<?= $type['id'] ?>"><?= $type['nom'] ?></option>
                         <?php } ?>
                     </select>
@@ -73,8 +69,7 @@ $types = getAllType($bdd->connection);
             <form action="" method="post">
                 <div class="inputGroup">
                     <label for="ingredientTypeNom" class="inputLabel">
-                        <input type="text" class="inputItem" name="ingredientTypeNom"
-                        id="ingredientTypeNom" placeholder="Nom" required />
+                        <input type="text" class="inputItem" name="ingredientTypeNom" id="ingredientTypeNom" placeholder="Nom" required />
                         <span>Nom</span>
                     </label>
                 </div>
@@ -96,17 +91,15 @@ $types = getAllType($bdd->connection);
                         <th class="colonneTitleItem">Nom</th>
                         <th class="colonneTitleItem">Action</th>
                     </tr>
-                    
-                    <?php foreach($types as $type){ ?>
-                        <tr class="ingredientTypeItem" 
-                            id="type-<?= $type['id'] ?>" >
+
+                    <?php foreach ($types as $type) { ?>
+                        <tr class="ingredientTypeItem" id="type-<?= $type['id'] ?>">
 
                             <td class="ingredientTypePart">
                                 <?= $type['nom'] ?>
                             </td>
                             <td class="ingredientTypePart buttonGroup">
-                                <button class="actionButton updateButton" onclick="openModal(event ,'type', <?= $type['id'] ?>)"
-                                data-nomtype="<?= $type['nom'] ?>">
+                                <button class="actionButton updateButton" onclick="openModal(event ,'type', <?= $type['id'] ?>)" data-nomtype="<?= $type['nom'] ?>">
                                     Modifier
                                 </button>
                                 <button class="actionButton deleteButton" onclick="supprItem('typeIngredient', <?= $type['id'] ?>)">
@@ -138,8 +131,7 @@ $types = getAllType($bdd->connection);
                 <input type="hidden" id="ingredientTypeIdUpdate" name="ingredientTypeIdUpdate" value="">
                 <div class="inputGroup">
                     <label for="ingredientTypeNomUpdate" class="inputLabel">
-                        <input type="text" class="inputItem" name="ingredientTypeNomUpdate"
-                        id="ingredientTypeNomUpdate" value="" placeholder="Nom" required />
+                        <input type="text" class="inputItem" name="ingredientTypeNomUpdate" id="ingredientTypeNomUpdate" value="" placeholder="Nom" required />
                         <span>Nom</span>
                     </label>
                 </div>
@@ -157,5 +149,5 @@ $types = getAllType($bdd->connection);
 
 <script type="text/javascript" src="./assets/js/toastController.js"></script>
 
-<script type="text/javascript" src="./assets/js/controlModalIngredient.js"></script>
+<script type="text/javascript" src="./assets/js/controlModal.js"></script>
 <script type="text/javascript" src="./assets/js/suppressionAjax.js"></script>
