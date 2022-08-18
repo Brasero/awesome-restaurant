@@ -36,8 +36,8 @@ $ingredients = getAllIngredient($bdd->connection);
 
 <div class="ingredientContainer">
     <h1 class="ingredientTitle">
-        <span class="top">Gestion des</span>
-        <span class="bottom">ingrédients</span> 
+        <span class="top" style="transform: translateY(-30px);">Gestion des</span>
+        <span class="bottom" style="transform: translateY(30px);">ingrédients</span> 
     </h1>
     <div class="ingredientCardDeck">
         <div class="card">
@@ -289,3 +289,4 @@ $ingredients = getAllIngredient($bdd->connection);
 
 <script type="text/javascript" src="./assets/js/controlModalIngredient.js"></script>
 <script type="text/javascript" src="./assets/js/suppressionAjax.js"></script>
+<script type="text/javascript" src="./assets/js/animation.js"></script>
