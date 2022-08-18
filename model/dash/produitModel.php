@@ -26,7 +26,7 @@ function setNewCategorie(PDO $bdd, string $name) : bool{
 function getCategorie(PDO $bdd) : array{
     $str = 'SELECT * FROM categorie';
 
-    $query = $bdd->prepare($str);
+    $query = $bdd->query($str);
 
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
