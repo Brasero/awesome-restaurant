@@ -14,12 +14,12 @@ function addCategorie(PDO $bdd, string $name): string
     $name = htmlentities(strip_tags($name));
     $name = strtolower($name);
 
-    $categs = getCategorie($bdd);
+    $categories = getCategorie($bdd);
 
     // On crée une closure (fonction anonyme enregister dans une variable) qui permettra de verifier si le nom de la catégorie du produit existe dans la bdd
-    $exist = function ($categs, $name) {
-        foreach ($categs as $categ) {
-            if (in_array($name, $categ)) {
+    $exist = function ($categories, $name) {
+        foreach ($categories as $categorie) {
+            if (in_array($name, $categorie)) {
                 return true;
             }
         }
@@ -27,7 +27,7 @@ function addCategorie(PDO $bdd, string $name): string
     };
 
     // on appel cette closure dans une contition pour empêcher les doublons en base de données.
-    if ($exist($categs, $name)) {
+    if ($exist($categories, $name)) {
         return '<span class="error">
                     <span class="message">
                         Cette catégorie existe déjà
@@ -37,7 +37,7 @@ function addCategorie(PDO $bdd, string $name): string
     } else {
         // Si la catégorie n'existe pas en base on l'enregistre.
         if (setNewCategorie($bdd, $name)) {
-            return '<span class="sucess">
+            return '<span class="success">
                         <span class="message">
                             Votre catégorie "' . $name . '" à été ajouté.
                         </span>

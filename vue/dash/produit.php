@@ -1,3 +1,17 @@
+<?php
+
+// require du controller de la page 
+require_once('../../controller/dash/produitController.php');
+
+// Soummission du formulaire ajout de catégorie
+if (isset($_POST['categorieNom']) && !empty($_POST['categorieNom'])) {
+    echo addCategorie($bdd->connection, $_POST['categorieNom']);
+}
+
+//Récupération de toute les catégorie! Efféctué après toute insertion ou modification au dessus
+$categories = getAllCategorie($bdd->connection);
+?>
+
 <div class="produitContainer">
     <h1 class="produitTitle">
         Gestion des produits
@@ -24,8 +38,11 @@
                     <label for="categorieType">
                         <span>Catégorie</span>
                     </label>
-                    <select name="categorieType" id="categorieType" class="inputItem" placeholder="Type de categorie" default="false" required>
+                    <select name="categorieType" id="categorieType" class="inputItem" placeholder="C    ategorie" default="false" required>
                         <option value="false" class="typeOption">....</option>
+                        <?php foreach ($categories as $categorie) { ?>
+                            <option value="<?= $categorie['id'] ?>"><?= $categorie['nom'] ?></option>
+                        <?php } ?>
                     </select>
                 </div>
                 <button type="submit" class="addButton">
@@ -64,8 +81,24 @@
                         </th>
                         <th class="colonneTitleItem">Action</th>
                     </tr>
+                    <?php foreach ($categories as $categorie) { ?>
+                        <tr class="categorieTypeItem" id="type-<?= $categorie['id'] ?>">
+                            <td class="categorieTypePart"><?= $categorie['nom'] ?>
+                            </td>
+                            <td class="categorieTypePart buttonGroup">
+                                <button class="actionButton updateButton" onclick="openModal(event, 'type', <?= $categorie['id'] ?>)" data-nomcategorie="<?= $categorie['nom'] ?>">
+                                    Modifier
+                                </button>
+                                <button class="actionButton deleteButton" onclick="supprItem('categorie, <?= $categorie['id'] ?>')">
+                                    Supprimer
+                                </button>
+                            </td>
+                        </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+
+<script type="text/javascript" src="./assets/js/toastController.js"></script>
