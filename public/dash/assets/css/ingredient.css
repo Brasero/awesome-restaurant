@@ -21,6 +21,7 @@
 .ingredientContainer > .ingredientTitle .bottom{
     color: var(--bg-color);
     font-family: var(--font-primary);
+    text-shadow: var(--text-shadow);
 }
 
 .ingredientContainer > .ingredientCardDeck{
@@ -49,6 +50,7 @@
 .main > .container > .ingredientContainer > .ingredientCardDeck > .card > .formTitle{
     margin-top: 0;
     font-family: var(--font-secondary);
+    text-shadow: var(--text-shadow);
 }
 
 .main > .container .addButton{
@@ -71,6 +73,7 @@
     align-items: center;
     gap: 10px;
     color: var(--text-color-light);
+    text-shadow: var(--text-shadow);
 }
 
 .main > .container .typeChoice label, .main > .container .typeChoice label span{
@@ -90,6 +93,7 @@
     overflow: hidden;
     color: var(--text-color-light);
     border-collapse: collapse;
+    text-shadow: var(--text-shadow);
 }
 
 .main > .container .table table.ingredientTableStyle .title{

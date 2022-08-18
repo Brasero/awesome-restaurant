@@ -16,7 +16,17 @@ if(isset($_POST['ingredientNom'], $_POST['ingredientType'], $_POST['ingredientPr
 
 //Soummission du formulaire modal d'update type ingrédient
 if(isset($_POST['ingredientTypeIdUpdate'], $_POST['ingredientTypeNomUpdate']) && !empty($_POST['ingredientTypeNomUpdate'])){
-    echo updateTypeIngredientName($bdd->connection, $_POST);
+    updateTypeIngredientName($bdd->connection, $_POST);
+}
+
+//Soummission du formulaire modal d'update type ingrédient
+if(isset(
+    $_POST['ingredientNomUpdate'], 
+    $_POST['ingredientPrixUpdate'], 
+    $_POST['ingredientType'],
+    $_POST['ingredientIdUpdate']
+    )){
+    echo updateIngredient($bdd->connection, $_POST);    
 }
 
 //Recupération de tout les type !!!! Efféctué après toute insertion ou modification au dessus
@@ -242,19 +252,24 @@ $ingredients = getAllIngredient($bdd->connection);
                         <span>Prix</span>
                     </label>
                 </div>
-                <div class="inputGroup">
-                    <label for="ingredientDispoUpdate" class="inputLabel">
-                        <input type="text" class="inputItem" name="ingredientDispoUpdate"
-                        id="ingredientDispoUpdate" value="" placeholder="Disponibilité" required />
-                        <span>Disponibilité</span>
+                <label for="ingredientDispoUpdate" class="dispoLabel">
+                    <input type="checkbox" name="ingredientDispoUpdate" id="ingredientDispoUpdate">
+                    <span class="circleOnOff">
+                        <span class="onOffTick"></span>
+                    </span>
+                </label>
+                <div class="typeChoice">
+                    <label for="ingredientTypeModif">
+                        <span>Type d'ingrédient</span>
                     </label>
-                </div>
-                <div class="inputGroup">
-                    <label for="ingredientIdTypeUpdate" class="inputLabel">
-                        <input type="text" class="inputItem" name="ingredientIdTypeUpdate"
-                        id="ingredientIdTypeUpdate" value="" placeholder="IdType" required />
-                        <span>IdType</span>
-                    </label>
+                    <select 
+                    class="inputItem" name="ingredientType"
+                    id="ingredientTypeModif" placeholder="Type d'ingrédient" default="false" required>
+                        <option class="typeOption" value="false">....</option>
+                        <?php foreach ($types as $type){ ?>
+                            <option id="ingredientTypeModifOption-<?= $type['id'] ?>" value="<?= $type['id'] ?>"><?= $type['nom'] ?></option>
+                        <?php } ?>
+                    </select>
                 </div>
                 <button type="submit" class="addButton">
                     Modifier

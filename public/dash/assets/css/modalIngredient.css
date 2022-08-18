@@ -60,6 +60,56 @@
     background-color: var(--color-highlights);
 }
 
+.main > .container .modalUpdateType .modalBody .dispoLabel{
+    width: 45px;
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: transparent;
+    
+}
+
+.main > .container .modalUpdateType .modalBody .dispoLabel #ingredientDispoUpdate{
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.main > .container .modalUpdateType .modalBody .dispoLabel .circleOnOff{
+    width: 35px;
+    height: 35px;
+    border-radius: 50px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 2px solid white;
+    background: transparent;
+    box-shadow: 0 0 7px 5px var(--text-red), 0 0 7px 5px var(--text-red) inset;
+}
+
+.main > .container .modalUpdateType .modalBody .dispoLabel .circleOnOff:before{
+    position: absolute;
+    content: "";
+    height: 15px;
+    border: 3px solid var(--text-red);
+    background: white;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 20px;
+    box-shadow: 0 0 10px 8px var(--text-red), 0 0 1px 2px var(--text-red);
+}
+
+.main > .container .modalUpdateType .modalBody .dispoLabel input#ingredientDispoUpdate:checked + .circleOnOff{
+    box-shadow: 0 0 7px 5px var(--text-green), 0 0 7px 5px var(--text-green) inset;
+}
+
+.main > .container .modalUpdateType .modalBody .dispoLabel input#ingredientDispoUpdate:checked + .circleOnOff:before{
+    box-shadow: 0 0 10px 8px var(--text-green), 0 0 1px 2px var(--text-green);
+    border: 3px solid var(--text-green);
+}
 
 
 

@@ -9,8 +9,9 @@
   --text-red-rgb: 255, 67, 28;
   --text-green: #0bd40b;
   --text-green-rgb: 11, 212, 11;
-  --font-primary: 'Redressed', cursive;
-  --font-secondary: 'Aboreto', cursive;
+  --font-primary: 'Aboreto', cursive;
+  --font-secondary: 'Redressed', cursive;
+  --text-shadow: 1px 1px 2px black;
 
   --transition: all 500ms ease-in-out;
 }
@@ -25,6 +26,7 @@
   user-select: none;
   font-family: var(--font-secondary);
   font-weight: 600;
+  font-size: 1.2rem;
   list-style: none;
 }
 

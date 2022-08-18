@@ -16,14 +16,21 @@ function openModal(e, action, id){
         var nomInput = document.querySelector('#ingredientNomUpdate')
         var prixInput = document.querySelector('#ingredientPrixUpdate')
         var dispoInput = document.querySelector('#ingredientDispoUpdate')
-        var typeInput = document.querySelector('#ingredientIdTypeUpdate')
         var targetButton = e.target
         var name = targetButton.getAttribute('data-nomingredient')
         var prix = targetButton.getAttribute('data-prixingredient')
         var dispo = targetButton.getAttribute('data-dispoingredient')
         var idType = targetButton.getAttribute('data-idtypeingredient')
+        var typeOption = document.querySelector('#ingredientTypeModifOption-'+idType)
 
-
+        idInput.value = id
+        nomInput.value = name
+        prixInput.value = parseFloat(prix).toFixed(2)
+        dispo == 1 ? 
+            dispoInput.setAttribute('checked', true)
+             : 
+            dispoInput.removeAttribute('checked')
+        typeOption.setAttribute('selected', true)
         modalContainer.classList.remove('hiddenModal')
     }
 }
@@ -40,4 +47,8 @@ function closeModalType(){
 function closeModalIngredient(){
     var modalContainer = document.querySelector('#modalIngredient')
     modalContainer.classList.add('hiddenModal')
+    var optionArray = document.querySelectorAll('#ingredientTypeModif option')
+    optionArray.forEach(option => {
+        option.removeAttribute('selected')
+    })
 }
