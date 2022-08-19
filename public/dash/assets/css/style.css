@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Redressed&display=swap');
+
 :root{
   --bg-color: #FF921C;
   --text-color-light: whitesmoke;
@@ -6,6 +9,9 @@
   --text-red-rgb: 255, 67, 28;
   --text-green: #0bd40b;
   --text-green-rgb: 11, 212, 11;
+  --font-primary: 'Aboreto', cursive;
+  --font-secondary: 'Redressed', cursive;
+  --text-shadow: 1px 1px 2px black;
 
   --transition: all 500ms ease-in-out;
 }
@@ -18,8 +24,9 @@
   background-color: var(--bg-color);
   box-sizing: border-box;
   user-select: none;
-  font-family: Impact, 'Haettenschweiler', 'Arial Narrow Bold', sans-serif;
-  font-weight: 250;
+  font-family: var(--font-secondary);
+  font-weight: 600;
+  font-size: 1.2rem;
   list-style: none;
 }
 
@@ -152,7 +159,8 @@ body {
 
 .main > .navBar > .navLinks  .navLink {
   width: 100%;
-  padding: 1rem 2rem;
+  padding: 1rem 0;
+  padding-right: 0.5rem;
   text-align: right;
   display: flex;
   justify-content: flex-end;
