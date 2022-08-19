@@ -11,14 +11,14 @@ function dispatch(PDO $bdd, string $action, $payload){
         case 'supprType':
             echo deleteTypeIngredient($bdd, $payload);
             break;
-<<<<<<< HEAD
+
         case 'supprCategorie':
             echo deleteCategorie($bdd,$payload);
-=======
+            break;
 
         case 'supprIngredient':
             echo deleteIngredient($bdd, $payload);
->>>>>>> master
+
             break;
     }
 }

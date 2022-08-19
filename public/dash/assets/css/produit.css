@@ -5,17 +5,22 @@
 }
 
 .produitContainer > .pageTitle{
-    text-align: center;
+    text-align: left;
     text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    overflow: hidden;
 }
 
-.ingredientContainer > .pageTitle .bottom,
-.ingredientContainer > .pageTitle .top{
+.produitContainer > .pageTitle .bottom,
+.produitContainer > .pageTitle .top{
     font-family: var(--font-secondary);
     transition: var(--transition);
 }
 
-.ingredientContainer > .pageTitle .bottom{
+.produitContainer > .pageTitle .bottom{
     color: var(--bg-color);
     font-family: var(--font-primary);
     text-shadow: var(--text-shadow);
