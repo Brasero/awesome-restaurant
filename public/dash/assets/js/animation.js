@@ -1,6 +1,6 @@
-var titleContainer = document.querySelector('.ingredientTitle')
-var titleTop = document.querySelector('.ingredientTitle .top')
-var titleBottom = document.querySelector('.ingredientTitle .bottom')
+var titleContainer = document.querySelector('.pageTitle')
+var titleTop = document.querySelector('.pageTitle .top')
+var titleBottom = document.querySelector('.pageTitle .bottom')
 
 window.onload = () => {
     titleTop.removeAttribute('style')

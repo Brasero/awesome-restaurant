@@ -139,3 +139,4 @@ $categories = getAllCategorie($bdd->connection);
 <script type="text/javascript" src="./assets/js/controlModal.js"></script>
 
 <script type="text/javascript" src="./assets/js/toastController.js"></script>
+<script type="text/javascript" src="./assets/js/suppressionAjax.js"></script>
