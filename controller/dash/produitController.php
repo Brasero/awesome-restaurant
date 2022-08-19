@@ -127,3 +127,8 @@ function updateCategorieName(PDO $bdd, array $data): string
                 </span>";
     }
 }
+
+function deleteCategorie(PDO $bdd, int $id)
+{
+    return setCategorieNull($bdd, intval($id));
+}

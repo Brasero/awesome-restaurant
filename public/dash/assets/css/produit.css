@@ -4,9 +4,26 @@
     padding-left: 50px;
 }
 
-.produitContainer > .produitTitle{
-    text-align: center;
+.produitContainer > .pageTitle{
+    text-align: left;
     text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.produitContainer > .pageTitle .bottom,
+.produitContainer > .pageTitle .top{
+    font-family: var(--font-secondary);
+    transition: var(--transition);
+}
+
+.produitContainer > .pageTitle .bottom{
+    color: var(--bg-color);
+    font-family: var(--font-primary);
+    text-shadow: var(--text-shadow);
 }
 
 .produitContainer > .produitCardDeck{

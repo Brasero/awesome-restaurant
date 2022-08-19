@@ -2,15 +2,19 @@ function supprItem(type, idItem){
     var req = new XMLHttpRequest()
     if(type == 'typeIngredient'){
         var elementToSuppr = document.querySelector('#type-'+idItem);
+
         req.open('GET', '../../controller/dash/ajaxController.php?action=supprType&payload='+idItem)
-    }
+        
+    }else if(type == 'categorie') {
+        var elementToSuppr = document.querySelector('#categorie-'+idItem);
+
+        req.open('GET', '../../controller/dash/ajaxController.php?action=supprCategorie&payload='+idItem)
+    }    
     else if(type == 'ingredient'){
         var elementToSuppr = document.querySelector('#ingredient-'+idItem);
         req.open('GET', '../../controller/dash/ajaxController.php?action=supprIngredient&payload='+idItem)
     }
-
-
-
+    
     req.send()
 
     req.onload = () => {
@@ -23,4 +27,5 @@ function supprItem(type, idItem){
             setTimeout(setToastDisparition, 5000)
         }
     }
+    
 }

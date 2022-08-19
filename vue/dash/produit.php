@@ -17,8 +17,9 @@ $categories = getAllCategorie($bdd->connection);
 ?>
 
 <div class="produitContainer">
-    <h1 class="produitTitle">
-        Gestion des produits
+    <h1 class="pageTitle">
+        <span class="top" style="transform: translateY(-30px);">Gestion des</span>
+        <span class="bottom" style="transform: translateY(30px);">produits</span>
     </h1>
     <div class="produitCardDeck">
         <div class="card">
@@ -139,3 +140,6 @@ $categories = getAllCategorie($bdd->connection);
 <script type="text/javascript" src="./assets/js/controlModal.js"></script>
 
 <script type="text/javascript" src="./assets/js/toastController.js"></script>
+<script type="text/javascript" src="./assets/js/suppressionAjax.js"></script>
+
+<script type="text/javascript" src="./assets/js/animation.js"></script>

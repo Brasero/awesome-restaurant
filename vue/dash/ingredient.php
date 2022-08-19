@@ -40,7 +40,7 @@ $ingredients = getAllIngredient($bdd->connection);
 ?>
 
 <div class="ingredientContainer">
-    <h1 class="ingredientTitle">
+    <h1 class="pageTitle">
         <span class="top" style="transform: translateY(-30px);">Gestion des</span>
         <span class="bottom" style="transform: translateY(30px);">ingrédients</span> 
     </h1>

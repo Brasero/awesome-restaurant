@@ -4,7 +4,7 @@
     padding-left: 50px;
 }
 
-.ingredientContainer > .ingredientTitle{
+.ingredientContainer > .pageTitle{
     text-align: left;
     text-transform: uppercase;
     display: flex;
@@ -14,13 +14,13 @@
     overflow: hidden;
 }
 
-.ingredientContainer > .ingredientTitle .bottom,
-.ingredientContainer > .ingredientTitle .top{
+.ingredientContainer > .pageTitle .bottom,
+.ingredientContainer > .pageTitle .top{
     font-family: var(--font-secondary);
     transition: var(--transition);
 }
 
-.ingredientContainer > .ingredientTitle .bottom{
+.ingredientContainer > .pageTitle .bottom{
     color: var(--bg-color);
     font-family: var(--font-primary);
     text-shadow: var(--text-shadow);
