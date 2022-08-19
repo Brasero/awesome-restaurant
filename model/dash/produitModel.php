@@ -52,3 +52,14 @@ function setCategorieName(PDO $bdd, array $data): bool
     $query->bindValue(':id', $data['id'], PDO::PARAM_INT);
     return $query->execute();
 }
+
+function setCategorieNull(PDO $bdd, int $id)
+{
+    $str = 'DELETE FROM categorie WHERE ID_categorie = :id';
+
+    $query = $bdd->prepare($str);
+
+    $query->bindValue(':id', $id, PDO::PARAM_INT);
+
+    return $query->execute();
+}
