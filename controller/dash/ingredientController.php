@@ -282,4 +282,8 @@ function deleteTypeIngredient(PDO $bdd, int $id){
     return setTypeIngredientNull($bdd, intval($id));
 }
 
+function deleteIngredient(PDO $bdd, int $id){
+    return setIngredientNull($bdd, intval($id));
+}
+
 ?>
