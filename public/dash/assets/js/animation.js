@@ -6,6 +6,3 @@ window.onload = () => {
     titleTop.removeAttribute('style')
     setTimeout(() => {titleBottom.removeAttribute('style')}, 500)
 }
-
-
-hello
