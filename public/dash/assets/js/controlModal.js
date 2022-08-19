@@ -33,6 +33,17 @@ function openModal(e, action, id){
         typeOption.setAttribute('selected', true)
         modalContainer.classList.remove('hiddenModal')
     }
+    else if(action == 'categorie'){
+        var modalContainer = document.querySelector('.modalContainer');
+        var input = document.querySelector('#categorieNomUpdate');
+        var idInput = document.querySelector('#categorieIdUpdate');
+        var targetButton = e.target;
+        var name = targetButton.getAttribute('data-nomcategorie')
+
+        modalContainer.classList.remove('hiddenModal')
+        input.value = name
+        idInput.value = id
+    }
 }
 
 function closeModalType(){
@@ -50,5 +61,14 @@ function closeModalIngredient(){
     var optionArray = document.querySelectorAll('#ingredientTypeModif option')
     optionArray.forEach(option => {
         option.removeAttribute('selected')
-    })
+    })}
+
+function closeModalCategorie(){
+    var modalContainer = document.querySelector('.modalContainer');
+    var input = document.querySelector('#categorieNomUptade')
+    var idInput = document.querySelector('#categorieIDUpdate');
+
+    modalContainer.classList.add('hiddenModal');
+    idInput.value = "";
+    input.value = "";
 }

@@ -8,6 +8,10 @@ if (isset($_POST['categorieNom']) && !empty($_POST['categorieNom'])) {
     echo addCategorie($bdd->connection, $_POST['categorieNom']);
 }
 
+//Soumission du formulaire modal d'update type ingrédient
+if (isset($_POST['categorieIdUpdate'], $_POST['categorieNomUpdate']) && !empty($_POST['categorieNomUpdate'])) {
+    echo updateCategorieName($bdd->connection, $_POST);
+}
 //Récupération de toute les catégorie! Efféctué après toute insertion ou modification au dessus
 $categories = getAllCategorie($bdd->connection);
 ?>
@@ -82,14 +86,14 @@ $categories = getAllCategorie($bdd->connection);
                         <th class="colonneTitleItem">Action</th>
                     </tr>
                     <?php foreach ($categories as $categorie) { ?>
-                        <tr class="categorieTypeItem" id="type-<?= $categorie['id'] ?>">
+                        <tr class="categorieTypeItem" id="categorie-<?= $categorie['id'] ?>">
                             <td class="categorieTypePart"><?= $categorie['nom'] ?>
                             </td>
                             <td class="categorieTypePart buttonGroup">
-                                <button class="actionButton updateButton" onclick="openModal(event, 'type', <?= $categorie['id'] ?>)" data-nomcategorie="<?= $categorie['nom'] ?>">
+                                <button class="actionButton updateButton" onclick="openModal(event, 'categorie', <?= $categorie['id'] ?>)" data-nomcategorie="<?= $categorie['nom'] ?>">
                                     Modifier
                                 </button>
-                                <button class="actionButton deleteButton" onclick="supprItem('categorie, <?= $categorie['id'] ?>')">
+                                <button class="actionButton deleteButton" onclick="supprItem('categorie', <?= $categorie['id'] ?>)">
                                     Supprimer
                                 </button>
                             </td>
@@ -100,5 +104,38 @@ $categories = getAllCategorie($bdd->connection);
         </div>
     </div>
 </div>
+
+
+<!-- Emplacement des modal de modofication -->
+<div class="modalContainer hiddenModal">
+    <div class="modalUpdateType">
+        <div class="modalHead">
+            <div class="modalTitle">
+                Modifier une catégorie
+            </div>
+            <button class="closeModalButton" onclick="closeModalCategorie()">
+                &times;
+            </button>
+        </div>
+        <div class="modalBody">
+            <form action="" method="POST" class="uptadeTypeForm">
+                <input type="hidden" id="categorieIdUpdate" name="categorieIdUpdate" value="">
+                <div class="inputGroup">
+                    <label for="categorieNomUpdate" class="inputLabel">
+                        <input type="text" class="inputItem" name="categorieNomUpdate" id="categorieNomUpdate" value="" placeholder="Nom" required />
+                        <span>Nom</span>
+                    </label>
+                </div>
+                <button type="submit" class="addButton">
+                    Modifier
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- FIN emplacement des modal de modification -->
+
+<script type="text/javascript" src="./assets/js/controlModal.js"></script>
 
 <script type="text/javascript" src="./assets/js/toastController.js"></script>
