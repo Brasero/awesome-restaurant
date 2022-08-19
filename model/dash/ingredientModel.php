@@ -116,4 +116,14 @@ function setTypeIngredientNull(PDO $bdd, int $id){
 
     return $query->execute();
 }
+
+function setIngredientNull(PDO $bdd, int $id){
+    $str = 'DELETE FROM ingredient WHERE ID_ingredient = :id';
+
+    $query = $bdd->prepare($str);
+
+    $query->bindValue(':id', $id, PDO::PARAM_INT);
+
+    return $query->execute();
+}
 ?>

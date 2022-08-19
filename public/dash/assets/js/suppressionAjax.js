@@ -4,6 +4,10 @@ function supprItem(type, idItem){
         var elementToSuppr = document.querySelector('#type-'+idItem);
         req.open('GET', '../../controller/dash/ajaxController.php?action=supprType&payload='+idItem)
     }
+    else if(type == 'ingredient'){
+        var elementToSuppr = document.querySelector('#ingredient-'+idItem);
+        req.open('GET', '../../controller/dash/ajaxController.php?action=supprIngredient&payload='+idItem)
+    }
 
 
 
