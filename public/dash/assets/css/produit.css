@@ -4,9 +4,21 @@
     padding-left: 50px;
 }
 
-.produitContainer > .produitTitle{
+.produitContainer > .pageTitle{
     text-align: center;
     text-transform: uppercase;
+}
+
+.ingredientContainer > .pageTitle .bottom,
+.ingredientContainer > .pageTitle .top{
+    font-family: var(--font-secondary);
+    transition: var(--transition);
+}
+
+.ingredientContainer > .pageTitle .bottom{
+    color: var(--bg-color);
+    font-family: var(--font-primary);
+    text-shadow: var(--text-shadow);
 }
 
 .produitContainer > .produitCardDeck{
