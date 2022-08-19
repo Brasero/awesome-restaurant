@@ -77,3 +77,53 @@ function getAllCategorie(PDO $bdd): array
 
     return $traitedCategories;
 }
+
+
+/**
+ * Traite la modification du nom de la catégorie, verifie au préalable que le nom n'existe pas déjà en base de donnée
+ *
+ * @param PDO $bdd
+ * @param array $data
+ * @return string retourne un élément HTML à afficher
+ */
+function updateCategorieName(PDO $bdd, array $data): string
+{
+    $categorie = [];
+    $categorie['nom'] = strtolower(htmlentities(strip_tags($data['categorieNomUpdate'])));
+    $categorie['id'] = intval(strip_tags($data['categorieIdUpdate']));
+
+    $categories = getCategorie($bdd);
+
+    $exist = function ($categories, $name) {
+        foreach ($categories as $categorie) {
+            if (in_array($name, $categorie)) {
+                return true;
+            }
+        }
+        return false;
+    };
+    if (!$exist($categories, $categorie['nom'])) {
+        if (setCategorieName($bdd, $categorie)) {
+            return "<span class='success'>
+                        <span class='message'>
+                            Modification enregistrée.
+                        </span>
+                        <span class='progressBar'></span>
+                    </span>";
+        } else {
+            return "<span class='error'>
+                        <span class='message'>
+                            Une erreur s'est produite,réessayez.
+                        </span>
+                        <span class='progressBar'></span>
+                    </span>";
+        }
+    } else {
+        return "<span class='error'>
+                    <span class='message'>
+                        Cette catégorie existe déjà.
+                    </span>
+                    <span class='progressBar'></span>
+                </span>";
+    }
+}
