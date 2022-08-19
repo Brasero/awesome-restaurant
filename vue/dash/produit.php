@@ -8,6 +8,10 @@ if (isset($_POST['categorieNom']) && !empty($_POST['categorieNom'])) {
     echo addCategorie($bdd->connection, $_POST['categorieNom']);
 }
 
+//Soumission du formulaire modal d'update type ingrédient
+if (isset($_POST['categorieIdUpdate'], $_POST['categorieNomUpdate']) && !empty($_POST['categorieNomUpdate'])) {
+    echo updateCategorieName($bdd->connection, $_POST);
+}
 //Récupération de toute les catégorie! Efféctué après toute insertion ou modification au dessus
 $categories = getAllCategorie($bdd->connection);
 ?>
