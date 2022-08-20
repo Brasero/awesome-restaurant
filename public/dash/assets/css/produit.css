@@ -141,21 +141,133 @@
     height: 300px;
     z-index: 1000;
     top: 0;
+    transition: var(--transition);
 }
 
 .main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart1{
-    left: 0;
+    left: 0%;
+}
+
+.main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart1 .addButton:hover{
+    color: var(--color-highlights);
+    background: var(--text-color-light);
+    box-shadow: var(--text-shadow);
+    transform: translate(-2px, -2px);
 }
 
 .main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart2{
     left: 100%;
+    overflow-y: auto;
+    height: 100%;
+}
+
+
+.main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart2 .backButton{
+    align-items: center;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    background: transparent;
+    border: none;
+    border-radius: 5px;
+    color: var(--bg-color);
+    display: flex;
+    justify-content: space-between;
+    left: 0;
+    margin-bottom: 5px;
+    padding: 8px 15px;
+    position: sticky;
+    top: 0;
+    transition: var(--transition);
+
+}
+
+.main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart2 .addButton{
+    padding: 8px 15px;
+    position: sticky;
+    bottom: 0;
+    left: 100%;
+    background: transparent; 
+    backdrop-filter: blur(10px);
+    transition: var(--transition);
+}
+
+.main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart2::-webkit-scrollbar{
+    margin-left: 5px;
+    width: 4px;
+    background-color: var(--color-highlights);
+    border: none;
+    border-left: 1px solid var(--text-color-light);
+
+}
+
+.main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart2::-webkit-scrollbar-thumb{
+    width: 2px;
+    background: var(--bg-color);
+}
+
+.main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart2 .addButton:hover{
+    background: var(--bg-color);
+}
+
+.main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart2 .backButton:hover{
+    color: var(--text-color-light);
+}
+
+.main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart2 .backButton *{
+    background: transparent;
 }
 
 .main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart2 .ingredientGroup{
     width: 100%;
-    max-height: 100%;
-    overflow-y: scroll;
+    height: fit-content;
+    background: transparent;
+    border: none;
 }
+
+.main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart2 .ingredientGroup .typeIngredientGroupItem{
+    border-bottom: 1px solid var(--text-color-light);
+    background: transparent;
+    padding: 10px;
+    border-left: 1px solid var(--text-color-light);
+}
+
+.main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart2 .ingredientGroup .typeIngredientGroupItem .groupLabel{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart2 .ingredientGroup .typeIngredientGroupItem .groupItem{
+    height: 0px;
+    overflow-y: hidden;
+    width: 100%;
+    transition: var(--transition);
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    align-items: center;
+}
+
+.main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart2 .ingredientGroup .typeIngredientGroupItem:last-child{
+    margin-bottom: 20px;
+}
+
+.main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart2 .ingredientGroup .typeIngredientGroupItem *{
+    background: transparent;
+    color: var(--bg-color);
+    transition: var(--transition);
+}
+
+.main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart2 .ingredientGroup .typeIngredientGroupItem:hover .groupLabel * {
+    color: var(--text-color-light);
+}
+
+.main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart2 .ingredientGroup .typeIngredientGroupItem.expand .groupItem{
+    height: unset;
+}
+
+
+
 
 
 /* ---------END Formulaire ajout produit ------------ */

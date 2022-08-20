@@ -13,6 +13,7 @@ if (isset($_POST['categorieNom']) && !empty($_POST['categorieNom'])) {
 if (isset($_POST['categorieIdUpdate'], $_POST['categorieNomUpdate']) && !empty($_POST['categorieNomUpdate'])) {
     echo updateCategorieName($bdd->connection, $_POST);
 }
+
 //Récupération de toute les catégorie! Efféctué après toute insertion ou modification au dessus
 $categories = getAllCategorie($bdd->connection);
 $ingredients = getAllIngredient($bdd->connection);
@@ -47,28 +48,43 @@ $types = getAllType($bdd->connection);
                         <label for="categorieType">
                             <span>Catégorie</span>
                         </label>
-                        <select name="categorieType" id="categorieType" class="inputItem" placeholder="C    ategorie" default="false" required>
+                        <select name="categorie" id="categorieType" class="inputItem" placeholder="C    ategorie" default="false" required>
                             <option value="false" class="typeOption">....</option>
                             <?php foreach ($categories as $categorie) { ?>
                                 <option value="<?= $categorie['id'] ?>"><?= $categorie['nom'] ?></option>
                             <?php } ?>
                         </select>
                     </span>
-                    <button type="button" class="addButton">
+                    <button type="button" onclick='switchForm("toLeft")' class="addButton">
                         Suivant
                     </button>
                 </span>
                 <span class="produitFormPart2">
+                    <button class="backButton" type="button" onclick="switchForm('toRight')"><i class="bi bi-arrow-left-short"></i>Retour</button>
                     <fieldset class="ingredientGroup">
 
                         <?php foreach($types as $type): ?>
-                            <div class="typeIngredientGroupItem">
-                                <?= $type['nom'] ?>
+                            <div class="typeIngredientGroupItem" id="type-<?= $type['id'] ?>" onclick="toggleIngredientList(event,<?= $type['id'] ?>)" data-idtype="<?= $type['id'] ?>">
+                                <div class="groupLabel">
+                                    <span><?= $type['nom'] ?></span> <i class="bi bi-caret-down-fill"></i>
+                                </div>
+                                
+                                    <?php foreach($ingredients as $ingredient): 
+                                            if($ingredient['idType'] == $type['id']): ?>
+                                            <div class="groupItem">
+                                                <input type="checkbox" name="ingredients[]" value="<?= $ingredient['id'] ?>" id="ingredient-<?= $ingredient['nom']; ?>">
+                                                <label for="ingredient-<?= $ingredient['nom'] ?>" class="ingredientLabel"><?= $ingredient['nom'] ?></label>
+                                            </div>
+                                    <?php   endif; 
+                                        endforeach; ?>
+                                
                             </div>
                         <?php endforeach; ?>
 
                     </fieldset>
-                    
+                    <button type="submit" class="addButton">
+                        Valider
+                    </button>
 
                 </span>
             </form>
@@ -161,3 +177,5 @@ $types = getAllType($bdd->connection);
 <script type="text/javascript" src="./assets/js/suppressionAjax.js"></script>
 
 <script type="text/javascript" src="./assets/js/animation.js"></script>
+<script type="text/javascript" src="./assets/js/dropDownIngredient.js"></script>
+<script type="text/javascript" src="./assets/js/switchForm.js"></script>
