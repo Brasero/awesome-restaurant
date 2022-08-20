@@ -19,6 +19,7 @@ $bdd = new Database('exemple_panier', 'root', '', 'localhost');
     <link rel="stylesheet" href="./assets/css/formulaire.css">
     <link rel="stylesheet" href="./assets/css/toast.css">
     <link rel="stylesheet" href="./assets/css/modalIngredient.css">
+    <link rel="stylesheet" href="./assets/css/adminConnexion.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <title>Burger Compagny</title>
 </head>
