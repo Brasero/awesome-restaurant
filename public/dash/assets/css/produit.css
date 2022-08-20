@@ -119,3 +119,43 @@
 .main > .container .categorieTableStyle .categorieTypeItem .categorieTypePart .updateButton:hover{
     transform: scale(1.1);
 }
+
+
+/* -------- Formulaire Ajout produit --------- */
+
+
+.main > .container .produitContainer .produitCardDeck .card .produitFormContainer{
+    width: 100%;
+    max-width: 300px;
+    overflow: hidden;
+    height: 300px;
+    position: relative;
+}
+
+.main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart1, 
+.main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart2{
+    background: inherit;
+    position: absolute;
+    width: inherit;
+    max-width: 300px;
+    height: 300px;
+    z-index: 1000;
+    top: 0;
+}
+
+.main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart1{
+    left: 0;
+}
+
+.main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart2{
+    left: 100%;
+}
+
+.main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart2 .ingredientGroup{
+    width: 100%;
+    max-height: 100%;
+    overflow-y: scroll;
+}
+
+
+/* ---------END Formulaire ajout produit ------------ */
