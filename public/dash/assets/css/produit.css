@@ -56,6 +56,7 @@
 
 .main > .container > .produitContainer .produitCardDeck .card .formTitle{
     margin-top: 0;
+    text-shadow: var(--text-shadow);
 }
 
 .main > .container .categorieTableStyle{
@@ -168,17 +169,17 @@
     -webkit-backdrop-filter: blur(5px);
     background: transparent;
     border: none;
-    border-radius: 5px;
+    border-radius: 15px;
     color: var(--bg-color);
     display: flex;
     justify-content: space-between;
     left: 0;
+    margin-left: 5px;
     margin-bottom: 5px;
-    padding: 8px 15px;
+    padding: 4px 8px;
     position: sticky;
     top: 0;
     transition: var(--transition);
-
 }
 
 .main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart2 .addButton{
@@ -232,12 +233,14 @@
 }
 
 .main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart2 .ingredientGroup .typeIngredientGroupItem .groupLabel{
+    text-shadow: var(--text-shadow);
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart2 .ingredientGroup .typeIngredientGroupItem .groupItem{
+    text-shadow: var(--text-shadow);
     height: 0px;
     overflow-y: hidden;
     width: 100%;
