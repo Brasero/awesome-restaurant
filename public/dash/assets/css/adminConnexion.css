@@ -12,7 +12,7 @@
 
 .connexionContainer .formContainer{
     padding: 1rem 2rem;
-    background: var(--text-color-light);
+    background: var(--color-light);
     border-radius: 15px;
 }
 
@@ -29,14 +29,14 @@
 .connexionContainer .formTitle .top{
     background: inherit;
     font-family: var(--font-primary);
-    text-shadow: var(--text-shadow);
+    text-shadow: var(--shadow-1);
 }
 
 .connexionContainer .formTitle .bottom{
     background: inherit;
     font-family: var(--font-secondary);
-    color: var(--text-color-light);
-    text-shadow: var(--text-shadow);
+    color: var(--color-light);
+    text-shadow: var(--shadow-1);
 }
 
 .connexionContainer .formTitle .bottom .left{
@@ -75,7 +75,7 @@
 .connexionContainer .formContainer .loginForm .loginButton{
     width: 100%;
     border-radius: 15px;
-    background-color: var(--text-color-light);
+    background-color: var(--color-light);
     padding: 10px 15px;
     border: 2px solid var(--color-highlights);
     color: var(--color-highlights);
@@ -84,5 +84,5 @@
 
 .connexionContainer .formContainer .loginForm .loginButton:hover{
     background-color: var(--color-highlights);
-    color: var(--text-color-light);
+    color: var(--color-light);
 }

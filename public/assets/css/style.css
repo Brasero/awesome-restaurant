@@ -1,20 +1,41 @@
-:root{
-  --bg-color: #FF921C;
-  --text-color-light: whitesmoke;
-  --color-highlights: #FFBB72;
-  --text-red: #FF431C;
+@import url("https://fonts.googleapis.com/css2?family=Aboreto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Redressed&display=swap");
+
+:root {
+  --color-black: #262322;
+  --color-black-rgb: 38, 35, 34;
+  --color-dark: #63372c;
+  --color-dark-rgb: 99, 55, 44;
+  --color-green: #0bd40b;
+  --color-green-rgb: 11, 212, 11;
+  --color-highlights: #ffbb72;
+  --color-highlights-rgb: 255, 187, 114;
+  --color-light: whitesmoke;
+  --color-primary: #ff931f;
+  --color-primary-rgb: 255, 147, 31;
+  --color-red: #f2545b;
+  --color-red-rgb: 242, 84, 91;
+  --color-red-shade: #e5625e;
+  --color-red-shade-rgb: 229, 98, 94;
+  --color-secondary: #feebd6;
+  --color-secondary-rgb: 255, 235, 214;
+
+  --font-primary: "Aboreto", cursive;
+  --font-secondary: "Redressed", cursive;
+
+
+  --shadow-1: 1px 1px 2px black;
 
   --transition: all 500ms ease-in-out;
 }
 
-
 * {
   padding: 0;
   margin: 0;
-  background-color: var(--bg-color);
+  background-color: rgba(var(--color-secondary-rgb), 0.5);
   box-sizing: border-box;
   user-select: none;
-  font-family: Impact, 'Haettenschweiler', 'Arial Narrow Bold', sans-serif;
+  font-family: var(--font-secondary);
   font-weight: 250;
 }
 
@@ -35,7 +56,7 @@ header > .navBar {
 header > .navBar > .brand {
   font-size: 2rem;
   font-weight: bolder;
-  color: whitesmoke;
+  color: var(--color-dark);
 }
 
 header > .navBar > .linkList {
@@ -58,8 +79,8 @@ header > .navBar > .linkList > .navItem > .navHref {
 header > .navBar > .linkList > .navItem:hover > .navHref {
   color: whitesmoke;
   font-weight: thin;
-  text-shadow: 1px 1px 2px var(--color-highlights), -1px 1px 2px var(--color-highlights), 1px -1px 2px var(--color-highlights),
-    -1px -1px 2px var(--color-highlights);
+  text-shadow: 1px 1px 2px var(--color-primary), -1px 1px 2px var(--color-primary), 1px -1px 2px var(--color-primary),
+    -1px -1px 2px var(--color-primary);
 }
 
 header > .navBar > .linkList > .active > .navHref {
@@ -498,7 +519,7 @@ label:focus-within {
 }
 
 .itemList > .item > .qte > .decreaseButton:hover > button, .itemList > .item > .qte > .increaseButton:hover > button{
-  background-color: var(--bg-color);
+  background-color: var(--color-primary);
 }
 
 .itemList > .item > .action{

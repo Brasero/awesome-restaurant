@@ -1,27 +1,37 @@
-@import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Redressed&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Aboreto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Redressed&display=swap");
 
-:root{
-  --bg-color: #FF921C;
-  --text-color-light: whitesmoke;
-  --color-highlights: #FFBB72;
-  --text-red: #ff431c;
-  --text-red-rgb: 255, 67, 28;
-  --text-green: #0bd40b;
-  --text-green-rgb: 11, 212, 11;
-  --font-primary: 'Aboreto', cursive;
-  --font-secondary: 'Redressed', cursive;
-  --text-shadow: 1px 1px 2px black;
+:root {
+  --color-black: #262322;
+  --color-black-rgb: 38, 35, 34;
+  --color-dark: #63372c;
+  --color-dark-rgb: 99, 55, 44;
+  --color-green: #0bd40b;
+  --color-green-rgb: 11, 212, 11;
+  --color-highlights: #ffbb72;
+  --color-highlights-rgb: 255, 187, 114;
+  --color-light: whitesmoke;
+  --color-primary: #ff931f;
+  --color-primary-rgb: 255, 147, 31;
+  --color-red: #f2545b;
+  --color-red-rgb: 242, 84, 91;
+  --color-red-shade: #e5625e;
+  --color-red-shade-rgb: 229, 98, 94;
+
+  --font-primary: "Aboreto", cursive;
+  --font-secondary: "Redressed", cursive;
+
+
+  --shadow-1: 1px 1px 2px black;
 
   --transition: all 500ms ease-in-out;
 }
-
 
 /*  Global Style (appliqué partout)   */
 * {
   padding: 0;
   margin: 0;
-  background-color: var(--bg-color);
+  background-color: var(--color-primary);
   box-sizing: border-box;
   user-select: none;
   font-family: var(--font-secondary);
@@ -30,8 +40,8 @@
   list-style: none;
 }
 
-html{
-  background-color: var(--text-color-light);
+html {
+  background-color: var(--color-light);
 }
 
 body {
@@ -40,7 +50,7 @@ body {
 
 /**------ Main Style ------**/
 
-.main{
+.main {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -56,19 +66,20 @@ body {
   transition: var(--transition);
 }
 
-.main > .navBar .brand{
+.main > .navBar .brand {
   text-align: center;
   height: 30px;
-  color: var(--text-color-light);
+  color: var(--color-light);
   padding: 10px;
   transition: var(--transition);
 }
 
-.main > .navBar.active, .main > .navBar > .navLinks.active{
+.main > .navBar.active,
+.main > .navBar > .navLinks.active {
   width: 80px;
 }
 
-.main > .navBar > .navLinks.active .brand{
+.main > .navBar > .navLinks.active .brand {
   opacity: 0;
   height: 30px;
 }
@@ -77,15 +88,15 @@ body {
   display: none;
 }
 
-.main > .navBar > .navLinks .navLink li i{
+.main > .navBar > .navLinks .navLink li i {
   font-size: 2rem;
 }
 
-.main > .navBar > .navLinks .navLink.active li *{
+.main > .navBar > .navLinks .navLink.active li * {
   background: transparent;
 }
 
-.main > .navBar > .navLinks.active .navLink.active li *{
+.main > .navBar > .navLinks.active .navLink.active li * {
   background: transparent;
 }
 
@@ -106,7 +117,7 @@ body {
   z-index: 20;
 }
 
-.main > .navBar > .navLinks .toggleButton .top{
+.main > .navBar > .navLinks .toggleButton .top {
   width: 100%;
   height: 5px;
   transition: var(--transition);
@@ -114,22 +125,23 @@ body {
   transform-origin: center;
   top: 50%;
   left: 50%;
-  background: var(--text-color-light);
-  transform: translate(-50%, -50%) rotate(585deg); 
+  background: var(--color-light);
+  transform: translate(-50%, -50%) rotate(585deg);
 }
 
-.main > .navBar > .navLinks .toggleButton .bottom{
+.main > .navBar > .navLinks .toggleButton .bottom {
   width: 100%;
   height: 5px;
   transition: var(--transition);
   position: absolute;
   top: 50%;
   left: 50%;
-  background: var(--text-color-light);
+  background: var(--color-light);
   transform: translate(-50%, -50%) rotate(-585deg);
 }
 
-.main > .navBar > .navLinks .toggleButton.active .top, .main > .navBar > .navLinks .toggleButton.active .bottom{
+.main > .navBar > .navLinks .toggleButton.active .top,
+.main > .navBar > .navLinks .toggleButton.active .bottom {
   position: unset;
   transform: unset;
 }
@@ -157,7 +169,7 @@ body {
   z-index: 10;
 }
 
-.main > .navBar > .navLinks  .navLink {
+.main > .navBar > .navLinks .navLink {
   width: 100%;
   padding: 1rem 0;
   padding-right: 0.5rem;
@@ -166,12 +178,12 @@ body {
   justify-content: flex-end;
   gap: 10px;
   align-items: center;
-  color: var(--text-color-light);
+  color: var(--color-light);
   transition: var(--transition);
   text-decoration: none;
 }
 
-.main > .navBar > .navLinks  .navLink li {
+.main > .navBar > .navLinks .navLink li {
   width: 80%;
   display: flex;
   justify-content: space-between;
@@ -179,59 +191,60 @@ body {
   align-items: center;
 }
 
-.main > .navBar > .navLinks  .navLink.deconnect{
-  color: var(--text-red);
+.main > .navBar > .navLinks .navLink.deconnect {
+  color: var(--color-red);
   font-weight: 800;
 }
 
-.main > .navBar > .navLinks  .navLink > li {
+.main > .navBar > .navLinks .navLink > li {
   background: transparent;
 }
 
-.main > .navBar > .navLinks  .navLink:hover{
+.main > .navBar > .navLinks .navLink:hover {
   transform: translate(-10px, -8px);
   text-shadow: 10px 8px 4px rgba(59, 59, 59, 0.8);
 }
 
-.main > .navBar > .navLinks  .navLink.active{
-  background: var(--text-color-light);
+.main > .navBar > .navLinks .navLink.active {
+  background: var(--color-light);
   color: var(--color-highlights);
   position: relative;
 }
-.main > .navBar > .navLinks  .navLink.active:hover{
+
+.main > .navBar > .navLinks .navLink.active:hover {
   transform: unset;
   text-shadow: none;
 }
 
-.main > .navBar > .navLinks  .navLink.active:after{
+.main > .navBar > .navLinks .navLink.active:after {
   position: absolute;
-  content: '';
+  content: "";
   width: 50px;
   aspect-ratio: 1/1;
   background-color: transparent;
   top: -50px;
   right: 0;
   border-bottom-right-radius: 50%;
-  box-shadow: 8px 7px 1px var(--text-color-light);
+  box-shadow: 8px 7px 1px var(--color-light);
   z-index: 0;
 }
 
-.main > .navBar > .navLinks  .navLink.active:before{
+.main > .navBar > .navLinks .navLink.active:before {
   position: absolute;
-  content: '';
+  content: "";
   width: 50px;
   aspect-ratio: 1/1;
   background-color: transparent;
   bottom: -50px;
   right: 0;
   border-top-right-radius: 50%;
-  box-shadow: 8px -7px 1px var(--text-color-light);
+  box-shadow: 8px -7px 1px var(--color-light);
   z-index: 0;
 }
 
 /**  END Style element de la navBar lorsque activé    **/
 
-.main > .container{
+.main > .container {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -239,17 +252,13 @@ body {
   padding: 25px 10px;
   width: 100%;
   height: 100vh;
-  background: var(--text-color-light);
+  background: var(--color-light);
 }
 
-.main > .container *{
-  background: var(--text-color-light);
+.main > .container * {
+  background: var(--color-light);
 }
-
-
 
 /**-----END NavBar Style------**/
 
-
 /**-----END Main Style-----**/
-
