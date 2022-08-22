@@ -50,7 +50,7 @@
     border-radius: 100px;
 }
 .main > .container .modalUpdateType .modalHead .modalTitle {
-    color: var(--text-color-light);
+    color: var(--color-light);
     font-size: 1.7rem;
     letter-spacing: 1px;
 }
@@ -89,29 +89,29 @@
     transform: translateY(-50%);
     border: 2px solid white;
     background: transparent;
-    box-shadow: 0 0 7px 5px var(--text-red), 0 0 7px 5px var(--text-red) inset;
+    box-shadow: 0 0 7px 5px var(--color-red), 0 0 7px 5px var(--color-red) inset;
 }
 
 .main > .container .modalUpdateType .modalBody .dispoLabel .circleOnOff:before{
     position: absolute;
     content: "";
     height: 15px;
-    border: 3px solid var(--text-red);
+    border: 3px solid var(--color-red);
     background: white;
     top: -10px;
     left: 50%;
     transform: translateX(-50%);
     border-radius: 20px;
-    box-shadow: 0 0 10px 8px var(--text-red), 0 0 1px 2px var(--text-red);
+    box-shadow: 0 0 10px 8px var(--color-red), 0 0 1px 2px var(--color-red);
 }
 
 .main > .container .modalUpdateType .modalBody .dispoLabel input#ingredientDispoUpdate:checked + .circleOnOff{
-    box-shadow: 0 0 7px 5px var(--text-green), 0 0 7px 5px var(--text-green) inset;
+    box-shadow: 0 0 7px 5px var(--color-green), 0 0 7px 5px var(--color-green) inset;
 }
 
 .main > .container .modalUpdateType .modalBody .dispoLabel input#ingredientDispoUpdate:checked + .circleOnOff:before{
-    box-shadow: 0 0 10px 8px var(--text-green), 0 0 1px 2px var(--text-green);
-    border: 3px solid var(--text-green);
+    box-shadow: 0 0 10px 8px var(--color-green), 0 0 1px 2px var(--color-green);
+    border: 3px solid var(--color-green);
 }
 
 

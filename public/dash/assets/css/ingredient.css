@@ -21,9 +21,9 @@
 }
 
 .ingredientContainer > .pageTitle .bottom{
-    color: var(--bg-color);
+    color: var(--color-primary);
     font-family: var(--font-primary);
-    text-shadow: var(--text-shadow);
+    text-shadow: var(--shadow-1);
 }
 
 .ingredientContainer > .ingredientCardDeck{
@@ -52,19 +52,20 @@
 .main > .container > .ingredientContainer > .ingredientCardDeck > .card > .formTitle{
     margin-top: 0;
     font-family: var(--font-secondary);
-    text-shadow: var(--text-shadow);
+    text-shadow: var(--shadow-1);
 }
 
 .main > .container .addButton{
     width: 100%;
     aspect-ratio: 5/1;
     border-radius: 15px;
-    background-color: var(--bg-color);
+    background-color: var(--color-primary);
     text-align: center;
     margin-top: 20px;
     font-size: 1.4rem;
-    color: var(--text-color-light);
-    border: 1px solid var(--text-color-light);
+    color: var(--color-light);
+    border: 1px solid var(--color-light);
+    transition: var(--transition);
 }
 
 
@@ -74,8 +75,8 @@
     justify-content: space-between;
     align-items: center;
     gap: 10px;
-    color: var(--text-color-light);
-    text-shadow: var(--text-shadow);
+    color: var(--color-light);
+    text-shadow: var(--shadow-1);
 }
 
 .main > .container .typeChoice label, .main > .container .typeChoice label span{
@@ -93,9 +94,9 @@
     padding: 25px 20px;
     border-radius: 15px;
     overflow: hidden;
-    color: var(--text-color-light);
+    color: var(--color-light);
     border-collapse: collapse;
-    text-shadow: var(--text-shadow);
+    text-shadow: var(--shadow-1);
 }
 
 .main > .container .table table.ingredientTableStyle .title{
@@ -120,7 +121,7 @@
 }
 
 .main > .container .ingredientTableStyle .colonneTitleContainer .colonneTitleItem{
-    border-bottom: 1px solid var(--text-color-light);
+    border-bottom: 1px solid var(--color-light);
 }
 
 .main > .container .ingredientTableStyle .ingredientTypeItem .buttonGroup{
@@ -141,10 +142,10 @@
 }
 
 .main > .container .ingredientTableStyle .ingredientTypeItem .ingredientTypePart .deleteButton{
-    background: linear-gradient(90deg, transparent, var(--text-red));
+    background: linear-gradient(90deg, transparent, var(--color-red));
     background-position: left;
     background-size: 10000px;
-    color: var(--text-color-light);
+    color: var(--color-light);
 }
 
 .main > .container .ingredientTableStyle .ingredientTypeItem .ingredientTypePart .deleteButton:hover{
@@ -174,13 +175,13 @@
 }
 
 .main > .container .ingredientTableStyle .ingredientTypeItem .ingredientTypePart .itemDisponible{
-    background: radial-gradient(var(--text-color-light) 3%, 
-        var(--text-green)) bottom right 200px;
+    background: radial-gradient(var(--color-light) 3%, 
+        var(--color-green)) bottom right 200px;
 }
 
 .main > .container .ingredientTableStyle .ingredientTypeItem .ingredientTypePart .itemIndisponible{
-    background: radial-gradient(var(--text-color-light) 3%, 
-        var(--text-red)) bottom right 200px;
+    background: radial-gradient(var(--color-light) 3%, 
+        var(--color-red)) bottom right 200px;
 }
 
 /**---------------END Style for on/off diode-----------------------**/

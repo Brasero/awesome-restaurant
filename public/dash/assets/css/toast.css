@@ -17,11 +17,11 @@
 }
 
 .main > .container .error{
-    box-shadow: 0px 0px 10px 1px rgba(var(--text-red-rgb), 0.8);
+    box-shadow: 0px 0px 10px 1px rgba(var(--color-red-rgb), 0.8);
 }
 
 .main > .container .success{
-    box-shadow: 0px 0px 10px 1px rgba(var(--text-green-rgb), 0.8);
+    box-shadow: 0px 0px 10px 1px rgba(var(--color-green-rgb), 0.8);
 }
 
 .main > .container .error .progressBar, 
@@ -38,11 +38,11 @@
 }
 
 .main > .container .error .progressBar{
-    background: var(--text-red);
+    background: var(--color-red);
 }
 
 .main > .container .success .progressBar{
-    background: var(--text-green);
+    background: var(--color-green);
 }
 
 .main > .container .error .message, .main > .container .success .message{
@@ -51,11 +51,11 @@
 }
 
 .main > .container .error .message{
-    color: var(--text-red);
+    color: var(--color-red);
 }
 
 .main > .container .success .message{
-    color: var(--text-green);
+    color: var(--color-green);
 }
 
 .main > .container .hidden{

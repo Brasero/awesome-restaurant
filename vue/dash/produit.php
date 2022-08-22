@@ -2,6 +2,7 @@
 
 // require du controller de la page 
 require_once('../../controller/dash/produitController.php');
+require_once('../../controller/dash/ingredientController.php');
 
 // Soummission du formulaire ajout de catégorie
 if (isset($_POST['categorieNom']) && !empty($_POST['categorieNom'])) {
@@ -12,8 +13,11 @@ if (isset($_POST['categorieNom']) && !empty($_POST['categorieNom'])) {
 if (isset($_POST['categorieIdUpdate'], $_POST['categorieNomUpdate']) && !empty($_POST['categorieNomUpdate'])) {
     echo updateCategorieName($bdd->connection, $_POST);
 }
+
 //Récupération de toute les catégorie! Efféctué après toute insertion ou modification au dessus
 $categories = getAllCategorie($bdd->connection);
+$ingredients = getAllIngredient($bdd->connection);
+$types = getAllType($bdd->connection);
 ?>
 
 <div class="produitContainer">
@@ -26,33 +30,63 @@ $categories = getAllCategorie($bdd->connection);
             <h4 class="formTitle">
                 Ajouter un produit
             </h4>
-            <form action="" method="POST">
-                <div class="inputGroup">
-                    <label for="produitNom" class="inputLabel">
-                        <input type="text" class="inputItem" name="produitNom" id="ingredientNom" placeholder="Nom" required />
-                        <span>Nom</span>
-                    </label>
-                </div>
-                <div class="inputGroup">
-                    <label for="produitPrix" class="inputLabel">
-                        <input type="text" class="inputItem" name="produitPrix" id="produitPrix" placeholder="Prix" required />
-                        <span>Prix</span>
-                    </label>
-                </div>
-                <div class="typeChoice">
-                    <label for="categorieType">
-                        <span>Catégorie</span>
-                    </label>
-                    <select name="categorieType" id="categorieType" class="inputItem" placeholder="C    ategorie" default="false" required>
-                        <option value="false" class="typeOption">....</option>
-                        <?php foreach ($categories as $categorie) { ?>
-                            <option value="<?= $categorie['id'] ?>"><?= $categorie['nom'] ?></option>
-                        <?php } ?>
-                    </select>
-                </div>
-                <button type="submit" class="addButton">
-                    Ajouter
-                </button>
+            <form action="" method="POST" class="produitFormContainer">
+                <span class="produitFormPart1">
+                    <span class="inputGroup">
+                        <label for="produitNom" class="inputLabel">
+                            <input type="text" class="inputItem" name="produitNom" id="ingredientNom" placeholder="Nom" required />
+                            <span>Nom</span>
+                        </label>
+                    </span>
+                    <span class="inputGroup">
+                        <label for="produitPrix" class="inputLabel">
+                            <input type="text" class="inputItem" name="produitPrix" id="produitPrix" placeholder="Prix" required />
+                            <span>Prix</span>
+                        </label>
+                    </span>
+                    <span class="typeChoice">
+                        <label for="categorieType">
+                            <span>Catégorie</span>
+                        </label>
+                        <select name="categorie" id="categorieType" class="inputItem" placeholder="C    ategorie" default="false" required>
+                            <option value="false" class="typeOption">....</option>
+                            <?php foreach ($categories as $categorie) { ?>
+                                <option value="<?= $categorie['id'] ?>"><?= $categorie['nom'] ?></option>
+                            <?php } ?>
+                        </select>
+                    </span>
+                    <button type="button" onclick='switchForm("toLeft")' class="addButton">
+                        Suivant
+                    </button>
+                </span>
+                <span class="produitFormPart2">
+                    <button class="backButton" type="button" onclick="switchForm('toRight')"><i class="bi bi-arrow-left-short"></i>Retour</button>
+                    <fieldset class="ingredientGroup">
+
+                        <?php foreach($types as $type): ?>
+                            <div class="typeIngredientGroupItem" id="type-<?= $type['id'] ?>" onclick="toggleIngredientList(event,<?= $type['id'] ?>)" data-idtype="<?= $type['id'] ?>">
+                                <div class="groupLabel">
+                                    <span><?= $type['nom'] ?></span> <i class="bi bi-caret-down-fill"></i>
+                                </div>
+                                
+                                    <?php foreach($ingredients as $ingredient): 
+                                            if($ingredient['idType'] == $type['id']): ?>
+                                            <div class="groupItem">
+                                                <input type="checkbox" name="ingredients[]" value="<?= $ingredient['id'] ?>" id="ingredient-<?= $ingredient['nom']; ?>">
+                                                <label for="ingredient-<?= $ingredient['nom'] ?>" class="ingredientLabel"><?= $ingredient['nom'] ?></label>
+                                            </div>
+                                    <?php   endif; 
+                                        endforeach; ?>
+                                
+                            </div>
+                        <?php endforeach; ?>
+
+                    </fieldset>
+                    <button type="submit" class="addButton">
+                        Valider
+                    </button>
+
+                </span>
             </form>
         </div>
         <div class="card">
@@ -143,3 +177,5 @@ $categories = getAllCategorie($bdd->connection);
 <script type="text/javascript" src="./assets/js/suppressionAjax.js"></script>
 
 <script type="text/javascript" src="./assets/js/animation.js"></script>
+<script type="text/javascript" src="./assets/js/dropDownIngredient.js"></script>
+<script type="text/javascript" src="./assets/js/switchForm.js"></script>
