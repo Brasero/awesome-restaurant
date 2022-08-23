@@ -4,6 +4,11 @@
 require_once('../../controller/dash/produitController.php');
 require_once('../../controller/dash/ingredientController.php');
 
+// Soummission du formulaire ajout de produit
+if(isset($_POST['produitNom'], $_POST['produitPrix'], $_POST['categorie']) && !empty($_POST['produitNom']) && !empty($_POST['produitPrix']) && !empty($_POST['categorie'])){
+    echo addProduct($bdd->connection, $_POST);
+}
+
 // Soummission du formulaire ajout de catégorie
 if (isset($_POST['categorieNom']) && !empty($_POST['categorieNom'])) {
     echo addCategorie($bdd->connection, $_POST['categorieNom']);

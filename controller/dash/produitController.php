@@ -54,6 +54,34 @@ function addCategorie(PDO $bdd, string $name): string
     }
 }
 
+function addProduct(PDO $bdd, array $data): string{
+    $array = [
+        'nom' => htmlentities(strip_tags(strtolower($data['produitNom']))),
+        'prix' => str_replace(',', '.', $data['produitPrix']),
+        'cat' => intval($data['categorie']),
+        'ingredients' => isset($data['ingredients']) ? $data['ingredients'] : null
+    ];
+
+    $insert = setNewProduct($bdd, $array);
+
+    if($insert){
+        return '<span class="success">
+                    <span class="message">
+                        Votre catégorie "' . $array['nom'] . '" à été ajouté.
+                    </span>
+                    <span class="progressBar"></span>
+                </span>';
+    } else {
+        return '<span class="error">
+                    <span class"message">
+                        Une erreur s\'est produite.
+                    </span>
+                    <span class="progressBar"></span>           
+                </span>';
+    }
+
+}
+
 /**
  * Récupère toutes les catégories
  *
