@@ -1,6 +1,4 @@
 function toggleIngredientList(e, id){
-
-    console.log({bool: e.target.classList.contains('ingredientLabel'), html: e.target})
     
     if(e.target.getAttribute('name') == null && !e.target.classList.contains('ingredientLabel')){
         var allOther = document.querySelectorAll('.typeIngredientGroupItem')
