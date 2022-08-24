@@ -4,8 +4,6 @@ $panier = getPanier($bdd->connection);
 $total = 0;
 ?>
 
-<div></div>
-
 <div class="panierContainer">
     <h1 class="panierTitle">
         Mon panier
