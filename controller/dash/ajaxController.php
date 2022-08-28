@@ -4,7 +4,7 @@ require_once('../../model/config/Database.php');
 require_once('./ingredientController.php');
 require_once('./produitController.php');
 
-$bdd = new Database('exemple_panier', 'root', '', 'localhost');
+$bdd = Database::getInstance('exemple_panier', 'root', '', 'localhost');
 
 function dispatch(PDO $bdd, string $action, $payload){
     switch($action){
