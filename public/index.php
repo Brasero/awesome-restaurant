@@ -1,7 +1,9 @@
 <?php
+
 session_start();
 require('../model/config/Database.php');
-$bdd = new Database('exemple_panier', 'root', '', 'localhost');
+$bdd = Database::getInstance('exemple_panier', 'root', '', 'localhost');
+
 
 var_dump($_SESSION);
 ?>

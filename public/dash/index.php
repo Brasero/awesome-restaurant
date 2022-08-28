@@ -3,7 +3,7 @@
 session_start();
 require_once('../../model/config/Database.php');
 
-$bdd = new Database('exemple_panier', 'root', '', 'localhost');
+$bdd = Database::getInstance('exemple_panier', 'root', '', 'localhost');
 ?>
 
 <!DOCTYPE html>

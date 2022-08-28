@@ -1,6 +1,7 @@
 <?php
 /**
  * Créer une connexion à la base de données l'objet PDO est enregistré dans $connection
+ * Class Singleton
  */
 class Database{
 
@@ -11,8 +12,9 @@ class Database{
   private $mdp;
   private $char;
   public $connection;
+  public static $instance;
 
-  public function __construct($dbname, $user, $mdp, $host, $char = 'utf8'){
+  private function __construct($dbname, $user, $mdp, $host, $char){
 
     $this->host = $host;
     $this->dbname = $dbname;
@@ -32,6 +34,13 @@ class Database{
     }
   }
 
+  public static function getInstance($dbname, $user, $mdp, $host, $char = 'utf8'){
+    if(self::$instance == null){
+      self::$instance = new Database($dbname, $user, $mdp, $host, $char);
+    }
+
+    return self::$instance;
+  }
 
 
 }
