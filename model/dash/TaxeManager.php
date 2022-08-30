@@ -1,25 +1,26 @@
 <?php
 
-class ProduitManager extends AbstractEntityManager{
 
-    const TABLE_NAME = 'produit';
+class TaxeManager extends AbstractEntityManager{
 
-    public Produit $prod;
+    const TABLE_NAME = 'taxe';
 
-    protected function reset(): ProduitManager
+    public Taxe $taxe;
+
+    protected function reset(): TaxeManager
     {
-        $this->prod = new Produit();
+        $this->taxe = new Taxe();
 
         return $this;
     }
 
-    public function getById(int $id): Produit
+    public function getById(int $id): Taxe
     {
         $this->reset();
 
         $str = $this->queryBuilder
                         ->select(self::TABLE_NAME, ['*'])
-                        ->where('ID_produit', ':id')
+                        ->where('ID_taxe', ':id')
                         ->getSQL();
                        
 
@@ -29,9 +30,9 @@ class ProduitManager extends AbstractEntityManager{
 
         $array = $query->fetch(PDO::FETCH_ASSOC);
 
-        $this->prod->hydrate($array, self::TABLE_NAME);
+        $this->taxe->hydrate($array, self::TABLE_NAME);
 
-        return $this->prod;
+        return $this->taxe;
     }
 
     public function getAll(): array
@@ -46,7 +47,7 @@ class ProduitManager extends AbstractEntityManager{
         $data = $query->fetchAll(PDO::FETCH_ASSOC);
 
         foreach($data as $prod){
-            $i = new Produit();
+            $i = new Taxe();
             $i->hydrate($prod, self::TABLE_NAME);
             array_push($array, $i);
         }
@@ -55,5 +56,3 @@ class ProduitManager extends AbstractEntityManager{
     }
 
 }
-
-?>

@@ -3,6 +3,9 @@
 
 abstract class AbstractEntity
 {
+
+    protected int $ID;
+
     public function hydrate(array $data, string $tableName): void
     {
         foreach($data as $key => $value){

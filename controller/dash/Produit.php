@@ -2,7 +2,6 @@
 
 class Produit extends AbstractEntity{
 
-    private int $ID;
     public string $nom;
     public string $prix;
     public string $img;
@@ -14,16 +13,6 @@ class Produit extends AbstractEntity{
     public function __construct(int $id = null, string $nom = null, string $prix = null, string $img = null, int $ID_taxe = null, int $ID_offre = null, int $ID_categorie = null)
     {
         
-    }
-
-    public function hydrate(array $data, string $tableName): void
-    {
-        foreach($data as $key => $value){
-            $method = 'set'.ucfirst(strtolower(str_replace('_produit', '', $key)));
-            if(method_exists(Produit::class, $method)){
-                $this->$method($value);
-            }
-        }
     }
 
     protected function setId(int $id){

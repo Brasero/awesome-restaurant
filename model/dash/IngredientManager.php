@@ -16,7 +16,10 @@ class IngredientManager extends AbstractEntityManager{
 
     public function getIngredientByProdId(int $prodId){
         $returnArray = [];
-        $str = 'SELECT * FROM ingredient_produit WHERE ID_produit_ingredient_produit = :id';
+        $str = $this->queryBuilder
+                        ->select(self::TABLE_NAME, ['*'])
+                        ->where('ID_produit_ingredient_produit', ':id')
+                        ->getSQL();
 
         $query = $this->db->prepare($str);
 
@@ -35,7 +38,9 @@ class IngredientManager extends AbstractEntityManager{
     {
         $returnArray = [];
 
-        $str = 'SELECT * FROM '.self::TABLE_NAME.'';
+        $str = $this->queryBuilder
+                        ->select(self::TABLE_NAME, ['*'])
+                        ->getSQL();
 
         $query = $this->db->query($str);
 

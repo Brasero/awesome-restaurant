@@ -2,7 +2,7 @@
 
 class Ingredient extends AbstractEntity{
 
-    private int $ID;
+   
     public string $nom;
 
     public function __construct(){

@@ -2,7 +2,7 @@
 
 class Categorie extends AbstractEntity{
 
-    private int $ID;
+    
     public string $nom;
     public ?string $img;
 
