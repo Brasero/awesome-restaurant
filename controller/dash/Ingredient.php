@@ -1,6 +1,6 @@
 <?php
 
-class Ingredient{
+class Ingredient extends AbstractEntity{
 
     private int $ID;
     public string $nom;
@@ -8,18 +8,8 @@ class Ingredient{
     public function __construct(){
 
     }
-    
-    
-    public function hydrate(array $data){
-        foreach($data as $key => $value){
-            $method = 'set'.ucfirst(strtolower(str_replace('_ingredient', '', $key)));
-            if(method_exists(Ingredient::class, $method)){
-                $this->$method($value);
-            }
-        }
-    }
 
-    private function setId(int $ID){
+    protected function setId(int $ID){
         $this->ID = $ID;
     }
 

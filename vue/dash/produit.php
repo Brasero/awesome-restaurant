@@ -3,22 +3,10 @@
 // require du controller de la page 
 require_once('../../controller/dash/produitController.php');
 require_once('../../controller/dash/ingredientController.php');
-require_once('../../controller/dash/Produit.php');
-require_once('../../model/dash/ProduitManager.php');
-require_once('../../model/dash/CategorieManager.php');
-require_once('../../controller/dash/Categorie.php');
-require_once('../../model/dash/IngredientManager.php');
-require_once('../../controller/dash/Ingredient.php');
 
-$prodManager = new ProduitManager($bdd->connection);
+$produitManager = new ProduitManager($bdd->connection);
 
-$produit9 = $prodManager->getProduits();
-
-var_dump($produit9[0]->ingredients);
-
-foreach($produit9 as $prod){
-    echo $prod->getNom();
-}
+$produit9 = $produitManager->getAll();
 
 // Soummission du formulaire ajout de produit
 if(isset($_POST['produitNom'], $_POST['produitPrix'], $_POST['categorie']) && !empty($_POST['produitNom']) && !empty($_POST['produitPrix']) && !empty($_POST['categorie'])){

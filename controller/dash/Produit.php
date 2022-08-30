@@ -1,6 +1,6 @@
 <?php
 
-class Produit{
+class Produit extends AbstractEntity{
 
     private int $ID;
     public string $nom;
@@ -16,7 +16,8 @@ class Produit{
         
     }
 
-    public function hydrate(array $data){
+    public function hydrate(array $data, string $tableName): void
+    {
         foreach($data as $key => $value){
             $method = 'set'.ucfirst(strtolower(str_replace('_produit', '', $key)));
             if(method_exists(Produit::class, $method)){
@@ -25,7 +26,7 @@ class Produit{
         }
     }
 
-    private function setId(int $id){
+    protected function setId(int $id){
         $this->ID = $id;
         if($id != null){
             $ingrManager = new IngredientManager(Database::$instance->connection);
@@ -86,7 +87,7 @@ class Produit{
    
     public function setId_categorie(int $ID_categorie){
         $manager = new CategorieManager(Database::$instance->connection);
-        $this->ID_categorie = $manager->getCategorieById($ID_categorie);
+        $this->ID_categorie = $manager->getById($ID_categorie);
     }
 
     public function getId_categorie(){

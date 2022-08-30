@@ -1,6 +1,6 @@
 <?php
 
-class Categorie{
+class Categorie extends AbstractEntity{
 
     private int $ID;
     public string $nom;
@@ -10,19 +10,7 @@ class Categorie{
 
     }
 
-    
-    public function hydrate(array $data){
-        foreach($data as $key => $value){
-            $method = 'set'.ucfirst(strtolower(str_replace('_categorie', '', $key)));
-            if(method_exists(Produit::class, $method)){
-                $this->$method($value);
-            }
-        }
-    }
-
-
-
-    private function setId(int $id){
+    protected function setId(int $id){
         $this->ID = $id;
     }
 

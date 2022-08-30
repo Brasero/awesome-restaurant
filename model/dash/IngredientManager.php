@@ -1,45 +1,69 @@
 <?php
 
 
-class IngredientManager{
+class IngredientManager extends AbstractEntityManager{
 
-    public PDO $connection;
 
-    public function __construct(PDO $bdd)
+    const TABLE_NAME = 'ingredient';
+
+    public Ingredient $ingredient;
+
+    protected function reset(): self
     {
-        $this->connection = $bdd;
+        $this->ingredient = new Ingredient();
+        return $this;
     }
 
     public function getIngredientByProdId(int $prodId){
         $returnArray = [];
         $str = 'SELECT * FROM ingredient_produit WHERE ID_produit_ingredient_produit = :id';
 
-        $query = $this->connection->prepare($str);
+        $query = $this->db->prepare($str);
 
         $query->bindValue(':id', $prodId, PDO::PARAM_INT);
         $query->execute();
 
         $array = $query->fetchAll(PDO::FETCH_ASSOC);
         foreach($array as $rel){
-            array_push($returnArray, $this->getIngredientById($rel['ID_ingredient_ingredient_produit']));
+            array_push($returnArray, $this->getById($rel['ID_ingredient_ingredient_produit']));
         }
 
         return $returnArray;
     }
 
-    private function getIngredientById(int $id){
+    public function getAll(): array
+    {
+        $returnArray = [];
+
+        $str = 'SELECT * FROM '.self::TABLE_NAME.'';
+
+        $query = $this->db->query($str);
+
+        $data = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach($data as $ingredient){
+            $object = new Ingredient();
+            $object->hydrate($ingredient, self::TABLE_NAME);
+            array_push($returnArray, $object);
+        }
+
+        return $returnArray;
+    }
+
+    protected function getById(int $id): Ingredient
+    {
 
         $ingredient = new Ingredient();
 
         $str = "SELECT * FROM ingredient WHERE ID_ingredient = :id";
-        $query = $this->connection->prepare($str);
+        $query = $this->db->prepare($str);
 
         $query->bindValue(':id', $id, PDO::PARAM_INT);
         $query->execute();
 
         $array = $query->fetch(PDO::FETCH_ASSOC);
 
-        $ingredient->hydrate($array);
+        $ingredient->hydrate($array, self::TABLE_NAME);
 
         return $ingredient;
 

@@ -1,41 +1,47 @@
 <?php
 
-class ProduitManager{
+class ProduitManager extends AbstractEntityManager{
 
-    private PDO $connection;
+    const TABLE_NAME = 'produit';
 
-    public function __construct(PDO $bdd)
+    public Produit $prod;
+
+    protected function reset(): ProduitManager
     {
-        $this->connection = $bdd;
+        $this->prod = new Produit();
+
+        return $this;
     }
 
-    public function getProduitById(int $id){
-        $prod = new Produit();
+    public function getById(int $id): Produit
+    {
+        $this->reset();
 
         $str = 'SELECT * FROM produit WHERE ID_produit = :id';
 
-        $query = $this->connection->prepare($str);
+        $query = $this->db->prepare($str);
         $query->bindValue(':id', $id, PDO::PARAM_INT);
         $query->execute();
 
         $array = $query->fetch(PDO::FETCH_ASSOC);
 
-        $prod->hydrate($array);
+        $this->prod->hydrate($array, self::TABLE_NAME);
 
-        return $prod;
+        return $this->prod;
     }
 
-    public function getProduits(){
+    public function getAll(): array
+    {
         $array = array();
 
         $str = 'SELECT * FROM produit';
 
-        $query = $this->connection->query($str);
+        $query = $this->db->query($str);
         $data = $query->fetchAll(PDO::FETCH_ASSOC);
 
         foreach($data as $prod){
             $i = new Produit();
-            $i->hydrate($prod);
+            $i->hydrate($prod, self::TABLE_NAME);
             array_push($array, $i);
         }
 

@@ -4,8 +4,16 @@ session_start();
 require('../model/config/Database.php');
 $bdd = Database::getInstance('exemple_panier', 'root', '', 'localhost');
 
+function autoload($class){
+  if(file_exists('./../model/'.$class.'.php')){
+      require_once("../../model/dash/$class.php");
+  }
+  elseif(file_exists("./../controller/$class.php")){
+      require_once("./../controller/$class.php");
+  }
+}
 
-var_dump($_SESSION);
+spl_autoload_register('autoload');
 ?>
 
 <!DOCTYPE html>

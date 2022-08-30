@@ -2,7 +2,7 @@
 require('../model/config/Database.php');
 require('../model/villeModel.php');
 
-$bdd = new Database('exemple_panier', 'root', '', 'localhost');
+$bdd = Database::getInstance('exemple_panier', 'root', '', 'localhost');
 
 function getVillesByName(PDO $bdd, string $name){
     $data = getVillesByNameLike($bdd, $name);
