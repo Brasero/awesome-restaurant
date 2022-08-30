@@ -1,9 +1,19 @@
 <?php
+
 session_start();
 require('../model/config/Database.php');
-$bdd = new Database('exemple_panier', 'root', '', 'localhost');
+$bdd = Database::getInstance('exemple_panier', 'root', '', 'localhost');
 
-var_dump($_SESSION);
+function autoload($class){
+  if(file_exists('./../model/'.$class.'.php')){
+      require_once("../../model/dash/$class.php");
+  }
+  elseif(file_exists("./../controller/$class.php")){
+      require_once("./../controller/$class.php");
+  }
+}
+
+spl_autoload_register('autoload');
 ?>
 
 <!DOCTYPE html>

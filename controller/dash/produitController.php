@@ -67,7 +67,7 @@ function addProduct(PDO $bdd, array $data): string{
     if($insert){
         return '<span class="success">
                     <span class="message">
-                        Votre catégorie "' . $array['nom'] . '" à été ajouté.
+                        Votre produit "' . $array['nom'] . '" à été ajouté.
                     </span>
                     <span class="progressBar"></span>
                 </span>';
