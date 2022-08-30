@@ -4,9 +4,12 @@
 require_once('../../controller/dash/ingredientController.php');
 
 
+//Création d'un manager de type d'ingrédient
+$ingredientTypeManager = new IngredientTypeManager($bdd->connection);
+
 //Soummission du formulaire ajout de type d'ingrédient
-if (isset($_POST['ingredientTypeNom']) && !empty($_POST['ingredientTypeNom'])) {
-    echo addTypeIngredient($bdd->connection, $_POST['ingredientTypeNom']);
+if (isset($_POST['nom_type_ingredient']) && !empty($_POST['nom_type_ingredient'])) {
+    echo $ingredientTypeManager->createNew($_POST);
 }
 
 //Soummission du formulaire ajout d'ingrédient
@@ -15,8 +18,8 @@ if (isset($_POST['ingredientNom'], $_POST['ingredientType'], $_POST['ingredientP
 }
 
 //Soummission du formulaire modal d'update type ingrédient
-if(isset($_POST['ingredientTypeIdUpdate'], $_POST['ingredientTypeNomUpdate']) && !empty($_POST['ingredientTypeNomUpdate'])){
-    updateTypeIngredientName($bdd->connection, $_POST);
+if(isset($_POST['ID_type_ingredient'], $_POST['ingredientTypeNomUpdate']) && !empty($_POST['ingredientTypeNomUpdate'])){
+    echo $ingredientTypeManager->update($_POST);
 }
 
 if(isset(
@@ -26,16 +29,14 @@ if(isset(
     $_POST['ingredientIdUpdate']
     )){
     echo updateIngredient($bdd->connection, $_POST);    
-    }
-
-
-//Soummission du formulaire modal d'update type ingrédient
-if (isset($_POST['ingredientTypeIdUpdate'], $_POST['ingredientTypeNomUpdate']) && !empty($_POST['ingredientTypeNomUpdate'])) {
-    echo updateTypeIngredientName($bdd->connection, $_POST);
 }
 
+
 //Recupération de tout les type !!!! Efféctué après toute insertion ou modification au dessus
-$types = getAllType($bdd->connection);
+
+//appel des types
+$types = $ingredientTypeManager->getAll();
+
 $ingredients = getAllIngredient($bdd->connection);
 ?>
 
@@ -69,7 +70,7 @@ $ingredients = getAllIngredient($bdd->connection);
                     <select class="inputItem" name="ingredientType" id="ingredientType" placeholder="Type d'ingrédient" default="false" required>
                         <option class="typeOption" value="false">....</option>
                         <?php foreach ($types as $type) { ?>
-                            <option value="<?= $type['id'] ?>"><?= $type['nom'] ?></option>
+                            <option value="<?= $type->getID() ?>"><?= $type->getNom() ?></option>
                         <?php } ?>
                     </select>
                 </div>
@@ -85,7 +86,7 @@ $ingredients = getAllIngredient($bdd->connection);
             <form action="" method="post">
                 <div class="inputGroup">
                     <label for="ingredientTypeNom" class="inputLabel">
-                        <input type="text" class="inputItem" name="ingredientTypeNom" id="ingredientTypeNom" placeholder="Nom" required />
+                        <input type="text" class="inputItem" name="nom_type_ingredient" id="ingredientTypeNom" placeholder="Nom" required />
                         <span>Nom</span>
                     </label>
                 </div>
@@ -163,16 +164,16 @@ $ingredients = getAllIngredient($bdd->connection);
                     </tr>
 
                     <?php foreach ($types as $type) { ?>
-                        <tr class="ingredientTypeItem" id="type-<?= $type['id'] ?>">
+                        <tr class="ingredientTypeItem" id="type-<?= $type->getID() ?>">
 
                             <td class="ingredientTypePart">
-                                <?= $type['nom'] ?>
+                                <?= $type->getNom() ?>
                             </td>
                             <td class="ingredientTypePart buttonGroup">
-                                <button class="actionButton updateButton" onclick="openModal(event ,'type', <?= $type['id'] ?>)" data-nomtype="<?= $type['nom'] ?>">
+                                <button class="actionButton updateButton" onclick="openModal(event ,'type', <?= $type->getID() ?>)" data-nomtype="<?= $type->getNom() ?>">
                                     Modifier
                                 </button>
-                                <button class="actionButton deleteButton" onclick="supprItem('typeIngredient', <?= $type['id'] ?>)">
+                                <button class="actionButton deleteButton" onclick="supprItem('typeIngredient', <?= $type->getID() ?>)">
                                     Supprimer
                                 </button>
                             </td>
@@ -203,7 +204,7 @@ $ingredients = getAllIngredient($bdd->connection);
         </div>
         <div class="modalBody">
             <form action="" method="POST" class="updateTypeForm">
-                <input type="hidden" id="ingredientTypeIdUpdate" name="ingredientTypeIdUpdate" value="">
+                <input type="hidden" id="ingredientTypeIdUpdate" name="ID_type_ingredient" value="">
                 <div class="inputGroup">
                     <label for="ingredientTypeNomUpdate" class="inputLabel">
                         <input type="text" class="inputItem" name="ingredientTypeNomUpdate" id="ingredientTypeNomUpdate" value="" placeholder="Nom" required />
@@ -264,7 +265,7 @@ $ingredients = getAllIngredient($bdd->connection);
                     id="ingredientTypeModif" placeholder="Type d'ingrédient" default="false" required>
                         <option class="typeOption" value="false">....</option>
                         <?php foreach ($types as $type){ ?>
-                            <option id="ingredientTypeModifOption-<?= $type['id'] ?>" value="<?= $type['id'] ?>"><?= $type['nom'] ?></option>
+                            <option id="ingredientTypeModifOption-<?= $type->getID() ?>" value="<?= $type->getID() ?>"><?= $type->getID() ?></option>
                         <?php } ?>
                     </select>
                 </div>
