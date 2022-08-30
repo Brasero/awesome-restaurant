@@ -28,6 +28,41 @@ class MySqlQueryBuilder implements SQLQueryBuilder{
         return $this;
     }
 
+    public function update(string $table): SQLQueryBuilder
+    {
+        $this->reset();
+        $this->query->base = 'UPDATE '.$table.' SET ';
+        $this->query->type = 'update';
+
+        return $this;
+    }
+    
+    public function delete(string $table): SQLQueryBuilder
+    {
+        $this->reset();
+        $this->query->base = 'DELETE FROM '.$table.' ';
+        $this->query->type = 'delete';
+
+        return $this;
+    }
+
+    public function set(array $keyValue): SQLQueryBuilder
+    {
+        if(!in_array($this->query->type, ['update'])){
+            throw new \Exception("la clause SET ne peut être utilisée qu'avec une requête de type UPDATE");
+        }
+        $this->query->setValue = [];
+        foreach($keyValue as $key => $value)
+        {
+            $this->query->setValue[] = "$key = $value";
+        }
+
+        return $this;
+    }
+
+
+
+
     public function values(array $values): SQLQueryBuilder
     {
         if(!in_array($this->query->type, ['insert'])){
@@ -87,6 +122,9 @@ class MySqlQueryBuilder implements SQLQueryBuilder{
     {
         $query = $this->query;
         $sql = $query->base;
+        if($query->type == 'update'){
+            $sql .= implode(', ', $this->query->setValue);
+        }
         if(!empty($query->where)){
             $sql .= " WHERE ".implode(' AND ', $query->where);
         }
@@ -94,6 +132,7 @@ class MySqlQueryBuilder implements SQLQueryBuilder{
         if($query->type == 'insert'){
             $sql .= " VALUES (".implode(', ', $query->values).")";
         }
+
 
         if(isset($query->group)){
             $sql .= $query->group;
