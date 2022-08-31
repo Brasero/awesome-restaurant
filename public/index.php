@@ -17,13 +17,44 @@ spl_autoload_register('autoload');
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./assets/icon/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/navBar.css">
+  
+  <?php
+      if(isset($_GET['page'])){
+        switch($_GET['page']){
+          case 'login':
+            echo '<link rel="stylesheet" href="./assets/css/formulaire.css">
+            <link rel="stylesheet" href="./assets/css/connexion.css">';
+            break;
+
+          case 'signin':
+            echo '<link rel="stylesheet" href="./assets/css/formulaire.css">
+            <link rel="stylesheet" href="./assets/css/inscription.css">';
+            break;
+          
+          case 'carte':
+            echo '<link rel="stylesheet" href="./assets/css/carte.css">';
+            break;
+
+          case 'panier':
+            echo '<link rel="stylesheet" href="./assets/css/panier.css">';
+            break;
+          
+          default:
+            include('../vue/carte.php');
+        }
+      } else {
+        include('../vue/carte.php');
+      }
+
+    ?>
   <title>Burger Compagny</title>
 </head>
 <body>
