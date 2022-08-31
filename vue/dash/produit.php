@@ -4,6 +4,10 @@
 require_once('../../controller/dash/produitController.php');
 require_once('../../controller/dash/ingredientController.php');
 
+$produitManager = new ProduitManager($bdd->connection);
+
+$produit9 = $produitManager->getAll();
+
 // Soummission du formulaire ajout de produit
 if(isset($_POST['produitNom'], $_POST['produitPrix'], $_POST['categorie']) && !empty($_POST['produitNom']) && !empty($_POST['produitPrix']) && !empty($_POST['categorie'])){
     echo addProduct($bdd->connection, $_POST);

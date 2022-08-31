@@ -45,8 +45,9 @@ function setNewProduct(PDO $bdd, array $data): bool{
                 $query->execute();
             }
 
-            return true;
         }
+        
+        return true;
     } else {
         return false;
     }
