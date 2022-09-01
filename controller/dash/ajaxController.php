@@ -9,11 +9,14 @@ require_once('../../class/AbstractEntity.php');
 require_once('../../class/AbstractEntityManager.php');
 require_once('../../controller/dash/IngredientType.php');
 require_once('../../model/dash/IngredientTypeManager.php');
+require_once('../../controller/dash/Ingredient.php');
+require_once('../../model/dash/IngredientManager.php');
 
 $bdd = Database::getInstance('exemple_panier', 'root', '', 'localhost');
 
-function dispatch(PDO $bdd, string $action, $payload){
-    switch($action){
+function dispatch(PDO $bdd, string $action, $payload)
+{
+    switch ($action) {
         case 'supprType':
             $manager = new IngredientTypeManager($bdd);
             $manager->create(intval($payload));
@@ -21,16 +24,17 @@ function dispatch(PDO $bdd, string $action, $payload){
             break;
 
         case 'supprCategorie':
-            echo deleteCategorie($bdd,$payload);
+            echo deleteCategorie($bdd, $payload);
             break;
 
         case 'supprIngredient':
-            echo deleteIngredient($bdd, $payload);
-
+            $manager = new IngredientManager($bdd);
+            $manager->create(intval($payload));
+            echo $manager->delete();
             break;
     }
 }
 
-if(isset($_GET['action'])){
+if (isset($_GET['action'])) {
     dispatch($bdd->connection, $_GET['action'], $_GET['payload']);
 }

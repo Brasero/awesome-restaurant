@@ -15,6 +15,13 @@ class IngredientManager extends AbstractEntityManager
         return $this;
     }
 
+    public function create(string $ID = null, int $nom = null, int $prix = null, bool $dispo = null, int $Id_type = null): Ingredient
+    {
+        $this->reset();
+        $this->ingredient->hydrate(['nom' => $nom, 'ID' => $ID, 'prix' => $prix, 'dispo' => $dispo, 'ID_type' => $Id_type], self::TABLE_NAME);
+        return $this->ingredient;
+    }
+
     public function getIngredientByProdId(int $prodId)
     {
         $returnArray = [];
@@ -82,7 +89,7 @@ class IngredientManager extends AbstractEntityManager
         $this->ingredient->hydrate($data, self::TABLE_NAME);
         var_dump($data);
         if ($this->isUnique($this->ingredient->getNom())) {
-            // $this->hash();
+            $this->ingredient->hash();
             $str = $this->queryBuilder
                 ->insert(self::TABLE_NAME, ['nom_' . self::TABLE_NAME, 'prix_' . self::TABLE_NAME, 'ID_type_' . self::TABLE_NAME, 'dispo_' . self::TABLE_NAME])
                 ->values([[':nom', ':prix', ':Id_type', ':dispo']])
@@ -104,5 +111,22 @@ class IngredientManager extends AbstractEntityManager
         } else $toast->createToast("Cette ingredient existe déja.", Toast::ERROR);
 
         return $toast->renderToast();
+    }
+
+
+    public function delete(): bool
+    {
+
+        $str = $this->queryBuilder
+            ->delete(self::TABLE_NAME)
+            ->where('ID_' . self::TABLE_NAME, ':id')
+            ->getSQL();
+        $query = $this->db->prepare($str);
+        $query->bindValue(':id', $this->ingredient->getID(), PDO::PARAM_INT);
+        if ($query->execute()) {
+            return true;
+        }
+
+        return false;
     }
 }

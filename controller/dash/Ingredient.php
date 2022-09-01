@@ -4,25 +4,25 @@ class Ingredient extends AbstractEntity
 {
 
 
-    public string $nom;
-    public string $prix;
-    public string $dispo;
-    public string $Id_type;
+    public ?string $nom;
+    public ?string $prix;
+    public ?string $dispo;
+    public ?int $Id_type;
 
 
 
 
-    protected function setId(int $ID)
+    protected function setID(int $ID)
     {
-        $this->ID = $ID;
+        $this->ID = intval($ID);
     }
 
-    public function getId()
+    public function getID()
     {
         return $this->ID;
     }
 
-    public function setNom(string $nom)
+    public function setNom(?string $nom)
     {
         $this->nom = $nom;
     }
@@ -32,7 +32,7 @@ class Ingredient extends AbstractEntity
         return ucfirst($this->nom);
     }
 
-    public function setPrix(string $prix)
+    public function setPrix(?string $prix)
     {
         $this->prix = $prix;
     }
@@ -42,7 +42,7 @@ class Ingredient extends AbstractEntity
         return $this->prix;
     }
 
-    public function setDispo(string $dispo)
+    public function setDispo(?bool $dispo)
     {
         $this->dispo = $dispo;
     }
@@ -52,7 +52,7 @@ class Ingredient extends AbstractEntity
         return $this->dispo;
     }
 
-    public function setId_type(string $Id_type)
+    public function setId_type(?int $Id_type)
     {
         $this->Id_type = $Id_type;
     }

@@ -42,8 +42,6 @@ if (isset(
 $types = $ingredientTypeManager->getAll();
 $ingredients = $ingredientManager->getAll();
 
-
-// $ingredients = getAllIngredient($bdd->connection);
 ?>
 
 <div class="ingredientContainer">
@@ -142,22 +140,19 @@ $ingredients = $ingredientManager->getAll();
                                         echo $type->getNom();
                                     }
                                 }
-
-                                // $type = new IngredientTypeManager($bdd->connection);
-                                // $renderType = $type->getById($ingredient->getId_type());
-                                // echo $renderType->getNom();
                                 ?>
                             </td>
                             <td class="ingredientTypePart buttonGroup">
                                 <button class="actionButton updateButton" onclick="openModal(event ,'ingredient', <?= $ingredient->getId() ?>)" data-nomingredient="<?= $ingredient->getNom() ?>" data-prixingredient="<?= $ingredient->getPrix() ?>" data-dispoingredient="<?= $ingredient->getDispo() ?>" data-idtypeingredient="<?= $ingredient->getId_type() ?>">
                                     Modifier
                                 </button>
-                                <button class="actionButton deleteButton" onclick="supprItem('ingredient', <?= $ingredient->getId() ?>)">
+                                <button class="actionButton deleteButton" onclick="supprItem('ingredient', <?= $ingredient->getID() ?>)">
                                     Supprimer
                                 </button>
                             </td>
                         </tr>
-                    <?php }
+                    <?php
+                    }
                     ?>
                 </tbody>
             </table>
