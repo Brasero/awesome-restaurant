@@ -232,6 +232,7 @@ body{
 @media screen and (max-width: 1024px) {
   body{
     background-size: cover;
+    background-image: url('../img/ressources/background/connexion/connexion@2.png')
   }
 
   .container {
@@ -240,6 +241,12 @@ body{
 }
 
 @media screen and (max-width: 930px) {
+
+  body{
+    background-image: url('../img/ressources/background/connexion/connexion.png');
+    background-position: center bottom;
+  }
+
   .connexionContainer {
     flex-direction: column-reverse;
   }
