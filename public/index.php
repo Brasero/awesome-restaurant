@@ -138,7 +138,7 @@ spl_autoload_register('autoload');
     ?>
   </div>  
 
-  <script src="./assets/js/toggleNavBar.js"></script>i
-
+  <script src="./assets/js/onscrollFunction.js"></script>
+  <script src="./assets/js/toggleNavBar.js"></script>
 </body>
 </html>

@@ -17,7 +17,6 @@ body{
 
 .container{
     background: linear-gradient(120deg, rgba(var(--color-light-rgb), 0.72) 20px, rgba(0, 0, 0, 0.2) 1000px);
-    height: 100%;
     padding-inline: 90px;
 }
 
@@ -28,14 +27,13 @@ body{
     margin-inline: auto;
     background: transparent;
     gap: 25px;
-    height: 100%;
   }
   
   .connexionContainer > .loginForm {
     display: flex;
     flex-direction: column;
     max-width: 400px;
-    width: 50%;
+    width: 100%;
     flex: 3;
     justify-content: center;
     align-items: center;
@@ -226,4 +224,46 @@ body{
 .connexionContainer > .hero__wrapper > .hero__section.footer {
     width: 100%;
     justify-content: flex-end;
+}
+
+/***** MEDIA QUERIES *******/
+
+
+@media screen and (max-width: 1024px) {
+  body{
+    background-size: cover;
+    background-image: url('../img/ressources/background/connexion/connexion@2.png')
+  }
+
+  .container {
+    padding-inline: 0;
+  }
+}
+
+@media screen and (max-width: 930px) {
+
+  body{
+    background-image: url('../img/ressources/background/connexion/connexion.png');
+    background-position: center bottom;
+  }
+
+  .connexionContainer {
+    flex-direction: column-reverse;
+  }
+  .connexionContainer > .hero__wrapper > .hero__section {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .connexionContainer > .hero__wrapper > .hero__section > span {
+    height: 30px;
+  }
+
+  .connexionContainer > .hero__wrapper > .hero__section:nth-child(1) > span, .connexionContainer > .hero__wrapper > .hero__section:nth-child(2) > span {
+    height: unset;
+  }
+  .connexionContainer > .hero__wrapper > .hero__section.title {
+    flex-direction: row;
+    gap: 8px;
+  }
 }

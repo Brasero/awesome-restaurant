@@ -2,10 +2,11 @@ header {
   position: sticky;
   top: 0;
   left: 0;
+  z-index: 10;
+  transition: var(--transition);
 }
 
 header > .navBar {
-  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -14,6 +15,7 @@ header > .navBar {
   border: none;
   width: 100%;
   background: rgba(0, 0, 0, 0.29);
+  backdrop-filter: blur(10px);
 }
 
 header > .navBar > .brand {
@@ -112,7 +114,7 @@ header > .navBar > .toggleButton {
   header > .navBar > .linkList > .navItem {
     transform: translateX(-200%);
     transition: var(--transition);
-    transition-delay: calc(var(--i) * .3s);
+    transition-delay: calc(var(--i) * .15s);
   }
 
   header > .navBar {
