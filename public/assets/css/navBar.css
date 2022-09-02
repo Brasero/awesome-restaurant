@@ -2,10 +2,10 @@ header {
   position: sticky;
   top: 0;
   left: 0;
+  z-index: 10;
 }
 
 header > .navBar {
-  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
