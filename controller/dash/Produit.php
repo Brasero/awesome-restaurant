@@ -83,5 +83,10 @@ class Produit extends AbstractEntity{
         return $this->ID_categorie;
     }
 
+      public function hash(): void
+        {
+            $nom = strtolower(htmlentities(strip_tags($this->nom)));
+            $this->setNom($nom);
+        }
+
 }
-?>

@@ -5,28 +5,30 @@ require_once('../../controller/dash/produitController.php');
 require_once('../../controller/dash/ingredientController.php');
 
 $produitManager = new ProduitManager($bdd->connection);
-
+$categorieManager = new CategorieManager($bdd->connection);
+$ingredientManager = new IngredientManager($bdd->connection);
+$ingredientTypeManager = new IngredientTypeManager($bdd->connection);
 $produit9 = $produitManager->getAll();
 
 // Soummission du formulaire ajout de produit
-if(isset($_POST['produitNom'], $_POST['produitPrix'], $_POST['categorie']) && !empty($_POST['produitNom']) && !empty($_POST['produitPrix']) && !empty($_POST['categorie'])){
+if (isset($_POST['produitNom'], $_POST['produitPrix'], $_POST['categorie']) && !empty($_POST['produitNom']) && !empty($_POST['produitPrix']) && !empty($_POST['categorie'])) {
     echo addProduct($bdd->connection, $_POST);
 }
 
 // Soummission du formulaire ajout de catégorie
-if (isset($_POST['categorieNom']) && !empty($_POST['categorieNom'])) {
-    echo addCategorie($bdd->connection, $_POST['categorieNom']);
+if (isset($_POST['Nom_categorie']) && !empty($_POST['Nom_categorie'])) {
+    echo  $categorieManager->createNew($_POST);
 }
 
-//Soumission du formulaire modal d'update type ingrédient
+//Soumission du formulaire modal d'update type catégorie
 if (isset($_POST['categorieIdUpdate'], $_POST['categorieNomUpdate']) && !empty($_POST['categorieNomUpdate'])) {
-    echo updateCategorieName($bdd->connection, $_POST);
+    echo $categorieManager->update($_POST);
 }
 
 //Récupération de toute les catégorie! Efféctué après toute insertion ou modification au dessus
-$categories = getAllCategorie($bdd->connection);
-$ingredients = getAllIngredient($bdd->connection);
-$types = getAllType($bdd->connection);
+$categories = $categorieManager->getAll();
+$ingredients = $ingredientManager->getAll();
+$types = $ingredientTypeManager->getAll();
 ?>
 
 <div class="produitContainer">
@@ -60,7 +62,7 @@ $types = getAllType($bdd->connection);
                         <select name="categorie" id="categorieType" class="inputItem" placeholder="C    ategorie" default="false" required>
                             <option value="false" class="typeOption">....</option>
                             <?php foreach ($categories as $categorie) { ?>
-                                <option value="<?= $categorie['id'] ?>"><?= $categorie['nom'] ?></option>
+                                <option value="<?= $categorie->getID() ?>"><?= $categorie->getNom() ?></option>
                             <?php } ?>
                         </select>
                     </span>
@@ -72,21 +74,21 @@ $types = getAllType($bdd->connection);
                     <button class="backButton" type="button" onclick="switchForm('toRight')"><i class="bi bi-arrow-left-short"></i>Retour</button>
                     <fieldset class="ingredientGroup">
 
-                        <?php foreach($types as $type): ?>
-                            <div class="typeIngredientGroupItem" id="type-<?= $type['id'] ?>" onclick="toggleIngredientList(event,<?= $type['id'] ?>)" data-idtype="<?= $type['id'] ?>">
+                        <?php foreach ($types as $type) : ?>
+                            <div class="typeIngredientGroupItem" id="type-<?= $type->getID() ?>" onclick="toggleIngredientList(event,<?= $type->getID() ?>)" data-idtype="<?= $type->getID() ?>">
                                 <div class="groupLabel">
-                                    <span><?= $type['nom'] ?></span> <i class="bi bi-caret-down-fill"></i>
+                                    <span><?= $type->getNom() ?></span> <i class="bi bi-caret-down-fill"></i>
                                 </div>
-                                
-                                    <?php foreach($ingredients as $ingredient): 
-                                            if($ingredient['idType'] == $type['id']): ?>
-                                            <div class="groupItem">
-                                                <input type="checkbox" name="ingredients[]" value="<?= $ingredient['id'] ?>" id="ingredient-<?= $ingredient['nom']; ?>">
-                                                <label for="ingredient-<?= $ingredient['nom'] ?>" class="ingredientLabel"><?= $ingredient['nom'] ?></label>
-                                            </div>
-                                    <?php   endif; 
-                                        endforeach; ?>
-                                
+
+                                <?php foreach ($ingredients as $ingredient) :
+                                    if ($ingredient->getId_type() == $type->getID()) : ?>
+                                        <div class="groupItem">
+                                            <input type="checkbox" name="ingredients[]" value="<?= $ingredient->getID() ?>" id="ingredient-<?= $ingredient->getNom(); ?>">
+                                            <label for="ingredient-<?= $ingredient->getNom() ?>" class="ingredientLabel"><?= $ingredient->getNom() ?></label>
+                                        </div>
+                                <?php endif;
+                                endforeach; ?>
+
                             </div>
                         <?php endforeach; ?>
 
@@ -105,7 +107,7 @@ $types = getAllType($bdd->connection);
             <form action="" method="POST">
                 <div class="inputGroup">
                     <label for="categorieNom" class="inputLabel">
-                        <input type="text" class="inputItem" name="categorieNom" id="categorieNom" placeholder="Nom" required />
+                        <input type="text" class="inputItem" name="Nom_categorie" id="categorieNom" placeholder="Nom" required />
                         <span>Nom</span>
                     </label>
                 </div>
@@ -130,14 +132,14 @@ $types = getAllType($bdd->connection);
                         <th class="colonneTitleItem">Action</th>
                     </tr>
                     <?php foreach ($categories as $categorie) { ?>
-                        <tr class="categorieTypeItem" id="categorie-<?= $categorie['id'] ?>">
-                            <td class="categorieTypePart"><?= $categorie['nom'] ?>
+                        <tr class="categorieTypeItem" id="categorie-<?= $categorie->getID() ?>">
+                            <td class="categorieTypePart"><?= $categorie->getNom() ?>
                             </td>
                             <td class="categorieTypePart buttonGroup">
-                                <button class="actionButton updateButton" onclick="openModal(event, 'categorie', <?= $categorie['id'] ?>)" data-nomcategorie="<?= $categorie['nom'] ?>">
+                                <button class="actionButton updateButton" onclick="openModal(event, 'categorie', <?= $categorie->getID() ?>)" data-nomcategorie="<?= $categorie->getNom() ?>">
                                     Modifier
                                 </button>
-                                <button class="actionButton deleteButton" onclick="supprItem('categorie', <?= $categorie['id'] ?>)">
+                                <button class="actionButton deleteButton" onclick="supprItem('categorie', <?= $categorie->getID() ?>)">
                                     Supprimer
                                 </button>
                             </td>
