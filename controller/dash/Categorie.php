@@ -4,7 +4,7 @@ class Categorie extends AbstractEntity
 {
 
 
-    public string $nom;
+    public ?string $nom;
     public ?string $img;
 
     public function __construct(int $id = null, string $name = null, string $img = null)
@@ -13,7 +13,7 @@ class Categorie extends AbstractEntity
 
     protected function setID(int $id)
     {
-        $this->ID = $id;
+        $this->ID = intval($id);
     }
 
     public function getID()
@@ -21,14 +21,14 @@ class Categorie extends AbstractEntity
         return $this->ID;
     }
 
-    public function setNom(string $nom)
+    public function setNom(?string $nom)
     {
         $this->nom = $nom;
     }
 
     public function getNom()
     {
-        return $this->nom;
+        return ucfirst(html_entity_decode($this->nom));
     }
 
     public function setImg($img)

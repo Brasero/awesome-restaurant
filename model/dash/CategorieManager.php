@@ -13,6 +13,13 @@ class CategorieManager extends AbstractEntityManager
         return $this;
     }
 
+    public function create(int $ID = null, string $nom = null, string $img = null): Categorie
+    {
+        $this->reset();
+        $this->categorie->hydrate(['ID' => $ID, 'nom' => $nom, 'img' => $img,], self::TABLE_NAME);
+        return $this->categorie;
+    }
+
     public function getById(int $id): Categorie
     {
         $cat = new Categorie();
@@ -74,6 +81,50 @@ class CategorieManager extends AbstractEntityManager
                 $toast->createToast('Une erreur est survenue.', Toast::ERROR);
             }
         } else $toast->createToast("Cette categorie existe déja.", Toast::ERROR);
+
+        return $toast->renderToast();
+    }
+
+    public function delete(): bool
+    {
+
+        $str = $this->queryBuilder
+            ->delete(self::TABLE_NAME)
+            ->where('ID_' . self::TABLE_NAME, ':id')
+            ->getSQL();
+        $query = $this->db->prepare($str);
+        $query->bindValue(':id', $this->categorie->getID(), PDO::PARAM_INT);
+        if ($query->execute()) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function update(array $data): string
+    {
+        $toast = new Toast();
+        $this->reset();
+        $data['ID'] = $data['categorieIdUpdate'];
+        $data['nom'] = $data['categorieNomUpdate'];
+
+
+        $this->categorie->hydrate($data, self::TABLE_NAME);
+        $str = $this->queryBuilder
+            ->update(self::TABLE_NAME)
+            ->set(['nom_' . self::TABLE_NAME => ':nom', 'img_' . self::TABLE_NAME => ':img'])
+            ->where('ID_' . self::TABLE_NAME, ':id')
+            ->getSQL();
+        $query = $this->db->prepare($str);
+        $query->bindValue(':nom', $this->categorie->getNom(), PDO::PARAM_STR);
+        $query->bindValue(':img', null, PDO::PARAM_STR);
+        $query->bindValue(':id', $this->categorie->getID(), PDO::PARAM_INT);
+
+        if ($query->execute()) {
+            $toast->createToast('categorie modifié.', Toast::SUCCESS);
+        } else {
+            $toast->createToast('Une erreur s\'est produite.', Toast::ERROR);
+        }
 
         return $toast->renderToast();
     }

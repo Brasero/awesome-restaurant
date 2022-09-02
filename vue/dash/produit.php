@@ -6,6 +6,8 @@ require_once('../../controller/dash/ingredientController.php');
 
 $produitManager = new ProduitManager($bdd->connection);
 $categorieManager = new CategorieManager($bdd->connection);
+$ingredientManager = new IngredientManager($bdd->connection);
+$ingredientTypeManager = new IngredientTypeManager($bdd->connection);
 $produit9 = $produitManager->getAll();
 
 // Soummission du formulaire ajout de produit
@@ -18,16 +20,15 @@ if (isset($_POST['Nom_categorie']) && !empty($_POST['Nom_categorie'])) {
     echo  $categorieManager->createNew($_POST);
 }
 
-//Soumission du formulaire modal d'update type ingrédient
+//Soumission du formulaire modal d'update type catégorie
 if (isset($_POST['categorieIdUpdate'], $_POST['categorieNomUpdate']) && !empty($_POST['categorieNomUpdate'])) {
-    echo updateCategorieName($bdd->connection, $_POST);
+    echo $categorieManager->update($_POST);
 }
 
 //Récupération de toute les catégorie! Efféctué après toute insertion ou modification au dessus
 $categories = $categorieManager->getAll();
-var_dump($categories);
-$ingredients = getAllIngredient($bdd->connection);
-$types = getAllType($bdd->connection);
+$ingredients = $ingredientManager->getAll();
+$types = $ingredientTypeManager->getAll();
 ?>
 
 <div class="produitContainer">
@@ -74,16 +75,16 @@ $types = getAllType($bdd->connection);
                     <fieldset class="ingredientGroup">
 
                         <?php foreach ($types as $type) : ?>
-                            <div class="typeIngredientGroupItem" id="type-<?= $type['id'] ?>" onclick="toggleIngredientList(event,<?= $type['id'] ?>)" data-idtype="<?= $type['id'] ?>">
+                            <div class="typeIngredientGroupItem" id="type-<?= $type->getID() ?>" onclick="toggleIngredientList(event,<?= $type->getID() ?>)" data-idtype="<?= $type->getID() ?>">
                                 <div class="groupLabel">
-                                    <span><?= $type['nom'] ?></span> <i class="bi bi-caret-down-fill"></i>
+                                    <span><?= $type->getNom() ?></span> <i class="bi bi-caret-down-fill"></i>
                                 </div>
 
                                 <?php foreach ($ingredients as $ingredient) :
-                                    if ($ingredient['idType'] == $type['id']) : ?>
+                                    if ($ingredient->getId_type() == $type->getID()) : ?>
                                         <div class="groupItem">
-                                            <input type="checkbox" name="ingredients[]" value="<?= $ingredient['id'] ?>" id="ingredient-<?= $ingredient['nom']; ?>">
-                                            <label for="ingredient-<?= $ingredient['nom'] ?>" class="ingredientLabel"><?= $ingredient['nom'] ?></label>
+                                            <input type="checkbox" name="ingredients[]" value="<?= $ingredient->getID() ?>" id="ingredient-<?= $ingredient->getNom(); ?>">
+                                            <label for="ingredient-<?= $ingredient->getNom() ?>" class="ingredientLabel"><?= $ingredient->getNom() ?></label>
                                         </div>
                                 <?php endif;
                                 endforeach; ?>
