@@ -9,8 +9,10 @@ require_once('../../controller/dash/ingredientController.php');
 
 //Création d'un manager de type d'ingrédient
 $ingredientTypeManager = new IngredientTypeManager($bdd->connection);
+
 //Création d'un manager d'ingrédient
 $ingredientManager = new IngredientManager($bdd->connection);
+
 //Soummission du formulaire ajout de type d'ingrédient
 if (isset($_POST['nom_type_ingredient']) && !empty($_POST['nom_type_ingredient'])) {
     echo $ingredientTypeManager->createNew($_POST);
@@ -22,7 +24,7 @@ if (isset($_POST['nom_ingredient'], $_POST['ID_type_ingredient'], $_POST['prix_i
 }
 
 //Soummission du formulaire modal d'update type ingrédient
-if (isset($_POST['ID_type_ingredient'], $_POST['ingredientTypeNomUpdate']) && !empty($_POST['ingredientTypeNomUpdate'])) {
+if(isset($_POST['ID_type_ingredient'], $_POST['ingredientTypeNomUpdate']) && !empty($_POST['ingredientTypeNomUpdate'])){
     echo $ingredientTypeManager->update($_POST);
 }
 
@@ -30,11 +32,10 @@ if (isset(
     $_POST['ingredientNomUpdate'],
     $_POST['ingredientPrixUpdate'],
     $_POST['ingredientType'],
-    $_POST['ingredientIdUpdate'],
-
-
+    $_POST['ingredientIdUpdate']
 )) {
     echo $ingredientManager->update($_POST);
+
 }
 
 
@@ -272,6 +273,7 @@ $ingredients = $ingredientManager->getAll();
                         <option class="typeOption" value="false">....</option>
                         <?php foreach ($types as $type) { ?>
                             <option id="ingredientTypeModifOption-<?= $type->getID() ?>" value="<?= $type->getID() ?>"><?= $type->getNom() ?></option>
+
                         <?php } ?>
                     </select>
                 </div>

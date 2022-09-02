@@ -1,0 +1,149 @@
+header {
+  position: sticky;
+  top: 0;
+  left: 0;
+}
+
+header > .navBar {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 150px;
+  height: 60px;
+  border: none;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.29);
+}
+
+header > .navBar > .brand {
+  font-family: var(--font-secondary);
+  font-size: 2rem;
+  color: var(--color-light);
+  text-shadow: var(--shadow-50);
+  flex: 2;
+}
+
+header > .navBar > .linkList {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style-type: none;
+  gap: 8px;
+  width: 100%;
+  height: 100%;
+  flex: 4;
+  font-weight: bold;
+  color: #99a9aa;
+}
+
+header > .navBar > .linkList > .navItem {
+  height: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 3px solid transparent;
+}
+
+header > .navBar > .linkList > .navItem > .navHref {
+  color: #99a9aa;
+  text-decoration: none;
+  font-size: 1.4rem;
+  transition: all 500ms ease-in-out;
+  font-family: var(--font-secondary);
+}
+
+header > .navBar > .linkList > .navItem:hover > .navHref {
+  color: whitesmoke;
+  font-weight: thin;
+  text-shadow: 1px 1px 2px var(--color-primary), -1px 1px 2px var(--color-primary), 1px -1px 2px var(--color-primary),
+  -1px -1px 2px var(--color-primary);
+}
+
+header > .navBar > .linkList > .active {
+  border-bottom: 3px solid var(--color-light);
+}
+
+header > .navBar > .linkList > .active > .navHref {
+  color: var(--color-light);
+  font-weight: thin;
+  text-shadow: 1px 1px 2px var(--color-primary), -1px 1px 2px var(--color-primary), 1px -1px 2px var(--color-primary),
+    -1px -1px 2px var(--color-primary);
+}
+
+
+/*** Responsive Button ****/
+
+
+header > .navBar > .toggleButton {
+  background: none;
+  border: 1px solid var(--color-light);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 25px;
+  top: 15px;
+  width: 45px;
+  aspect-ratio: 2/1;
+  font-size: 1.3rem;
+  border-radius: 5px;
+  color: var(--color-light);
+  z-index: 10;
+}
+
+
+
+
+/**** MEDIA QUERIES ******/
+
+@media screen and (max-width: 1000px) {
+  header > .navBar > .toggleButton {
+    display: flex;
+  }
+
+  header > .navBar > .linkList {
+    bottom: 10px;
+    right: 0;
+    opacity: 0;
+  }
+
+  header > .navBar > .linkList > .navItem {
+    transform: translateX(-200%);
+    transition: var(--transition);
+    transition-delay: calc(var(--i) * .3s);
+  }
+
+  header > .navBar {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: unset;
+    padding-left: 25px;
+    transition: var(--transition);
+  }
+
+  header > .navBar.expanded {
+    height: 300px;
+    align-items: flex-start;
+  }
+
+  header > .navBar.expanded > .linkList {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    align-items: flex-start;
+    justify-content: center;
+    opacity: 1;
+  }
+
+  header > .navBar.expanded > .linkList > .navItem {
+    transform: translateX(0);
+  }
+
+  header > .navBar.expanded + .toggleButton {
+    top : 25px;
+    transform: unset;
+  }
+}

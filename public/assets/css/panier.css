@@ -1,0 +1,156 @@
+.panierContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 50px;
+  }
+  
+  .panierTitle{
+    color: white;
+    margin-bottom: 50px;
+    font-weight: 800;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+  }
+  
+  .itemList{
+    width: 100%;
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .itemList > .item{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    list-style: none;
+    border: 1px double silver;
+    padding: 0;
+    border-radius: 45px;
+    background: #93C5C7;
+  }
+  
+  .itemList > .item > .nameImage{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.4);
+    border: 1px solid silver;
+    padding: 0;
+    padding-right: 10px;
+    border-radius: 45px;
+    gap: 10px;
+    width: 150px;
+  }
+  
+  .itemList > .item > .nameImage > .name{
+    background-color: transparent;
+    color: white;
+    text-transform: capitalize;
+    overflow: hidden;
+  }
+  
+  .itemList > .item > .nameImage > .image{
+    height: 45px; 
+    border-radius: 45px;
+  }
+  
+  .itemList > .item > .price{
+    background: rgba(255, 255, 255, 0.4);
+    height: 100%;
+    display: flex;
+    border: 1px solid silver;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 2/1;
+    border-radius: 45px;
+    color: white;
+  }
+  
+  .itemList > .item > .qte{
+    height: 100%;
+    aspect-ratio: 3/1;
+    border-radius: 45px;
+    background-color: rgba(255, 255, 255, 0.4);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    font-weight: 800;
+  }
+  
+  .itemList > .item > .qte > .decreaseButton, .itemList > .item > .qte > .increaseButton{
+    height: 100%;
+    appearance: unset;
+    background: transparent;
+    border: none;
+    width: 45px;
+  }
+  
+  .itemList > .item > .qte > .decreaseButton > button{
+    border-radius: 45px 0 0 45px;
+    height: 100%;
+    background: transparent;
+    width: 45px;
+    font-size: 1rem;
+    font-weight: 800;
+    color: white;
+    border: 1px solid silver;
+    transition: all 500ms ease-in;
+  }
+  
+  .itemList > .item > .qte > .increaseButton > button{
+    border-radius: 0 45px 45px 0;
+    height: 100%;
+    background: transparent;
+    width: 45px;
+    font-size: 1rem;
+    font-weight: 800;
+    color: white;
+    border: 1px solid silver;
+    transition: all 500ms ease-in;
+  }
+  
+  .itemList > .item > .qte > .decreaseButton:hover > button, .itemList > .item > .qte > .increaseButton:hover > button{
+    background-color: var(--color-primary);
+  }
+  
+  .itemList > .item > .action{
+    height: 100%;
+    width: 90px;
+    border: none;
+    background-color: transparent;
+  }
+  
+  .itemList > .item > .action > .deleteButton{
+    color: white;
+    text-transform: uppercase;
+    font-weight: 600;
+    border: 1px solid silver;
+    background: rgb(225, 64, 64);
+    height: 100%;
+    width: 100%;
+    border-radius: 0 45px 45px 0;
+    transition: all 500ms ease-in-out;
+  }
+  
+  .itemList > .item > .action:hover > .deleteButton{
+    box-shadow: 1px 1px 5px rgb(225, 64, 64),
+    -1px 1px 5px rgb(225, 64, 64),
+    1px -1px 5px rgb(225, 64, 64),
+    -1px -1px 5px rgb(225, 64, 64);
+  }
+  
+  .total{
+    align-self: flex-end;
+    color: white;
+  }
+  
+ 

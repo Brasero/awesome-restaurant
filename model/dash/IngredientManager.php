@@ -30,13 +30,14 @@ class IngredientManager extends AbstractEntityManager
             ->where('ID_produit_ingredient_produit', ':id')
             ->getSQL();
 
+
         $query = $this->db->prepare($str);
 
         $query->bindValue(':id', $prodId, PDO::PARAM_INT);
         $query->execute();
 
         $array = $query->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($array as $rel) {
+        foreach($array as $rel){
             array_push($returnArray, $this->getById($rel['ID_ingredient_ingredient_produit']));
         }
 
@@ -48,14 +49,15 @@ class IngredientManager extends AbstractEntityManager
         $returnArray = [];
 
         $str = $this->queryBuilder
-            ->select(self::TABLE_NAME, ['*'])
-            ->getSQL();
+                        ->select(self::TABLE_NAME, ['*'])
+                        ->getSQL();
 
         $query = $this->db->query($str);
 
         $data = $query->fetchAll(PDO::FETCH_ASSOC);
 
-        foreach ($data as $ingredient) {
+
+        foreach($data as $ingredient){
             $object = new Ingredient();
             $object->hydrate($ingredient, self::TABLE_NAME);
             array_push($returnArray, $object);
@@ -166,3 +168,5 @@ class IngredientManager extends AbstractEntityManager
         return false;
     }
 }
+
+?>

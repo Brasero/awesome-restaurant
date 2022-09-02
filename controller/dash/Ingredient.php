@@ -70,3 +70,6 @@ class Ingredient extends AbstractEntity
         $this->setPrix($prix);
     }
 }
+
+
+?>

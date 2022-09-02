@@ -27,16 +27,16 @@ class IngredientTypeManager extends AbstractEntityManager
         $this->reset();
 
         $str = $this->queryBuilder
-            ->select(self::TABLE_NAME, ['*'])
-            ->where('ID_' . self::TABLE_NAME, ':id')
-            ->getSQL();
+                        ->select(self::TABLE_NAME, ['*'])
+                        ->where('ID_'.self::TABLE_NAME, ':id')
+                        ->getSQL();
 
         $query = $this->db->prepare($str);
         $query->bindValue(':id', $id, PDO::PARAM_INT);
         $query->execute();
         $data = $query->fetch(PDO::FETCH_ASSOC);
         $this->type->hydrate($data, self::TABLE_NAME);
-
+        
         return $this->type;
     }
 
@@ -44,13 +44,14 @@ class IngredientTypeManager extends AbstractEntityManager
     {
         $array = [];
         $str = $this->queryBuilder
-            ->select(self::TABLE_NAME, ['*'])
-            ->order('nom_' . self::TABLE_NAME)
-            ->getSQL();
+                        ->select(self::TABLE_NAME, ['*'])
+                        ->order('nom_'.self::TABLE_NAME)
+                        ->getSQL();
         $query = $this->db->query($str);
         $data = $query->fetchAll(PDO::FETCH_ASSOC);
 
-        foreach ($data as $type) {
+        foreach($data as $type)
+        {
             $obj = new IngredientType();
             $obj->hydrate($type, self::TABLE_NAME);
             array_push($array, $obj);
@@ -64,21 +65,23 @@ class IngredientTypeManager extends AbstractEntityManager
         $toast = new Toast();
         $this->reset();
         $this->type->hydrate($data, self::TABLE_NAME);
-        if ($this->isUnique($this->type->getNom())) {
+        if($this->isUnique($this->type->getNom())){
             $this->type->hash();
             $str = $this->queryBuilder
-                ->insert(self::TABLE_NAME, ['nom_' . self::TABLE_NAME])
-                ->values([[':nom']])
-                ->getSQL();
+                        ->insert(self::TABLE_NAME, ['nom_'.self::TABLE_NAME])
+                        ->values([[':nom']])
+                        ->getSQL();
             $query = $this->db->prepare($str);
             $query->bindValue(':nom', $this->type->getNomBrut(), PDO::PARAM_STR);
-
-            if ($query->execute()) {
+            
+            if($query->execute()){
                 $toast->createToast("Type d'ingredient \"{$this->type->getNom()}\" à été ajouté", Toast::SUCCESS);
-            } else {
+            }
+            else {
                 $toast->createToast("Une erreur est survenue.", Toast::ERROR);
             }
-        } else {
+        }
+        else{
             $toast->createToast('Ce type existe déjà.', Toast::ERROR);
         }
 
@@ -94,36 +97,38 @@ class IngredientTypeManager extends AbstractEntityManager
         $data['nom'] = $data['ingredientTypeNomUpdate'];
         $this->type->hydrate($data, self::TABLE_NAME);
         $str = $this->queryBuilder
-            ->update(self::TABLE_NAME)
-            ->set(['nom_' . self::TABLE_NAME => ':nom'])
-            ->where('ID_' . self::TABLE_NAME, ':id')
-            ->getSQL();
+                        ->update(self::TABLE_NAME)
+                        ->set(['nom_'.self::TABLE_NAME => ':nom'])
+                        ->where('ID_'.self::TABLE_NAME, ':id')
+                        ->getSQL();
         $query = $this->db->prepare($str);
         $query->bindValue(':nom', $this->type->getNomBrut(), PDO::PARAM_STR);
         $query->bindValue(':id', $this->type->getID(), PDO::PARAM_INT);
-
-        if ($query->execute()) {
+        
+        if($query->execute()){
             $toast->createToast('Type modifié.', Toast::SUCCESS);
-        } else {
+        }
+        else{
             $toast->createToast('Une erreur s\'est produite.', Toast::ERROR);
         }
 
         return $toast->renderToast();
     }
 
-    public function delete(): bool
+    public function delete(): bool 
     {
 
         $str = $this->queryBuilder
-            ->delete(self::TABLE_NAME)
-            ->where('ID_' . self::TABLE_NAME, ':id')
-            ->getSQL();
+                        ->delete(self::TABLE_NAME)
+                        ->where('ID_'.self::TABLE_NAME, ':id')
+                        ->getSQL();
         $query = $this->db->prepare($str);
         $query->bindValue(':id', $this->type->getID(), PDO::PARAM_INT);
-        if ($query->execute()) {
+        if($query->execute()){
             return true;
         }
+        
+        return false;        
+    }   
 
-        return false;
-    }
 }

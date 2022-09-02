@@ -14,6 +14,10 @@ class IngredientType extends AbstractEntity
         return ucfirst(html_entity_decode($this->nom));
     }
 
+    public function getNomBrut(): string
+    {
+        return $this->nom;
+    }
 
     public function setNom(?string $nom): void
     {
@@ -36,4 +40,6 @@ class IngredientType extends AbstractEntity
 
         $this->setNom($nom);
     }
+
 }
+

@@ -1,8 +1,7 @@
 <?php
 
 
-class MySqlQueryBuilder implements SQLQueryBuilder
-{
+class MySqlQueryBuilder implements SQLQueryBuilder{
     protected $query;
 
     protected function reset(): void
@@ -14,7 +13,8 @@ class MySqlQueryBuilder implements SQLQueryBuilder
     public function select(string $table, array $fields): SQLQueryBuilder
     {
         $this->reset();
-        $this->query->base = 'SELECT ' . implode(', ', $fields) . ' FROM ' . $table;
+
+        $this->query->base= 'SELECT '.implode(', ', $fields).' FROM '.$table;
         $this->query->type = 'select';
 
         return $this;
@@ -23,7 +23,8 @@ class MySqlQueryBuilder implements SQLQueryBuilder
     public function insert(string $table, array $fields): SQLQueryBuilder
     {
         $this->reset();
-        $this->query->base = 'INSERT INTO ' . $table . ' (' . implode(', ', $fields) . ')';
+
+        $this->query->base = 'INSERT INTO '.$table.' ('.implode(', ', $fields).')';
         $this->query->type = 'insert';
 
         return $this;
@@ -32,7 +33,7 @@ class MySqlQueryBuilder implements SQLQueryBuilder
     public function update(string $table): SQLQueryBuilder
     {
         $this->reset();
-        $this->query->base = 'UPDATE ' . $table . ' SET ';
+        $this->query->base = 'UPDATE '.$table.' SET ';
         $this->query->type = 'update';
 
         return $this;
@@ -41,7 +42,7 @@ class MySqlQueryBuilder implements SQLQueryBuilder
     public function delete(string $table): SQLQueryBuilder
     {
         $this->reset();
-        $this->query->base = 'DELETE FROM ' . $table . ' ';
+        $this->query->base = 'DELETE FROM '.$table.' ';
         $this->query->type = 'delete';
 
         return $this;
@@ -49,11 +50,12 @@ class MySqlQueryBuilder implements SQLQueryBuilder
 
     public function set(array $keyValue): SQLQueryBuilder
     {
-        if (!in_array($this->query->type, ['update'])) {
+        if(!in_array($this->query->type, ['update'])){
             throw new \Exception("la clause SET ne peut être utilisée qu'avec une requête de type UPDATE");
         }
         $this->query->setValue = [];
-        foreach ($keyValue as $key => $value) {
+        foreach($keyValue as $key => $value)
+        {
             $this->query->setValue[] = "$key = $value";
         }
 
@@ -65,19 +67,20 @@ class MySqlQueryBuilder implements SQLQueryBuilder
 
     public function values(array $values): SQLQueryBuilder
     {
-        if (!in_array($this->query->type, ['insert'])) {
+
+        if(!in_array($this->query->type, ['insert'])){
             throw new \Exception('clause VALUES uniquement possible avec une requête de type INSERT INTO');
         }
 
-        foreach ($values as $value) {
-            $this->query->values[] = "(" . implode(', ', $value) . ")";
+        foreach($values as $value){
+            $this->query->values[] = "(".implode(', ', $value).")";
         }
         return $this;
     }
 
     public function where(string $field, string $value, string $operator = "="): SQLQueryBuilder
     {
-        if (!in_array($this->query->type, ['select', 'update', 'delete'])) {
+        if(!in_array($this->query->type, ['select', 'update', 'delete'])){
             throw new \Exception('clause WHERE possible uniquement sur les requête de type SELECT, UPDATE, ou DELETE');
         }
 
@@ -88,29 +91,29 @@ class MySqlQueryBuilder implements SQLQueryBuilder
 
     public function group(string $field): SQLQueryBuilder
     {
-        if (!in_array($this->query->type, ['select'])) {
+        if(!in_array($this->query->type, ['select'])){
             throw new \Exception('clause GROUP BY uniquement possible avec une requête de type SELECT');
         }
 
-        $this->query->group = ' GROUP BY ' . $field;
+        $this->query->group = ' GROUP BY '.$field;
 
         return $this;
     }
 
     public function order(string $field, string $sort = 'ASC'): SQLQueryBuilder
     {
-        if (!in_array($this->query->type, ['select'])) {
+        if(!in_array($this->query->type, ['select'])){
             throw new \Exception('clause ORDER BY uniquement possible avec une requête de type SELECT');
         }
 
-        $this->query->order = ' ORDER BY ' . $field . ' ' . $sort;
+        $this->query->order = ' ORDER BY '.$field.' '.$sort;
 
         return $this;
     }
 
     public function limit(int $start, int $offset): SQLQueryBuilder
     {
-        if (!in_array($this->query->type, ['select'])) {
+        if(!in_array($this->query->type, ['select'])){
             throw new \Exception('clause LIMIT uniquement possible avec une requête de type SELECT');
         }
         $this->query->limit = " LIMIT $start, $offset";
@@ -122,27 +125,28 @@ class MySqlQueryBuilder implements SQLQueryBuilder
     {
         $query = $this->query;
         $sql = $query->base;
-        if ($query->type == 'update') {
+        
+        if($query->type == 'update'){
             $sql .= implode(', ', $this->query->setValue);
         }
-        if (!empty($query->where)) {
-            $sql .= " WHERE " . implode(' AND ', $query->where);
+        if(!empty($query->where)){
+            $sql .= " WHERE ".implode(' AND ', $query->where);
         }
 
-        if ($query->type == 'insert') {
-            $sql .= " VALUES " . implode(', ', $query->values) . "";
+        if($query->type == 'insert'){
+            $sql .= " VALUES (".implode(', ', $query->values).")";
         }
 
 
-        if (isset($query->group)) {
+        if(isset($query->group)){
             $sql .= $query->group;
         }
 
-        if (isset($query->order)) {
+        if(isset($query->order)){
             $sql .= $query->order;
         }
 
-        if (isset($query->limit)) {
+        if(isset($query->limit)){
             $sql .= $query->limit;
         }
 
@@ -151,3 +155,4 @@ class MySqlQueryBuilder implements SQLQueryBuilder
         return $sql;
     }
 }
+?>
