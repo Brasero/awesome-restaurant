@@ -29,7 +29,7 @@ class Ingredient extends AbstractEntity
 
     public function getNom()
     {
-        return ucfirst($this->nom);
+        return ucfirst(html_entity_decode($this->nom));
     }
 
     public function setPrix(?string $prix)

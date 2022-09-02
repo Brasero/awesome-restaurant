@@ -30,9 +30,11 @@ if (isset(
     $_POST['ingredientNomUpdate'],
     $_POST['ingredientPrixUpdate'],
     $_POST['ingredientType'],
-    $_POST['ingredientIdUpdate']
+    $_POST['ingredientIdUpdate'],
+
+
 )) {
-    echo updateIngredient($bdd->connection, $_POST);
+    echo $ingredientManager->update($_POST);
 }
 
 
@@ -269,7 +271,7 @@ $ingredients = $ingredientManager->getAll();
                     <select class="inputItem" name="ingredientType" id="ingredientTypeModif" placeholder="Type d'ingrédient" default="false" required>
                         <option class="typeOption" value="false">....</option>
                         <?php foreach ($types as $type) { ?>
-                            <option id="ingredientTypeModifOption-<?= $type->getID() ?>" value="<?= $type->getID() ?>"><?= $type->getID() ?></option>
+                            <option id="ingredientTypeModifOption-<?= $type->getID() ?>" value="<?= $type->getID() ?>"><?= $type->getNom() ?></option>
                         <?php } ?>
                     </select>
                 </div>

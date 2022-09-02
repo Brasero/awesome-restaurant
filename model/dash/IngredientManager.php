@@ -87,7 +87,7 @@ class IngredientManager extends AbstractEntityManager
         $toast = new Toast();
         $this->reset();
         $this->ingredient->hydrate($data, self::TABLE_NAME);
-        var_dump($data);
+
         if ($this->isUnique($this->ingredient->getNom())) {
             $this->ingredient->hash();
             $str = $this->queryBuilder
@@ -100,7 +100,6 @@ class IngredientManager extends AbstractEntityManager
             $query->bindValue(':prix', $this->ingredient->getPrix(), PDO::PARAM_STR);
             $query->bindValue(':Id_type', $this->ingredient->getId_type(), PDO::PARAM_INT);
             $query->bindValue(':dispo', 1, PDO::PARAM_BOOL);
-            var_dump($str);
             if ($query->execute()) {
 
                 $toast->createToast("ingredient \"{$this->ingredient->getNom()}\" à été ajouté", Toast::SUCCESS);
@@ -109,6 +108,43 @@ class IngredientManager extends AbstractEntityManager
                 $toast->createToast('Une erreur est survenue.', Toast::ERROR);
             }
         } else $toast->createToast("Cette ingredient existe déja.", Toast::ERROR);
+
+        return $toast->renderToast();
+    }
+
+    public function update(array $data): string
+    {
+        $toast = new Toast();
+        $this->reset();
+        $data['nom'] = $data['ingredientNomUpdate'];
+        $data['prix'] = $data['ingredientPrixUpdate'];
+        $data['ID_type'] = $data['ingredientType'];
+        $data['ID'] = $data['ingredientIdUpdate'];
+        if (isset($data['ingredientDispoUpdate'])) {
+            $data['dispo'] = 1;
+        } else {
+            $data['dispo'] = 0;
+        }
+
+
+        $this->ingredient->hydrate($data, self::TABLE_NAME);
+        $str = $this->queryBuilder
+            ->update(self::TABLE_NAME)
+            ->set(['nom_' . self::TABLE_NAME => ':nom', 'prix_' . self::TABLE_NAME => ':prix', 'dispo_' . self::TABLE_NAME => ':dispo', 'ID_type_' . self::TABLE_NAME => ':ID_type'])
+            ->where('ID_' . self::TABLE_NAME, ':id')
+            ->getSQL();
+        $query = $this->db->prepare($str);
+        $query->bindValue(':nom', $this->ingredient->getNom(), PDO::PARAM_STR);
+        $query->bindValue(':prix', $this->ingredient->getPrix(), PDO::PARAM_STR);
+        $query->bindValue(':dispo', $this->ingredient->getDispo(), PDO::PARAM_BOOL);
+        $query->bindValue(':ID_type', $this->ingredient->getId_type(), PDO::PARAM_INT);
+        $query->bindValue(':id', $this->ingredient->getID(), PDO::PARAM_INT);
+
+        if ($query->execute()) {
+            $toast->createToast('Ingredient modifié.', Toast::SUCCESS);
+        } else {
+            $toast->createToast('Une erreur s\'est produite.', Toast::ERROR);
+        }
 
         return $toast->renderToast();
     }
