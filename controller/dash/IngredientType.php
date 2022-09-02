@@ -40,4 +40,6 @@ class IngredientType extends AbstractEntity
 
         $this->setNom($nom);
     }
+
 }
+

@@ -30,7 +30,7 @@ class IngredientTypeManager extends AbstractEntityManager
                         ->select(self::TABLE_NAME, ['*'])
                         ->where('ID_'.self::TABLE_NAME, ':id')
                         ->getSQL();
-        
+
         $query = $this->db->prepare($str);
         $query->bindValue(':id', $id, PDO::PARAM_INT);
         $query->execute();

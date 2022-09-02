@@ -6,7 +6,9 @@ abstract class AbstractEntityManager
     protected PDO $db;
     protected SQLQueryBuilder $queryBuilder;
 
-    public function __construct(PDO $bdd){
+
+    public function __construct(PDO $bdd)
+    {
         $this->db = $bdd;
         $this->queryBuilder = new MySqlQueryBuilder();
     }
@@ -16,6 +18,9 @@ abstract class AbstractEntityManager
     abstract protected function getById(int $id): AbstractEntity;
 
     abstract public function getAll(): array;
+
+    abstract public function createNew(array $array): string;
+
 
     /**
      * Vérifie qu'un nom d'élément soit unique dans sa table
@@ -27,7 +32,6 @@ abstract class AbstractEntityManager
     {
         $data = $this->getAll();
 
-
         foreach($data as $obj){
             if($obj->getNom() == $name)
             {
@@ -37,5 +41,6 @@ abstract class AbstractEntityManager
 
         return true;
     }
+
 
 }

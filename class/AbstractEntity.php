@@ -15,4 +15,12 @@ abstract class AbstractEntity
             }
         }
     }
+
+    public function getNomBrut(): string
+    {
+        return $this->nom;
+    }
+
+    abstract public function hash(): void;
 }
+

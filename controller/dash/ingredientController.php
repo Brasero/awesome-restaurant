@@ -230,53 +230,53 @@ function updateTypeIngredientName(PDO $bdd, array $data): string{
     }
 }
 
-function updateIngredient(PDO $bdd, array $data){
-    $ingredient = [];
-    $ingredient['nom'] = strtolower(htmlentities(strip_tags($data['ingredientNomUpdate'])));
-    $ingredient['prix'] = str_replace(',', '.', $data['ingredientPrixUpdate']);
-    $ingredient['dispo'] = isset($data['ingredientDispoUpdate']);
-    $ingredient['type'] = intval($data['ingredientType']);
-    $ingredient['id'] = intval($data['ingredientIdUpdate']);
+// function updateIngredient(PDO $bdd, array $data){
+//     $ingredient = [];
+//     $ingredient['nom'] = strtolower(htmlentities(strip_tags($data['ingredientNomUpdate'])));
+//     $ingredient['prix'] = str_replace(',', '.', $data['ingredientPrixUpdate']);
+//     $ingredient['dispo'] = isset($data['ingredientDispoUpdate']);
+//     $ingredient['type'] = intval($data['ingredientType']);
+//     $ingredient['id'] = intval($data['ingredientIdUpdate']);
 
-    // var_dump($ingredient);
-    // die();
+//     // var_dump($ingredient);
+//     // die();
 
-    $ingredients = getIngredients($bdd);
+//     $ingredients = getIngredients($bdd);
 
-    $exist = function ($ingredients, $name, $id){
-        foreach($ingredients as $ingredient){
-            if(in_array($name, $ingredient) && !in_array($id, $ingredient)){
-                return true;
-            }
-        }
-        return false;
-    };
+//     $exist = function ($ingredients, $name, $id){
+//         foreach($ingredients as $ingredient){
+//             if(in_array($name, $ingredient) && !in_array($id, $ingredient)){
+//                 return true;
+//             }
+//         }
+//         return false;
+//     };
 
-    if(!$exist($ingredients, $ingredient['nom'], $ingredient['id'])){
-        if(setIngredient($bdd, $ingredient)){
-            return "<span class='success'>
-                        <span class='message'>
-                            Modification enregistrée.
-                        </span>
-                        <span class='progressBar'></span>
-                    </span>";
-        } else {
-            return "<span class='error'>
-                        <span class='message'>
-                            Une erreur s'est produite, réessayez.
-                        </span>
-                        <span class='progressBar'></span>
-                    </span>";
-        }     
-    } else{
-        return "<span class='error'>
-                    <span class='message'>
-                        Ce type d'ingrédient existe déjà.
-                    </span>
-                    <span class='progressBar'></span>
-                </span>";
-    }
-}
+//     if(!$exist($ingredients, $ingredient['nom'], $ingredient['id'])){
+//         if(setIngredient($bdd, $ingredient)){
+//             return "<span class='success'>
+//                         <span class='message'>
+//                             Modification enregistrée.
+//                         </span>
+//                         <span class='progressBar'></span>
+//                     </span>";
+//         } else {
+//             return "<span class='error'>
+//                         <span class='message'>
+//                             Une erreur s'est produite, réessayez.
+//                         </span>
+//                         <span class='progressBar'></span>
+//                     </span>";
+//         }     
+//     } else{
+//         return "<span class='error'>
+//                     <span class='message'>
+//                         Ce type d'ingrédient existe déjà.
+//                     </span>
+//                     <span class='progressBar'></span>
+//                 </span>";
+//     }
+// }
 
 function deleteTypeIngredient(PDO $bdd, int $id){
     return setTypeIngredientNull($bdd, intval($id));
@@ -285,5 +285,3 @@ function deleteTypeIngredient(PDO $bdd, int $id){
 function deleteIngredient(PDO $bdd, int $id){
     return setIngredientNull($bdd, intval($id));
 }
-
-?>

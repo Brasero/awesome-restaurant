@@ -13,6 +13,7 @@ class MySqlQueryBuilder implements SQLQueryBuilder{
     public function select(string $table, array $fields): SQLQueryBuilder
     {
         $this->reset();
+
         $this->query->base= 'SELECT '.implode(', ', $fields).' FROM '.$table;
         $this->query->type = 'select';
 
@@ -22,6 +23,7 @@ class MySqlQueryBuilder implements SQLQueryBuilder{
     public function insert(string $table, array $fields): SQLQueryBuilder
     {
         $this->reset();
+
         $this->query->base = 'INSERT INTO '.$table.' ('.implode(', ', $fields).')';
         $this->query->type = 'insert';
 
@@ -36,7 +38,7 @@ class MySqlQueryBuilder implements SQLQueryBuilder{
 
         return $this;
     }
-    
+
     public function delete(string $table): SQLQueryBuilder
     {
         $this->reset();
@@ -65,6 +67,7 @@ class MySqlQueryBuilder implements SQLQueryBuilder{
 
     public function values(array $values): SQLQueryBuilder
     {
+
         if(!in_array($this->query->type, ['insert'])){
             throw new \Exception('clause VALUES uniquement possible avec une requête de type INSERT INTO');
         }
@@ -122,6 +125,7 @@ class MySqlQueryBuilder implements SQLQueryBuilder{
     {
         $query = $this->query;
         $sql = $query->base;
+        
         if($query->type == 'update'){
             $sql .= implode(', ', $this->query->setValue);
         }

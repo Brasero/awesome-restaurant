@@ -1,11 +1,17 @@
 <?php
 
 //require du controller de la page
+
+use function PHPSTORM_META\type;
+
 require_once('../../controller/dash/ingredientController.php');
 
 
 //Création d'un manager de type d'ingrédient
 $ingredientTypeManager = new IngredientTypeManager($bdd->connection);
+
+//Création d'un manager d'ingrédient
+$ingredientManager = new IngredientManager($bdd->connection);
 
 //Soummission du formulaire ajout de type d'ingrédient
 if (isset($_POST['nom_type_ingredient']) && !empty($_POST['nom_type_ingredient'])) {
@@ -13,8 +19,8 @@ if (isset($_POST['nom_type_ingredient']) && !empty($_POST['nom_type_ingredient']
 }
 
 //Soummission du formulaire ajout d'ingrédient
-if (isset($_POST['ingredientNom'], $_POST['ingredientType'], $_POST['ingredientPrix'])) {
-    echo addNewIngredient($bdd->connection, $_POST);
+if (isset($_POST['nom_ingredient'], $_POST['ID_type_ingredient'], $_POST['prix_ingredient'])) {
+    echo $ingredientManager->createNew($_POST);
 }
 
 //Soummission du formulaire modal d'update type ingrédient
@@ -22,13 +28,14 @@ if(isset($_POST['ID_type_ingredient'], $_POST['ingredientTypeNomUpdate']) && !em
     echo $ingredientTypeManager->update($_POST);
 }
 
-if(isset(
-    $_POST['ingredientNomUpdate'], 
-    $_POST['ingredientPrixUpdate'], 
+if (isset(
+    $_POST['ingredientNomUpdate'],
+    $_POST['ingredientPrixUpdate'],
     $_POST['ingredientType'],
     $_POST['ingredientIdUpdate']
-    )){
-    echo updateIngredient($bdd->connection, $_POST);    
+)) {
+    echo $ingredientManager->update($_POST);
+
 }
 
 
@@ -36,14 +43,14 @@ if(isset(
 
 //appel des types
 $types = $ingredientTypeManager->getAll();
+$ingredients = $ingredientManager->getAll();
 
-$ingredients = getAllIngredient($bdd->connection);
 ?>
 
 <div class="ingredientContainer">
     <h1 class="pageTitle">
         <span class="top" style="transform: translateY(-30px);">Gestion des</span>
-        <span class="bottom" style="transform: translateY(30px);">ingrédients</span> 
+        <span class="bottom" style="transform: translateY(30px);">ingrédients</span>
     </h1>
     <div class="ingredientCardDeck">
         <div class="card">
@@ -53,13 +60,13 @@ $ingredients = getAllIngredient($bdd->connection);
             <form action="" method="post">
                 <div class="inputGroup">
                     <label for="ingredientNom" class="inputLabel">
-                        <input type="text" class="inputItem" name="ingredientNom" id="ingredientNom" placeholder="Nom" required />
+                        <input type="text" class="inputItem" name="nom_ingredient" id="ingredientNom" placeholder="Nom" required />
                         <span>Nom</span>
                     </label>
                 </div>
                 <div class="inputGroup">
                     <label for="ingredientPrix" class="inputLabel">
-                        <input type="text" class="inputItem" name="ingredientPrix" id="ingredientPrix" placeholder="Prix" required onkeypress="checkPrice(event); return false;" />
+                        <input type="text" class="inputItem" name="prix_ingredient" id="ingredientPrix" placeholder="Prix" required onkeypress="checkPrice(event); return false;" />
                         <span>Prix</span>
                     </label>
                 </div>
@@ -67,7 +74,7 @@ $ingredients = getAllIngredient($bdd->connection);
                     <label for="ingredientType">
                         <span>Type d'ingrédient</span>
                     </label>
-                    <select class="inputItem" name="ingredientType" id="ingredientType" placeholder="Type d'ingrédient" default="false" required>
+                    <select class="inputItem" name="ID_type_ingredient" id="ingredientType" placeholder="Type d'ingrédient" default="false" required>
                         <option class="typeOption" value="false">....</option>
                         <?php foreach ($types as $type) { ?>
                             <option value="<?= $type->getID() ?>"><?= $type->getNom() ?></option>
@@ -111,41 +118,45 @@ $ingredients = getAllIngredient($bdd->connection);
                         <th class="colonneTitleItem">Type</th>
                         <th class="colonneTitleItem">Action</th>
                     </tr>
-                    
-                    <?php foreach($ingredients as $ingredient){ ?>
-                        <tr class="ingredientTypeItem" 
-                            id="ingredient-<?= $ingredient['id'] ?>" >
+
+                    <?php foreach ($ingredients as $ingredient) { ?>
+                        <tr class="ingredientTypeItem" id="ingredient-<?= $ingredient->getID() ?>">
 
                             <td class="ingredientTypePart">
-                                <?= $ingredient['nom'] ?>
+                                <?= $ingredient->getNom() ?>
                             </td>
                             <td class="ingredientTypePart">
-                                <?= number_format($ingredient['prix'], 2, ',', '.') ?> €
+                                <?= number_format($ingredient->getPrix(), 2, ',', '.') ?> €
                             </td>
                             <td class="ingredientTypePart">
-                                <?= intval($ingredient['dispo']) == 1 ? 
-                                        "<span class='itemDisponible'></span>"
+                                <?= intval($ingredient->getDispo()) == 1 ?
+                                    "<span class='itemDisponible'></span>"
                                     :
-                                        "<span class='itemIndisponible'></span>"
+                                    "<span class='itemIndisponible'></span>"
                                 ?>
                             </td>
                             <td class="ingredientTypePart">
-                                <?= $ingredient['type'] ?>
+
+                                <?php
+                                foreach ($types as $type) {
+                                    if ($ingredient->getId_type() == $type->getID()) {
+                                        echo $type->getNom();
+                                    }
+                                }
+                                ?>
                             </td>
                             <td class="ingredientTypePart buttonGroup">
-                                <button class="actionButton updateButton" onclick="openModal(event ,'ingredient', <?= $ingredient['id'] ?>)"
-                                data-nomingredient="<?= $ingredient['nom'] ?>" 
-                                data-prixingredient="<?= $ingredient['prix'] ?>" 
-                                data-dispoingredient="<?= $ingredient['dispo'] ?>" 
-                                data-idtypeingredient="<?= $ingredient['idType'] ?>">
+                                <button class="actionButton updateButton" onclick="openModal(event ,'ingredient', <?= $ingredient->getId() ?>)" data-nomingredient="<?= $ingredient->getNom() ?>" data-prixingredient="<?= $ingredient->getPrix() ?>" data-dispoingredient="<?= $ingredient->getDispo() ?>" data-idtypeingredient="<?= $ingredient->getId_type() ?>">
                                     Modifier
                                 </button>
-                                <button class="actionButton deleteButton" onclick="supprItem('ingredient', <?= $ingredient['id'] ?>)">
+                                <button class="actionButton deleteButton" onclick="supprItem('ingredient', <?= $ingredient->getID() ?>)">
                                     Supprimer
                                 </button>
                             </td>
                         </tr>
-                    <?php } ?>
+                    <?php
+                    }
+                    ?>
                 </tbody>
             </table>
         </div>
@@ -238,15 +249,13 @@ $ingredients = getAllIngredient($bdd->connection);
                 <input type="hidden" id="ingredientIdUpdate" name="ingredientIdUpdate" value="">
                 <div class="inputGroup">
                     <label for="ingredientNomUpdate" class="inputLabel">
-                        <input type="text" class="inputItem" name="ingredientNomUpdate"
-                        id="ingredientNomUpdate" value="" placeholder="Nom" required />
+                        <input type="text" class="inputItem" name="ingredientNomUpdate" id="ingredientNomUpdate" value="" placeholder="Nom" required />
                         <span>Nom</span>
                     </label>
                 </div>
                 <div class="inputGroup">
                     <label for="ingredientPrixUpdate" class="inputLabel">
-                        <input type="text" class="inputItem" name="ingredientPrixUpdate"
-                        id="ingredientPrixUpdate" value="" placeholder="Prix" required />
+                        <input type="text" class="inputItem" name="ingredientPrixUpdate" id="ingredientPrixUpdate" value="" placeholder="Prix" required />
                         <span>Prix</span>
                     </label>
                 </div>
@@ -260,12 +269,11 @@ $ingredients = getAllIngredient($bdd->connection);
                     <label for="ingredientTypeModif">
                         <span>Type d'ingrédient</span>
                     </label>
-                    <select 
-                    class="inputItem" name="ingredientType"
-                    id="ingredientTypeModif" placeholder="Type d'ingrédient" default="false" required>
+                    <select class="inputItem" name="ingredientType" id="ingredientTypeModif" placeholder="Type d'ingrédient" default="false" required>
                         <option class="typeOption" value="false">....</option>
-                        <?php foreach ($types as $type){ ?>
-                            <option id="ingredientTypeModifOption-<?= $type->getID() ?>" value="<?= $type->getID() ?>"><?= $type->getID() ?></option>
+                        <?php foreach ($types as $type) { ?>
+                            <option id="ingredientTypeModifOption-<?= $type->getID() ?>" value="<?= $type->getID() ?>"><?= $type->getNom() ?></option>
+
                         <?php } ?>
                     </select>
                 </div>
@@ -288,5 +296,3 @@ $ingredients = getAllIngredient($bdd->connection);
 
 <script type="text/javascript" src="./assets/js/suppressionAjax.js"></script>
 <script type="text/javascript" src="./assets/js/animation.js"></script>
-
-
