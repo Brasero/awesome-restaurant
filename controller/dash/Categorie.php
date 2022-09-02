@@ -1,39 +1,49 @@
 <?php
 
-class Categorie extends AbstractEntity{
+class Categorie extends AbstractEntity
+{
 
-    
+
     public string $nom;
     public ?string $img;
 
-    public function __construct(int $id = null, string $name = null, string $img = null){
-
+    public function __construct(int $id = null, string $name = null, string $img = null)
+    {
     }
 
-    protected function setId(int $id){
+    protected function setID(int $id)
+    {
         $this->ID = $id;
     }
 
-    public function getId(){
+    public function getID()
+    {
         return $this->ID;
     }
 
-    public function setNom(string $nom){
+    public function setNom(string $nom)
+    {
         $this->nom = $nom;
     }
 
-    public function getNom(){
+    public function getNom()
+    {
         return $this->nom;
     }
 
-    public function setImg($img){
+    public function setImg($img)
+    {
         $this->img = $img;
     }
 
-    public function getImg(){
+    public function getImg()
+    {
         return $this->img;
     }
 
+    public function hash(): void
+    {
+        $nom = strtolower(htmlentities(strip_tags($this->nom)));
+        $this->setNom($nom);
+    }
 }
-
-?>
