@@ -55,4 +55,26 @@ class TaxeManager extends AbstractEntityManager{
         return $array;
     }
 
+ public function createNew(array $data): string
+    {
+        $toast = new Toast();
+        $this->reset();
+        $this->taxe->hydrate($data, self::TABLE_NAME);
+            $str = $this->queryBuilder
+                        ->insert(self::TABLE_NAME, ['taux_'.self::TABLE_NAME])
+                        ->values([[':taux']])
+                        ->getSQL();
+            $query = $this->db->prepare($str);
+            $query->bindValue(':taux', $this->taxe->getTaxeTolitteral(), PDO::PARAM_STR);
+            
+            if($query->execute()){
+                $toast->createToast("taxe \"{$this->taxe->getTaxePourcent()}\" à été ajouté", Toast::SUCCESS);
+            }
+            else {
+                $toast->createToast("Une erreur est survenue.", Toast::ERROR);
+            }
+    
+        return $toast->renderToast();
+    }
+
 }

@@ -23,14 +23,14 @@ class Taxe extends AbstractEntity{
 
     public function setTaxeLitterale(string $taxe): void
     {
-        $taux = intval($taxe);
+        $taux = floatval($taxe);
         $taux = $taux / 100;
         $this->taxe = $taux;
     }
 
     public function getTaxeTolitteral(): string
     {
-        $txt = $this->taxe." %";
+        $txt = ($this->taxe* 100) ." %";
 
         return $txt;
     }
@@ -38,6 +38,10 @@ class Taxe extends AbstractEntity{
     public function getTaxePourcent(): float
     {
         return $this->taxe;
+    }
+   public function hash(): void
+    {
+        str_replace(',','.',$this->getTaxeTolitteral());
     }
 
 }

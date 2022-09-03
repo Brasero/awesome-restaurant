@@ -8,6 +8,7 @@ $produitManager = new ProduitManager($bdd->connection);
 $categorieManager = new CategorieManager($bdd->connection);
 $ingredientManager = new IngredientManager($bdd->connection);
 $ingredientTypeManager = new IngredientTypeManager($bdd->connection);
+$taxeManager = new TaxeManager($bdd->connection);
 $produit9 = $produitManager->getAll();
 
 // Soummission du formulaire ajout de produit
@@ -23,6 +24,11 @@ if (isset($_POST['Nom_categorie']) && !empty($_POST['Nom_categorie'])) {
 //Soumission du formulaire modal d'update type catégorie
 if (isset($_POST['categorieIdUpdate'], $_POST['categorieNomUpdate']) && !empty($_POST['categorieNomUpdate'])) {
     echo $categorieManager->update($_POST);
+}
+
+// Soummission du formulaire ajout de taxe
+if (isset($_POST['TaxeLitterale_taxe']) && !empty($_POST['TaxeLitterale_taxe'])) {
+    echo  $taxeManager->createNew($_POST);
 }
 
 //Récupération de toute les catégorie! Efféctué après toute insertion ou modification au dessus
@@ -118,6 +124,23 @@ $types = $ingredientTypeManager->getAll();
                         <span>Image</span>
                     </label>
                 </span>
+                <button type="submit" class="addButton">
+                    Ajouter
+                </button>
+            </form>
+        </div>
+<!-- debut form taux -->
+         <div class="card">
+            <h4 class="formTitle">
+                Ajouter taxe
+            </h4>
+            <form action="" method="POST" >
+                <div class="inputGroup">
+                    <label for="TaxeLitterale_taxe" class="inputLabel">
+                        <input type="number" class="inputItem" name="TaxeLitterale_taxe" id="TaxeLitterale_taxe" placeholder="Nom" required />
+                        <span>Taux</span>
+                    </label>
+                </div>
                 <button type="submit" class="addButton">
                     Ajouter
                 </button>
