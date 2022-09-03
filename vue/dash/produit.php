@@ -129,23 +129,6 @@ $types = $ingredientTypeManager->getAll();
                 </button>
             </form>
         </div>
-<!-- debut form taux -->
-         <div class="card">
-            <h4 class="formTitle">
-                Ajouter taxe
-            </h4>
-            <form action="" method="POST" >
-                <div class="inputGroup">
-                    <label for="TaxeLitterale_taxe" class="inputLabel">
-                        <input type="number" class="inputItem" name="TaxeLitterale_taxe" id="TaxeLitterale_taxe" placeholder="Nom" required />
-                        <span>Taux</span>
-                    </label>
-                </div>
-                <button type="submit" class="addButton">
-                    Ajouter
-                </button>
-            </form>
-        </div>
     </div>
     <div class="produitCardDeck">
         <div class="table">Produit liste</div>
@@ -177,6 +160,25 @@ $types = $ingredientTypeManager->getAll();
                     <?php } ?>
                 </tbody>
             </table>
+        </div>
+    </div>
+    <div class="produitCardDeck">
+        <!-- debut form taux -->
+        <div class="card">
+            <h4 class="formTitle">
+                Ajouter taxe
+            </h4>
+            <form action="" method="POST" >
+                <div class="inputGroup">
+                    <label for="TaxeLitterale_taxe" class="inputLabel">
+                        <input type="number" class="inputItem" name="TaxeLitterale_taxe" id="TaxeLitterale_taxe" placeholder="Nom" required />
+                        <span>Taux</span>
+                    </label>
+                </div>
+                <button type="submit" class="addButton">
+                    Ajouter
+                </button>
+            </form>
         </div>
     </div>
 </div>
