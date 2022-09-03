@@ -5,6 +5,8 @@ class CategorieManager extends AbstractEntityManager
 
     const TABLE_NAME = 'categorie';
 
+    private ImageUploader $uplaoder;
+
 
     protected function reset(): self
     {
@@ -64,22 +66,29 @@ class CategorieManager extends AbstractEntityManager
         $this->categorie->hydrate($data, self::TABLE_NAME);
 
         if ($this->isUnique($this->categorie->getNom())) {
-            $this->categorie->hash();
-            $str = $this->queryBuilder
-                ->insert(self::TABLE_NAME, ['nom_' . self::TABLE_NAME, 'img_' . self::TABLE_NAME])
-                ->values([[':nom', ':img']])
-                ->getSQL();
+            $this->uplaoder = new ImageUploader($_FILES, '../assets/img/ressources/categorie/');
+            if($this->uplaoder->isSuccess()){
+                $this->categorie->setImg($this->uplaoder->getName());
+                $this->categorie->hash();
+                $str = $this->queryBuilder
+                    ->insert(self::TABLE_NAME, ['nom_' . self::TABLE_NAME, 'img_' . self::TABLE_NAME])
+                    ->values([[':nom', ':img']])
+                    ->getSQL();
 
-            $query = $this->db->prepare($str);
-            $query->bindValue(':nom', $this->categorie->getNom(), PDO::PARAM_STR);
-            $query->bindValue(':img', null, PDO::PARAM_STR);
-            if ($query->execute()) {
+                $query = $this->db->prepare($str);
+                $query->bindValue(':nom', $this->categorie->getNom(), PDO::PARAM_STR);
+                $query->bindValue(':img', $this->categorie->getImg(), PDO::PARAM_STR);
+                if ($query->execute()) {
 
-                $toast->createToast("categorie \"{$this->categorie->getNom()}\" à été ajouté", Toast::SUCCESS);
+                    $toast->createToast("Categorie \"{$this->categorie->getNom()}\" à été ajouté", Toast::SUCCESS);
+                } else {
+                    var_dump($query->errorInfo());
+                    $toast->createToast('Une erreur est survenue.', Toast::ERROR);
+                }    
             } else {
-                var_dump($query->errorInfo());
-                $toast->createToast('Une erreur est survenue.', Toast::ERROR);
+                $toast->createToast('L\'image est trop volumineuse.', Toast::ERROR);
             }
+
         } else $toast->createToast("Cette categorie existe déja.", Toast::ERROR);
 
         return $toast->renderToast();

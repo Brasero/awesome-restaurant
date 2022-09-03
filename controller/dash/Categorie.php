@@ -7,7 +7,7 @@ class Categorie extends AbstractEntity
     public ?string $nom;
     public ?string $img;
 
-    public function __construct(int $id = null, string $name = null, string $img = null)
+    public function __construct(int $id = null, string $name = null, array $img = null)
     {
     }
 

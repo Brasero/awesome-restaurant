@@ -104,13 +104,20 @@ $types = $ingredientTypeManager->getAll();
             <h4 class="formTitle">
                 Ajouter categorie
             </h4>
-            <form action="" method="POST">
+            <form action="" method="POST" enctype="multipart/form-data">
                 <div class="inputGroup">
                     <label for="categorieNom" class="inputLabel">
                         <input type="text" class="inputItem" name="Nom_categorie" id="categorieNom" placeholder="Nom" required />
                         <span>Nom</span>
                     </label>
                 </div>
+                <span class="inputGroup">
+                    <label for="image" class="inputLabel">
+                        <input type="hidden" name="MAX_FILE_SIZE" value="20000000" />
+                        <input type="file" class="inputItem" name="image" id="image" placeholder="Image" required />
+                        <span>Image</span>
+                    </label>
+                </span>
                 <button type="submit" class="addButton">
                     Ajouter
                 </button>
