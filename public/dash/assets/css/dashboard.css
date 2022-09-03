@@ -221,3 +221,36 @@ label:focus-within > span, input:not(:placeholder-shown) + span {
 .col-10 {
     flex: 10;
 }
+
+
+@media screen and (max-width: 1024px) {
+    .main > .container .container__dahsboard .row.card__sm__wrapper {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        justify-items: center;
+    }
+
+    .main > .container .container__dahsboard .row.secondPartRow {
+        flex-direction: column;
+    }
+
+    .card__md, .card__lg {
+        width: 60vw;
+        aspect-ratio: unset;
+    }
+
+
+}
+
+@media screen and (max-width: 768px) {
+    .main > .container .container__dahsboard .row.card__sm__wrapper {
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+
+    .main > .container .container__dahsboard .leftPart {
+        flex: 2;
+    }
+}

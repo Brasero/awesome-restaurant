@@ -1,6 +1,7 @@
 <?php
 
 
+
 ?>
 
 <div class="container__dahsboard">
@@ -22,7 +23,7 @@
 
 
         <!-- FIRST ROW WITH CARD -->
-        <section class="row">
+        <section class="row card__sm__wrapper">
             <div class="card__sm"></div>
             <div class="card__sm"></div>
             <div class="card__sm"></div>
@@ -31,7 +32,7 @@
 
         <!-- END FIRST ROW WITH CARD -->
         <!--  SECOND ROW CARD --->
-        <section class="row">
+        <section class="row secondPartRow">
             <div class="col-4">
                 <span class="col-row">
                     <div class="card__md"></div>
@@ -81,11 +82,18 @@
                             </label>
                             <input type="date" name="date_fin_offre" id="date_fin_offre">
                         </span>
+                        <span class="part">
+                            <input type="submit" class="subButton" value="Ajouter">
+                        </span>
                     </form>
                 </div>
             </div>
         </section>
         <!-- END SECOND ROW CARD --->
+
+        <section class="row">
+
+        </section>
 
     </aside>
 
