@@ -25,7 +25,7 @@ spl_autoload_register('autoload');
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -40,6 +40,16 @@ spl_autoload_register('autoload');
     <link rel="stylesheet" href="./assets/css/modalIngredient.css">
     <link rel="stylesheet" href="./assets/css/adminConnexion.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+    <?php
+    switch($_GET['page']){
+        case 'dashboard':
+            echo '<link rel="stylesheet" href="./assets/css/dashboard.css">';
+            break;
+    }
+    
+    ?>
+
     <title>Burger Compagny</title>
 </head>
 
@@ -115,6 +125,11 @@ spl_autoload_register('autoload');
 
                 if (isset($_GET['page'])) {
                     switch ($_GET['page']) {
+
+                        case 'dashboard':
+                            include('../../vue/dash/dashboard.php');
+                            break;
+
                         case 'ingredient':
                             include('../../vue/dash/ingredient.php');
                             break;

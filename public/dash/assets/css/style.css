@@ -90,7 +90,7 @@ body {
 }
 
 .main > .navBar > .navLinks .navLink li i {
-  font-size: 2rem;
+  font-size: 1.4rem;
 }
 
 .main > .navBar > .navLinks .navLink.active li * {
@@ -151,7 +151,7 @@ body {
 
 /**   Style element de la navBar lorsque activé    **/
 .main > .navBar > .navLinks .navLink li i img {
-  max-height: 40px;
+  max-height: 30px;
 }
 
 .main > .navBar > .navLinks {
@@ -161,9 +161,10 @@ body {
   left: 0;
   height: 100%;
   width: 200px;
+  gap: 30px;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   align-items: flex-end;
   padding: 1rem 0;
   overflow: hidden;
@@ -195,6 +196,7 @@ body {
 .main > .navBar > .navLinks .navLink.deconnect {
   color: var(--color-red);
   font-weight: 800;
+  margin-top: auto;
 }
 
 .main > .navBar > .navLinks .navLink > li {
@@ -203,6 +205,7 @@ body {
 
 .main > .navBar > .navLinks .navLink:hover {
   transform: translate(-10px, -8px);
+  border-top-right-radius: 45px 14px;
   text-shadow: 10px 8px 4px rgba(59, 59, 59, 0.8);
 }
 
@@ -215,6 +218,8 @@ body {
 .main > .navBar > .navLinks .navLink.active:hover {
   transform: unset;
   text-shadow: none;
+  
+  border-top-right-radius: 0;
 }
 
 .main > .navBar > .navLinks .navLink.active:after {
