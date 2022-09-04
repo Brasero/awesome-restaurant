@@ -13,6 +13,8 @@ require_once('../../controller/dash/Ingredient.php');
 require_once('../../model/dash/IngredientManager.php');
 require_once('../../controller/dash/Categorie.php');
 require_once('../../model/dash/CategorieManager.php');
+require_once('../../controller/dash/Taxe.php');
+require_once('../../model/dash/TaxeManager.php');
 
 $bdd = Database::getInstance('exemple_panier', 'root', '', 'localhost');
 
@@ -33,6 +35,12 @@ function dispatch(PDO $bdd, string $action, $payload)
 
         case 'supprIngredient':
             $manager = new IngredientManager($bdd);
+            $manager->create(intval($payload));
+            echo $manager->delete();
+            break;
+
+        case 'supprTaxe':
+            $manager = new TaxeManager($bdd);
             $manager->create(intval($payload));
             echo $manager->delete();
             break;

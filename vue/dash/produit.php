@@ -8,6 +8,7 @@ $produitManager = new ProduitManager($bdd->connection);
 $categorieManager = new CategorieManager($bdd->connection);
 $ingredientManager = new IngredientManager($bdd->connection);
 $ingredientTypeManager = new IngredientTypeManager($bdd->connection);
+$taxeManager = new TaxeManager($bdd->connection);
 $produit9 = $produitManager->getAll();
 
 // Soummission du formulaire ajout de produit
@@ -25,10 +26,22 @@ if (isset($_POST['categorieIdUpdate'], $_POST['categorieNomUpdate']) && !empty($
     echo $categorieManager->update($_POST);
 }
 
+// Soummission du formulaire ajout de taxe
+if (isset($_POST['TaxeLitterale_taxe']) && !empty($_POST['TaxeLitterale_taxe'])) {
+    echo  $taxeManager->createNew($_POST);
+}
+
+//Soumission du formulaire modal d'update type catégorie
+if (isset($_POST['taxeIdUpdate'], $_POST['taxeTauxUpdate']) && !empty($_POST['taxeTauxUpdate'])) {
+    echo $taxeManager->update($_POST);
+}
+
 //Récupération de toute les catégorie! Efféctué après toute insertion ou modification au dessus
 $categories = $categorieManager->getAll();
 $ingredients = $ingredientManager->getAll();
 $types = $ingredientTypeManager->getAll();
+$taxes = $taxeManager->getAll();
+
 ?>
 
 <div class="produitContainer">
@@ -156,11 +169,59 @@ $types = $ingredientTypeManager->getAll();
             </table>
         </div>
     </div>
+    <div class="produitCardDeck">
+        <!-- debut form taux -->
+        <div class="card">
+            <h4 class="formTitle">
+                Ajouter taxe
+            </h4>
+            <form action="" method="POST" >
+                <div class="inputGroup">
+                    <label for="TaxeLitterale_taxe" class="inputLabel">
+                        <input type="number" step="0.1" min="0" max="100" class="inputItem" name="TaxeLitterale_taxe" id="TaxeLitterale_taxe" placeholder="Nom" required />
+                        <span>Taux</span>
+                    </label>
+                </div>
+                <button type="submit" class="addButton">
+                    Ajouter
+                </button>
+            </form>
+        </div>
+            <div class="table">
+            <table class="categorieTypeTable categorieTableStyle">
+                <h4 class="title" style="padding:
+                20px 15px; text-align: center;">
+                    Liste categorie
+                </h4>
+                <tbody>
+                    <tr class="colonneTitleContainer">
+                        <th class="colonneTitleItem">Nom
+                        </th>
+                        <th class="colonneTitleItem">Action</th>
+                    </tr>
+                    <?php foreach ($taxes as $taxe) { ?>
+                        <tr class="categorieTypeItem" id="taxe-<?= $taxe->getID() ?>">
+                            <td class="categorieTypePart"><?= $taxe->getTaxeTolitteral() ?>
+                            </td>
+                            <td class="categorieTypePart buttonGroup">
+                                <button class="actionButton updateButton" onclick="openModal(event,'taxe', <?= $taxe->getId() ?>)" data-tauxTaxe="<?=$taxe->getTaxePourcent() ?>">
+                                    Modifier
+                                </button>
+                                <button class="actionButton deleteButton" onclick="supprItem('taxe', <?= $taxe->getId() ?>)">
+                                    Supprimer
+                                </button>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
 
 <!-- Emplacement des modal de modofication -->
-<div class="modalContainer hiddenModal">
+<div class="modalContainer hiddenModal" id="modalCategorie">
     <div class="modalUpdateType">
         <div class="modalHead">
             <div class="modalTitle">
@@ -177,6 +238,35 @@ $types = $ingredientTypeManager->getAll();
                     <label for="categorieNomUpdate" class="inputLabel">
                         <input type="text" class="inputItem" name="categorieNomUpdate" id="categorieNomUpdate" value="" placeholder="Nom" required />
                         <span>Nom</span>
+                    </label>
+                </div>
+                <button type="submit" class="addButton">
+                    Modifier
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- FIN emplacement des modal de modification -->
+<!-- Emplacement du modal de modification des taxe -->
+<div class="modalContainer hiddenModal" id="modalTaxe">
+    <div class="modalUpdateType">
+        <div class="modalHead">
+            <div class="modalTitle">
+                Modifier une taxe
+            </div>
+            <button class="closeModalButton" onclick="closeModalTaxe()">
+                &times;
+            </button>
+        </div>
+        <div class="modalBody">
+            <form action="" method="POST" class="uptadeTypeForm">
+                <input type="hidden" id="taxeIdUpdate" name="taxeIdUpdate" value="">
+                <div class="inputGroup">
+                    <label for="taxeTauxUpdate" class="inputLabel">
+                        <input type="number" min="0" max="100" step="0.1" class="inputItem" name="taxeTauxUpdate" id="taxeTauxUpdate" value="" placeholder="Taux" required />
+                        <span>Taux</span>
                     </label>
                 </div>
                 <button type="submit" class="addButton">

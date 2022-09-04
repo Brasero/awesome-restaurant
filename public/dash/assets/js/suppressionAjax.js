@@ -17,6 +17,11 @@ function supprItem(type, idItem){
         req.open('GET', '../../controller/dash/ajaxController.php?action=supprIngredient&payload='+idItem)
         
     }
+     else if(type == 'taxe'){
+        var elementToSuppr = document.querySelector('#taxe-'+idItem);
+        req.open('GET', '../../controller/dash/ajaxController.php?action=supprTaxe&payload='+idItem)
+        
+    }
     
     req.send()
 
