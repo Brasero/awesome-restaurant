@@ -53,6 +53,20 @@ class TaxeManager extends AbstractEntityManager{
         return $array;
     }
 
+        protected function taxeIsUnique(string $taux): bool
+    {
+        $data = $this->getAll();
+
+        foreach($data as $obj){
+            if($obj->getTaxePourcent() == $taux)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     public function create(int $ID = null, string $taxe = null): Taxe
     {
         $this->reset();
@@ -66,6 +80,8 @@ class TaxeManager extends AbstractEntityManager{
         $this->reset();
         $this->taxe->hydrate($data, self::TABLE_NAME);
         $this->taxe->hash();
+        if($this->taxeIsUnique($this->taxe->getTaxePourcent()))
+        { 
             $str = $this->queryBuilder
                         ->insert(self::TABLE_NAME, ['taux_'.self::TABLE_NAME])
                         ->values([[':taux']])
@@ -79,7 +95,10 @@ class TaxeManager extends AbstractEntityManager{
             else {
                 $toast->createToast("Une erreur est survenue.", Toast::ERROR);
             }
-    
+         }else
+            {
+                $toast->createToast("Cette taxe existe déja.", Toast::ERROR);
+            }
         return $toast->renderToast();
     }
 
