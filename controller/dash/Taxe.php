@@ -3,9 +3,9 @@
 
 class Taxe extends AbstractEntity{
 
-    private float $taxe;
+    protected float $taxe;
 
-    private function setID(int $id): void
+    protected function setID(int $id): void
     {
         $this->ID = $id;
     }
@@ -15,7 +15,7 @@ class Taxe extends AbstractEntity{
         return $this->ID;
     }
 
-    private function setTaux(string $float): void
+    protected function setTaux(string $float): void
     {
         $taux = floatval($float);
         $this->taxe = $taux;
@@ -41,7 +41,10 @@ class Taxe extends AbstractEntity{
     }
    public function hash(): void
     {
-        str_replace(',','.',$this->getTaxeTolitteral());
+        
+       $taxe = str_replace(',','.',$this->taxe);
+       $this->taxe = $taxe; 
+       
     }
 
 }

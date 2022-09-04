@@ -42,10 +42,8 @@ class TaxeManager extends AbstractEntityManager{
         $str = $this->queryBuilder
                         ->select(self::TABLE_NAME, ['*'])
                         ->getSQL();
-
         $query = $this->db->query($str);
         $data = $query->fetchAll(PDO::FETCH_ASSOC);
-
         foreach($data as $prod){
             $i = new Taxe();
             $i->hydrate($prod, self::TABLE_NAME);
@@ -55,25 +53,76 @@ class TaxeManager extends AbstractEntityManager{
         return $array;
     }
 
+    public function create(int $ID = null, string $taxe = null): Taxe
+    {
+        $this->reset();
+        $this->taxe->hydrate(['ID' => $ID, 'taxe' => $taxe], self::TABLE_NAME);
+        return $this->taxe;
+    }
+
  public function createNew(array $data): string
     {
         $toast = new Toast();
         $this->reset();
         $this->taxe->hydrate($data, self::TABLE_NAME);
+        $this->taxe->hash();
             $str = $this->queryBuilder
                         ->insert(self::TABLE_NAME, ['taux_'.self::TABLE_NAME])
                         ->values([[':taux']])
                         ->getSQL();
             $query = $this->db->prepare($str);
-            $query->bindValue(':taux', $this->taxe->getTaxeTolitteral(), PDO::PARAM_STR);
+            $query->bindValue(':taux', $this->taxe->getTaxePourcent(), PDO::PARAM_STR);
             
             if($query->execute()){
-                $toast->createToast("taxe \"{$this->taxe->getTaxePourcent()}\" à été ajouté", Toast::SUCCESS);
+                $toast->createToast("taxe \"{$this->taxe->getTaxeTolitteral()}\" à été ajouté", Toast::SUCCESS);
             }
             else {
                 $toast->createToast("Une erreur est survenue.", Toast::ERROR);
             }
     
+        return $toast->renderToast();
+    }
+
+        public function delete(): bool
+    {
+
+        $str = $this->queryBuilder
+            ->delete(self::TABLE_NAME)
+            ->where('ID_' . self::TABLE_NAME, ':id')
+            ->getSQL();
+        $query = $this->db->prepare($str);
+        $query->bindValue(':id', $this->taxe->getID(), PDO::PARAM_INT);
+        if ($query->execute()) {
+            return true;
+        }
+
+        return false;
+    }
+
+      public function update(array $data): string
+    {
+        $toast = new Toast();
+        $this->reset();
+        $data['ID'] = $data['taxeIdUpdate'];
+        $data['taux'] = $data['taxeTauxUpdate'];
+
+
+        $this->taxe->hydrate($data, self::TABLE_NAME);
+        $str = $this->queryBuilder
+            ->update(self::TABLE_NAME)
+            ->set(['taux_' . self::TABLE_NAME => ':taux'])
+            ->where('ID_' . self::TABLE_NAME, ':id')
+            ->getSQL();
+        $query = $this->db->prepare($str);
+        $query->bindValue(':taux', $this->taxe->getTaxePourcent(), PDO::PARAM_STR);
+        $query->bindValue(':id', $this->taxe->getID(), PDO::PARAM_INT);
+
+        if ($query->execute()) {
+            $toast->createToast('Taxe modifié.', Toast::SUCCESS);
+        } else {
+            $toast->createToast('Une erreur s\'est produite.', Toast::ERROR);
+        }
+
         return $toast->renderToast();
     }
 
