@@ -1,5 +1,7 @@
 <?php
 
+use Model\Dash\OffreManager;
+
 $offreManager = new OffreManager($bdd->connection);
 
 
@@ -30,6 +32,7 @@ $offres  = $offreManager->getAll();
                     Bonjour 
                 </span>
                 <span class="name">
+                    <!---- Nom Admin  ------>
                     Brandon
                 </span>
             </span>
@@ -124,6 +127,7 @@ $offres  = $offreManager->getAll();
                                 <th class='part'>Etat</th>
                                 <th class="part">Début</th>
                                 <th class="part">Fin</th>
+                                <th class="part">Action</th>
                             </tr>
                             <?php foreach($offres as $offre): ?>
                                 <tr class="offreItem tableRow">
@@ -143,6 +147,9 @@ $offres  = $offreManager->getAll();
                                     </td>
                                     <td class="offrePart">
                                         <?= $offre->getDate_finShort(); ?>
+                                    </td>
+                                    <td class="offrePart">
+                                        <button class="actionButton updateButton">Modifier</button>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

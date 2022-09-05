@@ -214,9 +214,12 @@ label:focus-within > span, input:not(:placeholder-shown) + span {
 {
     width: 240px;
     max-width: 240px;
-    font-family: var(--font-secondary);
     color: var(--color-primary);
     font-size: .9rem;;
+}
+
+.main> .container .offreListTable .offreItem.tableRow .offrePart:nth-child(1) {
+    font-family: var(--font-secondary);
 }
 
 .main> .container .offreListTable .offreItem.tableRow .offrePart {
@@ -247,6 +250,16 @@ label:focus-within > span, input:not(:placeholder-shown) + span {
     font-family: var(--font-primary);
     text-shadow: var(--shadow-1);
     padding-right: .5rem;
+}
+
+.actionButton{
+    padding: 4px 6px;
+    border-radius: 5px;
+    border: none;
+    letter-spacing: 1px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 1s ease-in-out;
 }
 
 /*  right Part  */

@@ -1,5 +1,7 @@
 <?php
+namespace Control\Dash;
 
+use Tool\AbstractEntity;
 
 class Offre extends AbstractEntity {
 
@@ -90,7 +92,7 @@ class Offre extends AbstractEntity {
                     </span>';
                 break;
 
-            case ($date < $this->getDate_fin() && $date > $this->getDate_debut()): 
+            case ($date <= $this->getDate_fin() && $date >= $this->getDate_debut()): 
                 $return = '
                     <span class="enableOffer">
                         En cour
@@ -103,6 +105,13 @@ class Offre extends AbstractEntity {
                             Términée
                         </span>';
                     break;
+
+                default:
+                    $return = '
+                        <span class="ended">
+                            Error
+                        </span>
+                    ';
         }
 
         return $return;

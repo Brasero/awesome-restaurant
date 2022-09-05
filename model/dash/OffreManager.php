@@ -1,5 +1,11 @@
 <?php
 
+namespace Model\Dash;
+
+use PDO;
+use Tool\Toast;
+use Control\Dash\Offre;
+use Tool\AbstractEntityManager;
 
 class OffreManager extends AbstractEntityManager
 {
@@ -39,10 +45,10 @@ class OffreManager extends AbstractEntityManager
                         ->getSQL();
 
         $query = $this->db->prepare($str);
-        $query->bindValue(':nom', $this->offre->getNomBrut(), PDO::PARAM_STR);
-        $query->bindValue(':taux', $this->offre->getTaux(), PDO::PARAM_STR);
-        $query->bindValue(':debut', $this->offre->getDate_debut(), PDO::PARAM_STR);
-        $query->bindValue(':fin', $this->offre->getDate_fin(), PDO::PARAM_STR);
+        $query->bindValue(':nom', $this->offre->getNomBrut(), \PDO::PARAM_STR);
+        $query->bindValue(':taux', $this->offre->getTaux(), \PDO::PARAM_STR);
+        $query->bindValue(':debut', $this->offre->getDate_debut(), \PDO::PARAM_STR);
+        $query->bindValue(':fin', $this->offre->getDate_fin(), \PDO::PARAM_STR);
         if($query->execute()){
             $toast->createToast('Votre offre à été enregistrée.', Toast::SUCCESS);
         } else {
