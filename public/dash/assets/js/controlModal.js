@@ -34,7 +34,7 @@ function openModal(e, action, id){
         modalContainer.classList.remove('hiddenModal')
     }
     else if(action == 'categorie'){
-        var modalContainer = document.querySelector('.modalContainer');
+    var modalContainer = document.querySelector('#modalCategorie');
         var input = document.querySelector('#categorieNomUpdate');
         var idInput = document.querySelector('#categorieIdUpdate');
         var targetButton = e.target;
@@ -44,6 +44,7 @@ function openModal(e, action, id){
         input.value = name
         idInput.value = id
     }
+
 
     else if(action == 'offre') {
         var modalContainer = document.querySelector('.modalContainer')
@@ -61,6 +62,17 @@ function openModal(e, action, id){
         pourcentInput.value = offreObj.taux * 100
         debutInput.value = offreObj.date_debut
         finInput.value = offreObj.date_fin
+    }
+     else if(action == 'taxe'){
+        var modalContainer = document.querySelector('#modalTaxe');
+        var input = document.querySelector('#taxeTauxUpdate');
+        var idInput = document.querySelector('#taxeIdUpdate');        
+        var targetButton = e.target;
+        var tauxTaxe = targetButton.getAttribute('data-tauxTaxe')
+console.log(tauxTaxe)
+        modalContainer.classList.remove('hiddenModal')
+        input.value = tauxTaxe
+        idInput.value = id
     }
 }
 
@@ -91,6 +103,7 @@ function closeModalCategorie(){
     input.value = "";
 }
 
+
 function closeModalOffre(){
     var modalContainer = document.querySelector('.modalContainer');
 
@@ -107,4 +120,14 @@ function closeModalOffre(){
     finInput.value = ""
 
     modalContainer.classList.add('hiddenModal');
+}
+function closeModalTaxe(){
+    var modalContainer = document.querySelector('#modalTaxe');
+    var input = document.querySelector('#taxeIdUptade')
+    var idInput = document.querySelector('#taxetauxUpdate');
+
+    modalContainer.classList.add('hiddenModal');
+    idInput.value = "";
+    input.value = "";
+
 }
