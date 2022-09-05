@@ -115,7 +115,7 @@ $offres  = $offreManager->getAll();
                 </div>
             </div>
             <div class="col-8">
-                <div class="card__lg" style="flex-direction: column; justify-content: flex-start; overflow-y: auto;">
+                <div class="card__lg offre__card" style="flex-direction: column; justify-content: flex-start; overflow-y: auto;">
                     <theader class='tableTitle'>
                         Offres
                     </theader>
@@ -149,7 +149,7 @@ $offres  = $offreManager->getAll();
                                         <?= $offre->getDate_finShort(); ?>
                                     </td>
                                     <td class="offrePart">
-                                        <button class="actionButton updateButton">Modifier</button>
+                                        <button class="actionButton updateButton"><i class="bi bi-pencil-square"></i></button>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

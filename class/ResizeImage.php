@@ -1,5 +1,6 @@
 <?php
 
+namespace Tool;
 
 class ResizeImage {
 

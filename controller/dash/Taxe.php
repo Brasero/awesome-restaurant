@@ -1,5 +1,8 @@
 <?php
 
+namespace Control\Dash;
+
+use Tool\AbstractEntity;
 
 class Taxe extends AbstractEntity{
 

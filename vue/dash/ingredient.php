@@ -1,5 +1,8 @@
 <?php
 
+use Model\Dash\IngredientManager;
+use Model\Dash\IngredientTypeManager;
+
 //require du controller de la page
 
 require_once('../../controller/dash/ingredientController.php');

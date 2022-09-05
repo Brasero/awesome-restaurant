@@ -1,4 +1,6 @@
 <?php
+
+use Model\Config\Database;
 require "../../vendor/autoload.php";
 session_start();
 require_once('../../model/config/Database.php');

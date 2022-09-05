@@ -1,5 +1,12 @@
 <?php
 
+namespace Model\Dash;
+
+use PDO;
+use Tool\Toast;
+use Control\Dash\Ingredient;
+use Tool\AbstractEntityManager;
+
 
 class IngredientManager extends AbstractEntityManager
 {
