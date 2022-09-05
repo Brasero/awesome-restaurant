@@ -10,6 +10,12 @@ class Offre extends AbstractEntity {
     public string $date_debut;
     public string $date_fin;
 
+
+    protected function setID(?int $ID = null): void 
+    {
+        $this->ID = $ID;
+    }
+
     public function getID(): int 
     {
         return $this->ID;

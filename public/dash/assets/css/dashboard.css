@@ -223,7 +223,7 @@ label:focus-within > span, input:not(:placeholder-shown) + span {
 }
 
 .main> .container .offreListTable .offreItem.tableRow .offrePart {
-    border-right: 1px solid var(--color-primary);
+    border-bottom: 1px solid var(--color-primary);
     padding: 5px 3px;
     text-align: center;
     word-break: keep-all;
@@ -291,6 +291,47 @@ label:focus-within > span, input:not(:placeholder-shown) + span {
 
 ::-webkit-scrollbar-thumb {
     background: darkgrey;
+}
+
+.updateOffreForm {
+    padding: 35px 50px;
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.5);
+    border-radius: 30px;
+}
+
+.modalHead {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+
+.main > .container .inputGroup {
+    border: 1px solid var(--color-primary);
+    border-radius: 5px;
+}
+
+.main > .container .closeModalButton {
+    font-size: 1rem;
+    border-radius: 40px;
+    width: 25px; 
+    aspect-ratio: 1/1;
+    background: var(--color-red);
+    color: var(--color-light);
+    border: none;
+}
+
+.main > .container .addButton {
+    background: var(--color-green);
+}
+
+.main > .container .subButton {
+    background: var(--color-primary);
+    padding: 5px 25px;
+    border-radius: 25px;
+    border: none;
 }
 
 /*  right Part  */
