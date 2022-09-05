@@ -15,6 +15,7 @@ if(isset($_POST['nom_offre'], $_POST['taux_offre'], $_POST['date_debut_offre'], 
     echo $offreManager->createNew($_POST);
 }
 
+//Soumission du formulaire d'update d'offres
 if(isset(
     $_POST['ID_offre_update'],
     $_POST['nom_offre_update'],
