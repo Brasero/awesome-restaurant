@@ -72,6 +72,20 @@
     align-items: center; 
 }
 
+.card__md__height {
+    aspect-ratio: 2/2.5;
+    width: 300px;
+    background-color: #fff;
+    border:1px solid #fff;
+    border-radius: 30px;
+    box-shadow: 5px 0 25px rgba(var(--color-dark-rgb), 0.2);
+    display: flex;
+    overflow: hidden;
+    padding: 10px 20px;
+    justify-content: center;
+    align-items: center;
+}
+
 .card__lg {
     aspect-ratio: 16/9;
     width: 100%;
@@ -97,7 +111,7 @@
     overflow: hidden;
 }
 
-.main > .container .container__dahsboard .row .card__lg .offreForm {
+.main > .container .container__dahsboard .row .card__md__height .offreForm {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -106,14 +120,14 @@
     width: 90%;
 }
 
-.main > .container .container__dahsboard .row .card__lg .offreForm .part {
+.main > .container .container__dahsboard .row .card__md__height .offreForm .part {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
 }
 
-.main > .container .container__dahsboard .row .card__lg .offreForm .formTitle {
+.main > .container .container__dahsboard .row .card__md__height .offreForm .formTitle {
     margin: unset;
     padding: unset;
     padding-top: 20px;
@@ -123,16 +137,16 @@
 
 
 
-.main > .container .container__dahsboard .row .card__lg .offreForm .part {
+.main > .container .container__dahsboard .row .card__md__height .offreForm .part {
     display: flex;
     flex-direction: column;
 }
 
-.main > .container .container__dahsboard .row .card__lg .offreForm .inputGroup{
+.main > .container .container__dahsboard .row .card__md__height .offreForm .inputGroup{
     width: 90%;
 }
 
-.main > .container .container__dahsboard .row .card__lg .offreForm .inputGroup label {
+.main > .container .container__dahsboard .row .card__md__height .offreForm .inputGroup label {
     border: 1px solid var(--color-primary);
 }
 
@@ -157,8 +171,95 @@ label:focus-within > span, input:not(:placeholder-shown) + span {
     border: 2px solid var(--color-highlights);
   }
 
-.main > .container .container__dahsboard .row .card__lg .offreForm .inputGroup input {
+.main > .container .container__dahsboard .row .card__md__height .offreForm .inputGroup input {
     height: 15px;
+}
+
+/** Liste offre **/
+
+.main> .container .offreListTable {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.main> .container .offreListTable tbody {
+    width: 100%;
+}
+
+.main> .container .offreListTable .tableRow .part{
+    width: -webkit-fill-available;
+}
+
+.tableTitle {
+    color: var(--color-primary);
+    font-family: var(--font-primary);
+}
+
+.main> .container .offreListTable .head.tableRow .part {
+    padding: 10px 25px;
+    padding-left: 0;
+    width: 17%;
+    text-align: left;
+    font-family: var(--font-primary);
+    color: var(--color-primary);
+    border-bottom: 1px solid var(--color-primary);
+}
+
+.main> .container .offreListTable .head.tableRow .part:nth-child(1), 
+.main> .container .offreListTable .offreItem.tableRow .offrePart:nth-child(1)
+{
+    width: 240px;
+    max-width: 240px;
+    color: var(--color-primary);
+    font-size: .9rem;;
+}
+
+.main> .container .offreListTable .offreItem.tableRow .offrePart:nth-child(1) {
+    font-family: var(--font-secondary);
+}
+
+.main> .container .offreListTable .offreItem.tableRow .offrePart {
+    border-right: 1px solid var(--color-primary);
+    padding: 5px 3px;
+}
+
+.main> .container .offreListTable .offreItem.tableRow .offrePart:last-child {
+    border-right: unset;
+}
+
+.main> .container .offreListTable .offreItem.tableRow .offrePart .waiting {
+    color: yellow;
+    font-family: var(--font-primary);
+    text-shadow: var(--shadow-1);
+    padding-right: .5rem;
+}
+
+.main> .container .offreListTable .offreItem.tableRow .offrePart .enableOffer {
+    color: var(--color-green);
+    font-family: var(--font-primary);
+    text-shadow: var(--shadow-1);
+    padding-right: .5rem;
+}
+
+.main> .container .offreListTable .offreItem.tableRow .offrePart .ended {
+    color: var(--color-red);
+    font-family: var(--font-primary);
+    text-shadow: var(--shadow-1);
+    padding-right: .5rem;
+}
+
+.actionButton{
+    padding: 4px 6px;
+    border-radius: 5px;
+    border: none;
+    letter-spacing: 1px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 1s ease-in-out;
 }
 
 /*  right Part  */

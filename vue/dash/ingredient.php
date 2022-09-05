@@ -2,8 +2,6 @@
 
 //require du controller de la page
 
-use function PHPSTORM_META\type;
-
 require_once('../../controller/dash/ingredientController.php');
 
 

@@ -1,7 +1,23 @@
 <?php
 
+use Model\Dash\OffreManager;
+
+$offreManager = new OffreManager($bdd->connection);
 
 
+//Soumission du formulaire d'offre ADD
+if(isset($_POST['nom_offre'], $_POST['taux_offre'], $_POST['date_debut_offre'], $_POST['date_fin_offre'])
+    && !empty($_POST['nom_offre'])
+    && !empty($_POST['taux_offre']) 
+    && !empty($_POST['date_debut_offre']) 
+    && !empty($_POST['date_fin_offre'])
+) {
+    echo $offreManager->createNew($_POST);
+}
+
+
+//Recupération des infos en bdd;
+$offres  = $offreManager->getAll();
 ?>
 
 <div class="container__dahsboard">
@@ -16,6 +32,7 @@
                     Bonjour 
                 </span>
                 <span class="name">
+                    <!---- Nom Admin  ------>
                     Brandon
                 </span>
             </span>
@@ -34,16 +51,25 @@
         <!--  SECOND ROW CARD --->
         <section class="row secondPartRow">
             <div class="col-4">
-                <span class="col-row">
+                <div class="col-row">
                     <div class="card__md"></div>
-                </span>
-                <span class="col-row">
+                </div>
+                <div class="col-row">
                     <div class="card__md"></div>
-                </span>
+                </div>
             </div>
             <div class="col-8">
                 <div class="card__lg">
-                    <form action="" method="POST" class="offreForm">
+                    
+                </div>
+            </div>
+        </section>
+        <!-- END SECOND ROW CARD --->
+
+        <section class="row">
+            <div class="col-4">
+                <div class="card__md__height">
+                <form action="" method="POST" class="offreForm">
                         <span class="part formTitle">
                             Nouvelle offre
                         </span>
@@ -63,7 +89,7 @@
                                 <label for="pourcentage_offre" class="inputLabel">
                                     <input 
                                         type="text" 
-                                        name="pourcentage_offre" placeholder="pourcentage de l'offre"
+                                        name="taux_offre" placeholder="pourcentage de l'offre"
                                         id="pourcentage_offre" 
                                         required />
                                     <span>% de l'offre</span>
@@ -88,11 +114,49 @@
                     </form>
                 </div>
             </div>
-        </section>
-        <!-- END SECOND ROW CARD --->
-
-        <section class="row">
-
+            <div class="col-8">
+                <div class="card__lg" style="flex-direction: column; justify-content: flex-start; overflow-y: auto;">
+                    <theader class='tableTitle'>
+                        Offres
+                    </theader>
+                    <table class="offreListTable">
+                        <tbody>
+                            <tr class="head tableRow">
+                                <th class="part">Nom</th>
+                                <th class="part">%</th>
+                                <th class='part'>Etat</th>
+                                <th class="part">Début</th>
+                                <th class="part">Fin</th>
+                                <th class="part">Action</th>
+                            </tr>
+                            <?php foreach($offres as $offre): ?>
+                                <tr class="offreItem tableRow">
+                                    <td class="offrePart">
+                                        <?= $offre->getNom(); ?>
+                                    </td>
+                                    <td class="offrePart">
+                                        <?= $offre->getTauxLitteral(); ?>
+                                    </td>
+                                    <td class="offrePart">
+                                        <?php
+                                            echo $offre->getEtat();  
+                                        ?>
+                                    </td>
+                                    <td class="offrePart">
+                                        <?= $offre->getDate_debutShort(); ?>
+                                    </td>
+                                    <td class="offrePart">
+                                        <?= $offre->getDate_finShort(); ?>
+                                    </td>
+                                    <td class="offrePart">
+                                        <button class="actionButton updateButton">Modifier</button>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </section>
 
     </aside>
@@ -105,4 +169,6 @@
 
 </div>
 
+
+<script type="text/javascript" src="./assets/js/toastController.js"></script>
 <script type="text/javascript" src="./assets/js/animation.js"></script>

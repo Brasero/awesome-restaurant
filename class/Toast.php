@@ -1,5 +1,7 @@
 <?php
 
+namespace Tool;
+
 class Toast
 {
 
