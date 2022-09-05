@@ -13,7 +13,8 @@
             "Inter\\" : "interface/",
             "Tool\\" : "class/",
             "Model\\Dash\\" : "model/dash/",
-            "Control\\Dash\\" : "controller/dash/"
+            "Control\\Dash\\" : "controller/dash/",
+            "Model\\Config\\" : "model/config/"
         }
     }
 }

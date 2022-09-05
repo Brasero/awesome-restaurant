@@ -1,5 +1,11 @@
 <?php
 
+namespace Model\Dash;
+
+use PDO;
+use Control\Dash\Taxe;
+use Tool\AbstractEntityManager;
+
 
 class TaxeManager extends AbstractEntityManager{
 

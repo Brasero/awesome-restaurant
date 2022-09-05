@@ -15,6 +15,21 @@ if(isset($_POST['nom_offre'], $_POST['taux_offre'], $_POST['date_debut_offre'], 
     echo $offreManager->createNew($_POST);
 }
 
+//Soumission du formulaire d'update d'offres
+if(isset(
+    $_POST['ID_offre_update'],
+    $_POST['nom_offre_update'],
+    $_POST['taux_offre_update'],
+    $_POST['date_debut_offre_update'],
+    $_POST['date_fin_offre_update']
+    ) 
+    && !empty($_POST['ID_offre_update'])
+    && !empty($_POST['nom_offre_update'])
+    && !empty($_POST['date_debut_offre_update'])
+    && !empty($_POST['date_fin_offre_update'])){
+        echo $offreManager->update($_POST);
+    }
+
 
 //Recupération des infos en bdd;
 $offres  = $offreManager->getAll();
@@ -96,18 +111,18 @@ $offres  = $offreManager->getAll();
                                 </label>
                             </div>
                         </span>
-                        <span class="part">
-                            <label for="date_debut_offre" class="dateLabel">
-                                Début de l'offre
+                        <div class="inputGroup">
+                            <label for="date_debut_offre" class="inputLabel">
+                                <input type="date" class="inputItem" name="date_debut_offre" id="date_debut_offre" value="" placeholder="Débute le :" required />
+                                <span>Débute le :</span>
                             </label>
-                            <input type="date" name="date_debut_offre" id="date_debut_offre">
-                        </span>
-                        <span class="part">
-                            <label for="date_fin_offre" class="dateLabel">
-                                Fin de l'offre
+                        </div>
+                        <div class="inputGroup">
+                            <label for="date_fin_offre" class="inputLabel">
+                                <input type="date" class="inputItem" name="date_fin_offre" id="date_fin_offre" value="" placeholder="Fin le :" required />
+                                <span>Fin le :</span>
                             </label>
-                            <input type="date" name="date_fin_offre" id="date_fin_offre">
-                        </span>
+                        </div>
                         <span class="part">
                             <input type="submit" class="subButton" value="Ajouter">
                         </span>
@@ -115,7 +130,7 @@ $offres  = $offreManager->getAll();
                 </div>
             </div>
             <div class="col-8">
-                <div class="card__lg" style="flex-direction: column; justify-content: flex-start; overflow-y: auto;">
+                <div class="card__lg offre__card" style="flex-direction: column; justify-content: flex-start; overflow-y: auto;">
                     <theader class='tableTitle'>
                         Offres
                     </theader>
@@ -149,7 +164,12 @@ $offres  = $offreManager->getAll();
                                         <?= $offre->getDate_finShort(); ?>
                                     </td>
                                     <td class="offrePart">
-                                        <button class="actionButton updateButton">Modifier</button>
+                                        <button 
+                                        class="actionButton updateButton"
+                                        onclick='openModal(event, "offre", <?= json_encode([$offre, $offre->getID()]) ?>)'
+                                        >
+                                            <i class="bi bi-pencil-square"></i>
+                                        </button>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -170,5 +190,60 @@ $offres  = $offreManager->getAll();
 </div>
 
 
+<!-----  Emplacement de modal modification  -------->
+
+<!---- MODAL modification offre ------>
+
+<div class="modalContainer hiddenModal" id="modalOffre">
+    <div class="modalUpdateOffre">
+        <div class="modalHead">
+            <div class="modalTitle">
+                Modifier un type d'ingrédient
+            </div>
+            <button class="closeModalButton" onclick="closeModalOffre()">
+                &times;
+            </button>
+        </div>
+        <div class="modalBody">
+            <form action="" method="POST" class="updateOffreForm">
+                <input type="hidden" id="ID_offre_update" name="ID_offre_update" value="">
+                <div class="inputGroup">
+                    <label for="offreNomUpdate" class="inputLabel">
+                        <input type="text" class="inputItem" name="nom_offre_update" id="offreNomUpdate" value="" placeholder="Nom" required />
+                        <span>Nom</span>
+                    </label>
+                </div>
+                <div class="inputGroup">
+                    <label for="tauxOffreUpdate" class="inputLabel">
+                        <input type="text" class="inputItem" name="taux_offre_update" id="tauxOffreUpdate" value="" placeholder="% de l'offre" required />
+                        <span>% de l'offre</span>
+                    </label>
+                </div>
+                <div class="inputGroup">
+                    <label for="date_debut_offre_update" class="inputLabel">
+                        <input type="date" class="inputItem" name="date_debut_offre_update" id="date_debut_offre_update" value="" placeholder="Débute le :" required />
+                        <span>Débute le :</span>
+                    </label>
+                </div>
+                <div class="inputGroup">
+                    <label for="date_fin_offre_update" class="inputLabel">
+                        <input type="date" class="inputItem" name="date_fin_offre_update" id="date_fin_offre_update" value="" placeholder="Fin le :" required />
+                        <span>Fin le :</span>
+                    </label>
+                </div>
+                <button type="submit" class="addButton">
+                    Modifier
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!---- MODAL modification offre ------>
+
+
+<!----- END  Emplacement de modal modification  -------->
+
 <script type="text/javascript" src="./assets/js/toastController.js"></script>
 <script type="text/javascript" src="./assets/js/animation.js"></script>
+<script type="text/javascript" src="./assets/js/controlModal.js"></script>

@@ -1,4 +1,7 @@
 <?php
+namespace Control\Dash;
+
+use Tool\AbstractEntity;
 
 class Ingredient extends AbstractEntity
 {

@@ -223,8 +223,10 @@ label:focus-within > span, input:not(:placeholder-shown) + span {
 }
 
 .main> .container .offreListTable .offreItem.tableRow .offrePart {
-    border-right: 1px solid var(--color-primary);
+    border-bottom: 1px solid var(--color-primary);
     padding: 5px 3px;
+    text-align: center;
+    word-break: keep-all;
 }
 
 .main> .container .offreListTable .offreItem.tableRow .offrePart:last-child {
@@ -232,24 +234,33 @@ label:focus-within > span, input:not(:placeholder-shown) + span {
 }
 
 .main> .container .offreListTable .offreItem.tableRow .offrePart .waiting {
-    color: yellow;
+    color: var(--color-light);
     font-family: var(--font-primary);
-    text-shadow: var(--shadow-1);
-    padding-right: .5rem;
+    font-size: 0.7rem;
+    background: rgb(195, 195, 52);
+    border-radius: 10px;
+    padding: 10px 15px;
+    width: 200px;
 }
 
 .main> .container .offreListTable .offreItem.tableRow .offrePart .enableOffer {
-    color: var(--color-green);
+    color: var(--color-light);
     font-family: var(--font-primary);
-    text-shadow: var(--shadow-1);
-    padding-right: .5rem;
+    font-size: 0.7rem;
+    background: var(--color-green);
+    border-radius: 10px;
+    padding: 10px 15px;
+    width: 200px;
 }
 
 .main> .container .offreListTable .offreItem.tableRow .offrePart .ended {
-    color: var(--color-red);
+    color: var(--color-light);
     font-family: var(--font-primary);
-    text-shadow: var(--shadow-1);
-    padding-right: .5rem;
+    font-size: 0.7rem;
+    background: var(--color-red);
+    border-radius: 10px;
+    padding: 10px 15px;
+    width: 200px;
 }
 
 .actionButton{
@@ -260,6 +271,67 @@ label:focus-within > span, input:not(:placeholder-shown) + span {
     font-size: 1rem;
     cursor: pointer;
     transition: all 1s ease-in-out;
+    color: rgb(80, 80, 203);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.1);
+    box-shadow: -2px 2px 6px rgba(0,0,0,1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: darkgrey;
+}
+
+.updateOffreForm {
+    padding: 35px 50px;
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.5);
+    border-radius: 30px;
+}
+
+.modalHead {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+
+.main > .container .inputGroup {
+    border: 1px solid var(--color-primary);
+    border-radius: 5px;
+}
+
+.main > .container .closeModalButton {
+    font-size: 1rem;
+    border-radius: 40px;
+    width: 25px; 
+    aspect-ratio: 1/1;
+    background: var(--color-red);
+    color: var(--color-light);
+    border: none;
+}
+
+.main > .container .addButton {
+    background: var(--color-green);
+}
+
+.main > .container .subButton {
+    background: var(--color-primary);
+    padding: 5px 25px;
+    border-radius: 25px;
+    border: none;
 }
 
 /*  right Part  */
