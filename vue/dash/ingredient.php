@@ -86,28 +86,12 @@ $ingredients = $ingredientManager->getAll();
                 </button>
             </form>
         </div>
-        <div class="card">
-            <h4 class="formTitle">
-                Ajouter type d'ingrédient
-            </h4>
-            <form action="" method="post">
-                <div class="inputGroup">
-                    <label for="ingredientTypeNom" class="inputLabel">
-                        <input type="text" class="inputItem" name="nom_type_ingredient" id="ingredientTypeNom" placeholder="Nom" required />
-                        <span>Nom</span>
-                    </label>
-                </div>
-                <button type="submit" class="addButton">
-                    Ajouter
-                </button>
-            </form>
-        </div>
-    </div>
-    <div class="ingredientCardDeck">
-        <!-- Liste ingrédient. -->
-        <div class="table">
+
+ <!-- Liste ingrédient. -->
+ 
+         <div class="table">
             <table class="ingredientTypeTable ingredientTableStyle">
-                <h4 class="title" style="padding: 20px 15px; text-align: center;">
+                <h4 class="title">
                     Liste ingrédients
                 </h4>
                 <tbody>
@@ -160,12 +144,13 @@ $ingredients = $ingredientManager->getAll();
                 </tbody>
             </table>
         </div>
-        <!-- Fin liste ingrédient -->
-
+<!-- Fin liste ingrédient -->
+    </div>
+    <div class="ingredientCardDeck">
         <!-- Liste types ingrédients -->
         <div class="table">
             <table class="ingredientTypeTable ingredientTableStyle">
-                <h4 class="title" style="padding: 20px 15px; text-align: center;">
+                <h4 class="title">
                     Liste type ingrédient
                 </h4>
                 <tbody>
@@ -193,8 +178,23 @@ $ingredients = $ingredientManager->getAll();
                 </tbody>
             </table>
         </div>
-
-        <!-- Fin liste type ingredient -->
+ <!-- Fin liste type ingredient -->
+        <div class="card">
+            <h4 class="formTitle">
+                Ajouter type d'ingrédient
+            </h4>
+            <form action="" method="post">
+                <div class="inputGroup">
+                    <label for="ingredientTypeNom" class="inputLabel">
+                        <input type="text" class="inputItem" name="nom_type_ingredient" id="ingredientTypeNom" placeholder="Nom" required />
+                        <span>Nom</span>
+                    </label>
+                </div>
+                <button type="submit" class="addButton">
+                    Ajouter
+                </button>
+            </form>
+        </div>
 
     </div>
 </div>

@@ -2,6 +2,7 @@
     width: 100%;
     height: 100vh;
     padding-left: 50px;
+    background: var(--color-light);
 }
 
 .ingredientContainer > .pageTitle{
@@ -12,91 +13,139 @@
     align-items: flex-start;
     justify-content: center;
     overflow: hidden;
+    background-color: var(--color-light);
+
 }
 
 .ingredientContainer > .pageTitle .bottom,
 .ingredientContainer > .pageTitle .top{
     font-family: var(--font-secondary);
     transition: var(--transition);
+    background-color: var(--color-light);
 }
 
 .ingredientContainer > .pageTitle .bottom{
     color: var(--color-primary);
     font-family: var(--font-primary);
     text-shadow: var(--shadow-1);
+    background-color: var(--color-light);
 }
 
 .ingredientContainer > .ingredientCardDeck{
-    min-height: 400px;
+    min-height: 300px;
     width: 100%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     flex-wrap: wrap;
     gap: 25px;
+    background-color: var(--color-light);
+
 }
+.container >.ingredientContainer > .ingredientCardDeck > .table > .title{
+    padding: 20px 15px;
+    text-align: center;
+    background-color: var(--color-light);
+}
+
 
 .ingredientContainer > .ingredientCardDeck > .card{
     min-width: 250px;
     aspect-ratio: 1/1;
-    background: var(--color-highlights);
+    background-color: white;
     padding: 15px 20px;
     border-radius: 15px;
     justify-content: flex-start;
 }
 
-.main > .container > .ingredientContainer > .ingredientCardDeck > .card > *{
-    background-color: transparent;
-}
+
+
 
 .main > .container > .ingredientContainer > .ingredientCardDeck > .card > .formTitle{
     margin-top: 0;
     font-family: var(--font-secondary);
     text-shadow: var(--shadow-1);
+    color: var(--color-primary);
+}
+
+.main> .container > .ingredientContainer >.ingredientCardDeck >.card > form > .inputGroup > label > .inputItem,
+.main> .container > .ingredientContainer >.ingredientCardDeck >.card > form > .inputGroup > label {
+border: 1px solid var(--color-primary);
+background-color: white;
+color: var(--color-primary);
+}
+
+.main> .container > .ingredientContainer >.ingredientCardDeck >.card > form > .inputGroup > label >  span
+{
+background-color: white;
+}
+
+.main> .container > .ingredientContainer >.ingredientCardDeck >.card > form > .typeChoice > #ingredientType {
+border: 1px solid var(--color-primary);
+background-color: transparent;
+color: var(--color-primary);
 }
 
 .main > .container .addButton{
     width: 100%;
     aspect-ratio: 5/1;
     border-radius: 15px;
-    background-color: var(--color-primary);
+    background-color: transparent;
     text-align: center;
     margin-top: 20px;
     font-size: 1.4rem;
-    color: var(--color-light);
-    border: 1px solid var(--color-light);
+    border: 1px solid var(--color-primary);
     transition: var(--transition);
+    color: var(--color-primary);
+}
+
+.main > .container .addButton:hover{
+    background-color: var(--color-primary);
+    color: var(--color-light);
 }
 
 
 .main > .container .typeChoice {
-    background-color: transparent;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 10px;
-    color: var(--color-light);
     text-shadow: var(--shadow-1);
+    background-color: white;
+    
 }
 
 .main > .container .typeChoice label, .main > .container .typeChoice label span{
     background-color: transparent;
+    font-weight: initial;
+    color: var(--color-primary);
 }
 
+.main > .container > .ingredientContainer .card, .main > .container > .ingredientContainer .card .formTitle, .main > .container > .ingredientContainer .card form{
+background-color: white;
+}
+
+.main > .container .card, .main > .container .card  {
+box-shadow: var(--shadow-1);
+}
 
 .main > .container .table{
     min-width: 40%;
+    border-radius: 15px;
 }
+
+
 
 .main > .container .ingredientTableStyle{
     width: 100%;
-    background-color: var(--color-highlights);
+    background-color: var(--color-primary);
     padding: 25px 20px;
     border-radius: 15px;
     overflow: hidden;
-    color: var(--color-light);
     border-collapse: collapse;
-    text-shadow: var(--shadow-1);
+    box-shadow: var(--shadow-1);
+    margin: 15px;
+    
 }
 
 .main > .container .table table.ingredientTableStyle .title{
@@ -107,21 +156,29 @@
 
 .main > .container .ingredientTableStyle .colonneTitleContainer .colonneTitleItem, 
 .main > .container .ingredientTableStyle .ingredientTypeItem .ingredientTypePart{
-    background-color: var(--color-highlights);
+    background-color: white;
     text-align: center;
     padding: 5px 8px;
+   
 }
 
 .main > .container .ingredientTableStyle .ingredientTypeItem{
-    background: var(--color-highlights);
+    background: white;
+    border-bottom: 1px solid var(--color-primary);    
+}
+
+.main > .container .ingredientTableStyle .ingredientTypeItem .ingredientTypePart:first-child{
+color: var(--color-primary);
 }
 
 .main > .container .ingredientTableStyle .ingredientTypeItem .ingredientTypePart{
-    font-weight: 100;
+    font-weight: bold;
+    border-right: 1px solid var(--font-primary);
 }
 
 .main > .container .ingredientTableStyle .colonneTitleContainer .colonneTitleItem{
-    border-bottom: 1px solid var(--color-light);
+    border-bottom: 1px solid var(--color-primary);
+    color: var(--color-primary);
 }
 
 .main > .container .ingredientTableStyle .ingredientTypeItem .buttonGroup{
@@ -139,22 +196,26 @@
     font-size: 1rem;
     cursor: pointer;
     transition: all 1s ease-in-out;
+    background-color: transparent;
 }
 
 .main > .container .ingredientTableStyle .ingredientTypeItem .ingredientTypePart .deleteButton{
     background: linear-gradient(90deg, transparent, var(--color-red));
     background-position: left;
     background-size: 10000px;
-    color: var(--color-light);
+    color: var(--color-black);
 }
 
 .main > .container .ingredientTableStyle .ingredientTypeItem .ingredientTypePart .deleteButton:hover{
     background-position: 400px;
     transform: scale(1.1);
+    color: var(--color-light);
 }
 
 .main > .container .ingredientTableStyle .ingredientTypeItem .ingredientTypePart .updateButton:hover{
     transform: scale(1.1);
+    background-color: var(--color-primary);
+    color: var(--color-light);
 }
 
 /**---------------Style for on/off diode-----------------------**/
@@ -163,6 +224,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 .main > .container .ingredientTableStyle .ingredientTypeItem .ingredientTypePart .itemDisponible, 
