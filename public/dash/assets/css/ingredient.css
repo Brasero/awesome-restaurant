@@ -65,6 +65,10 @@
     padding-bottom: 15px;
 }
 
+.bi-pencil-square{
+color: #5050cb;
+}
+
 .main > .container > .ingredientContainer > .ingredientCardDeck > .card > .formTitle{
     margin-top: 0;
     font-family: var(--font-primary);
