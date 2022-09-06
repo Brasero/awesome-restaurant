@@ -271,7 +271,7 @@ label:focus-within > span, input:not(:placeholder-shown) + span {
     font-size: 1rem;
     cursor: pointer;
     transition: all 1s ease-in-out;
-    color: rgb(80, 80, 203);
+    color: var(--color-blue);
     width: 100%;
     display: flex;
     justify-content: center;
