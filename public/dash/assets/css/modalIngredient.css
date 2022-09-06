@@ -22,7 +22,7 @@
     position: relative;
     width: 30%;
     border-radius: 15px;
-    background: var(--color-highlights);
+    background: white;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.4);
     overflow: hidden;
     
@@ -30,7 +30,7 @@
 .main > .container .modalUpdateType .modalHead, 
 .main > .container .modalUpdateType .modalBody form, 
 .main > .container .modalUpdateType .modalHead .modalTitle{
-    background: var(--color-highlights);
+    background: var(--color-lights);
 }
 
 .main > .container .modalUpdateType .modalHead{
@@ -42,6 +42,7 @@
     padding-left: 70px;
     padding-top: 25px;
     padding-right: 25px;
+    background-color: white;
 }
 
 .main > .container .modalUpdateType .modalHead .closeModalButton {
@@ -51,14 +52,23 @@
     border-radius: 100px;
 }
 .main > .container .modalUpdateType .modalHead .modalTitle {
-    color: var(--color-light);
+    color: var(--color-primary);
     font-size: 1.7rem;
     letter-spacing: 1px;
 }
 
+.main > .container .modalUpdateType .modalBody >.updateTypeForm > .inputGroup > .inputLabel > span{
+    background-color: white;
+}
+
+.main > .container .modalUpdateType .modalBody >.updateTypeForm > .inputGroup >.inputLabel>.inputItem{
+    border: 1px solid var(--color-primary);
+    background-color: white;
+}
+
 .main > .container .modalUpdateType .modalBody{
     padding: 35px 70px;
-    background-color: var(--color-highlights);
+    background-color: white;
 }
 
 .main > .container .modalUpdateType .modalBody .dispoLabel{

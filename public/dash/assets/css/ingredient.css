@@ -48,6 +48,7 @@
     background-color: var(--color-light);
     color: var(--color-primary);
     text-decoration: underline;
+    font-family: var(--font-primary);
 }
 
 
@@ -66,7 +67,7 @@
 
 .main > .container > .ingredientContainer > .ingredientCardDeck > .card > .formTitle{
     margin-top: 0;
-    font-family: var(--font-secondary);
+    font-family: var(--font-primary);
     color: var(--color-primary);
     box-shadow: none;
     text-decoration: underline;
@@ -131,7 +132,7 @@ background-color: white;
 }
 
 .main > .container .card, .main > .container .card  {
-    box-shadow:1px 1px 2px gray;
+    box-shadow: var(--box-shadow);
 }
 
 .main > .container .table{
@@ -148,7 +149,7 @@ background-color: white;
     border-radius: 15px;
     overflow: hidden;
     border-collapse: collapse;
-    box-shadow: 1px 1px 2px gray;
+    box-shadow: var(--box-shadow);
     margin: 15px;
     
 }
@@ -188,6 +189,7 @@ border: none;
 .main > .container .ingredientTableStyle .colonneTitleContainer .colonneTitleItem{
     border-bottom: 1px solid var(--color-primary);
     color: var(--color-primary);
+font-family: var(--font-primary);
 }
 
 .main > .container .ingredientTableStyle .ingredientTypeItem .buttonGroup{
