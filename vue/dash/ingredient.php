@@ -131,8 +131,13 @@ $ingredients = $ingredientManager->getAll();
                                 ?>
                             </td>
                             <td class="ingredientTypePart buttonGroup">
-                                <button class="actionButton updateButton" onclick="openModal(event ,'ingredient', <?= $ingredient->getId() ?>)" data-nomingredient="<?= $ingredient->getNom() ?>" data-prixingredient="<?= $ingredient->getPrix() ?>" data-dispoingredient="<?= $ingredient->getDispo() ?>" data-idtypeingredient="<?= $ingredient->getId_type() ?>">
-                                    <i class="bi bi-pencil-square"></i>
+                                <button class="actionButton updateButton" onclick="openModal(event ,'ingredient', <?= $ingredient->getId() ?>)" >
+                                    <i class="bi bi-pencil-square"
+                                        data-nomingredient="<?= $ingredient->getNom() ?>" 
+                                        data-prixingredient="<?= $ingredient->getPrix() ?>" 
+                                        data-dispoingredient="<?= $ingredient->getDispo() ?>" 
+                                        data-idtypeingredient="<?= $ingredient->getId_type() ?>"
+                                    ></i>
                                 </button>
                                 <button class="actionButton deleteButton" onclick="supprItem('ingredient', <?= $ingredient->getID() ?>)">
                                     Supprimer
