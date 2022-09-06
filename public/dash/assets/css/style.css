@@ -24,7 +24,7 @@
   --font-primary: "Aboreto", cursive;
   --font-secondary: "Redressed", cursive;
 
-
+  --box-shadow:5px 0 25px rgba(var(--color-dark-rgb), 0.2);
   --shadow-1: 1px 1px 2px black;
 
   --transition: all 500ms ease-in-out;
