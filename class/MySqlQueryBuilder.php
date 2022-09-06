@@ -1,5 +1,8 @@
 <?php
 
+namespace Tool;
+
+use Inter\SQLQueryBuilder;
 
 class MySqlQueryBuilder implements SQLQueryBuilder{
     protected $query;

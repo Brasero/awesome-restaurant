@@ -1,5 +1,7 @@
 <?php
 
+namespace Inter;
+
 interface SQLQueryBuilder{
     public function select(string $table, array $fields): SQLQueryBuilder;
     public function insert(string $table, array $fields): SQLQueryBuilder;

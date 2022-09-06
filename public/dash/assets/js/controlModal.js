@@ -45,6 +45,24 @@ function openModal(e, action, id){
         idInput.value = id
     }
 
+
+    else if(action == 'offre') {
+        var modalContainer = document.querySelector('.modalContainer')
+        var offreID = id[1]
+        var offreObj = id[0]
+        var IDinput = document.querySelector('#ID_offre_update')
+        var NomInput = document.querySelector('#offreNomUpdate')
+        var pourcentInput = document.querySelector('#tauxOffreUpdate')
+        var debutInput = document.querySelector('#date_debut_offre_update')
+        var finInput = document.querySelector('#date_fin_offre_update')
+
+        modalContainer.classList.remove('hiddenModal')
+        IDinput.value = offreID
+        NomInput.value = offreObj.nom
+        pourcentInput.value = offreObj.taux * 100
+        debutInput.value = offreObj.date_debut
+        finInput.value = offreObj.date_fin
+    }
      else if(action == 'taxe'){
         var modalContainer = document.querySelector('#modalTaxe');
         var input = document.querySelector('#taxeTauxUpdate');
@@ -85,6 +103,24 @@ function closeModalCategorie(){
     input.value = "";
 }
 
+
+function closeModalOffre(){
+    var modalContainer = document.querySelector('.modalContainer');
+
+    var IDinput = document.querySelector('#ID_offre_update')
+    var NomInput = document.querySelector('#offreNomUpdate')
+    var pourcentInput = document.querySelector('#tauxOffreUpdate')
+    var debutInput = document.querySelector('#date_debut_offre_update')
+    var finInput = document.querySelector('#date_fin_offre_update')
+
+    IDinput.value = ""
+    NomInput.value = ""
+    pourcentInput.value = ""
+    debutInput.value = ""
+    finInput.value = ""
+
+    modalContainer.classList.add('hiddenModal');
+}
 function closeModalTaxe(){
     var modalContainer = document.querySelector('#modalTaxe');
     var input = document.querySelector('#taxeIdUptade')
@@ -93,4 +129,5 @@ function closeModalTaxe(){
     modalContainer.classList.add('hiddenModal');
     idInput.value = "";
     input.value = "";
+
 }

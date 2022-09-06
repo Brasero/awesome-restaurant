@@ -1,5 +1,9 @@
 <?php
+namespace Tool;
 
+use PDO;
+use Inter\SQLQueryBuilder;
+use Tool\MySqlQueryBuilder;
 
 abstract class AbstractEntityManager
 {
