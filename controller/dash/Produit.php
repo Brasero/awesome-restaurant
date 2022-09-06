@@ -1,4 +1,10 @@
 <?php
+namespace Control\Dash;
+
+use Tool\AbstractEntity;
+use Model\Config\Database;
+use Model\Dash\CategorieManager;
+use Model\Dash\IngredientManager;
 
 class Produit extends AbstractEntity{
 

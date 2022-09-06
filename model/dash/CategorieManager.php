@@ -1,5 +1,15 @@
 <?php
 
+namespace Model\Dash;
+
+use PDO;
+use Tool\Toast;
+use Tool\ImageUploader;
+use Control\Dash\Categorie;
+use Tool\AbstractEntityManager;
+
+
+
 class CategorieManager extends AbstractEntityManager
 {
 

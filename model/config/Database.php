@@ -1,4 +1,9 @@
 <?php
+
+namespace Model\Config;
+
+use PDO;
+use PDOException;
 /**
  * Créer une connexion à la base de données l'objet PDO est enregistré dans $connection
  * Class Singleton

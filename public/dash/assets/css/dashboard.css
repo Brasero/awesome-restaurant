@@ -72,6 +72,20 @@
     align-items: center; 
 }
 
+.card__md__height {
+    aspect-ratio: 2/2.5;
+    width: 300px;
+    background-color: #fff;
+    border:1px solid #fff;
+    border-radius: 30px;
+    box-shadow: 5px 0 25px rgba(var(--color-dark-rgb), 0.2);
+    display: flex;
+    overflow: hidden;
+    padding: 10px 20px;
+    justify-content: center;
+    align-items: center;
+}
+
 .card__lg {
     aspect-ratio: 16/9;
     width: 100%;
@@ -97,7 +111,7 @@
     overflow: hidden;
 }
 
-.main > .container .container__dahsboard .row .card__lg .offreForm {
+.main > .container .container__dahsboard .row .card__md__height .offreForm {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -106,14 +120,14 @@
     width: 90%;
 }
 
-.main > .container .container__dahsboard .row .card__lg .offreForm .part {
+.main > .container .container__dahsboard .row .card__md__height .offreForm .part {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
 }
 
-.main > .container .container__dahsboard .row .card__lg .offreForm .formTitle {
+.main > .container .container__dahsboard .row .card__md__height .offreForm .formTitle {
     margin: unset;
     padding: unset;
     padding-top: 20px;
@@ -123,16 +137,16 @@
 
 
 
-.main > .container .container__dahsboard .row .card__lg .offreForm .part {
+.main > .container .container__dahsboard .row .card__md__height .offreForm .part {
     display: flex;
     flex-direction: column;
 }
 
-.main > .container .container__dahsboard .row .card__lg .offreForm .inputGroup{
+.main > .container .container__dahsboard .row .card__md__height .offreForm .inputGroup{
     width: 90%;
 }
 
-.main > .container .container__dahsboard .row .card__lg .offreForm .inputGroup label {
+.main > .container .container__dahsboard .row .card__md__height .offreForm .inputGroup label {
     border: 1px solid var(--color-primary);
 }
 
@@ -157,8 +171,167 @@ label:focus-within > span, input:not(:placeholder-shown) + span {
     border: 2px solid var(--color-highlights);
   }
 
-.main > .container .container__dahsboard .row .card__lg .offreForm .inputGroup input {
+.main > .container .container__dahsboard .row .card__md__height .offreForm .inputGroup input {
     height: 15px;
+}
+
+/** Liste offre **/
+
+.main> .container .offreListTable {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.main> .container .offreListTable tbody {
+    width: 100%;
+}
+
+.main> .container .offreListTable .tableRow .part{
+    width: -webkit-fill-available;
+}
+
+.tableTitle {
+    color: var(--color-primary);
+    font-family: var(--font-primary);
+}
+
+.main> .container .offreListTable .head.tableRow .part {
+    padding: 10px 25px;
+    padding-left: 0;
+    width: 17%;
+    text-align: left;
+    font-family: var(--font-primary);
+    color: var(--color-primary);
+    border-bottom: 1px solid var(--color-primary);
+}
+
+.main> .container .offreListTable .head.tableRow .part:nth-child(1), 
+.main> .container .offreListTable .offreItem.tableRow .offrePart:nth-child(1)
+{
+    width: 240px;
+    max-width: 240px;
+    color: var(--color-primary);
+    font-size: .9rem;;
+}
+
+.main> .container .offreListTable .offreItem.tableRow .offrePart:nth-child(1) {
+    font-family: var(--font-secondary);
+}
+
+.main> .container .offreListTable .offreItem.tableRow .offrePart {
+    border-bottom: 1px solid var(--color-primary);
+    padding: 5px 3px;
+    text-align: center;
+    word-break: keep-all;
+}
+
+.main> .container .offreListTable .offreItem.tableRow .offrePart:last-child {
+    border-right: unset;
+}
+
+.main> .container .offreListTable .offreItem.tableRow .offrePart .waiting {
+    color: var(--color-light);
+    font-family: var(--font-primary);
+    font-size: 0.7rem;
+    background: rgb(195, 195, 52);
+    border-radius: 10px;
+    padding: 10px 15px;
+    width: 200px;
+}
+
+.main> .container .offreListTable .offreItem.tableRow .offrePart .enableOffer {
+    color: var(--color-light);
+    font-family: var(--font-primary);
+    font-size: 0.7rem;
+    background: var(--color-green);
+    border-radius: 10px;
+    padding: 10px 15px;
+    width: 200px;
+}
+
+.main> .container .offreListTable .offreItem.tableRow .offrePart .ended {
+    color: var(--color-light);
+    font-family: var(--font-primary);
+    font-size: 0.7rem;
+    background: var(--color-red);
+    border-radius: 10px;
+    padding: 10px 15px;
+    width: 200px;
+}
+
+.actionButton{
+    padding: 4px 6px;
+    border-radius: 5px;
+    border: none;
+    letter-spacing: 1px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 1s ease-in-out;
+    color: rgb(80, 80, 203);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.1);
+    box-shadow: -2px 2px 6px rgba(0,0,0,1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: darkgrey;
+}
+
+.updateOffreForm {
+    padding: 35px 50px;
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.5);
+    border-radius: 30px;
+}
+
+.modalHead {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+
+.main > .container .inputGroup {
+    border: 1px solid var(--color-primary);
+    border-radius: 5px;
+}
+
+.main > .container .closeModalButton {
+    font-size: 1rem;
+    border-radius: 40px;
+    width: 25px; 
+    aspect-ratio: 1/1;
+    background: var(--color-red);
+    color: var(--color-light);
+    border: none;
+}
+
+.main > .container .addButton {
+    background: var(--color-green);
+}
+
+.main > .container .subButton {
+    background: var(--color-primary);
+    padding: 5px 25px;
+    border-radius: 25px;
+    border: none;
 }
 
 /*  right Part  */

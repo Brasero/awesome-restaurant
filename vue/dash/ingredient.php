@@ -1,8 +1,9 @@
 <?php
 
-//require du controller de la page
+use Model\Dash\IngredientManager;
+use Model\Dash\IngredientTypeManager;
 
-use function PHPSTORM_META\type;
+//require du controller de la page
 
 require_once('../../controller/dash/ingredientController.php');
 

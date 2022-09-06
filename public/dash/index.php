@@ -1,26 +1,28 @@
 <?php
 
+use Model\Config\Database;
+require "../../vendor/autoload.php";
 session_start();
 require_once('../../model/config/Database.php');
 
 $bdd = Database::getInstance('exemple_panier', 'root', '', 'localhost');
 
-function autoload($class){
-    if(file_exists('../../model/dash/'.$class.'.php')){
-        require_once("../../model/dash/$class.php");
-    }
-    elseif(file_exists("../../controller/dash/$class.php")){
-        require_once("../../controller/dash/$class.php");
-    }
-    elseif(file_exists("../../class/$class.php")){
-        require_once("../../class/$class.php");
-    }
-    elseif(file_exists("../../interface/$class.php")){
-        require_once("../../interface/$class.php");
-    }
-}
+// function autoload($class){
+//     if(file_exists('../../model/dash/'.$class.'.php')){
+//         require_once("../../model/dash/$class.php");
+//     }
+//     elseif(file_exists("../../controller/dash/$class.php")){
+//         require_once("../../controller/dash/$class.php");
+//     }
+//     elseif(file_exists("../../class/$class.php")){
+//         require_once("../../class/$class.php");
+//     }
+//     elseif(file_exists("../../interface/$class.php")){
+//         require_once("../../interface/$class.php");
+//     }
+// }
 
-spl_autoload_register('autoload');
+// spl_autoload_register('autoload');
 
 ?>
 
