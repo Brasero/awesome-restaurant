@@ -1,5 +1,6 @@
 <?php
 
+use Model\Dash\TaxeManager;
 use Model\Dash\ProduitManager;
 use Model\Dash\CategorieManager;
 use Model\Dash\IngredientManager;
@@ -196,7 +197,7 @@ $taxes = $taxeManager->getAll();
             <table class="categorieTypeTable categorieTableStyle">
                 <h4 class="title" style="padding:
                 20px 15px; text-align: center;">
-                    Liste categorie
+                    TVA
                 </h4>
                 <tbody>
                     <tr class="colonneTitleContainer">

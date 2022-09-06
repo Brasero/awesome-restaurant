@@ -44,10 +44,14 @@ $bdd = Database::getInstance('exemple_panier', 'root', '', 'localhost');
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
     <?php
-    switch($_GET['page']){
-        case 'dashboard':
-            echo '<link rel="stylesheet" href="./assets/css/dashboard.css">';
-            break;
+    if(isset($_GET['page'])){
+        switch($_GET['page']){
+            case 'dashboard':
+                echo '<link rel="stylesheet" href="./assets/css/dashboard.css">';
+                break;
+        }
+    } else {
+        echo '<link rel="stylesheet" href="./assets/css/dashboard.css">';
     }
     
     ?>
@@ -140,7 +144,7 @@ $bdd = Database::getInstance('exemple_panier', 'root', '', 'localhost');
                             break;
                     }
                 } else {
-                    include('');
+                    include('../../vue/dash/dashboard.php');
                 }
 
 
