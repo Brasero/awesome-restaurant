@@ -48,6 +48,7 @@
     padding: 15px 20px;
     border-radius: 15px;
     justify-content: flex-start;
+    background-color:white ;
 }
 
 .main > .container > .produitContainer .produitCardDeck .card > *{
@@ -56,39 +57,60 @@
 
 .main > .container > .produitContainer .produitCardDeck .card .formTitle{
     margin-top: 0;
-    text-shadow: var(--shadow-1);
+    color: var(--color-highlights) ;
+    font-family: var(--font-primary);
+    text-decoration: underline;
 }
 
-.main > .container .categorieTableStyle{
+.main > .container > .produitContainer > .produitCardDeck > .table > .categorieTableStyle{
     width: 100%;
-    background-color: var(--color-highlights);
+    background-color: white;
     padding: 25px 20px;
     border-radius: 15px;
     overflow: hidden;
-    color: var(--color-light);
+    color: var(--color-highlight);
     border-collapse: collapse;
 }
 
-.main > .container .table table.categorieTableStyle .title{
+.main > .container > .produitContainer > .produitCardDeck > .table > .categorieTableStyle > tbody > .colonneTitleContainer
+{
+    color: var(--color-highlights);
+    border-bottom: 1px solid var(--color-highlights);
+}
+
+.main > .container .categorieTableStyle .colonneTitleContainer .colonneTitleItem
+{
+    font-family: var(--font-primary);
+}
+
+.main > .container > .produitContainer > .produitCardDeck > .table > .title{
     text-align: center;
     width: 100%;
     padding: 25px 15px;
+    color: var(--color-highlights);
+    font-family: var(--font-primary);
 }
 
 .main > .container .categorieTableStyle .colonneTitleContainer .colonneTitleItem,
 .main > .container .categorieTableStyle .categorieTypeItem .categorieTypePart{
-    background-color: var(--color-highlights);
+    background-color: white;
     text-align: center;
     padding: 5px 8px;
 }
 
 .main > .container .categorieTableStyle .categorieTypeItem .categorieTypePart{
     font-weight: 100;
+    color: var(--color-highlights);
+    border-right: 1px solid var(--color-highlights);
 }
 
-.main > .container .categorieTableStyle .colonneTitleContainer .colonneTitleItem{
-    border-bottom: 1px solid var(--color-light);
+
+
+.main > .container .categorieTableStyle .categorieTypeItem .categorieTypePart:last-child
+{
+    border: none;
 }
+
 
 .main > .container .categorieTableStyle .categorieTypeItem .buttonGroup{
     display: flex;
@@ -110,7 +132,6 @@
     background: linear-gradient(90deg, transparent, var(--color-red));
     background-position: left;
     background-size: 10000px;
-    color: var(--color-light);
 }
 .main > .container .categorieTableStyle .categorieTypeItem .categorieTypePart .deleteButton:hover{
     background-position: 400px;
@@ -136,6 +157,7 @@
 .main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart1, 
 .main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart2{
     background: inherit;
+    background-color: white;
     position: absolute;
     width: inherit;
     max-width: 300px;
@@ -143,6 +165,25 @@
     z-index: 1000;
     top: 0;
     transition: var(--transition);
+}
+
+.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .produitFormPart1 > .inputGroup > .inputLabel,
+.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .produitFormPart1 > .inputGroup > .inputLabel > .inputItem,
+.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .produitFormPart1 > .inputGroup > .inputLabel > span
+{
+    background-color: white;
+}
+
+.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .produitFormPart1 > .inputGroup > .inputLabel
+{
+border: 1px solid var(--color-highlights);
+}
+
+.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .produitFormPart1 > .typeChoice > #categorieType
+{
+    border: 1px solid var(--color-highlights);
+    background-color: white;
+    color: var(--color-highlights);
 }
 
 .main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart1{
@@ -155,6 +196,7 @@
     box-shadow: var(--shadow-1);
     transform: translate(-2px, -2px);
 }
+/* -------- Formulaire Ajout categorie --------- */
 
 .main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart2{
     left: 100%;
@@ -274,4 +316,4 @@
 
 
 
-/* ---------END Formulaire ajout produit ------------ */
+/* ---------END Formulaire ajout categorie ------------ */

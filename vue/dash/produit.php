@@ -119,7 +119,41 @@ $taxes = $taxeManager->getAll();
                 </span>
             </form>
         </div>
-        <div class="card">
+        <div class="table">
+            <table class="categorieTypeTable categorieTableStyle">
+                <h4 class="title">
+                    Liste categorie
+                </h4>
+                <tbody>
+                    <tr class="colonneTitleContainer">
+                        <th class="colonneTitleItem">Nom
+                        </th>
+                        <th class="colonneTitleItem">Action</th>
+                    </tr>
+                    <?php foreach ($categories as $categorie) { ?>
+                        <tr class="categorieTypeItem" id="categorie-<?= $categorie->getID() ?>">
+                            <td class="categorieTypePart"><?= $categorie->getNom() ?>
+                            </td>
+                            <td class="categorieTypePart buttonGroup">
+                                <button class="actionButton updateButton" onclick="openModal(event, 'categorie', <?= $categorie->getID() ?>)" >
+                                    <i class="bi bi-pencil-square"
+                                         data-nomcategorie="<?= $categorie->getNom() ?>">
+                                    </i>
+                                </button>
+                                <button class="actionButton deleteButton" onclick="supprItem('categorie', <?= $categorie->getID() ?>)">
+                                    Supprimer
+                                </button>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="produitCardDeck">
+        <div class="table">Produit liste</div>
+
+         <div class="card">
             <h4 class="formTitle">
                 Ajouter categorie
             </h4>
@@ -141,38 +175,6 @@ $taxes = $taxeManager->getAll();
                     Ajouter
                 </button>
             </form>
-        </div>
-    </div>
-    <div class="produitCardDeck">
-        <div class="table">Produit liste</div>
-        <div class="table">
-            <table class="categorieTypeTable categorieTableStyle">
-                <h4 class="title" style="padding:
-                20px 15px; text-align: center;">
-                    Liste categorie
-                </h4>
-                <tbody>
-                    <tr class="colonneTitleContainer">
-                        <th class="colonneTitleItem">Nom
-                        </th>
-                        <th class="colonneTitleItem">Action</th>
-                    </tr>
-                    <?php foreach ($categories as $categorie) { ?>
-                        <tr class="categorieTypeItem" id="categorie-<?= $categorie->getID() ?>">
-                            <td class="categorieTypePart"><?= $categorie->getNom() ?>
-                            </td>
-                            <td class="categorieTypePart buttonGroup">
-                                <button class="actionButton updateButton" onclick="openModal(event, 'categorie', <?= $categorie->getID() ?>)" data-nomcategorie="<?= $categorie->getNom() ?>">
-                                    Modifier
-                                </button>
-                                <button class="actionButton deleteButton" onclick="supprItem('categorie', <?= $categorie->getID() ?>)">
-                                    Supprimer
-                                </button>
-                            </td>
-                        </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
         </div>
     </div>
     <div class="produitCardDeck">
