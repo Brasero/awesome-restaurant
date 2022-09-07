@@ -57,6 +57,7 @@ $taxes = $taxeManager->getAll();
     </h1>
     <div class="produitCardDeck">
         <div class="card">
+<!-- debut form ajout produit -->
             <h4 class="formTitle">
                 Ajouter un produit
             </h4>
@@ -118,22 +119,63 @@ $taxes = $taxeManager->getAll();
 
                 </span>
             </form>
+<!-- fin form ajout produit -->
         </div>
-        <div class="table">
+<!-- debut tableau produit -->
+    <div class="table">
             <table class="categorieTypeTable categorieTableStyle">
                 <h4 class="title">
-                    Liste categorie
+                    Liste produit
                 </h4>
                 <tbody>
                     <tr class="colonneTitleContainer">
-                        <th class="colonneTitleItem">Nom
-                        </th>
+                        <th class="colonneTitleItem">Nom</th>
+                        <th class="colonneTitleItem">prix</th>
+                        <th class="colonneTitleItem">taxe</th>
+                        <th class="colonneTitleItem">categorie</th>
                         <th class="colonneTitleItem">Action</th>
                     </tr>
                     <?php foreach ($categories as $categorie) { ?>
                         <tr class="categorieTypeItem" id="categorie-<?= $categorie->getID() ?>">
-                            <td class="categorieTypePart"><?= $categorie->getNom() ?>
+                            <td class="categorieTypePart"><?= $categorie->getNom() ?></td>
+                            <td class="categorieTypePart"><?= $categorie->getNom() ?></td>
+                            <td class="categorieTypePart"><?= $categorie->getNom() ?></td>
+                            <td class="categorieTypePart"><?= $categorie->getNom() ?></td>
+                            <td class="categorieTypePart"><?= $categorie->getNom() ?></td>
+                            <td class="categorieTypePart buttonGroup">
+                                <button class="actionButton updateButton" onclick="openModal(event, 'categorie', <?= $categorie->getID() ?>)" >
+                                    <i class="bi bi-pencil-square"
+                                         data-nomcategorie="<?= $categorie->getNom() ?>">
+                                    </i>
+                                </button>
+                                <button class="actionButton deleteButton" onclick="supprItem('categorie', <?= $categorie->getID() ?>)">
+                                    Supprimer
+                                </button>
                             </td>
+                        </tr>
+                    <?php } ?>
+             </tbody>
+        </table>
+    </div>
+<!-- fin tableau produit -->
+
+
+    </div>
+    <div class="produitCardDeck">
+<!-- debut liste categorie produit -->
+    <div class="table">
+        <table class="categorieTypeTable categorieTableStyle">
+            <h4 class="title">
+                Liste categorie
+            </h4>
+            <tbody>
+                <tr class="colonneTitleContainer">
+                    <th class="colonneTitleItem">Nom</th>
+                    <th class="colonneTitleItem">Action</th>
+                </tr>
+                    <?php foreach ($categories as $categorie) { ?>
+                        <tr class="categorieTypeItem" id="categorie-<?= $categorie->getID() ?>">
+                            <td class="categorieTypePart"><?= $categorie->getNom() ?> </td>
                             <td class="categorieTypePart buttonGroup">
                                 <button class="actionButton updateButton" onclick="openModal(event, 'categorie', <?= $categorie->getID() ?>)" >
                                     <i class="bi bi-pencil-square"
@@ -149,15 +191,13 @@ $taxes = $taxeManager->getAll();
                 </tbody>
             </table>
         </div>
-    </div>
-    <div class="produitCardDeck">
-        <div class="table">Produit liste</div>
-
+<!-- fin liste cateogrie produit -->
          <div class="card">
+<!-- debut form ajout categorie produit -->
             <h4 class="formTitle">
                 Ajouter categorie
             </h4>
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="" method="POST" enctype="multipart/form-data" class="produitFormContainer">
                 <div class="inputGroup">
                     <label for="categorieNom" class="inputLabel">
                         <input type="text" class="inputItem" name="Nom_categorie" id="categorieNom" placeholder="Nom" required />
@@ -167,7 +207,7 @@ $taxes = $taxeManager->getAll();
                 <span class="inputGroup">
                     <label for="image" class="inputLabel">
                         <input type="hidden" name="MAX_FILE_SIZE" value="20000000" />
-                        <input type="file" class="inputItem" name="image" id="image" placeholder="Image" required />
+                       <input type="file" class="inputItem" name="image" id="image" placeholder="Image" required />
                         <span>Image</span>
                     </label>
                 </span>
@@ -177,13 +217,14 @@ $taxes = $taxeManager->getAll();
             </form>
         </div>
     </div>
+<!-- fin form ajout categorie -->
     <div class="produitCardDeck">
-        <!-- debut form taux -->
+<!-- debut form taxe -->
         <div class="card">
             <h4 class="formTitle">
                 Ajouter taxe
             </h4>
-            <form action="" method="POST" >
+            <form action="" method="POST" class="produitFormContainer" >
                 <div class="inputGroup">
                     <label for="TaxeLitterale_taxe" class="inputLabel">
                         <input type="number" step="0.1" min="0" max="100" class="inputItem" name="TaxeLitterale_taxe" id="TaxeLitterale_taxe" placeholder="Nom" required />
@@ -195,7 +236,9 @@ $taxes = $taxeManager->getAll();
                 </button>
             </form>
         </div>
-            <div class="table">
+<!-- fin form taxe -->
+<!-- debut tableau taxe -->
+        <div class="table">
             <table class="categorieTypeTable categorieTableStyle">
                 <h4 class="title" style="padding:
                 20px 15px; text-align: center;">
@@ -212,8 +255,9 @@ $taxes = $taxeManager->getAll();
                             <td class="categorieTypePart"><?= $taxe->getTaxeTolitteral() ?>
                             </td>
                             <td class="categorieTypePart buttonGroup">
-                                <button class="actionButton updateButton" onclick="openModal(event,'taxe', <?= $taxe->getId() ?>)" data-tauxTaxe="<?=$taxe->getTaxePourcent() ?>">
-                                    Modifier
+                                <button class="actionButton updateButton" onclick="openModal(event,'taxe', <?= $taxe->getId() ?>)" >
+                                  <i class="bi bi-pencil-square" data-tauxTaxe="<?=$taxe->getTaxePourcent() ?>">
+                                  </i>
                                 </button>
                                 <button class="actionButton deleteButton" onclick="supprItem('taxe', <?= $taxe->getId() ?>)">
                                     Supprimer
@@ -224,6 +268,7 @@ $taxes = $taxeManager->getAll();
                 </tbody>
             </table>
         </div>
+<!-- fin tableau taxe -->
     </div>
 </div>
 

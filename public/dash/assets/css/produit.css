@@ -36,11 +36,6 @@
     gap: 25px;
 }
 
-.main > .container .card, 
-.main > .container .card .formTitle, 
-.main > .container .card form{
-    background: var(--color-highlights);
-}
 
 .produitContainer > .produitCardDeck > .card{
     min-width: 250px;
@@ -49,6 +44,14 @@
     border-radius: 15px;
     justify-content: flex-start;
     background-color:white ;
+    max-width: 420px;
+    box-shadow: var(--box-shadow);
+}
+
+.main>.container>.produitContainer> .produitCardDeck > .table
+{
+    min-width: 40%;
+    border-radius: 15px;
 }
 
 .main > .container > .produitContainer .produitCardDeck .card > *{
@@ -57,7 +60,7 @@
 
 .main > .container > .produitContainer .produitCardDeck .card .formTitle{
     margin-top: 0;
-    color: var(--color-highlights) ;
+    color: var(--color-primary) ;
     font-family: var(--font-primary);
     text-decoration: underline;
 }
@@ -70,12 +73,13 @@
     overflow: hidden;
     color: var(--color-highlight);
     border-collapse: collapse;
+    box-shadow: var(--box-shadow);
 }
 
 .main > .container > .produitContainer > .produitCardDeck > .table > .categorieTableStyle > tbody > .colonneTitleContainer
 {
-    color: var(--color-highlights);
-    border-bottom: 1px solid var(--color-highlights);
+    color: var(--color-primary);
+    border-bottom: 1px solid var(--color-primary);
 }
 
 .main > .container .categorieTableStyle .colonneTitleContainer .colonneTitleItem
@@ -87,8 +91,9 @@
     text-align: center;
     width: 100%;
     padding: 25px 15px;
-    color: var(--color-highlights);
+    color: var(--color-primary);
     font-family: var(--font-primary);
+    background-color: transparent;
 }
 
 .main > .container .categorieTableStyle .colonneTitleContainer .colonneTitleItem,
@@ -96,21 +101,29 @@
     background-color: white;
     text-align: center;
     padding: 5px 8px;
+    
+}
+
+.main > .container .categorieTableStyle .categorieTypeItem{
+border-bottom: 1px solid var(--color-primary);
+}
+
+.main > .container .categorieTableStyle .categorieTypeItem:last-child{
+border-bottom: none;
+}
+
+.main > .container .categorieTableStyle .categorieTypeItem .categorieTypePart:last-child{
+border-bottom: none;
 }
 
 .main > .container .categorieTableStyle .categorieTypeItem .categorieTypePart{
-    font-weight: 100;
-    color: var(--color-highlights);
-    border-right: 1px solid var(--color-highlights);
+    font-weight: bold;
 }
 
 
-
-.main > .container .categorieTableStyle .categorieTypeItem .categorieTypePart:last-child
-{
-    border: none;
+.main > .container .categorieTableStyle .categorieTypeItem .categorieTypePart:first-child{
+    color: var(--color-primary);
 }
-
 
 .main > .container .categorieTableStyle .categorieTypeItem .buttonGroup{
     display: flex;
@@ -120,6 +133,7 @@
 }
 
 .main > .container .categorieTableStyle .categorieTypeItem .categorieTypePart .actionButton{
+    background-color: white;
     padding: 4px 6px;
     border-radius: 5px;
     border: none;
@@ -149,8 +163,8 @@
 .main > .container .produitContainer .produitCardDeck .card .produitFormContainer{
     width: 100%;
     max-width: 300px;
-    overflow: hidden;
-    height: 300px;
+    overflow-x: clip;
+    height: -webkit-fill-available;
     position: relative;
 }
 
@@ -162,11 +176,15 @@
     width: inherit;
     max-width: 300px;
     height: 300px;
-    z-index: 1000;
+    z-index: 2;
     top: 0;
     transition: var(--transition);
 }
 
+
+.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup > .inputLabel,
+.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup > .inputLabel > .inputItem,
+.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup > .inputLabel > span,
 .main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .produitFormPart1 > .inputGroup > .inputLabel,
 .main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .produitFormPart1 > .inputGroup > .inputLabel > .inputItem,
 .main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .produitFormPart1 > .inputGroup > .inputLabel > span
@@ -174,16 +192,21 @@
     background-color: white;
 }
 
-.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .produitFormPart1 > .inputGroup > .inputLabel
+.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .produitFormPart1 > .inputGroup > .inputLabel > .inputItem 
 {
-border: 1px solid var(--color-highlights);
+border: 1px solid var(--color-primary);
+}
+
+.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup > .inputLabel > .inputItem 
+{
+border: 1px solid var(--color-primary);
 }
 
 .main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .produitFormPart1 > .typeChoice > #categorieType
 {
-    border: 1px solid var(--color-highlights);
+    border: 1px solid var(--color-primary);
     background-color: white;
-    color: var(--color-highlights);
+    color: var(--color-primary);
 }
 
 .main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart1{
@@ -191,7 +214,7 @@ border: 1px solid var(--color-highlights);
 }
 
 .main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart1 .addButton:hover{
-    color: var(--color-highlights);
+    color: var(--color-primary);
     background: var(--color-light);
     box-shadow: var(--shadow-1);
     transform: translate(-2px, -2px);
@@ -238,7 +261,7 @@ border: 1px solid var(--color-highlights);
 .main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart2::-webkit-scrollbar{
     margin-left: 5px;
     width: 4px;
-    background-color: var(--color-highlights);
+    background-color: var(--color-primary);
     border: none;
     border-left: 1px solid var(--color-light);
 
@@ -269,7 +292,7 @@ border: 1px solid var(--color-highlights);
 }
 
 .main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart2 .ingredientGroup .typeIngredientGroupItem{
-    border-bottom: 1px solid var(--color-light);
+    border-bottom: 1px solid var(--color-primary);
     background: transparent;
     padding: 10px;
     border-left: 1px solid var(--color-light);
@@ -312,6 +335,13 @@ border: 1px solid var(--color-highlights);
     height: unset;
 }
 
+ .inputGroup >.inputLabel>.inputItem{
+    border: 1px solid var(--color-primary);
+    background-color: white;
+}
+.inputGroup >.inputLabel >  span{
+  background-color: white;
+}
 
 
 
