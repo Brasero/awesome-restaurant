@@ -46,7 +46,7 @@
   .inputGroup > label > span {
     position: absolute;
     text-transform: uppercase;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: var(--font-secondary);
     font-weight: 300;
     padding: 0px 5px;
     top: 0;
@@ -70,9 +70,6 @@
     background: white;
   }
   
-  label:focus-within {
-    border: 2px solid var(--color-highlights);
-  }
   
   /**---- end label animation ----**/
   
