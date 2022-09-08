@@ -1,6 +1,9 @@
 <?php
+
 require('../model/config/Database.php');
 require('../model/villeModel.php');
+require('../vendor/autoload.php');
+use Model\Config\Database;
 
 $bdd = Database::getInstance('exemple_panier', 'root', '', 'localhost');
 
