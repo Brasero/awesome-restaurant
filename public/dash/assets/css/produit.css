@@ -36,11 +36,6 @@
     gap: 25px;
 }
 
-.main > .container .card, 
-.main > .container .card .formTitle, 
-.main > .container .card form{
-    background: var(--color-highlights);
-}
 
 .produitContainer > .produitCardDeck > .card{
     min-width: 250px;
@@ -48,6 +43,15 @@
     padding: 15px 20px;
     border-radius: 15px;
     justify-content: flex-start;
+    background-color:white ;
+    max-width: 420px;
+    box-shadow: var(--box-shadow);
+}
+
+.main>.container>.produitContainer> .produitCardDeck > .table
+{
+    min-width: 40%;
+    border-radius: 15px;
 }
 
 .main > .container > .produitContainer .produitCardDeck .card > *{
@@ -56,38 +60,71 @@
 
 .main > .container > .produitContainer .produitCardDeck .card .formTitle{
     margin-top: 0;
-    text-shadow: var(--shadow-1);
+    color: var(--color-primary) ;
+    font-family: var(--font-primary);
+    text-decoration: underline;
 }
 
-.main > .container .categorieTableStyle{
+.main > .container > .produitContainer > .produitCardDeck > .table > .categorieTableStyle{
     width: 100%;
-    background-color: var(--color-highlights);
+    background-color: white;
     padding: 25px 20px;
     border-radius: 15px;
     overflow: hidden;
-    color: var(--color-light);
+    color: var(--color-highlight);
     border-collapse: collapse;
+    box-shadow: var(--box-shadow);
 }
 
-.main > .container .table table.categorieTableStyle .title{
+.main > .container > .produitContainer > .produitCardDeck > .table > .categorieTableStyle > tbody > .colonneTitleContainer
+{
+    color: var(--color-primary);
+    border-bottom: 1px solid var(--color-primary);
+}
+
+.main > .container .categorieTableStyle .colonneTitleContainer .colonneTitleItem
+{
+    font-family: var(--font-primary);
+}
+
+.main > .container > .produitContainer > .produitCardDeck > .table > .title{
     text-align: center;
     width: 100%;
     padding: 25px 15px;
+    color: var(--color-primary);
+    font-family: var(--font-primary);
+    background-color: transparent;
+    text-decoration: underline;
 }
 
 .main > .container .categorieTableStyle .colonneTitleContainer .colonneTitleItem,
 .main > .container .categorieTableStyle .categorieTypeItem .categorieTypePart{
-    background-color: var(--color-highlights);
+    background-color: white;
     text-align: center;
-    padding: 5px 8px;
+    padding: 8px 11px;
+    
+}
+
+.main > .container .categorieTableStyle .categorieTypeItem{
+border-bottom: 1px solid var(--color-primary);
+}
+
+.main > .container .categorieTableStyle .categorieTypeItem:last-child{
+border-bottom: none;
+border-top: none;
+}
+
+.main > .container .categorieTableStyle .categorieTypeItem .categorieTypePart:last-child{
+border-bottom: none;
 }
 
 .main > .container .categorieTableStyle .categorieTypeItem .categorieTypePart{
-    font-weight: 100;
+    font-weight: bold;
 }
 
-.main > .container .categorieTableStyle .colonneTitleContainer .colonneTitleItem{
-    border-bottom: 1px solid var(--color-light);
+
+.main > .container .categorieTableStyle .categorieTypeItem .categorieTypePart:first-child{
+    color: var(--color-primary);
 }
 
 .main > .container .categorieTableStyle .categorieTypeItem .buttonGroup{
@@ -98,6 +135,7 @@
 }
 
 .main > .container .categorieTableStyle .categorieTypeItem .categorieTypePart .actionButton{
+    background-color: white;
     padding: 4px 6px;
     border-radius: 5px;
     border: none;
@@ -110,7 +148,6 @@
     background: linear-gradient(90deg, transparent, var(--color-red));
     background-position: left;
     background-size: 10000px;
-    color: var(--color-light);
 }
 .main > .container .categorieTableStyle .categorieTypeItem .categorieTypePart .deleteButton:hover{
     background-position: 400px;
@@ -128,21 +165,50 @@
 .main > .container .produitContainer .produitCardDeck .card .produitFormContainer{
     width: 100%;
     max-width: 300px;
-    overflow: hidden;
-    height: 300px;
+    overflow-x: clip;
+    height: -webkit-fill-available;
     position: relative;
 }
 
 .main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart1, 
 .main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart2{
     background: inherit;
+    background-color: white;
     position: absolute;
     width: inherit;
     max-width: 300px;
     height: 300px;
-    z-index: 1000;
+    z-index: 2;
     top: 0;
     transition: var(--transition);
+}
+
+
+.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup > .inputLabel,
+.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup > .inputLabel > .inputItem,
+.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup > .inputLabel > span,
+.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .produitFormPart1 > .inputGroup > .inputLabel,
+.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .produitFormPart1 > .inputGroup > .inputLabel > .inputItem,
+.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .produitFormPart1 > .inputGroup > .inputLabel > span
+{
+    background-color: white;
+}
+
+.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .produitFormPart1 > .inputGroup > .inputLabel > .inputItem 
+{
+border: 1px solid var(--color-primary);
+}
+
+.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup > .inputLabel > .inputItem 
+{
+border: 1px solid var(--color-primary);
+}
+
+.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .produitFormPart1 > .typeChoice > #categorieType
+{
+    border: 1px solid var(--color-primary);
+    background-color: white;
+    color: var(--color-primary);
 }
 
 .main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart1{
@@ -150,11 +216,11 @@
 }
 
 .main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart1 .addButton:hover{
-    color: var(--color-highlights);
-    background: var(--color-light);
-    box-shadow: var(--shadow-1);
+    color: var(--color-light);
+    background: var(--color-primary);
     transform: translate(-2px, -2px);
 }
+/* -------- Formulaire Ajout categorie --------- */
 
 .main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart2{
     left: 100%;
@@ -196,7 +262,7 @@
 .main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart2::-webkit-scrollbar{
     margin-left: 5px;
     width: 4px;
-    background-color: var(--color-highlights);
+    background-color: var(--color-primary);
     border: none;
     border-left: 1px solid var(--color-light);
 
@@ -227,7 +293,7 @@
 }
 
 .main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart2 .ingredientGroup .typeIngredientGroupItem{
-    border-bottom: 1px solid var(--color-light);
+    border-bottom: 1px solid var(--color-primary);
     background: transparent;
     padding: 10px;
     border-left: 1px solid var(--color-light);
@@ -270,8 +336,72 @@
     height: unset;
 }
 
+ .inputGroup >.inputLabel>.inputItem{
+    border: 1px solid var(--color-primary);
+    background-color: white;
+}
+.inputGroup >.inputLabel >  span{
+  background-color: white;
+}
+
+.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup {
+    background-color: white;
+}
+
+.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup >  .fileInput{
+position: relative;
+background-color: transparent;
+width: 95%;
+background-color: white;
+height: 80px;
+}
+
+.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup >  .fileInput  .inputItem{
+    position: absolute;
+    width: 77%;
+    left: 70px;
+    height: 40px;
+}
+
+.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup > .fileInput > .fakeFile{
+position: absolute;
+top: 0;
+left: 40px;
+z-index: 1;
+background-color: white;
+}
+
+.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup > .fileInput > .fakeFile > button{
+color: var(--color-primary);
+padding: 5px;
+margin-left: 30px;
+border-radius: 15px;
+border: solid 1px var(--color-primary);
+z-index: 1;
+background-color: white;
+}
+
+.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup > .fileInput > .fakeFile > button:hover{
+background-color: var(--color-primary);
+}
+
+.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup > .fileInput > .fakeFile > #fakeInput{
+margin-top: 20px;
+border: none;
+background-color: white;
+color: var(--color-black);
+}
+
+.inputFile{
+position: relative;
+	text-align: right;
+	opacity: 0;
+	z-index: 2;
+    background-color: white;
+    width: 70%;
+}
 
 
 
 
-/* ---------END Formulaire ajout produit ------------ */
+/* ---------END Formulaire ajout categorie ------------ */
