@@ -382,11 +382,14 @@ z-index: 1;
 background-color: white;
 }
 
+.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup > .fileInput > .fakeFile > button:hover{
+background-color: var(--color-primary);
+}
+
 .main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup > .fileInput > .fakeFile > #fakeInput{
 margin-top: 20px;
 border: none;
 background-color: white;
-color: var(--color-primary);
 }
 
 .inputFile{

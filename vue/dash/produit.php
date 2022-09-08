@@ -211,8 +211,8 @@ $taxes = $taxeManager->getAll();
                             <input type="file" class="inputItem" name="image" id="image" placeholder="Image" required onchange="addFileText()" />
                         </div>    
                         <div class="fakeFile">
-                            <button disabled>ajouter une photo</button>
-                            <input disabled id="fakeInput">
+                            <button disabled>Choisir une photo</button>
+                            <input disabled id="fakeInput" value="Veuillez ajouter une photo">
                         </div>
                     </div>                
                 </span>
