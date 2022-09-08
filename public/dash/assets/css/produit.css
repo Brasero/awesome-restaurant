@@ -351,7 +351,7 @@ border: 1px solid var(--color-primary);
 .main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup >  .fileInput{
 position: relative;
 background-color: transparent;
-width: 95%;
+width: 100%;
 background-color: white;
 height: 80px;
 }
@@ -363,18 +363,27 @@ height: 80px;
     height: 40px;
 }
 
+.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup > .fileInput > .inputFile
+{
+height: 80px;
+}
+
 .main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup > .fileInput > .fakeFile{
 position: absolute;
 top: 0;
-left: 40px;
+left: 25px;
 z-index: 1;
 background-color: white;
+text-align: center;
 }
 
 .main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup > .fileInput > .fakeFile > button{
+position: relative;
+
+top: 0px;
+left: 12px;
 color: var(--color-primary);
 padding: 5px;
-margin-left: 30px;
 border-radius: 15px;
 border: solid 1px var(--color-primary);
 z-index: 1;
@@ -386,10 +395,11 @@ background-color: var(--color-primary);
 }
 
 .main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup > .fileInput > .fakeFile > #fakeInput{
-margin-top: 20px;
-border: none;
+position: relative;
+left: 12px;
 background-color: white;
 color: var(--color-black);
+top:10px;
 }
 
 .inputFile{
