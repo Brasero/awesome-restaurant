@@ -101,7 +101,7 @@
 .main > .container .categorieTableStyle .categorieTypeItem .categorieTypePart{
     background-color: white;
     text-align: center;
-    padding: 5px 8px;
+    padding: 8px 11px;
     
 }
 
@@ -216,8 +216,8 @@ border: 1px solid var(--color-primary);
 }
 
 .main > .container .produitContainer .produitCardDeck .card .produitFormContainer .produitFormPart1 .addButton:hover{
-    color: var(--color-primary);
-    background: var(--color-light);
+    color: var(--color-light);
+    background: var(--color-primary);
     box-shadow: var(--shadow-1);
     transform: translate(-2px, -2px);
 }
@@ -390,6 +390,7 @@ background-color: var(--color-primary);
 margin-top: 20px;
 border: none;
 background-color: white;
+color: var(--color-black);
 }
 
 .inputFile{

@@ -2,6 +2,6 @@ function addFileText(){
 var image =document.querySelector('#image')
 var inputVisible = document.querySelector('#fakeInput')
  if(image.value){
-    inputVisible.value = ' Une photo a était choisie.'
+    inputVisible.value = ' Une photo a été choisie.'
 }
 }

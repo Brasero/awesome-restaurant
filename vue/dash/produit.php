@@ -133,6 +133,7 @@ $taxes = $taxeManager->getAll();
                         <th class="colonneTitleItem">prix</th>
                         <th class="colonneTitleItem">taxe</th>
                         <th class="colonneTitleItem">categorie</th>
+                        <th class="colonneTitleItem">offre</th>
                         <th class="colonneTitleItem">Action</th>
                     </tr>
                     <?php foreach ($categories as $categorie) { ?>
