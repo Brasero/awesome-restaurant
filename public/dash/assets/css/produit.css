@@ -94,6 +94,7 @@
     color: var(--color-primary);
     font-family: var(--font-primary);
     background-color: transparent;
+    text-decoration: underline;
 }
 
 .main > .container .categorieTableStyle .colonneTitleContainer .colonneTitleItem,
@@ -110,6 +111,7 @@ border-bottom: 1px solid var(--color-primary);
 
 .main > .container .categorieTableStyle .categorieTypeItem:last-child{
 border-bottom: none;
+border-top: none;
 }
 
 .main > .container .categorieTableStyle .categorieTypeItem .categorieTypePart:last-child{
@@ -341,6 +343,59 @@ border: 1px solid var(--color-primary);
 }
 .inputGroup >.inputLabel >  span{
   background-color: white;
+}
+
+.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup {
+    background-color: white;
+}
+
+.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup >  .fileInput{
+position: relative;
+background-color: transparent;
+width: 95%;
+background-color: white;
+height: 80px;
+}
+
+.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup >  .fileInput  .inputItem{
+    position: absolute;
+    width: 77%;
+    left: 70px;
+    height: 40px;
+}
+
+.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup > .fileInput > .fakeFile{
+position: absolute;
+top: 0;
+left: 40px;
+z-index: 1;
+background-color: white;
+}
+
+.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup > .fileInput > .fakeFile > button{
+color: var(--color-primary);
+padding: 5px;
+margin-left: 30px;
+border-radius: 15px;
+border: solid 1px var(--color-primary);
+z-index: 1;
+background-color: white;
+}
+
+.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup > .fileInput > .fakeFile > #fakeInput{
+margin-top: 20px;
+border: none;
+background-color: white;
+color: var(--color-primary);
+}
+
+.inputFile{
+position: relative;
+	text-align: right;
+	opacity: 0;
+	z-index: 2;
+    background-color: white;
+    width: 70%;
 }
 
 

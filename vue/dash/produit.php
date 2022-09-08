@@ -205,11 +205,16 @@ $taxes = $taxeManager->getAll();
                     </label>
                 </div>
                 <span class="inputGroup">
-                    <label for="image" class="inputLabel">
-                        <input type="hidden" name="MAX_FILE_SIZE" value="20000000" />
-                       <input type="file" class="inputItem" name="image" id="image" placeholder="Image" required />
-                        <span>Image</span>
-                    </label>
+                    <div class="fileInput">
+                        <div class="inputFile">
+                            <input type="hidden" name="MAX_FILE_SIZE" value="20000000" />
+                            <input type="file" class="inputItem" name="image" id="image" placeholder="Image" required onchange="addFileText()" />
+                        </div>    
+                        <div class="fakeFile">
+                            <button disabled>ajouter une photo</button>
+                            <input disabled id="fakeInput">
+                        </div>
+                    </div>                
                 </span>
                 <button type="submit" class="addButton">
                     Ajouter
@@ -340,3 +345,4 @@ $taxes = $taxeManager->getAll();
 <script type="text/javascript" src="./assets/js/animation.js"></script>
 <script type="text/javascript" src="./assets/js/dropDownIngredient.js"></script>
 <script type="text/javascript" src="./assets/js/switchForm.js"></script>
+<script type="text/javascript" src="./assets/js/ajoutImage.js"></script>
