@@ -134,8 +134,8 @@ body{
 /* toggle button */
 
 .panierToggle {
-border: solid 1px var(--color-primary);
-border-radius: 15px;
+  border: solid 1px var(--color-primary);
+  border-radius: 15px;
   width: 30px;
   height: 30px;
   position: absolute;
@@ -177,21 +177,21 @@ border-radius: 15px;
   top: 37%;
   left:50%;
   background: var(--color-light);
-  transform: translate(-50%, -50%) rotate(0deg);
+  transform: translate(-50%) rotate(0deg);
 }
 .panierToggle.active .bottom {
- width: 95%;
+ width: 50%;
   height: 2px;
   transition: var(--transition);
   position: absolute;
   top: 57%;
   left:50%;
   background: var(--color-light);
-  transform: translate(-50%, -50%) rotate(0deg);
+  transform: translate(-10%) rotate(0deg);
 }
 
 
-/**   Style element de le panier lorsque activé    **/
+/**   Style element du panier  **/
 
 .cartContainer >.cardPanier{
   transition: var(--transition);
@@ -228,7 +228,7 @@ border-radius: 15px;
 }
 
 .cartContainer > .cardPanier >h1{
-  font-size: 4rem;
+  font-size: 3rem;
   font-family: var(--font-primary);
   margin-top: 1%;
   color: rgb(99, 55, 44);
@@ -246,7 +246,7 @@ background-color: rgb(0,0,0,0.25);
 margin-top: 8%;
 color: white;
 font-family: var(--font-secondary);
-font-size: 2rem;
+font-size: 1.7rem;
 position: relative;
 width: 80%;
 height: 100px;
@@ -277,19 +277,304 @@ height: 2px;
 background-color: white;
 }
 
+.cartContainer > .cardPanier >.cardTotal{
+width: 100%;
+position: fixed;
+bottom: 0;
+left: 5%;
+font-size: 2rem;
+height: 5vh;
+
+}
+
+.cartContainer > .cardPanier >.cardTotal  #spanTotal{
+  position: fixed;
+  bottom:135px;
+  width: 90%;
+  height: 2px;
+  background-color: white;
+}
+
+.cartContainer > .cardPanier >.cardTotal>.textTotal{
+position: fixed;
+bottom: 70px;
+left: 25px;
+color: rgb(99, 55, 44);
+font-family: var(--font-primary);
+font-size: 3rem;
+}
+
+.cartContainer > .cardPanier >.cardTotal>.prixPanier{
+position: fixed;
+bottom: 15px;
+right: 25px;
+color: white;
+font-family: var(--font-secondary);
+font-size: 3rem;
+}
 
 
 
-/*=====SCREEN MD (800px) =======*/
-@media screen and (max-width: 800px) {
-.cardDeck {
-    grid-template-columns: repeat(2, 1fr);
+/* =====SCREEN MD (1024px) ======= */
+@media screen and (max-width: 1024px) {
+.cardProd>.cardButtonGroup>.cardButtonAdd{
+  font-size: 1.3rem;
+  height: 60%;
+}
+
+.cardProd >div>h2{
+  margin-top:28px ;
+  font-size: 2.2rem;
+}
+
+.cardProd >div>p{
+  margin-top: 37px;
+  font-size: 1.7rem;
+}
+
+.cardProd >img{
+  width: 54%;
+}
+
+.cartContainer > .cardPanier >.panierProd > .imageProdPanier {
+display: none;
+}
+
+.cartContainer > .cardPanier >.panierProd > .nomProduit{
+position: absolute;
+left: 5px;
+}
+
+.cartContainer > .cardPanier >.panierProd > .prixProduit{
+position: absolute;
+right: 0;
+top: 50px;
 }
 }
-/*=====SCREEN SM (600px) =======*/
+/* =====SCREEN SM (768px) ======= */
 
-@media screen and (max-width: 600px) {
-.cardDeck {
-    grid-template-columns: repeat(1, 1fr);
+@media screen and (max-width: 768px) {
+
+.selectCarte >select{
+  width: 15%;
+  height: 40%;
+  font-size: 1.7rem;
 }
-} 
+
+.cardProd>.cardButtonGroup>.cardButtonAdd{
+  font-size: 0.8rem;
+  height: 60%;
+}
+
+.cardProd>.cardButtonGroup>.cardButtonAdd>#cartIcone{
+  font-size: 3rem;
+
+}
+
+.cardProd >img{
+  width: 70%;
+  position: relative;
+  left: 25px;
+  align-self: center;
+}
+
+.cardProd >div>h2{
+  margin-top:28px ;
+  font-size: 2rem;
+}
+
+.cardProd >div>p{
+  margin-top: 30px;
+  font-size: 1.5rem;
+}
+
+.cartContainer > .cardPanier >h1{
+  font-size: 3rem;
+  font-family: var(--font-primary);
+  margin-top: 1%;
+  
+}
+
+.cartContainer > .cardPanier >.panierProd > .imageProdPanier {
+display: none;
+}
+
+.cartContainer > .cardPanier >.panierProd > .nomProduit{
+position: absolute;
+left: 5px;
+font-size: 1.5rem;
+}
+
+.cartContainer > .cardPanier >.panierProd > .prixProduit{
+position: absolute;
+right: 0;
+top: 50px;
+font-size:1.5rem;
+}
+
+.cartContainer > .cardPanier >.cardTotal{
+width: 100%;
+position: fixed;
+bottom: 0;
+left: 5%;
+font-size: 2rem;
+height: 5vh;
+
+}
+
+.cartContainer > .cardPanier >.cardTotal>.textTotal{
+position: fixed;
+bottom: 70px;
+left: 2px;
+
+font-family: var(--font-primary);
+font-size: 2.3rem;
+}
+
+.cartContainer > .cardPanier >.cardTotal>.prixPanier{
+position: fixed;
+bottom: 35px;
+right: 2px;
+color: white;
+font-family: var(--font-secondary);
+font-size: 1.7rem;
+}
+
+}
+
+/* =====SCREEN SM (425px) ======= */
+
+@media screen and (max-width: 426px) {
+
+.cartContainer{
+  margin-left: 0%;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.selectCarte {
+  margin-top: 2%;
+  font-size: 1.5rem;
+  margin-left: 0%;
+}
+
+.selectCarte >select{
+  width: 25%;
+  height: 40%;
+  font-size: 1rem;
+}
+
+.cardProd>.cardButtonGroup>.cardButtonAdd{
+  font-size: 0.8rem;
+  height: 25px;
+}
+
+.cardProd{
+display: flex;
+flex-direction: column;
+height: auto;
+}
+
+.cardProd>.cardButtonGroup>.cardButtonAdd>#cartIcone{
+  font-size: 1.5rem;
+
+}
+
+.cardProd >img{
+  width: 65%;
+  height: 45% ;
+  position: relative;
+  top:2px ;
+  left: 0px;
+  align-self: center;
+}
+
+.cardProd >div>h2{
+  margin-left: 3%;
+  margin-top:28px ;
+  font-size: 1.6rem;
+}
+
+.cardProd >div>p{
+  margin-left: 3%;
+  margin-top: 2px;
+  font-size: 1.2rem;
+  margin-bottom: 3%;
+}
+
+.cartContainer > .cardPanier >h1{
+  font-size: 3rem;
+  font-family: var(--font-primary);
+  margin-top: 1%;
+}
+
+.cartContainer > .cardPanier{
+min-height: 50vh;
+}
+
+.cartContainer > .cardPanier >.panierProd > .imageProdPanier {
+display: none;
+}
+
+.cartContainer > .cardPanier >.panierProd > .nomProduit{
+position: absolute;
+left: 5px;
+font-size: 1.5rem;
+}
+
+.cartContainer > .cardPanier >.panierProd > .prixProduit{
+position: absolute;
+right: 0;
+top: 50px;
+font-size:1.5rem;
+}
+
+.cartContainer > .cardPanier >.panierProd >span{
+margin-bottom: 5%;
+}
+
+.panierToggle{
+display: none;
+}
+
+.cartContainer > .cardPanier >.cardTotal{
+width: 100%;
+position: fixed;
+bottom: 0;
+left: 5%;
+font-size: 2rem;
+height: 5vh;
+
+}
+
+.cartContainer > .cardPanier >.cardTotal  #spanTotal{
+  position: fixed;
+  bottom:135px;
+  width: 90%;
+  height: 2px;
+  background-color: white;
+}
+
+.cartContainer > .cardPanier >.cardTotal>.textTotal{
+position: fixed;
+bottom: 70px;
+left: 2px;
+
+font-family: var(--font-primary);
+font-size: 2.3rem;
+}
+
+.cartContainer > .cardPanier >.cardTotal>.prixPanier{
+position: fixed;
+bottom: 0px;
+right: 2px;
+color: white;
+font-family: var(--font-secondary);
+font-size: 1.7rem;
+}
+
+}
+
+
+  

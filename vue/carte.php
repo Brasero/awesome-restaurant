@@ -49,6 +49,12 @@ if (isset($_GET['addItem'])) {
       <p class="nomProduit">Nom produit</p>
       <p class="prixProduit">10.50</p>
       <span></span>
+<!-- fin de boucle --> 
+    </div>
+    <div class="cardTotal">
+      <span id="spanTotal"></span>
+      <p class="textTotal">Total:</p>
+      <p class="prixPanier">32.50€</p>
     </div>
   </div>
 
