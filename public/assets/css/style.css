@@ -14,6 +14,7 @@
   --color-highlights: #ffbb72;
   --color-highlights-rgb: 255, 187, 114;
   --color-light: whitesmoke;
+  --color-light-rgb: 245, 245, 245;
   --color-primary: #ff931f;
   --color-primary-rgb: 255, 147, 31;
   --color-red: #f2545b;
@@ -21,7 +22,7 @@
   --color-red-shade: #e5625e;
   --color-red-shade-rgb: 229, 98, 94;
 
-  --font-primary: "Aboreto", cursive;
+  --font-primary: "Alex Brush", cursive;
   --font-secondary: "Redressed", cursive;
 
   --box-shadow:5px 0 25px rgba(var(--color-dark-rgb), 0.2);
