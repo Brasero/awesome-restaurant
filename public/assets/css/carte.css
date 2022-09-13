@@ -1,101 +1,284 @@
+body{
+  width: 100%;
+  background-image: url(../img/ressources/background/carte/carte.png);
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  background-attachment: fixed;
+}
+
+.container{
+  width: 100%;
+  background: linear-gradient(15deg, rgba(255,187,114, 0.60) 20px, rgba(0, 0, 0,0.2) 1000px);
+  background-attachment: fixed;
+}
+
+.cartContainer{
+  margin-left: 5%;
+  display: grid;
+  grid-template-columns: 80% 20%;
+  grid-template-rows: 15% 85%;
+}
+.selectCarte{
+  grid-row-start: 1;
+  grid-row-end: 1;
+  grid-column-start: 1;
+  grid-column-end: 1;
+  width: 100%;
+  height: 15vh;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+  gap: 10%;
+  color: white;
+  font-family: var(--font-secondary);
+  font-size: 3rem;
+  margin-left: 15%;
+}
+
+.selectCarte >select{
+  width: 15%;
+  height: 40%;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 2.5rem;
+  font-family: var(--font-secondary);
+  background-color: transparent;
+  border: solid 1px var(--color-primary);
+  color: white;
+}
+
+
 .cardDeck {
-    width: 100%;
     padding: 15px 30px;
     margin-top: 20px;
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    grid-template-columns: repeat(3, 2fr);
-    gap: 20px;
-  }
-  
-  .cardDeck > .card {
-    width: 100%;
-    aspect-ratio: 16/10;
-    border: none;
-    border-radius: 15px 15px 10px 10px;
-    background-image: url('../img/burger.jpg');
-    background-size: cover;
-    background-position: center;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-end;
-    box-shadow: -2px 2px 10px black;
-  }
-  
-  .card > .cardOverlay {
-    transition: all 500ms ease-in-out;
-    width: 100%;
-    padding: 10px 15px;
-    height: 0%;
-    color: whitesmoke;
-    background: linear-gradient(rgba(153, 169, 170, 0.2), rgb(96, 167, 172));
-    border-radius: 15px 15px 12px 12px;
-    display: flex;
-    opacity: 0;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    backdrop-filter: blur(3px);
-  }
-  
-  .card:hover > .cardOverlay {
-    opacity: 1;
-    height: 70%;
-  }
-  
-  .card > .cardOverlay > .cardName {
-    background-color: transparent;
-    font-size: 1.3rem;
-  }
-  
-  .card > .cardOverlay > .cardButtonGroup {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    width: 100%;
-    background-color: transparent;
-    height: 50%;
-  }
-  
-  .card > .cardOverlay > .cardButtonGroup > .cardButtonAddLink > .cardButtonAdd {
-    aspect-ratio: 16/9;
-    border: none;
-    border-radius: 5px 5px 2px 2px;
-    color: whitesmoke;
-    padding: 5px 8px;
-    text-align: center;
-    background-size: 500px;
-    background-image: linear-gradient(90deg, rgb(49, 176, 49), rgb(96, 167, 172) 90%);
-    background-position: -400px;
-    cursor: pointer;
-    transition: all 500ms ease-in-out;
-  }
-  
-  .card
-    > .cardOverlay
-    > .cardButtonGroup
-    > .cardButtonAddLink
-    > .cardButtonAdd:hover {
-    background-position: 0px;
-    transform: scale(1.1);
-    box-shadow: 0 1px solid rgba(0, 0, 0, 0.5);
-  }
-  
-  .card > .cardBadge {
-    padding: 5px 8px;
-    border-radius: 0 12px 0 12px;
-    width: 25%;
-    box-shadow: -2px 2px 2px black;
-    color: white;
-    font-weight: normal;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    text-align: center;
-    text-shadow: 1px 1px 2px black;
+    gap: 2px;
+    grid-row-start: 2;
+    grid-row-end: 2;
+    grid-column-start: 1;
+    grid-column-end: 1;
   }
 
-/*-------MEDIA QUERIES--------*/
+.cardDeck >h1{
+  font-size: 5rem;
+  color: var(--color-light);
+  font-family: var(--font-primary);
+  font-weight: thin;
+  text-shadow: 1px 1px 2px var(--color-primary), -1px 1px 2px var(--color-primary), 1px -1px 2px var(--color-primary),
+  -1px -1px 2px var(--color-primary);;
+}
+  
+.cardDeck >span{
+  width: 80%;
+  background-color: var(--color-black);
+  height: 2px;
+  margin-bottom: 2%;
+}
+
+
+.cardProd{
+  display: grid;
+  grid-template-columns: 2fr 4fr 2fr;
+  grid-template-rows: auto;
+  backdrop-filter: blur(4px);
+  border-radius: 15px;
+  box-shadow: var( --shadow-50);
+  height: 23vh;
+  margin-bottom: 1%;
+}
+  
+.cardProd >img{
+  width: 45%;
+  position: relative;
+  left: 75px;
+  align-self: center;
+}
+
+.cardProd >div{
+  font-size: 2rem;
+  font-family: var(--font-secondary);
+}
+
+.cardProd >div>h2{
+  margin-top: 10px;
+}
+
+.cardProd >div>p{
+  margin-top: 50px;
+}
+
+.cardProd>.cardButtonGroup{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.cardProd>.cardButtonGroup>.cardButtonAdd{
+  width: 45%;
+  height: 80%;
+  font-size: 2rem;
+  border: solid 1px var(--color-primary);
+  background-color: transparent;
+  border-radius: 15px;
+}
+
+.cardProd>.cardButtonGroup>.cardButtonAdd>#cartIcone{
+  font-size: 4rem;
+
+}
+
+/* toggle button */
+
+.panierToggle {
+border: solid 1px var(--color-primary);
+border-radius: 15px;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  cursor: pointer;
+  top: 7%;
+  right: 18.3%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+  z-index: 20;
+}
+
+.panierToggle .top {
+  width: 95%;
+  height: 3px;
+  transition: var(--transition);
+  position: absolute;
+  background: var(--color-light);
+  transform:rotate(45deg);
+}
+
+.panierToggle .bottom {
+  width: 95%;
+  height: 3px;
+  transition: var(--transition);
+  position: absolute;
+  background: var(--color-light);
+  transform:rotate(-45deg);
+  
+}
+
+.panierToggle.active .top{
+  width: 95%;
+  height: 2px;
+  transition: var(--transition);
+  position: absolute;
+  top: 37%;
+  left:50%;
+  background: var(--color-light);
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+.panierToggle.active .bottom {
+ width: 95%;
+  height: 2px;
+  transition: var(--transition);
+  position: absolute;
+  top: 57%;
+  left:50%;
+  background: var(--color-light);
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
+
+/**   Style element de le panier lorsque activé    **/
+
+.cartContainer >.cardPanier{
+  transition: var(--transition);
+  min-height: 85.5vh;
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-50);
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 2;
+  grid-column-end: 2;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  
+}
+
+.cartContainer >.cardPanier.active{
+  position: relative;
+  transform: translate(0,-101%);
+  transition: var(--transition);
+  min-height: 85.5vh;
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-50);
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 2;
+  grid-column-end: 2;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.cartContainer > .cardPanier >h1{
+  font-size: 4rem;
+  font-family: var(--font-primary);
+  margin-top: 1%;
+  color: rgb(99, 55, 44);
+  margin-left: 15%;
+}
+
+.cartContainer > .cardPanier >span{
+width: 80%;
+height: 4px;
+margin-left: 20%;
+background-color: rgb(0,0,0,0.25);
+}
+
+.cartContainer > .cardPanier >.panierProd{
+margin-top: 8%;
+color: white;
+font-family: var(--font-secondary);
+font-size: 2rem;
+position: relative;
+width: 80%;
+height: 100px;
+}
+
+.cartContainer > .cardPanier >.panierProd > .imageProdPanier {
+position: absolute;
+left: 0;
+max-width: 80px;
+}
+
+.cartContainer > .cardPanier >.panierProd > .nomProduit{
+position: absolute;
+left: 95px;
+}
+
+.cartContainer > .cardPanier >.panierProd > .prixProduit{
+position: absolute;
+right: 0;
+top: 50px;
+}
+
+.cartContainer > .cardPanier >.panierProd >span {
+position: absolute;
+bottom: 0;
+width: 100%;
+height: 2px;
+background-color: white;
+}
+
+
+
 
 /*=====SCREEN MD (800px) =======*/
 @media screen and (max-width: 800px) {
@@ -109,4 +292,4 @@
 .cardDeck {
     grid-template-columns: repeat(1, 1fr);
 }
-}
+} 
