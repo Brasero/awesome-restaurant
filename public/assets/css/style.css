@@ -5,36 +5,28 @@
 :root {
   --color-black: #262322;
   --color-black-rgb: 38, 35, 34;
-
+  --color-blue: #5050cb;
+  --color-blue-rgb: 80, 80, 203;
   --color-dark: #63372c;
   --color-dark-rgb: 99, 55, 44;
-
-  --color-green: #0bd40b;
-  --color-green-rgb: 11, 212, 11;
-
+  --color-green: #0cbd0c;
+  --color-green-rgb: 12, 189, 12;
   --color-highlights: #ffbb72;
   --color-highlights-rgb: 255, 187, 114;
-
   --color-light: whitesmoke;
   --color-light-rgb: 245, 245, 245;
-
   --color-primary: #ff931f;
   --color-primary-rgb: 255, 147, 31;
-
   --color-red: #f2545b;
   --color-red-rgb: 242, 84, 91;
   --color-red-shade: #e5625e;
   --color-red-shade-rgb: 229, 98, 94;
 
-  --color-secondary: #feebd6;
-  --color-secondary-rgb: 255, 235, 214;
-
   --font-primary: "Alex Brush", cursive;
   --font-secondary: "Redressed", cursive;
 
-
+  --box-shadow:5px 0 25px rgba(var(--color-dark-rgb), 0.2);
   --shadow-1: 1px 1px 2px black;
-  --shadow-50: 2px 2px 6px rgba(0, 0, 0, 0.5);
 
   --transition: all 500ms ease-in-out;
 }
