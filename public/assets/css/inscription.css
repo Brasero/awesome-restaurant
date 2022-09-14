@@ -1,7 +1,6 @@
 html{
   display: flex;
   justify-content: center;
-  align-items: center;
   height: 100vh;
 }
 
@@ -13,28 +12,19 @@ body{
   background-attachment: fixed;
   width: 100%;
   height: 100%;
-  backdrop-filter: blur(10px);
 }
 
 .container{
   background: linear-gradient(120deg, rgba(var(--color-light-rgb), 0.72) 20px, rgba(0, 0, 0, 0.2) 1000px);
+  backdrop-filter: blur(10px);
+  height: -webkit-fill-available;
 }
 
 .inscriptionContainer {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    margin-inline: auto;
-  }
-
-  
-  
-.inscriptionContainer > .hero__wrapper {
-  width: 500px;
-  padding: 10px 25px;
-  border-radius: 15px;
-  backdrop-filter: blur(15px);
-  background: linear-gradient(45deg, rgba(var(--color-light-rgb), 0.5), transparent)
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-inline: auto;
 }
 
 .inscriptionContainer > .signForm {
@@ -52,7 +42,7 @@ body{
 .inscriptionContainer > .signForm .formTitle {
   font-family: var(--font-primary);
   font-size: 4rem;
-  text-shadow: var(--shadow-50);
+  text-shadow: var(--shadow-1);
   font-weight: thin;
 }
 .signForm > .inputGroup {
@@ -112,10 +102,6 @@ body{
   transition: all 300ms ease-in-out;
 }
 
-.signForm > .signButton:hover {
-  background-color: var(--color-highlights);
-}
-
 .inputGroup {
   width: 100%;
   position: relative;
@@ -123,6 +109,8 @@ body{
   align-items: center;
   margin-bottom: 15px;
 }
+
+
 /**Form Slider**/
 
 .formSliderContainer {
@@ -144,4 +132,166 @@ body{
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+}
+
+/** END Form Slider **/
+
+/**   BUTTON STYLE   **/
+
+.formSliderContainer .formButton {
+  width: 100%;
+  aspect-ratio: 10/1;
+  border-radius: 15px;
+  border: 1px solid var(--color-primary);
+  background: transparent;
+  color: var(--color-light);
+  font-family: var(--font-secondary);
+  font-size: 2.5rem;
+  transition: background-color .4s linear;
+}
+
+.formSliderContainer .formButton:hover {
+  background-color: var(--color-primary);
+}
+
+.formSliderContainer .backButton {
+  width: 30%;
+  align-self: flex-start;
+}
+
+/**  END BUTTON STYLE  **/
+
+
+/**  HERO SECTION STYLE  **/
+
+.inscriptionContainer > .hero__wrapper {
+  width: 400px;
+  padding: 10px 25px;
+  border-radius: 15px;
+  /* background: rgba(var(--color-light-rgb), 0.25); */
+  backdrop-filter: blur(15px);
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.inscriptionContainer > .hero__wrapper > div {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  color: var(--color-light);
+}
+
+.inscriptionContainer > .hero__wrapper > .part1 {
+  justify-content: center;
+  font-family: var(--font-primary);
+  font-size: 2rem;
+}
+
+.inscriptionContainer > .hero__wrapper > .part1 .part1 {
+  color: var(--color-primary);
+  font-family: var(--font-secondary);
+  border-bottom: 1px solid var(--color-light);
+  padding-right: 15px;
+}
+
+.inscriptionContainer > .hero__wrapper > .part1 .part2 {
+  padding-top: 8px;
+  transform: translateX(-8px);
+}
+
+.inscriptionContainer > .hero__wrapper > .part2 {
+  font-family: var(--font-secondary);
+    font-size: 2.5rem;
+}
+
+.inscriptionContainer > .hero__wrapper > .part3 .social__container {
+  display: flex;
+  gap: 40px;
+}
+
+.inscriptionContainer > .hero__wrapper > .part3 .social__container button {
+  width: min-content;
+  height: min-content;
+  background: none;
+  border: none;
+}
+
+.inscriptionContainer > .hero__wrapper > .part3 .social__container button > img {
+  transition: var(--transition);
+}
+
+.inscriptionContainer > .hero__wrapper > .part3 .social__container button:hover > img {
+  transform: scale(1.1);
+  filter: drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.4));
+}
+
+/** END HERO SECTION STYLE  **/
+
+
+/***** MEDIA QUERIES *******/
+
+
+@media screen and (max-width: 1024px) {
+  body{
+    background-size: cover;
+    background-image: url('../img/ressources/background/connexion/connexion@2.png')
+  }
+
+  .container {
+    padding-inline: 0;
+  }
+}
+
+
+@media screen and (max-width: 930px) {
+
+  body{
+    background-image: url('../img/ressources/background/connexion/connexion.png');
+    background-position: center bottom;
+  }
+
+  .hero__wrapper {
+    margin-top: 40px;
+  }
+
+  .inscriptionContainer {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .inscriptionContainer > .signForm {
+    min-width: 350px;
+    border-left: none;
+    border-top: 1px solid var(--color-light);
+  }
+
+
+  .formSliderContainer .backButton {
+    width: 45%;
+  }
+
+  .container {
+    height: unset;
+  }
+}
+
+@media screen and (max-width: 450px){
+
+  body {
+    width: 100vw;
+  }
+
+  .formSliderContainer > .formSliderBlock {
+    width: 260px;
+  }
+
+  .inscriptionContainer > .hero__wrapper {
+    width: 300px;
+  }
+
+  .inscriptionContainer > .signForm {
+    width: 300px;
+    min-width: unset;
+  }
 }

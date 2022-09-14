@@ -75,7 +75,7 @@ if(isset($_POST['nom'])){
             <span>Confirmer mot de passe</span>
           </label>
         </div>
-        <button role="button" type="button" class="nextButton" onclick="switchForm('toLeft'); return false;">
+        <button role="button" type="button" class="formButton nextButton" onclick="switchForm('toLeft'); return false;">
           Suivant
         </button>
       </div>
@@ -85,7 +85,7 @@ if(isset($_POST['nom'])){
           onclick="switchForm('toRight'); return false;" 
           role="button"
           type="button"
-          class="backButton">
+          class="formButton backButton">
             Retour
           </button>
           <div class="inputGroup">
@@ -108,8 +108,8 @@ if(isset($_POST['nom'])){
           </div>
         <div class="inputGroup">
           <label for="adresseComplement" class="inputLabel">
-            <input type="text" class="signInput" id="adresseComplement" name="adresseComplement" placeholder="Complement d'adresse (facultatif)" autocomplete="address-line4">
-            <span>Complément d'adresse (facultatif)</span>
+            <input type="text" class="signInput" id="adresseComplement" name="adresseComplement" placeholder="Complement d'adresse" autocomplete="address-line4">
+            <span>Complément d'adresse</span>
           </label>
         </div>
         <div class="villeAndCp">
@@ -133,7 +133,7 @@ if(isset($_POST['nom'])){
             <div class="proposition" id="cpProp"></div>
           </div>
         </div>
-        <button type="submit" class="signButton">
+        <button type="submit" class="formButton signButton">
           M'inscrire
         </button>
       </div>
