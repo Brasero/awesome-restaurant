@@ -9,40 +9,46 @@ body{
 }
 
 .container{
-  width: 100%;
-  background: linear-gradient(15deg, rgba(255,187,114, 0.60) 20px, rgba(0, 0, 0,0.2) 1000px);
-  background-attachment: fixed;
-}
-
-.cartContainer{
-  margin-left: 5%;
-  display: grid;
-  grid-template-columns: 80% 20%;
-  grid-template-rows: 15% 85%;
-}
-.selectCarte{
-  grid-row-start: 1;
-  grid-row-end: 1;
-  grid-column-start: 1;
-  grid-column-end: 1;
-  width: 100%;
-  height: 15vh;
   display: flex;
-  flex-direction: row-reverse;
-  justify-content: center;
-  align-items: center;
-  gap: 10%;
-  color: white;
-  font-family: var(--font-secondary);
-  font-size: 3rem;
-  margin-left: 15%;
+  width: 100%;
+  background: linear-gradient(26deg, rgba(255,187,114, 0.60) 20px, rgba(0, 0, 0,0.3)600px );
+  background-position: right top;
+  background-attachment: fixed;
+  backdrop-filter: blur(5px);
+  height:-webkit-fill-available;
+  overflow-y: hidden;
 }
 
-.selectCarte >select{
-  width: 15%;
-  height: 40%;
+.carteContainer{
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.carteContainer > .selectCarte{
+    width:100% ;
+    height: 15vh;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+    color: white;
+    font-family: var(--font-secondary);
+    font-size: 3rem;
+    margin-left: 38%;
+}
+
+.carteContainer > .selectCarte > h1 {
+  text-shadow: var(--shadow-1);
+}
+
+.carteContainer > .selectCarte >select{
+  width: 20%;
+  height: 55%;
   border-radius: 15px;
   text-align: center;
+  padding-bottom: 3px;
   font-size: 2.5rem;
   font-family: var(--font-secondary);
   background-color: transparent;
@@ -50,20 +56,21 @@ body{
   color: white;
 }
 
+.carteContainer > .selectCarte > .select:focus-visible{
+    outline: none;
+}
 
-.cardDeck {
+.carteContainer > .cardDeck {
+    width: 100%;
     padding: 15px 30px;
     margin-top: 20px;
+    margin-bottom: 100px;
     display: flex;
     flex-direction: column;
     gap: 2px;
-    grid-row-start: 2;
-    grid-row-end: 2;
-    grid-column-start: 1;
-    grid-column-end: 1;
   }
 
-.cardDeck >h1{
+.carteContainer > .cardDeck > h1{
   font-size: 5rem;
   color: var(--color-light);
   font-family: var(--font-primary);
@@ -72,7 +79,7 @@ body{
   -1px -1px 2px var(--color-primary);;
 }
   
-.cardDeck >span{
+.carteContainer > .cardDeck > span{
   width: 80%;
   background-color: var(--color-black);
   height: 2px;
@@ -80,196 +87,214 @@ body{
 }
 
 
-.cardProd{
-  display: grid;
-  grid-template-columns: 2fr 4fr 2fr;
-  grid-template-rows: auto;
-  backdrop-filter: blur(4px);
+.carteContainer > .cardDeck > .cardProd{
+  backdrop-filter:grayscale(0.3);
   border-radius: 15px;
   box-shadow: var( --shadow-50);
-  height: 23vh;
+  height: -webkit-fill-available;
   margin-bottom: 1%;
+  display: grid;
+  grid-template-columns: 2fr 4fr 2fr;
+  grid-template-rows: auto;  
 }
   
-.cardProd >img{
-  width: 45%;
+.carteContainer > .cardDeck > .cardProd > img{
+  width: 80%;
   position: relative;
-  left: 75px;
+  left: 20px;
   align-self: center;
+    padding: 5px;
 }
 
-.cardProd >div{
+.carteContainer > .cardDeck > .cardProd > div{
   font-size: 2rem;
   font-family: var(--font-secondary);
+  margin-left: 10px;
 }
 
-.cardProd >div>h2{
+.carteContainer > .cardDeck > .cardProd > div > h2{
   margin-top: 10px;
 }
 
-.cardProd >div>p{
+.carteContainer > .cardDeck > .cardProd > div > p{
   margin-top: 50px;
 }
 
-.cardProd>.cardButtonGroup{
+.carteContainer > .cardDeck > .cardProd> .cardButtonGroup{
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 
-.cardProd>.cardButtonGroup>.cardButtonAdd{
+.carteContainer > .cardDeck > .cardProd > .cardButtonGroup > .cardButtonAdd{
   width: 45%;
   height: 80%;
-  font-size: 2rem;
+  font-size: 1.8rem;
   border: solid 1px var(--color-primary);
   background-color: transparent;
   border-radius: 15px;
 }
 
-.cardProd>.cardButtonGroup>.cardButtonAdd>#cartIcone{
+.carteContainer > .cardDeck > .cardProd > .cardButtonGroup > .cardButtonAdd > #cartIcone{
   font-size: 4rem;
 
 }
 
 /* toggle button */
-
-.panierToggle {
+.panierContainer > .cardPanier> .panierToggle {
   border: solid 1px var(--color-primary);
-  border-radius: 15px;
-  width: 30px;
-  height: 30px;
+  background-color: var(--color-primary);
+  border-radius: 20px;
+  width: 40px;
+  height: 40px;
   position: absolute;
   cursor: pointer;
-  top: 7%;
-  right: 18.3%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 10px;
-  align-items: center;
+  top: 50%;
   z-index: 20;
+  transform: translate(-359%);
 }
 
-.panierToggle .top {
+.panierContainer > .cardPanier> .panierToggle > .top {
+  visibility: hidden;
+}
+
+.panierContainer > .cardPanier> .panierToggle > .mid{
   width: 95%;
   height: 3px;
   transition: var(--transition);
   position: absolute;
+  top: 49%;
+  left: 25%;
   background: var(--color-light);
-  transform:rotate(45deg);
+  transform:translate(-25%,-25%) rotate(310deg);
 }
 
-.panierToggle .bottom {
+.panierContainer >.cardPanier> .panierToggle > .bottom {
   width: 95%;
   height: 3px;
   transition: var(--transition);
   position: absolute;
+  top: 49%;
+  left: 25%;
   background: var(--color-light);
-  transform:rotate(-45deg);
+  transform:translate(-25%,-25%) rotate(-310deg);
   
 }
 
-.panierToggle.active .top{
-  width: 95%;
-  height: 2px;
+.panierContainer >.cardPanier>  .panierToggle.active > .top{
+  visibility: visible;
+  width: 45%;
+  height: 4px;
   transition: var(--transition);
   position: absolute;
-  top: 37%;
+  top: 35%;
+  left:21.5%;
+  background: var(--color-light);
+  transform: translate(-50%) rotate(-45deg);
+}
+
+.panierContainer >.cardPanier> .panierToggle.active > .mid{
+  width: 95%;
+  height: 4px;
+  transition: var(--transition);
+  position: absolute;
+  top: 50%;
   left:50%;
   background: var(--color-light);
   transform: translate(-50%) rotate(0deg);
 }
-.panierToggle.active .bottom {
- width: 50%;
-  height: 2px;
+
+.panierContainer >.cardPanier> .panierToggle.active > .bottom {
+ width: 45%;
+  height: 4px;
   transition: var(--transition);
   position: absolute;
-  top: 57%;
-  left:50%;
+  top: 67%;
+  left:4.5%;
   background: var(--color-light);
-  transform: translate(-10%) rotate(0deg);
+  transform: translate(-10%) rotate(45deg);
 }
 
 
 /**   Style element du panier  **/
 
-.cartContainer >.cardPanier{
-  transition: var(--transition);
-  min-height: 85.5vh;
-  backdrop-filter: blur(10px);
-  box-shadow: var(--shadow-50);
-  grid-row-start: 1;
-  grid-row-end: 2;
-  grid-column-start: 2;
-  grid-column-end: 2;
-  border-radius: 15px;
+.panierContainer{
+  position:fixed;
+  top: 60px;
+  right: 0px;
+  width: 20%;
+  height:93.5%;
+}
+
+
+.panierContainer > .cardPanier{
+ width: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
-  
+   transition: var(--transition);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-50);
+  border-radius: 15px 0px 0px 15px;
+height: 100%;
 }
 
-.cartContainer >.cardPanier.active{
+.panierContainer >  .cardPanier >.containerPanierProd{
+  width: 80%;
+  max-height: 72%;
+  overflow-y: scroll;
+  position: sticky;
+}
+
+.panierContainer > .cardPanier.active{
   position: relative;
-  transform: translate(0,-101%);
+  transform: translate(98%,0%);
   transition: var(--transition);
-  min-height: 85.5vh;
-  backdrop-filter: blur(10px);
-  box-shadow: var(--shadow-50);
-  grid-row-start: 1;
-  grid-row-end: 2;
-  grid-column-start: 2;
-  grid-column-end: 2;
-  border-radius: 15px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  overflow: hidden;
 }
 
-.cartContainer > .cardPanier >h1{
+.panierContainer > .cardPanier >h1{
   font-size: 3rem;
   font-family: var(--font-primary);
   margin-top: 1%;
   color: rgb(99, 55, 44);
   margin-left: 15%;
+  text-shadow: var(--shadow-1);
 }
 
-.cartContainer > .cardPanier >span{
+.panierContainer >.cardPanier >span{
 width: 80%;
 height: 4px;
 margin-left: 20%;
 background-color: rgb(0,0,0,0.25);
 }
 
-.cartContainer > .cardPanier >.panierProd{
+.panierContainer > .cardPanier >.containerPanierProd >.panierProd{
 margin-top: 8%;
 color: white;
 font-family: var(--font-secondary);
 font-size: 1.7rem;
 position: relative;
-width: 80%;
 height: 100px;
 }
 
-.cartContainer > .cardPanier >.panierProd > .imageProdPanier {
+.panierContainer > .cardPanier >.containerPanierProd > .panierProd > .imageProdPanier {
 position: absolute;
 left: 0;
 max-width: 80px;
 }
 
-.cartContainer > .cardPanier >.panierProd > .nomProduit{
+.panierContainer > .cardPanier > .containerPanierProd > .panierProd > .nomProduit{
 position: absolute;
 left: 95px;
 }
 
-.cartContainer > .cardPanier >.panierProd > .prixProduit{
+.panierContainer > .cardPanier > .containerPanierProd > .panierProd > .prixProduit{
 position: absolute;
 right: 0;
 top: 50px;
 }
 
-.cartContainer > .cardPanier >.panierProd >span {
+.panierContainer > .cardPanier > .containerPanierProd >.panierProd >span {
 position: absolute;
 bottom: 0;
 width: 100%;
@@ -277,17 +302,15 @@ height: 2px;
 background-color: white;
 }
 
-.cartContainer > .cardPanier >.cardTotal{
+ .panierContainer > .cardPanier >.containerPanierProd>.cardTotal{
 width: 100%;
 position: fixed;
-bottom: 0;
+bottom: 10px;
 left: 5%;
 font-size: 2rem;
-height: 5vh;
-
+height: 15vh;
 }
-
-.cartContainer > .cardPanier >.cardTotal  #spanTotal{
+.panierContainer > .cardPanier >.containerPanierProd>.cardTotal  #spanTotal{
   position: fixed;
   bottom:135px;
   width: 90%;
@@ -295,16 +318,16 @@ height: 5vh;
   background-color: white;
 }
 
-.cartContainer > .cardPanier >.cardTotal>.textTotal{
+ .panierContainer > .cardPanier >.containerPanierProd>.cardTotal>.textTotal{
 position: fixed;
 bottom: 70px;
 left: 25px;
 color: rgb(99, 55, 44);
 font-family: var(--font-primary);
 font-size: 3rem;
+text-shadow: var(--shadow-1);
 }
-
-.cartContainer > .cardPanier >.cardTotal>.prixPanier{
+.panierContainer > .cardPanier >.containerPanierProd>.cardTotal>.prixPanier{
 position: fixed;
 bottom: 15px;
 right: 25px;
@@ -313,131 +336,155 @@ font-family: var(--font-secondary);
 font-size: 3rem;
 }
 
+::-webkit-scrollbar {
+    width: 4px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    color: white;
+}
 
 
 /* =====SCREEN MD (1024px) ======= */
 @media screen and (max-width: 1024px) {
-.cardProd>.cardButtonGroup>.cardButtonAdd{
+
+.carteContainer>.selectCarte {
+  margin-top: 2%;
+  font-size: 1.5rem;
+  margin-left: 0%;
+}
+
+.carteContainer > .cardDeck> .cardProd>.cardButtonGroup>.cardButtonAdd{
   font-size: 1.3rem;
   height: 60%;
 }
 
-.cardProd >div>h2{
-  margin-top:28px ;
+.carteContainer > .cardDeck> .cardProd >div>h2{
   font-size: 2.2rem;
 }
 
-.cardProd >div>p{
+.carteContainer > .cardDeck> .cardProd >div>p{
   margin-top: 37px;
   font-size: 1.7rem;
 }
 
-.cardProd >img{
-  width: 54%;
+.carteContainer > .cardDeck> .cardProd >img{
+  width: 70%;
+  left: 5px;
 }
 
-.cartContainer > .cardPanier >.panierProd > .imageProdPanier {
+.panierContainer > .cardPanier >.containerPanierProd{
+height: 60%;
+}
+
+.panierContainer > .cardPanier > .containerPanierProd > .panierProd> .imageProdPanier {
 display: none;
 }
 
-.cartContainer > .cardPanier >.panierProd > .nomProduit{
+.panierContainer > .cardPanier >.containerPanierProd > .panierProd > .nomProduit{
 position: absolute;
 left: 5px;
 }
 
-.cartContainer > .cardPanier >.panierProd > .prixProduit{
+.panierContainer > .cardPanier >.containerPanierProd > .panierProd > .prixProduit{
 position: absolute;
 right: 0;
 top: 50px;
 }
+
+.panierContainer > .cardPanier> .panierToggle {
+  transform: translate(-258%);
+}
+
 }
 /* =====SCREEN SM (768px) ======= */
 
 @media screen and (max-width: 768px) {
 
-.selectCarte >select{
-  width: 15%;
+.carteContainer{
+flex-direction: column;
+flex-wrap: nowrap;
+align-items: center;
+}
+
+.carteContainer>.selectCarte {
+  width: 100%;
   height: 40%;
   font-size: 1.7rem;
 }
 
-.cardProd>.cardButtonGroup>.cardButtonAdd{
-  font-size: 0.8rem;
+.carteContainer>.selectCarte >select {
+  width: 23%;
+  height: 65%;
+  font-size: 1.8rem;
+}
+
+.carteContainer > .cardDeck> .cardProd>.cardButtonGroup>.cardButtonAdd{
+ font-size: 0.8rem;
   height: 60%;
 }
 
-.cardProd>.cardButtonGroup>.cardButtonAdd>#cartIcone{
+.carteContainer > .cardDeck >.cardProd>.cardButtonGroup>.cardButtonAdd>#cartIcone{
   font-size: 3rem;
-
 }
 
-.cardProd >img{
-  width: 70%;
-  position: relative;
-  left: 25px;
-  align-self: center;
-}
-
-.cardProd >div>h2{
-  margin-top:28px ;
+.carteContainer > .cardDeck> .cardProd >div>h2{
   font-size: 2rem;
 }
 
-.cardProd >div>p{
+.carteContainer > .cardDeck> .cardProd >div>p{
   margin-top: 30px;
   font-size: 1.5rem;
 }
 
-.cartContainer > .cardPanier >h1{
-  font-size: 3rem;
-  font-family: var(--font-primary);
+.carteContainer > .cardDeck> .cardProd >img{
+  width: 80%;
+
+}
+
+.panierContainer > .cardPanier >h1{
+  font-size: 2.3rem;
   margin-top: 1%;
+  margin-left: auto;
   
 }
 
-.cartContainer > .cardPanier >.panierProd > .imageProdPanier {
-display: none;
+.panierContainer > .cardPanier >.containerPanierProd{
+  height: 60%;
 }
 
-.cartContainer > .cardPanier >.panierProd > .nomProduit{
-position: absolute;
-left: 5px;
-font-size: 1.5rem;
+.panierContainer > .cardPanier > .containerPanierProd > .panierProd> .imageProdPanier {
+  display: none;
 }
 
-.cartContainer > .cardPanier >.panierProd > .prixProduit{
-position: absolute;
-right: 0;
-top: 50px;
-font-size:1.5rem;
+.panierContainer > .cardPanier >.containerPanierProd > .panierProd > .nomProduit{
+  font-size: 1.5rem;
 }
 
-.cartContainer > .cardPanier >.cardTotal{
-width: 100%;
-position: fixed;
-bottom: 0;
-left: 5%;
-font-size: 2rem;
-height: 5vh;
-
+.panierContainer > .cardPanier >.containerPanierProd > .panierProd > .prixProduit{
+  font-size:1.5rem;
 }
 
-.cartContainer > .cardPanier >.cardTotal>.textTotal{
-position: fixed;
-bottom: 70px;
-left: 2px;
-
-font-family: var(--font-primary);
-font-size: 2.3rem;
+.panierContainer > .cardPanier> .panierToggle {
+  transform: translate(-192%);
 }
 
-.cartContainer > .cardPanier >.cardTotal>.prixPanier{
-position: fixed;
-bottom: 35px;
-right: 2px;
-color: white;
-font-family: var(--font-secondary);
-font-size: 1.7rem;
+.panierContainer > .cardPanier >.containerPanierProd > .cardTotal{
+  width: 100%;
+  bottom: 0;
+  left: 5%;
+  font-size: 2rem;
+  height: 5vh;
+}
+
+.panierContainer > .cardPanier >.containerPanierProd > .cardTotal>.textTotal{
+  left: 10px;
+  font-size: 2.3rem;
+}
+
+.panierContainer > .cardPanier >.containerPanierProd > .cardTotal>.prixPanier{
+  bottom: 35px;
+  right: 2px;
+  font-size: 1.7rem;
 }
 
 }
@@ -446,135 +493,183 @@ font-size: 1.7rem;
 
 @media screen and (max-width: 426px) {
 
-.cartContainer{
-  margin-left: 0%;
+.carteContainer{
+width: 100%;
+}
+
+.carteContainer>.selectCarte {
   display: flex;
   flex-direction: column;
-  
 }
 
-.selectCarte {
-  margin-top: 2%;
-  font-size: 1.5rem;
+.carteContainer>.selectCarte {
+   margin-top: 2%;
+  font-size: 2rem;
   margin-left: 0%;
 }
 
-.selectCarte >select{
-  width: 25%;
-  height: 40%;
-  font-size: 1rem;
+.carteContainer>.selectCarte >select {
+  font-size: 2rem;
+  width: 50%;
+  height: 50%;
 }
 
-.cardProd>.cardButtonGroup>.cardButtonAdd{
-  font-size: 0.8rem;
-  height: 25px;
+.carteContainer>.cardDeck>.cardProd{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5%;
 }
 
-.cardProd{
-display: flex;
-flex-direction: column;
-height: auto;
+.carteContainer > .cardDeck> .cardProd>.cardButtonGroup>.cardButtonAdd{
+ font-size: 0.8rem;
+  height: 35px;
 }
 
-.cardProd>.cardButtonGroup>.cardButtonAdd>#cartIcone{
+.carteContainer > .cardDeck >.cardProd>.cardButtonGroup>.cardButtonAdd>#cartIcone{
   font-size: 1.5rem;
-
 }
 
-.cardProd >img{
-  width: 65%;
-  height: 45% ;
-  position: relative;
-  top:2px ;
-  left: 0px;
-  align-self: center;
-}
 
-.cardProd >div>h2{
+.carteContainer > .cardDeck> .cardProd >div>h2{
   margin-left: 3%;
-  margin-top:28px ;
   font-size: 1.6rem;
 }
 
-.cardProd >div>p{
+.carteContainer > .cardDeck> .cardProd >div>p{
   margin-left: 3%;
   margin-top: 2px;
   font-size: 1.2rem;
   margin-bottom: 3%;
 }
 
-.cartContainer > .cardPanier >h1{
-  font-size: 3rem;
-  font-family: var(--font-primary);
-  margin-top: 1%;
-}
-
-.cartContainer > .cardPanier{
-min-height: 50vh;
-}
-
-.cartContainer > .cardPanier >.panierProd > .imageProdPanier {
-display: none;
-}
-
-.cartContainer > .cardPanier >.panierProd > .nomProduit{
-position: absolute;
-left: 5px;
-font-size: 1.5rem;
-}
-
-.cartContainer > .cardPanier >.panierProd > .prixProduit{
-position: absolute;
-right: 0;
-top: 50px;
-font-size:1.5rem;
-}
-
-.cartContainer > .cardPanier >.panierProd >span{
-margin-bottom: 5%;
-}
-
-.panierToggle{
-display: none;
-}
-
-.cartContainer > .cardPanier >.cardTotal{
-width: 100%;
-position: fixed;
-bottom: 0;
-left: 5%;
-font-size: 2rem;
-height: 5vh;
+.carteContainer > .cardDeck> .cardProd >img{
+  width: 70%;
+  height: 57% ;
+  position: relative;
+  top:2px ;
+  left: 0px;
+  align-self: center;
 
 }
 
-.cartContainer > .cardPanier >.cardTotal  #spanTotal{
-  position: fixed;
-  bottom:135px;
-  width: 90%;
-  height: 2px;
-  background-color: white;
+.panierContainer{  
+width: 40%;
 }
 
-.cartContainer > .cardPanier >.cardTotal>.textTotal{
-position: fixed;
-bottom: 70px;
-left: 2px;
-
-font-family: var(--font-primary);
-font-size: 2.3rem;
+.panierContainer > .cardPanier >h1{
+  font-size: 1.5rem;
+  margin-left: 20px;
+  text-shadow: none;
 }
 
-.cartContainer > .cardPanier >.cardTotal>.prixPanier{
-position: fixed;
-bottom: 0px;
-right: 2px;
-color: white;
-font-family: var(--font-secondary);
-font-size: 1.7rem;
+.panierContainer > .cardPanier >.containerPanierProd{
+  height: 70%;
+}
+
+.panierContainer > .cardPanier >.containerPanierProd > .panierProd > .nomProduit{
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.panierContainer > .cardPanier >.containerPanierProd > .panierProd > .prixProduit{
+  font-size:1.2rem;
+  left: 12px;
+}
+
+.panierContainer > .cardPanier> .panierToggle {
+  transform: translate(-338%);
+  width: 25px;
+  height: 25px;
+}
+
+.panierContainer > .cardPanier >.containerPanierProd > .cardTotal{
+  width: 100%;
+  bottom: 0;
+  left: 5%;
+  font-size: 2rem;
+  height: 5vh;
+}
+
+.panierContainer > .cardPanier >.containerPanierProd > .cardTotal>.textTotal{
+  text-shadow: none;
+  left: 2px;
+}
+
+.panierContainer > .cardPanier >.containerPanierProd > .cardTotal>.prixPanier{
+  bottom: 35px;
+  right: 2px;
+  font-size: 1.5rem;
 }
 
 }
 
+@media screen and (max-width: 324px) {
 
-  
+.carteContainer{
+  width: 100%;
+}
+
+.carteContainer>.cardDeck>h1{
+font-size: 4rem;
+}
+
+.carteContainer>.cardDeck>span{
+width: 106%;
+}
+
+.panierContainer > .cardPanier >h1{
+  font-size: 1.5rem;
+  margin-left: 20px;
+  text-shadow: none;
+}
+
+.panierContainer > .cardPanier >.containerPanierProd{
+  height: 70%;
+}
+
+.panierContainer > .cardPanier >.containerPanierProd > .panierProd > .nomProduit{
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.panierContainer > .cardPanier >.containerPanierProd > .panierProd > .prixProduit{
+  font-size:1.2rem;
+  left: 12px;
+}
+
+.panierContainer > .cardPanier> .panierToggle {
+  transform: translate(-259%);
+}
+
+.panierContainer > .cardPanier >.containerPanierProd > .cardTotal{
+  width: 100%;
+  bottom: 0;
+  left: 5%;
+  font-size: 2rem;
+  height: 5vh;
+}
+
+.panierContainer > .cardPanier >.containerPanierProd > .cardTotal>.textTotal{
+  text-shadow: none;
+  left: 2px;
+}
+
+.panierContainer > .cardPanier >.containerPanierProd > .cardTotal>.prixPanier{
+  bottom: 35px;
+  right: 2px;
+  font-size: 1.5rem;
+}
+
+}
+
+@media screen and (min-width: 2560px) {
+.panierContainer > .cardPanier> .panierToggle {
+  transform: translate(-429%);
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+}
+}
+
+
+
