@@ -150,8 +150,9 @@ body{
   position: absolute;
   cursor: pointer;
   top: 50%;
+  left: 0px;
   z-index: 20;
-  transform: translate(-359%);
+  transform: translate(-50%);
 }
 
 .panierContainer > .cardPanier> .panierToggle > .top {
@@ -391,9 +392,6 @@ right: 0;
 top: 50px;
 }
 
-.panierContainer > .cardPanier> .panierToggle {
-  transform: translate(-258%);
-}
 
 }
 /* =====SCREEN SM (768px) ======= */
@@ -462,10 +460,6 @@ align-items: center;
 
 .panierContainer > .cardPanier >.containerPanierProd > .panierProd > .prixProduit{
   font-size:1.5rem;
-}
-
-.panierContainer > .cardPanier> .panierToggle {
-  transform: translate(-192%);
 }
 
 .panierContainer > .cardPanier >.containerPanierProd > .cardTotal{
@@ -577,7 +571,6 @@ width: 40%;
 }
 
 .panierContainer > .cardPanier> .panierToggle {
-  transform: translate(-338%);
   width: 25px;
   height: 25px;
 }
@@ -637,9 +630,7 @@ width: 106%;
   left: 12px;
 }
 
-.panierContainer > .cardPanier> .panierToggle {
-  transform: translate(-259%);
-}
+
 
 .panierContainer > .cardPanier >.containerPanierProd > .cardTotal{
   width: 100%;
@@ -664,7 +655,6 @@ width: 106%;
 
 @media screen and (min-width: 2560px) {
 .panierContainer > .cardPanier> .panierToggle {
-  transform: translate(-429%);
   width: 60px;
   height: 60px;
   border-radius: 30px;
