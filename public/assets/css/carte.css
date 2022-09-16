@@ -140,6 +140,11 @@ body{
 
 }
 
+.carteContainer > .cardDeck > .cardProd > .cardButtonGroup > .cardButtonAdd > img{
+  width: 80%;
+
+}
+
 /* toggle button */
 .panierContainer > .cardPanier> .panierToggle {
   border: solid 1px var(--color-primary);

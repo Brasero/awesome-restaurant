@@ -27,7 +27,7 @@ if (isset($_GET['addItem'])) {
       </div>
       <div class="cardButtonGroup">
         <button class="cardButtonAdd">
-          +Ajouter 
+          <img src="../public/assets/img/ressources/icon/carte/tomate.svg" alt=""> 
         </button>
         <button class="cardButtonAdd">
          <iconify-icon id="cartIcone" icon="noto-v1:shopping-cart"></iconify-icon>
@@ -35,67 +35,7 @@ if (isset($_GET['addItem'])) {
       </div>
     </div> 
 
-      <div class="cardProd">
-      <img src="../public/assets/img/ressources/background/carte/test.png" alt="">
-      <div> 
-        <h2>Le burger 1</h2>
-        <p>La liste des ingredient</p>
-      </div>
-      <div class="cardButtonGroup">
-        <button class="cardButtonAdd">
-          +Ajouter 
-        </button>
-        <button class="cardButtonAdd">
-         <iconify-icon id="cartIcone" icon="noto-v1:shopping-cart"></iconify-icon>
-        </button>
-      </div>
-    </div>   <div class="cardProd">
-      <img src="../public/assets/img/ressources/background/carte/test.png" alt="">
-      <div> 
-        <h2>Le burger 1</h2>
-        <p>La liste des ingredient</p>
-      </div>
-      <div class="cardButtonGroup">
-        <button class="cardButtonAdd">
-          +Ajouter 
-        </button>
-        <button class="cardButtonAdd">
-         <iconify-icon id="cartIcone" icon="noto-v1:shopping-cart"></iconify-icon>
-        </button>
-      </div>
-    </div>   <div class="cardProd">
-      <img src="../public/assets/img/ressources/background/carte/test.png" alt="">
-      <div> 
-        <h2>Le burger 1</h2>
-        <p>La liste des ingredient</p>
-      </div>
-      <div class="cardButtonGroup">
-        <button class="cardButtonAdd">
-          +Ajouter 
-        </button>
-        <button class="cardButtonAdd">
-         <iconify-icon id="cartIcone" icon="noto-v1:shopping-cart"></iconify-icon>
-        </button>
-      </div>
-    </div>   <div class="cardProd">
-      <img src="../public/assets/img/ressources/background/carte/test.png" alt="">
-      <div> 
-        <h2>Le burger 1</h2>
-        <p>La liste des ingredient</p>
-      </div>
-      <div class="cardButtonGroup">
-        <button class="cardButtonAdd">
-          +Ajouter 
-        </button>
-        <button class="cardButtonAdd">
-         <iconify-icon id="cartIcone" icon="noto-v1:shopping-cart"></iconify-icon>
-        </button>
-      </div>
-    </div> 
-
-  </div>
-</div>
-
+    
 <!-- debut panier -->
 
 </div>
@@ -106,33 +46,6 @@ if (isset($_GET['addItem'])) {
 <!-- debut boucle produit dans panier -->
     <div class="containerPanierProd">
       <div class="panierProd">
-        <img src="../public/assets/img/ressources/background/carte/test.png" alt="" class="imageProdPanier">
-        <p class="nomProduit">Nom produit</p>
-        <p class="prixProduit">10.50</p>
-        <span></span>
-      </div>  
-
-      <div class="panierProd">
-        <img src="../public/assets/img/ressources/background/carte/test.png" alt="" class="imageProdPanier">
-        <p class="nomProduit">Nom produit</p>
-        <p class="prixProduit">10.50</p>
-        <span></span>
-      </div>  <div class="panierProd">
-        <img src="../public/assets/img/ressources/background/carte/test.png" alt="" class="imageProdPanier">
-        <p class="nomProduit">Nom produit</p>
-        <p class="prixProduit">10.50</p>
-        <span></span>
-      </div>  <div class="panierProd">
-        <img src="../public/assets/img/ressources/background/carte/test.png" alt="" class="imageProdPanier">
-        <p class="nomProduit">Nom produit</p>
-        <p class="prixProduit">10.50</p>
-        <span></span>
-      </div>  <div class="panierProd">
-        <img src="../public/assets/img/ressources/background/carte/test.png" alt="" class="imageProdPanier">
-        <p class="nomProduit">Nom produit</p>
-        <p class="prixProduit">10.50</p>
-        <span></span>
-      </div>  <div class="panierProd">
         <img src="../public/assets/img/ressources/background/carte/test.png" alt="" class="imageProdPanier">
         <p class="nomProduit">Nom produit</p>
         <p class="prixProduit">10.50</p>
