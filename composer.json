@@ -12,9 +12,10 @@
         "psr-4": {
             "Inter\\" : "interface/",
             "Tool\\" : "class/",
-            "Model\\Dash\\" : "model/dash/",
-            "Control\\Dash\\" : "controller/dash/",
-            "Model\\Config\\" : "model/config/"
+            "Model\\" : "model/",
+            "Control\\" : "controller/",
+            "Config\\" : "config/",
+            "Dash\\" : "dash/"
         }
     }
 }

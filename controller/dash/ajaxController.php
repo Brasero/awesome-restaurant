@@ -1,5 +1,15 @@
 <?php
 
+namespace Control\Dash;
+
+use PDO;
+use Model\Config\Database;
+use Model\Dash\TaxeManager;
+use Model\Dash\CategorieManager;
+use Model\Dash\IngredientManager;
+use Model\Dash\IngredientTypeManager;
+
+require_once('../../vendor/autoload.php');
 require_once('../../model/config/Database.php');
 require_once('./ingredientController.php');
 require_once('./produitController.php');

@@ -3,6 +3,7 @@
 namespace Model\Dash;
 
 use PDO;
+use Tool\Toast;
 use Control\Dash\Taxe;
 use Tool\AbstractEntityManager;
 
