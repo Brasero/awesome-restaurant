@@ -1,7 +1,7 @@
 body{
   width: 100%;
-  background-image: url(../img/ressources/background/carte/carte.png);
   height: 100%;
+  background-image: url(../img/ressources/background/carte/carte.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: bottom;
@@ -9,14 +9,15 @@ body{
 }
 
 .container{
+  min-height: 92.8vh;
   display: flex;
   width: 100%;
   background: linear-gradient(26deg, rgba(255,187,114, 0.60) 20px, rgba(0, 0, 0,0.3)600px );
   background-position: right top;
   background-attachment: fixed;
-  backdrop-filter: blur(5px);
   height:-webkit-fill-available;
   overflow-y: hidden;
+  backdrop-filter: blur(5px);
 }
 
 .carteContainer{
@@ -528,6 +529,10 @@ width: 100%;
   font-size: 1.5rem;
 }
 
+.carteContainer > .cardDeck > .cardProd > .cardButtonGroup > .cardButtonAdd > img{
+  width: 25%;
+
+}
 
 .carteContainer > .cardDeck> .cardProd >div>h2{
   margin-left: 3%;
