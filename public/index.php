@@ -27,6 +27,7 @@ $bdd = Database::getInstance('exemple_panier', 'root', '', 'localhost');
     <link rel="shortcut icon" href="./assets/icon/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="./assets/css/style.css">
   <link rel="stylesheet" href="./assets/css/navBar.css">
+  <script src="https://code.iconify.design/iconify-icon/1.0.0/iconify-icon.min.js"></script>
   
   <?php
       if(isset($_GET['page'])){
