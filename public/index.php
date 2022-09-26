@@ -51,10 +51,10 @@ $bdd = Database::getInstance('exemple_panier', 'root', '', 'localhost');
             break;
           
           default:
-            include('../vue/carte.php');
+          echo '<link rel="stylesheet" href="./assets/css/carte.css">';
         }
       } else {
-        include('../vue/carte.php');
+        echo '<link rel="stylesheet" href="./assets/css/carte.css">';
       }
 
     ?>
