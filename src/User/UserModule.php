@@ -2,12 +2,21 @@
 namespace App\User;
 
 use Framework\Router\Router;
+use Framework\Renderer\PHPRenderer;
 
 class UserModule
 {
 
-    public function __construct(Router $router)
+    /**
+     *
+     * @var PHPRenderer
+     */
+    private $renderer; 
+
+    public function __construct(Router $router, PHPRenderer $renderer)
     {
+        $renderer->addPath('user', __DIR__ . "/views");
+        $this->renderer = $renderer;
         $router->get('/connexion', [$this, 'connexion'], 'user.connexion');
         $router->get('/inscription', [$this, 'inscription'], 'user.inscription');
         $router->get('/espace', [$this, 'espace'], 'user.espace');
@@ -21,16 +30,16 @@ class UserModule
 
     public function connexion()
     {
-        return 'User connexion';
+        return $this->renderer->render('@user/connexion');
     }
 
     public function inscription()
     {
-        return 'User inscription';
+        return $this->renderer->render('@user/inscription');
     }
 
     public function espace()
     {
-        return 'User espace';
+        return $this->renderer->render('@user/espace');
     }
 }

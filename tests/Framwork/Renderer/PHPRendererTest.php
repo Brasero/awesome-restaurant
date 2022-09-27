@@ -23,8 +23,21 @@ class PHPRendererTest extends TestCase
     public function testRender()
     {
         $renderer = new PHPRenderer();
-        $renderer->addPath('@test', __DIR__ . '/views');
+        $renderer->addPath('test', __DIR__ . '/views');
         $render = $renderer->render('@test/index');
         $this->assertEquals('<h1>Hello</h1>', $render);
+    }
+
+    public function testRenderWithParams()
+    {
+        $renderer = new PHPRenderer();
+        $renderer->addPath('test', __DIR__ . '/views');
+        $render = $renderer->render(
+            '@test/params',
+            [
+                "nom" => "Pierre"
+            ]
+        );
+        $this->assertEquals("<h1>Bonjour Pierre</h1>", $render);
     }
 }

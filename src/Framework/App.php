@@ -1,6 +1,7 @@
 <?php
 namespace Framework;
 
+use Framework\Renderer\PHPRenderer;
 use Framework\Router\Router;
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
@@ -21,11 +22,18 @@ class App
      */
     public $router;
 
+    /**
+     *
+     * @var PHPRenderer;
+     */
+    public $renderer;
+
     public function __construct(array $modules = [])
     {
         $this->router = new Router();
+        $this->renderer = new PHPRenderer();
         foreach($modules as $module){
-           $this->modules[] = new $module($this->router); 
+           $this->modules[] = new $module($this->router, $this->renderer); 
         }
     }
 
@@ -38,6 +46,33 @@ class App
                     ->withHeader('Location', substr($uri, 0, -1));
         }
 
-        return new Response(200, [], 'bonjour');
+        $route = $this->router->match($request);
+
+        if(is_null($route))
+        {
+            return new Response(404, [], "<h1>Erreur 404</h1>");
+        }
+
+        $params = $route->getParams();
+        $request = array_reduce(array_keys($params), function ($request, $key) use ($params) {
+            return $request->withAttribute($key, $params[$key]);
+        }, $request);
+
+        $callback = $route->getCallback();
+
+        $response = call_user_func_array($callback, [$request]);
+
+        if(is_string($response))
+        {
+            return new Response(200, [], $response);
+        }
+        elseif($response instanceof ResponseInterface)
+        {
+            return $response;
+        }
+        else
+        {
+            throw new \Exception("The response is not available");
+        }
     }
 }
