@@ -1,28 +1,29 @@
 <?php
 
 use Framework\App;
-use Twig\Environment;
 use App\User\UserModule;
-use Framework\Renderer\TwigRenderer;
-use Twig\Loader\FilesystemLoader;
+use DI\ContainerBuilder;
 use function Http\Response\{send};
 use GuzzleHttp\Psr7\ServerRequest;
 
 require "../vendor/autoload.php";
 
-$loader = new FilesystemLoader(dirname(__DIR__)."/views");
-$twig = new Environment($loader, []);
-$renderer = new TwigRenderer($loader, $twig);
-
 $modules = [
     UserModule::class
 ];
 
-$dependencies = [
-    'renderer' => $renderer
-];
+$builder = new ContainerBuilder();
+$builder->addDefinitions(dirname(__DIR__) . "/config/config.php");
 
-$app = new App($modules, $dependencies);
+foreach ($modules as $module){
+    if($module::DEFINITIONS){
+        $builder->addDefinitions($module::DEFINITIONS);
+    }
+}
+
+$container = $builder->build();
+
+$app = new App($container, $modules);
 $response = $app->run(ServerRequest::fromGlobals());
 
 send($response);

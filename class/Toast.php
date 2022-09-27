@@ -11,40 +11,19 @@ class Toast
     const SUCCESS = 1;
     const WARNING = 2;
 
-    public function __construct()
-    {
-        return $this;
-    }
-
     public function createToast(string $message, int $etat): void
     {
-        
         switch($etat){
             case 0:
-                $this->toast = '<span class="error">
-                                    <span class="message">
-                                        '.$message.'
-                                    </span>
-                                    <span class="progressBar"></span>
-                                </span>';
+                $this->error($message);
                 break;
 
             case 1:
-                $this->toast = '<span class="success">
-                                    <span class="message">
-                                        '.$message.'
-                                    </span>
-                                    <span class="progressBar"></span>
-                                </span>';
+                $this->success($message);
                 break;
 
             case 2:
-                $this->toast = '<span class="warning">
-                                    <span class="message">
-                                        '.$message.'
-                                    </span>
-                                    <span class="progressBar"></span>
-                                </span>';
+                $this->warning($message);
                 break;
         }
     }
@@ -52,5 +31,36 @@ class Toast
     public function renderToast(): string
     {
         return $this->toast;
+    }
+
+    private function success(string $message): void
+    {
+        $this->toast = '<span class="success">
+                            <span class="message">
+                                '.$message.'
+                            </span>
+                            <span class="progressBar"></span>
+                        </span>';
+    }
+
+    private function error(string $message): void
+    {
+        $this->toast = '<span class="error">
+                            <span class="message">
+                                '.$message.'
+                            </span>
+                            <span class="progressBar"></span>
+                        </span>';
+    }
+
+    
+    private function warning(string $message): void
+    {
+        $this->toast = '<span class="warning">
+                            <span class="message">
+                                '.$message.'
+                            </span>
+                            <span class="progressBar"></span>
+                        </span>';
     }
 }

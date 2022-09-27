@@ -1,9 +1,9 @@
 <?php
 namespace Framework;
 
-use Framework\Renderer\PHPRenderer;
 use Framework\Router\Router;
 use GuzzleHttp\Psr7\Response;
+use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -17,26 +17,17 @@ class App
     private $modules;
 
     /**
+     * Conteneur de dépendances
      *
-     * @var Router
+     * @var ContainerInterface
      */
-    public $router;
+    private $container;
 
-    /**
-     *
-     * @var RendererInterface;
-     */
-    public $renderer;
-
-    public function __construct(array $modules = [], array $dependencies = [])
+    public function __construct(ContainerInterface $container, array $modules = [])
     {
-        $this->router = new Router();
-        if(isset($dependencies['renderer']))
-        { 
-            $this->renderer = $dependencies['renderer'];
-        }
+        $this->container = $container;
         foreach($modules as $module){
-           $this->modules[] = new $module($this->router, $this->renderer); 
+           $this->modules[] = $container->get($module); 
         }
     }
 
@@ -49,7 +40,8 @@ class App
                     ->withHeader('Location', substr($uri, 0, -1));
         }
 
-        $route = $this->router->match($request);
+        $router = $this->container->get(Router::class);
+        $route = $router->match($request);
 
         if(is_null($route))
         {

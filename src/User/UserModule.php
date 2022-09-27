@@ -1,11 +1,15 @@
 <?php
 namespace App\User;
 
+use Framework\Module;
 use Framework\Router\Router;
 use Framework\Renderer\RendererInterface;
 
-class UserModule
+class UserModule extends Module
 {
+
+
+    const DEFINITIONS = __DIR__ . DIRECTORY_SEPARATOR . 'config.php';
 
     /**
      *
@@ -13,13 +17,13 @@ class UserModule
      */
     private $renderer; 
 
-    public function __construct(Router $router, RendererInterface $renderer)
+    public function __construct(string $prefix, Router $router, RendererInterface $renderer)
     {
         $renderer->addPath('user', __DIR__ . "/views");
         $this->renderer = $renderer;
-        $router->get('/connexion', [$this, 'connexion'], 'user.connexion');
-        $router->get('/inscription', [$this, 'inscription'], 'user.inscription');
-        $router->get('/espace', [$this, 'espace'], 'user.espace');
+        $router->get($prefix . '/connexion', [$this, 'connexion'], 'user.connexion');
+        $router->get($prefix . '/inscription', [$this, 'inscription'], 'user.inscription');
+        $router->get($prefix . '/espace', [$this, 'espace'], 'user.espace');
     }
 
 

@@ -27,6 +27,7 @@
         "zendframework/zend-expressive-fastroute" : "1.2.0",
         "guzzlehttp/psr7": "^2.4",
         "http-interop/response-sender": "^1.0",
-        "twig/twig": "^3.4"
+        "twig/twig": "^3.4",
+        "php-di/php-di": "^6.4"
     }
 }
