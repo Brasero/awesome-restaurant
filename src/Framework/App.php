@@ -24,14 +24,17 @@ class App
 
     /**
      *
-     * @var PHPRenderer;
+     * @var RendererInterface;
      */
     public $renderer;
 
-    public function __construct(array $modules = [])
+    public function __construct(array $modules = [], array $dependencies = [])
     {
         $this->router = new Router();
-        $this->renderer = new PHPRenderer();
+        if(isset($dependencies['renderer']))
+        { 
+            $this->renderer = $dependencies['renderer'];
+        }
         foreach($modules as $module){
            $this->modules[] = new $module($this->router, $this->renderer); 
         }

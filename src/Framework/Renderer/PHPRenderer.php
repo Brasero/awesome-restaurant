@@ -2,7 +2,7 @@
 
 namespace Framework\Renderer;
 
-class PHPRenderer
+class PHPRenderer implements RendererInterface
 {
 
 

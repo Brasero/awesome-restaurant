@@ -2,18 +2,18 @@
 namespace App\User;
 
 use Framework\Router\Router;
-use Framework\Renderer\PHPRenderer;
+use Framework\Renderer\RendererInterface;
 
 class UserModule
 {
 
     /**
      *
-     * @var PHPRenderer
+     * @var RendererInterface
      */
     private $renderer; 
 
-    public function __construct(Router $router, PHPRenderer $renderer)
+    public function __construct(Router $router, RendererInterface $renderer)
     {
         $renderer->addPath('user', __DIR__ . "/views");
         $this->renderer = $renderer;

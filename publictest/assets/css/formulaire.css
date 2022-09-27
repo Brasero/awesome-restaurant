@@ -1,0 +1,104 @@
+.formTitle {
+    background-color: transparent;
+    color: white;
+    margin-bottom: 15px;
+  }
+
+
+.inputGroup{
+position: relative;
+display: flex;
+align-items: center;
+margin-bottom: 15px;
+}
+
+.inputGroup > label {
+position: relative;
+border: 1px solid white;
+border-radius: 5px;
+width: 100%;
+padding: 0;
+}
+
+.inputGroup > label > input {
+width: 100%;
+padding: 10px 5px;
+border: 1px solid transparent;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+font-weight: 300;
+border-radius: 3px;
+outline: none;
+background: white;
+}
+
+
+.propItem:hover{
+    background:var(--color-primary);
+    color: var(--color-light);
+  }
+  
+  .proposition{
+    display: none;
+    position: absolute;
+    top: 45px;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    max-height: 150px;
+    overflow-y: scroll;
+    padding-inline: 5px;
+  }
+  
+  /**---- label animation ----**/
+  .inputGroup > label > input::placeholder{
+    opacity: 0;
+  }
+
+  .inputGroup > label > input:invalid {
+    animation: shake  .3s;
+    border: 1px solid var(--color-red);
+  }
+
+  
+  .inputGroup > label > span {
+    position: absolute;
+    text-transform: capitalize;
+    font-family: var(--font-secondary);
+    font-weight: 800;
+    padding: 0px 5px;
+    top: -5px;
+    left: 5px;
+    transform: translateY(10px);
+    font-size: 1.5em;
+    transition: all 300ms ease-in-out;
+    background: transparent;
+  }
+  
+  
+  label:focus-within > span, input:not(:placeholder-shown) + span {
+    color: var(--color-primary);
+    border-radius: 5px 5px 0 0;
+    transform: translateY(-15px);
+    border-right: 2px solid var(--color-primary);
+    border-left: 2px solid var(--color-primary);
+    border-top: 2px solid var(--color-primary);
+    font-weight: 500;
+    background: white;
+  }
+  
+  label:focus-within {
+    border: 2px solid var(--color-primary);
+  }
+
+  @keyframes shake {
+    25%{
+      transform: translateX(-4px);
+    }
+    50%{
+      transform: translateX(4px);
+    }
+    75%{
+      transform: translateX(-4px);
+    }
+  }
+  

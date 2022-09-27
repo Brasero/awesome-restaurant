@@ -1,0 +1,676 @@
+body{
+  width: 100%;
+  height: 100%;
+  background-image: url(../img/ressources/background/carte/carte.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  background-attachment: fixed;
+}
+
+.container{
+  min-height: 92.8vh;
+  display: flex;
+  width: 100%;
+  background: linear-gradient(26deg, rgba(255,187,114, 0.60) 20px, rgba(0, 0, 0,0.3)600px );
+  background-position: right top;
+  background-attachment: fixed;
+  height:-webkit-fill-available;
+  overflow-y: hidden;
+  backdrop-filter: blur(5px);
+}
+
+.carteContainer{
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.carteContainer > .selectCarte{
+    width:100% ;
+    height: 15vh;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+    color: white;
+    font-family: var(--font-secondary);
+    font-size: 3rem;
+    margin-left: 38%;
+}
+
+.carteContainer > .selectCarte > h1 {
+  text-shadow: var(--shadow-1);
+}
+
+.carteContainer > .selectCarte >select{
+  width: 20%;
+  height: 55%;
+  border-radius: 15px;
+  text-align: center;
+  padding-bottom: 3px;
+  font-size: 2.5rem;
+  font-family: var(--font-secondary);
+  background-color: transparent;
+  border: solid 1px var(--color-primary);
+  color: white;
+}
+
+.carteContainer > .selectCarte > .select:focus-visible{
+    outline: none;
+}
+
+.carteContainer > .cardDeck {
+    width: 100%;
+    padding: 15px 30px;
+    margin-top: 20px;
+    margin-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+.carteContainer > .cardDeck > h1{
+  font-size: 5rem;
+  color: var(--color-light);
+  font-family: var(--font-primary);
+  font-weight: thin;
+  text-shadow: 1px 1px 2px var(--color-primary), -1px 1px 2px var(--color-primary), 1px -1px 2px var(--color-primary),
+  -1px -1px 2px var(--color-primary);;
+}
+  
+.carteContainer > .cardDeck > span{
+  width: 80%;
+  background-color: var(--color-black);
+  height: 2px;
+  margin-bottom: 2%;
+}
+
+
+.carteContainer > .cardDeck > .cardProd{
+  backdrop-filter:grayscale(0.3);
+  border-radius: 15px;
+  box-shadow: var( --shadow-50);
+  height: -webkit-fill-available;
+  margin-bottom: 1%;
+  display: grid;
+  grid-template-columns: 2fr 4fr 2fr;
+  grid-template-rows: auto;  
+}
+  
+.carteContainer > .cardDeck > .cardProd > img{
+  width: 80%;
+  position: relative;
+  left: 20px;
+  align-self: center;
+    padding: 5px;
+}
+
+.carteContainer > .cardDeck > .cardProd > div{
+  font-size: 2rem;
+  font-family: var(--font-secondary);
+  margin-left: 10px;
+}
+
+.carteContainer > .cardDeck > .cardProd > div > h2{
+  margin-top: 10px;
+}
+
+.carteContainer > .cardDeck > .cardProd > div > p{
+  margin-top: 50px;
+}
+
+.carteContainer > .cardDeck > .cardProd> .cardButtonGroup{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.carteContainer > .cardDeck > .cardProd > .cardButtonGroup > .cardButtonAdd{
+  width: 45%;
+  height: 80%;
+  font-size: 1.8rem;
+  border: solid 1px var(--color-primary);
+  background-color: transparent;
+  border-radius: 15px;
+}
+
+.carteContainer > .cardDeck > .cardProd > .cardButtonGroup > .cardButtonAdd > #cartIcone{
+  font-size: 4rem;
+
+}
+
+.carteContainer > .cardDeck > .cardProd > .cardButtonGroup > .cardButtonAdd > img{
+  width: 80%;
+
+}
+
+/* toggle button */
+.panierContainer > .cardPanier> .panierToggle {
+  border: solid 1px var(--color-primary);
+  background-color: var(--color-primary);
+  border-radius: 20px;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  cursor: pointer;
+  top: 50%;
+  left: 0px;
+  z-index: 20;
+  transform: translate(-50%);
+}
+
+.panierContainer > .cardPanier> .panierToggle > .top {
+  visibility: hidden;
+}
+
+.panierContainer > .cardPanier> .panierToggle > .mid{
+  width: 95%;
+  height: 3px;
+  transition: var(--transition);
+  position: absolute;
+  top: 49%;
+  left: 25%;
+  background: var(--color-light);
+  transform:translate(-25%,-25%) rotate(310deg);
+}
+
+.panierContainer >.cardPanier> .panierToggle > .bottom {
+  width: 95%;
+  height: 3px;
+  transition: var(--transition);
+  position: absolute;
+  top: 49%;
+  left: 25%;
+  background: var(--color-light);
+  transform:translate(-25%,-25%) rotate(-310deg);
+  
+}
+
+.panierContainer >.cardPanier>  .panierToggle.active > .top{
+  visibility: visible;
+  width: 45%;
+  height: 4px;
+  transition: var(--transition);
+  position: absolute;
+  top: 35%;
+  left:21.5%;
+  background: var(--color-light);
+  transform: translate(-50%) rotate(-45deg);
+}
+
+.panierContainer >.cardPanier> .panierToggle.active > .mid{
+  width: 95%;
+  height: 4px;
+  transition: var(--transition);
+  position: absolute;
+  top: 50%;
+  left:50%;
+  background: var(--color-light);
+  transform: translate(-50%) rotate(0deg);
+}
+
+.panierContainer >.cardPanier> .panierToggle.active > .bottom {
+ width: 45%;
+  height: 4px;
+  transition: var(--transition);
+  position: absolute;
+  top: 67%;
+  left:4.5%;
+  background: var(--color-light);
+  transform: translate(-10%) rotate(45deg);
+}
+
+
+/**   Style element du panier  **/
+
+.panierContainer{
+  position:fixed;
+  top: 60px;
+  right: 0px;
+  width: 20%;
+  height:92%;
+}
+
+
+.panierContainer > .cardPanier{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  transition: var(--transition);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-50);
+  border-radius: 15px 0px 0px 15px;
+  height: 100%;
+  z-index: 20;
+}
+
+.panierContainer >  .cardPanier >.containerPanierProd{
+  width: 80%;
+  max-height: 72%;
+  overflow-y: scroll;
+  position: sticky;
+}
+
+.panierContainer > .cardPanier.active{
+  position: relative;
+  transform: translate(98%,0%);
+  transition: var(--transition);
+}
+
+.panierContainer > .cardPanier >h1{
+  font-size: 3rem;
+  font-family: var(--font-primary);
+  margin-top: 1%;
+  color: rgb(99, 55, 44);
+  margin-left: 15%;
+  text-shadow: var(--shadow-1);
+}
+
+.panierContainer >.cardPanier >span{
+width: 80%;
+height: 4px;
+margin-left: 20%;
+background-color: rgb(0,0,0,0.25);
+}
+
+.panierContainer > .cardPanier >.containerPanierProd >.panierProd{
+margin-top: 8%;
+color: white;
+font-family: var(--font-secondary);
+font-size: 1.7rem;
+position: relative;
+height: 100px;
+}
+
+.panierContainer > .cardPanier >.containerPanierProd > .panierProd > .imageProdPanier {
+position: absolute;
+left: 0;
+max-width: 80px;
+}
+
+.panierContainer > .cardPanier > .containerPanierProd > .panierProd > .nomProduit{
+position: absolute;
+left: 95px;
+}
+
+.panierContainer > .cardPanier > .containerPanierProd > .panierProd > .prixProduit{
+position: absolute;
+right: 0;
+top: 50px;
+}
+
+.panierContainer > .cardPanier > .containerPanierProd >.panierProd >span {
+position: absolute;
+bottom: 0;
+width: 100%;
+height: 2px;
+background-color: white;
+}
+
+ .panierContainer > .cardPanier >.containerPanierProd>.cardTotal{
+width: 100%;
+position: fixed;
+bottom: 10px;
+left: 5%;
+font-size: 2rem;
+height: 15vh;
+}
+.panierContainer > .cardPanier >.containerPanierProd>.cardTotal  #spanTotal{
+  position: fixed;
+  bottom:135px;
+  width: 90%;
+  height: 2px;
+  background-color: white;
+}
+
+ .panierContainer > .cardPanier >.containerPanierProd>.cardTotal>.textTotal{
+position: fixed;
+bottom: 70px;
+left: 25px;
+color: rgb(99, 55, 44);
+font-family: var(--font-primary);
+font-size: 3rem;
+text-shadow: var(--shadow-1);
+}
+.panierContainer > .cardPanier >.containerPanierProd>.cardTotal>.prixPanier{
+position: fixed;
+bottom: 15px;
+right: 25px;
+color: white;
+font-family: var(--font-secondary);
+font-size: 3rem;
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    color: white;
+}
+
+
+/* =====SCREEN MD (1024px) ======= */
+@media screen and (max-width: 1024px) {
+
+.carteContainer>.selectCarte {
+  margin-top: 2%;
+  font-size: 1.5rem;
+  margin-left: 0%;
+}
+
+.carteContainer > .cardDeck> .cardProd>.cardButtonGroup>.cardButtonAdd{
+  font-size: 1.3rem;
+  height: 60%;
+}
+
+.carteContainer > .cardDeck> .cardProd >div>h2{
+  font-size: 2.2rem;
+}
+
+.carteContainer > .cardDeck> .cardProd >div>p{
+  margin-top: 37px;
+  font-size: 1.7rem;
+}
+
+.carteContainer > .cardDeck> .cardProd >img{
+  width: 70%;
+  left: 5px;
+}
+
+.panierContainer > .cardPanier >.containerPanierProd{
+height: 60%;
+}
+
+.panierContainer > .cardPanier > .containerPanierProd > .panierProd> .imageProdPanier {
+display: none;
+}
+
+.panierContainer > .cardPanier >.containerPanierProd > .panierProd > .nomProduit{
+position: absolute;
+left: 5px;
+}
+
+.panierContainer > .cardPanier >.containerPanierProd > .panierProd > .prixProduit{
+position: absolute;
+right: 0;
+top: 50px;
+}
+
+
+}
+/* =====SCREEN SM (768px) ======= */
+
+@media screen and (max-width: 768px) {
+
+.carteContainer{
+flex-direction: column;
+flex-wrap: nowrap;
+align-items: center;
+}
+
+.carteContainer>.selectCarte {
+  width: 100%;
+  height: 40%;
+  font-size: 1.7rem;
+}
+
+.carteContainer>.selectCarte >select {
+  width: 23%;
+  height: 65%;
+  font-size: 1.8rem;
+}
+
+.carteContainer > .cardDeck> .cardProd>.cardButtonGroup>.cardButtonAdd{
+ font-size: 0.8rem;
+  height: 60%;
+}
+
+.carteContainer > .cardDeck >.cardProd>.cardButtonGroup>.cardButtonAdd>#cartIcone{
+  font-size: 3rem;
+}
+
+.carteContainer > .cardDeck> .cardProd >div>h2{
+  font-size: 2rem;
+}
+
+.carteContainer > .cardDeck> .cardProd >div>p{
+  margin-top: 30px;
+  font-size: 1.5rem;
+}
+
+.carteContainer > .cardDeck> .cardProd >img{
+  width: 80%;
+
+}
+
+.panierContainer > .cardPanier >h1{
+  font-size: 2.3rem;
+  margin-top: 1%;
+  margin-left: auto;
+  
+}
+
+.panierContainer > .cardPanier >.containerPanierProd{
+  height: 60%;
+}
+
+.panierContainer > .cardPanier > .containerPanierProd > .panierProd> .imageProdPanier {
+  display: none;
+}
+
+.panierContainer > .cardPanier >.containerPanierProd > .panierProd > .nomProduit{
+  font-size: 1.5rem;
+}
+
+.panierContainer > .cardPanier >.containerPanierProd > .panierProd > .prixProduit{
+  font-size:1.5rem;
+}
+
+.panierContainer > .cardPanier >.containerPanierProd > .cardTotal{
+  width: 100%;
+  bottom: 0;
+  left: 5%;
+  font-size: 2rem;
+  height: 5vh;
+}
+
+.panierContainer > .cardPanier >.containerPanierProd > .cardTotal>.textTotal{
+  left: 10px;
+  font-size: 2.3rem;
+}
+
+.panierContainer > .cardPanier >.containerPanierProd > .cardTotal>.prixPanier{
+  bottom: 35px;
+  right: 2px;
+  font-size: 1.7rem;
+}
+
+}
+
+/* =====SCREEN SM (425px) ======= */
+
+@media screen and (max-width: 426px) {
+
+.carteContainer{
+width: 100%;
+}
+
+.carteContainer>.selectCarte {
+  display: flex;
+  flex-direction: column;
+}
+
+.carteContainer>.selectCarte {
+   margin-top: 2%;
+  font-size: 2rem;
+  margin-left: 0%;
+}
+
+.carteContainer>.selectCarte >select {
+  font-size: 2rem;
+  width: 50%;
+  height: 50%;
+}
+
+.carteContainer>.cardDeck>.cardProd{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5%;
+}
+
+.carteContainer > .cardDeck> .cardProd>.cardButtonGroup>.cardButtonAdd{
+ font-size: 0.8rem;
+  height: 35px;
+}
+
+.carteContainer > .cardDeck >.cardProd>.cardButtonGroup>.cardButtonAdd>#cartIcone{
+  font-size: 1.5rem;
+}
+
+.carteContainer > .cardDeck > .cardProd > .cardButtonGroup > .cardButtonAdd > img{
+  width: 25%;
+
+}
+
+.carteContainer > .cardDeck> .cardProd >div>h2{
+  margin-left: 3%;
+  font-size: 1.6rem;
+}
+
+.carteContainer > .cardDeck> .cardProd >div>p{
+  margin-left: 3%;
+  margin-top: 2px;
+  font-size: 1.2rem;
+  margin-bottom: 3%;
+}
+
+.carteContainer > .cardDeck> .cardProd >img{
+  width: 70%;
+  height: 57% ;
+  position: relative;
+  top:2px ;
+  left: 0px;
+  align-self: center;
+
+}
+
+.panierContainer{  
+width: 50%;
+}
+
+.panierContainer > .cardPanier >h1{
+  font-size: 1.5rem;
+  margin-left: 20px;
+  text-shadow: none;
+}
+
+.panierContainer > .cardPanier >.containerPanierProd{
+  height: 70%;
+}
+
+.panierContainer > .cardPanier >.containerPanierProd > .panierProd > .nomProduit{
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.panierContainer > .cardPanier >.containerPanierProd > .panierProd > .prixProduit{
+  font-size:1.2rem;
+  left: 12px;
+}
+
+.panierContainer > .cardPanier> .panierToggle {
+  width: 25px;
+  height: 25px;
+}
+
+.panierContainer > .cardPanier >.containerPanierProd > .cardTotal{
+  width: 100%;
+  bottom: 0;
+  left: 5%;
+  font-size: 2rem;
+  height: 5vh;
+}
+
+.panierContainer > .cardPanier >.containerPanierProd > .cardTotal>.textTotal{
+  text-shadow: none;
+  left: 2px;
+}
+
+.panierContainer > .cardPanier >.containerPanierProd > .cardTotal>.prixPanier{
+  bottom: 35px;
+  right: 2px;
+  font-size: 1.5rem;
+}
+
+}
+
+@media screen and (max-width: 324px) {
+
+.carteContainer{
+  width: 100%;
+}
+
+.carteContainer>.cardDeck>h1{
+font-size: 4rem;
+}
+
+.carteContainer>.cardDeck>span{
+width: 106%;
+}
+
+.panierContainer > .cardPanier >h1{
+  font-size: 1.5rem;
+  margin-left: 20px;
+  text-shadow: none;
+}
+
+.panierContainer > .cardPanier >.containerPanierProd{
+  height: 70%;
+}
+
+.panierContainer > .cardPanier >.containerPanierProd > .panierProd > .nomProduit{
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.panierContainer > .cardPanier >.containerPanierProd > .panierProd > .prixProduit{
+  font-size:1.2rem;
+  left: 12px;
+}
+
+
+
+.panierContainer > .cardPanier >.containerPanierProd > .cardTotal{
+  width: 100%;
+  bottom: 0;
+  left: 5%;
+  font-size: 2rem;
+  height: 5vh;
+}
+
+.panierContainer > .cardPanier >.containerPanierProd > .cardTotal>.textTotal{
+  text-shadow: none;
+  left: 2px;
+}
+
+.panierContainer > .cardPanier >.containerPanierProd > .cardTotal>.prixPanier{
+  bottom: 35px;
+  right: 2px;
+  font-size: 1.5rem;
+}
+
+}
+
+@media screen and (min-width: 2560px) {
+.panierContainer > .cardPanier> .panierToggle {
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+}
+}
+
+
+
