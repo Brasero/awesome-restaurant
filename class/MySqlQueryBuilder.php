@@ -137,7 +137,7 @@ class MySqlQueryBuilder implements SQLQueryBuilder{
         }
 
         if($query->type == 'insert'){
-            $sql .= " VALUES ".implode(', ', $query->values)."";
+            $sql .= " VALUES (".implode(', ', $query->values).")";
         }
 
 

@@ -10,7 +10,7 @@ class Router
 {
 
     /**
-     * 
+     *
      * @var FastRouteRouter
      */
     private $router;
@@ -37,7 +37,7 @@ class Router
     {
         $result = $this->router->match($request);
 
-        if($result->isSuccess()) {
+        if ($result->isSuccess()) {
             return new Route(
                 $result->getMatchedRouteName(),
                 $result->getMatchedMiddleware(),

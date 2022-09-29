@@ -1,7 +1,8 @@
 <?php
 
 use App\User\UserModule;
-use function DI\{autowire, get};
+use function DI\autowire;
+use function DI\get;
 
 return [
     "user.prefix" => "/user",

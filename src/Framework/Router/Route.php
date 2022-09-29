@@ -64,5 +64,4 @@ class Route
     {
         return $this->params;
     }
-
 }

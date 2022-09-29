@@ -15,7 +15,7 @@ class UserModule extends Module
      *
      * @var RendererInterface
      */
-    private $renderer; 
+    private RendererInterface $renderer;
 
     public function __construct(string $prefix, Router $router, RendererInterface $renderer)
     {
@@ -27,22 +27,22 @@ class UserModule extends Module
     }
 
 
-    public function __invoke()
+    public function __invoke(): string
     {
         return $this->connexion();
     }
 
-    public function connexion()
+    public function connexion(): string
     {
         return $this->renderer->render('@user/connexion');
     }
 
-    public function inscription()
+    public function inscription(): string
     {
         return $this->renderer->render('@user/inscription');
     }
 
-    public function espace()
+    public function espace(): string
     {
         return $this->renderer->render('@user/espace');
     }

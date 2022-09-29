@@ -28,8 +28,7 @@ class PHPRenderer implements RendererInterface
      */
     public function __construct(?string $defaultPath = null)
     {
-        if (!is_null($defaultPath))
-        {
+        if (!is_null($defaultPath)) {
             $this->addPath($defaultPath);
         }
     }
@@ -38,7 +37,7 @@ class PHPRenderer implements RendererInterface
     /**
      * Ajoute des variable globales a toute les vues
      *
-     * @param string $key 
+     * @param string $key
      * @param mixed $value
      * @return void
      */
@@ -56,8 +55,7 @@ class PHPRenderer implements RendererInterface
      */
     public function addPath(string $namespace, ?string $path = null): void
     {
-        if (is_null($path))
-        {
+        if (is_null($path)) {
             $this->paths[self::DEFAULT_NAMESPACE] = $namespace;
         } else {
             $this->paths[$namespace] = $path;
@@ -69,16 +67,13 @@ class PHPRenderer implements RendererInterface
      *
      * @param string $view Nom de la vue ex : @blog/index
      * @param array $params liste des paramètre a injécter dans la vue.
-     * @return string 
+     * @return string
      */
     public function render(string $view, array $params = []): string
     {
-        if ($this->hasNamespace($view))
-        {
+        if ($this->hasNamespace($view)) {
             $path = $this->replaceNamespace($view) . ".php";
-        }
-        else 
-        {
+        } else {
             $path = $this->paths[self::DEFAULT_NAMESPACE] . DIRECTORY_SEPARATOR . $view . '.php';
         }
         ob_start();

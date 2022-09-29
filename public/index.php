@@ -1,6 +1,7 @@
 <?php
 
 use Model\Config\Database;
+
 require "../vendor/autoload.php";
 session_start();
 require('../model/config/Database.php');
@@ -30,32 +31,32 @@ $bdd = Database::getInstance('exemple_panier', 'root', '', 'localhost');
   <script src="https://code.iconify.design/iconify-icon/1.0.0/iconify-icon.min.js"></script>
   
   <?php
-      if(isset($_GET['page'])){
-        switch($_GET['page']){
-          case 'login':
-            echo '<link rel="stylesheet" href="./assets/css/formulaire.css">
+    if (isset($_GET['page'])) {
+        switch ($_GET['page']) {
+            case 'login':
+                echo '<link rel="stylesheet" href="./assets/css/formulaire.css">
             <link rel="stylesheet" href="./assets/css/connexion.css">';
-            break;
+                break;
 
-          case 'signin':
-            echo '<link rel="stylesheet" href="./assets/css/formulaire.css">
+            case 'signin':
+                echo '<link rel="stylesheet" href="./assets/css/formulaire.css">
             <link rel="stylesheet" href="./assets/css/inscription.css">';
-            break;
+                break;
           
-          case 'carte':
-            echo '<link rel="stylesheet" href="./assets/css/carte.css">';
-            break;
+            case 'carte':
+                echo '<link rel="stylesheet" href="./assets/css/carte.css">';
+                break;
 
-          case 'panier':
-            echo '<link rel="stylesheet" href="./assets/css/panier.css">';
-            break;
+            case 'panier':
+                echo '<link rel="stylesheet" href="./assets/css/panier.css">';
+                break;
           
-          default:
-          echo '<link rel="stylesheet" href="./assets/css/carte.css">';
+            default:
+                echo '<link rel="stylesheet" href="./assets/css/carte.css">';
         }
-      } else {
+    } else {
         echo '<link rel="stylesheet" href="./assets/css/carte.css">';
-      }
+    }
 
     ?>
   <title>Burger Compagny</title>
@@ -74,16 +75,16 @@ $bdd = Database::getInstance('exemple_panier', 'root', '', 'localhost');
       </div>
       <ul class="linkList">
       <?php
-        if(isset($_SESSION['user'])){
-          ?>
+        if (isset($_SESSION['user'])) {
+            ?>
         <li class="navItem" style="--i: 0;">
           <a href="../controller/deconnexionController.php" class="navHref">
             Déconnnexion
           </a>
         </li>
-          <?php
+            <?php
         } else {
-          ?>
+            ?>
           <li class="navItem <?= isset($_GET['page']) && $_GET['page'] == 'login' ? 'active' : '' ?>"  style="--i: 0;">
             <a href="index.php?page=login" class="navHref">
               Connexion
@@ -94,7 +95,7 @@ $bdd = Database::getInstance('exemple_panier', 'root', '', 'localhost');
               Inscription
             </a>
           </li>
-          <?php
+            <?php
         }
         ?>
         <li class="navItem <?= isset($_GET['page']) && $_GET['page'] == 'carte' ? 'active' : (!isset($_GET['page']) ? 'active' : '') ?>" style="--i: 2;">
@@ -113,30 +114,30 @@ $bdd = Database::getInstance('exemple_panier', 'root', '', 'localhost');
 
   <div class="container">
     <?php
-      if(isset($_GET['page'])){
-        switch($_GET['page']){
-          case 'login':
-            include('../vue/connexion.php');
-            break;
+    if (isset($_GET['page'])) {
+        switch ($_GET['page']) {
+            case 'login':
+                include('../vue/connexion.php');
+                break;
 
-          case 'signin':
-            include('../vue/inscription.php');
-            break;
+            case 'signin':
+                include('../vue/inscription.php');
+                break;
           
-          case 'carte':
-            include('../vue/carte.php');
-            break;
+            case 'carte':
+                include('../vue/carte.php');
+                break;
 
-          case 'panier':
-            include('../vue/panier.php');
-            break;
+            case 'panier':
+                include('../vue/panier.php');
+                break;
           
-          default:
-            include('../vue/carte.php');
+            default:
+                include('../vue/carte.php');
         }
-      } else {
+    } else {
         include('../vue/carte.php');
-      }
+    }
 
     ?>
   </div>  
