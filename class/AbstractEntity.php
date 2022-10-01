@@ -19,9 +19,17 @@ abstract class AbstractEntity
 
     public function getNomBrut(): string
     {
-        return $this->nom;
+        return $this->produit->nom;
     }
 
     abstract public function hash(): void;
+
+    /**
+     * @return int
+     */
+    public function getID(): int
+    {
+        return $this->ID;
+    }
 }
 

@@ -3,7 +3,9 @@ namespace Framework;
 
 use Framework\Router\Router;
 use GuzzleHttp\Psr7\Response;
+use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -21,7 +23,7 @@ class App
      *
      * @var ContainerInterface
      */
-    private $container;
+    private ContainerInterface $container;
 
     public function __construct(ContainerInterface $container, array $modules = [])
     {
@@ -31,6 +33,12 @@ class App
         }
     }
 
+    /**
+     * @param ServerRequestInterface $request
+     * @return ResponseInterface
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
     public function run(ServerRequestInterface $request): ResponseInterface
     {
         $uri = $request->getUri()->getPath();
@@ -63,5 +71,10 @@ class App
         } else {
             throw new \Exception("The response is not available");
         }
+    }
+
+    public function getContainer(): ContainerInterface
+    {
+        return $this->container;
     }
 }

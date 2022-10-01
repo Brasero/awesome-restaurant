@@ -21,21 +21,23 @@
             <h1>Categorie</h1>
             <span></span>
             <!-- debut pour boucle produit -->
-            <div class="cardProd">
-                <img src="../assets/img/ressources/background/carte/test.png" alt="">
-                <div>
-                    <h2>Le burger 1</h2>
-                    <p>La liste des ingredient</p>
+            {% for prod in products %}
+                <div class="cardProd">
+                    <img src="../assets/img/ressources/background/carte/test.png" alt="">
+                    <div>
+                        <h2>{{ prod.nom }}</h2>
+                        <p>La liste des ingredient</p>
+                    </div>
+                    <div class="cardButtonGroup">
+                        <button class="cardButtonAdd">
+                            <img src="../assets/img/ressources/icon/carte/tomate.svg" alt="">
+                        </button>
+                        <button class="cardButtonAdd">
+                            <iconify-icon id="cartIcone" icon="noto-v1:shopping-cart"></iconify-icon>
+                        </button>
+                    </div>
                 </div>
-                <div class="cardButtonGroup">
-                    <button class="cardButtonAdd">
-                        <img src="../assets/img/ressources/icon/carte/tomate.svg" alt="">
-                    </button>
-                    <button class="cardButtonAdd">
-                        <iconify-icon id="cartIcone" icon="noto-v1:shopping-cart"></iconify-icon>
-                    </button>
-                </div>
-            </div>
+            {% endfor %}
 
 
             <!-- debut panier -->

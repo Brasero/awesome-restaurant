@@ -7,7 +7,7 @@ use function Http\Response\send;
 use GuzzleHttp\Psr7\ServerRequest;
 use \App\Produit\ProduitModule;
 
-require "../vendor/autoload.php";
+require dirname(__DIR__)."/vendor/autoload.php";
 
 $modules = [
     UserModule::class,
@@ -26,6 +26,8 @@ foreach ($modules as $module) {
 $container = $builder->build();
 
 $app = new App($container, $modules);
-$response = $app->run(ServerRequest::fromGlobals());
 
-send($response);
+if (php_sapi_name() != 'cli') {
+    $response = $app->run(ServerRequest::fromGlobals());
+    send($response);
+}
