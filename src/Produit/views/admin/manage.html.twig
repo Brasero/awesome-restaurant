@@ -1,0 +1,231 @@
+{% extends '@admin/connected.html.twig' %}
+
+
+{% block body %}
+
+    <div class="produitContainer">
+        <h1 class="pageTitle">
+            <span class="top" style="transform: translateY(-30px);">Gestion des</span>
+            <span class="bottom" style="transform: translateY(30px);">produits</span>
+        </h1>
+        <div class="produitCardDeck">
+            <div class="card">
+                <!-- debut form ajout produit -->
+                <h4 class="formTitle">
+                    Ajouter un produit
+                </h4>
+                <form action="" method="POST" class="produitFormContainer">
+                <span class="produitFormPart1">
+                    <span class="inputGroup">
+                        <label for="produitNom" class="inputLabel">
+                            <input type="text" class="inputItem" name="produitNom" id="ingredientNom" placeholder="Nom" required />
+                            <span>Nom</span>
+                        </label>
+                    </span>
+                    <span class="inputGroup">
+                        <label for="produitPrix" class="inputLabel">
+                            <input type="text" class="inputItem" name="produitPrix" id="produitPrix" placeholder="Prix" required />
+                            <span>Prix</span>
+                        </label>
+                    </span>
+                    <span class="typeChoice">
+                        <label for="categorieType">
+                            <span>Catégorie</span>
+                        </label>
+                        <select name="categorie" id="categorieType" class="inputItem" placeholder="C    ategorie" default="false" required>
+                            <option value="false" class="typeOption">....</option>
+                            {% for categorie in categories %}
+                            <option value={{ categorie.ID }}>{{ categorie.nom }}</option>
+                            {% endfor %}
+                        </select>
+                    </span>
+                    <button type="button" onclick='switchForm("toLeft")' class="addButton nextButton">
+                        Suivant
+                    </button>
+                </span>
+                    <span class="produitFormPart2">
+                    <button class="backButton" type="button" onclick="switchForm('toRight')"><i class="bi bi-arrow-left-short"></i>Retour</button>
+                    <fieldset class="ingredientGroup">
+
+                        {% for type in types %}
+
+                        <div class="typeIngredientGroupItem" id="type-{{ type.id }}" onclick="toggleIngredientList(event,{{ type.id }})" data-idtype={{ type.id }}>
+                                <div class="groupLabel">
+                                    <span>{{ ucfirst(type.nom) }}</span> <i class="bi bi-caret-down-fill"></i>
+                                </div>
+
+                            {% for ingredient in ingredients %}
+                                    {% if ingredient.type == type %}
+                                        <div class="groupItem">
+                                            <input type="checkbox" name="ingredients[]" value="{{ ingredient.id }}" id="ingredient-{{ ingredient.nom }}">
+                                            <label for="ingredient-{{ ingredient.nom }}" class="ingredientLabel">{{ ingredient.nom }}</label>
+                                        </div>
+                                    {% endif %}
+                            {% endfor %}
+
+                            </div>
+                        {% endfor %}
+
+                    </fieldset>
+                    <button type="submit" class="addButton">
+                        Valider
+                    </button>
+
+                </span>
+                </form>
+                <!-- fin form ajout produit -->
+            </div>
+
+            <!-- debut tableau produit -->
+            <div class="table">
+                <table class="categorieTypeTable categorieTableStyle">
+                    <h4 class="title">
+                        Liste produit
+                    </h4>
+                    <tbody>
+                        <tr class="colonneTitleContainer">
+                            <th class="colonneTitleItem">Nom</th>
+                            <th class="colonneTitleItem">prix</th>
+                            <th class="colonneTitleItem">taxe</th>
+                            <th class="colonneTitleItem">categorie</th>
+                            <th class="colonneTitleItem">offre</th>
+                            <th class="colonneTitleItem">Action</th>
+                        </tr>
+                    {% for produit in produits %}
+                        <tr class="categorieTypeItem" id="categorie-<?= $categorie->getID() ?>">
+                            <td class="categorieTypePart">{{ produit.nom }}</td>
+                            <td class="categorieTypePart">{{ currencyFormat(produit.prix, '€') }}</td>
+                            <td class="categorieTypePart">{{ produit.nom }}</td>
+                            <td class="categorieTypePart">{{ produit.categorie.nom }}</td>
+                            <td class="categorieTypePart">{{ produit.nom }}</td>
+                            <td class="categorieTypePart buttonGroup">
+                                <button class="actionButton updateButton" onclick="openModal(event, 'produit', {{ produit.ID }})" >
+                                    <i class="bi bi-pencil-square"
+                                       data-nomcategorie={{ produit.ID_categorie.nom }}>
+                                    </i>
+                                </button>
+                                <button class="actionButton deleteButton" onclick="supprItem('produit', {{ produit.ID }})">
+                                    Supprimer
+                                </button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <!-- fin tableau produit -->
+        </div>
+
+        <!-- Tableau de categorie -->
+        <div class="produitCardDeck">
+<!-- debut liste categorie produit -->
+            <div class="table">
+                <table class="categorieTypeTable categorieTableStyle">
+                    <h4 class="title">
+                        Liste categorie
+                    </h4>
+                    <tbody>
+                        <tr class="colonneTitleContainer">
+                            <th class="colonneTitleItem">Nom</th>
+                            <th class="colonneTitleItem">Action</th>
+                        </tr>
+                            {% for categorie in categories %}
+                                <tr class="categorieTypeItem" id="categorie-<?= $categorie->getID() ?>">
+                                    <td class="categorieTypePart">{{ ucfirst(categorie.nom) }} </td>
+                                    <td class="categorieTypePart buttonGroup">
+                                        <button
+                                            class="actionButton updateButton"
+                                            onclick="openModal(
+                                                event,
+                                                'categorie',
+                                                {{ categorie.id }}
+                                                )"
+                                        >
+                                            <i class="bi bi-pencil-square"
+                                                 data-nomcategorie="<?= $categorie->getNom() ?>">
+                                            </i>
+                                        </button>
+                                        <button
+                                            class="actionButton deleteButton"
+                                            onclick="supprItem(
+                                                'categorie',
+                                                {{ categorie.id }}
+                                                )"
+                                        >
+                                            Supprimer
+                                        </button>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+        <!-- Fin de tableau de categorie -->
+
+        <!-- Form ajout categorie -->
+            <div class="card">
+    <!-- debut form ajout categorie produit -->
+                <h4 class="formTitle">
+                    Ajouter categorie
+                </h4>
+                <form
+                    action="{{ path('admin.produit.add') }}"
+                    method="POST"
+                    enctype="multipart/form-data"
+                    class="produitFormContainer"
+                >
+                    <div class="inputGroup">
+                        <label for="categorieNom" class="inputLabel">
+                            <input
+                                type="text"
+                                class="inputItem"
+                                name="Nom_categorie"
+                                id="categorieNom"
+                                placeholder="Nom"
+                                required
+                            />
+                            <span>Nom</span>
+                        </label>
+                    </div>
+                    <span class="inputGroup">
+                        <div class="fileInput">
+                            <div class="inputFile">
+                                <input type="hidden" name="MAX_FILE_SIZE" value="20000000" />
+                                <input
+                                    type="file"
+                                    class="inputItem"
+                                    name="image"
+                                    id="image"
+                                    placeholder="Image"
+                                    required
+                                    onchange="addFileText(event)"
+                                />
+                            </div>
+                            <div class="fakeFile">
+                                <button disabled>Choisir une photo</button>
+                                <br>
+                                <span id="fakeInput">Veuillez ajouter une photo
+                                </span>
+                            </div>
+                        </div>
+                    </span>
+                    <button type="submit" class="addButton">
+                        Ajouter
+                    </button>
+                </form>
+            </div>
+        </div>
+            <!-- Fin de form ajout categorie -->
+{% endblock %}
+
+{% block script %}
+    <script type="text/javascript" src="../../assets/js/admin/controlModal.js"></script>
+
+    <script type="text/javascript" src="../../assets/js/admin/toastController.js"></script>
+    <script type="text/javascript" src="../../assets/js/admin/suppressionAjax.js"></script>
+
+    <script type="text/javascript" src="../../assets/js/admin/animation.js"></script>
+    <script type="text/javascript" src="../../assets/js/admin/dropDownIngredient.js"></script>
+    <script type="text/javascript" src="../../assets/js/admin/switchForm.js"></script>
+    <script type="text/javascript" src="../../assets/js/admin/ajoutImage.js"></script>
+{% endblock %}

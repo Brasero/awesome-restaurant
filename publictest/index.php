@@ -1,5 +1,7 @@
 <?php
 
+use App\Admin\AdminModule;
+use App\Ingredient\IngredientModule;
 use Framework\App;
 use App\User\UserModule;
 use DI\ContainerBuilder;
@@ -10,8 +12,10 @@ use \App\Produit\ProduitModule;
 require dirname(__DIR__)."/vendor/autoload.php";
 
 $modules = [
+    AdminModule::class,
     UserModule::class,
-    ProduitModule::class
+    ProduitModule::class,
+    IngredientModule::class
 ];
 
 $builder = new ContainerBuilder();

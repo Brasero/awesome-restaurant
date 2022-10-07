@@ -1,6 +1,7 @@
 <?php
-namespace App\Produit\Entity;
+namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\Table;
 use Doctrine\ORM\Mapping\Id;
@@ -15,7 +16,7 @@ class Produit
 {
     /**
      * @Id
-     * @Column(type="integer", name="ID_produit")
+     * @Column(type="integer", name="id")
      * @GeneratedValue
      * @var int
      */
@@ -39,14 +40,21 @@ class Produit
     private ?int $ID_offre;
 
     /**
-     * @Column(type="string", name="nom_offre")
+     * @Column(type="string", name="nom_produit")
      */
     private string $nom;
 
     /**
-     * @Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="Categorie")
      */
-    private int $ID_categorie;
+    private Categorie $categorie;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Ingredient")
+     * @ORM\JoinTable(name="ingredient_produit")
+     * @var Ingredient[]
+     */
+    private array $ingredient;
 
     /**
      * @Column(type="integer")
@@ -67,11 +75,6 @@ class Produit
     public function getPrix()
     {
         return $this->prix;
-    }
-
-    public function setId_categorie(int $ID_categorie): void
-    {
-        $this->ID_categorie = $ID_categorie;
     }
 
     public function getImg()
@@ -115,13 +118,40 @@ class Produit
         $this->setNom($nom);
     }
 
-    public function getId_categorie()
-    {
-        return $this->ID_categorie;
-    }
-
     public function getId_taxe()
     {
         return $this->ID_taxe;
+    }
+
+    /**
+     * @return Categorie
+     */
+    public function getCategorie(): Categorie
+    {
+        return $this->categorie;
+    }
+
+    /**
+     * @param Categorie $categorie
+     */
+    public function setCategorie(Categorie $categorie): void
+    {
+        $this->categorie = $categorie;
+    }
+
+    /**
+     * @return Ingredient[]
+     */
+    public function getIngredient(): array
+    {
+        return $this->ingredient;
+    }
+
+    /**
+     * @param Ingredient $ingredient
+     */
+    public function setIngredient(Ingredient $ingredient): void
+    {
+        $this->ingredient[] = $ingredient;
     }
 }

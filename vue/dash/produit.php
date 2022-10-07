@@ -121,6 +121,9 @@ $taxes = $taxeManager->getAll();
             </form>
 <!-- fin form ajout produit -->
         </div>
+
+
+
 <!-- debut tableau produit -->
     <div class="table">
             <table class="categorieTypeTable categorieTableStyle">
@@ -226,6 +229,7 @@ $taxes = $taxeManager->getAll();
         </div>
     </div>
 <!-- fin form ajout categorie -->
+    <!-- copy from here for twig -->
     <div class="produitCardDeck">
 <!-- debut form taxe -->
         <div class="card">

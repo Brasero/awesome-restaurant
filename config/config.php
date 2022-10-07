@@ -1,6 +1,7 @@
 <?php
 
 use Doctrine\ORM\EntityManagerInterface;
+use Framework\Database\DatabaseFactory;
 use Framework\Renderer\TwigRendererFactory;
 use Framework\Renderer\RendererInterface;
 use Framework\Router\Router;
@@ -19,5 +20,5 @@ return [
     "database.charset" => "utf8",
     RendererInterface::class => \DI\factory(TwigRendererFactory::class),
     Router::class => \DI\create(),
-    EntityManagerInterface::class => \DI\factory(\Framework\Database\DatabaseFactory::class)
+    EntityManagerInterface::class => \DI\factory(DatabaseFactory::class)
 ];

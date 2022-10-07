@@ -2,10 +2,10 @@
 
 namespace Model\Dash;
 
-use PDO;
-use Tool\Toast;
-use Tool\AbstractEntityManager;
+use App\Framework\Toaster\Toast;
 use Control\Dash\IngredientType;
+use PDO;
+use Tool\AbstractEntityManager;
 
 
 class IngredientTypeManager extends AbstractEntityManager

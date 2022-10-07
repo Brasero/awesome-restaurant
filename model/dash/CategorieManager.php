@@ -2,12 +2,11 @@
 
 namespace Model\Dash;
 
-use PDO;
-use Tool\Toast;
-use Tool\ImageUploader;
+use App\Framework\Toaster\Toast;
 use Control\Dash\Categorie;
+use PDO;
 use Tool\AbstractEntityManager;
-
+use Tool\ImageUploader;
 
 
 class CategorieManager extends AbstractEntityManager

@@ -11,9 +11,9 @@ class RouterTest extends TestCase
 {
     /**
      *
-     * @var Routeur
+     * @var Router
      */
-    private $router;
+    private Router $router;
 
     public function setUp(): void
     {

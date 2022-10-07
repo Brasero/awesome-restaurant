@@ -1,0 +1,300 @@
+{% extends '@admin/connected.html.twig' %}
+
+{% block body %}
+
+    <div class="ingredientContainer">
+        <h1 class="pageTitle">
+            <span class="top" style="transform: translateY(-30px);">Gestion des</span>
+            <span class="bottom" style="transform: translateY(30px);">ingrédients</span>
+        </h1>
+        <div class="ingredientCardDeck">
+            <div class="card">
+                <h4 class="formTitle">
+                    Ajouter un ingrédient
+                </h4>
+                <form action={{ path('admin.ingredient.add') }} method="post">
+                    <div class="inputGroup">
+                        <label for="ingredientNom" class="inputLabel">
+                            <input
+                                type="text"
+                                class="inputItem"
+                                name="nom"
+                                id="ingredientNom"
+                                placeholder="Nom"
+                                required
+                            />
+                            <span>Nom</span>
+                        </label>
+                    </div>
+                    <div class="inputGroup">
+                        <label for="ingredientPrix" class="inputLabel">
+                            <input
+                                type="text"
+                                class="inputItem"
+                                name="prix"
+                                id="ingredientPrix"
+                                placeholder="Prix"
+                                required
+                                onkeypress="checkPrice(event); return false;"
+                            />
+                            <span>Prix</span>
+                        </label>
+                    </div>
+                    <div class="typeChoice">
+                        <label for="ingredientType">
+                            <span>Type d'ingrédient</span>
+                        </label>
+                        <select
+                            class="inputItem"
+                            name="type"
+                            id="ingredientType"
+                            placeholder="Type d'ingrédient"
+                            default="false"
+                            required
+                        >
+                            <option class="typeOption" value="false">....</option>
+                            {% for type in types %}
+                            <option value="{{ type.id }}">{{ type.nom }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" class="addButton">
+                        Ajouter
+                    </button>
+                </form>
+            </div>
+
+            <!-- Liste ingrédient. -->
+
+            <div class="table">
+                <table class="ingredientTypeTable ingredientTableStyle">
+                    <h4 class="title">
+                        Liste ingrédients
+                    </h4>
+                    <tbody>
+                    <tr class="colonneTitleContainer">
+                        <th class="colonneTitleItem">Nom</th>
+                        <th class="colonneTitleItem">Prix</th>
+                        <th class="colonneTitleItem">Disponibilité</th>
+                        <th class="colonneTitleItem">Type</th>
+                        <th class="colonneTitleItem">Action</th>
+                    </tr>
+
+                    {% for ingredient in ingredients %}
+                    <tr class="ingredientTypeItem" id="ingredient-{{ ingredient.id }}">
+
+                        <td class="ingredientTypePart">
+                            {{ ingredient.nom }}
+                        </td>
+                        <td class="ingredientTypePart">
+                            {{ currencyFormat(ingredient.prix, '€') }}
+                        </td>
+                        <td class="ingredientTypePart">
+                            {% if ingredient.dispo == 1 %}
+                                <span class='itemDisponible'></span>
+                            {% else %}
+                                <span class='itemIndisponible'></span>
+                            {% endif %}
+                        </td>
+                        <td class="ingredientTypePart">
+                            {{ ingredient.type.nom }}
+                        </td>
+                        <td class="ingredientTypePart buttonGroup">
+                            <button
+                                class="actionButton updateButton"
+                                onclick="openModal(event ,'ingredient', {{ ingredient.id }})"
+                            >
+                                <i class="bi bi-pencil-square"
+                                   data-nomingredient="{{ ingredient.nom }}"
+                                   data-prixingredient="{{ ingredient.prix }}"
+                                   data-dispoingredient="{{ ingredient.dispo }}"
+                                   data-idtypeingredient="{{ ingredient.type.id }}"
+                                ></i>
+                            </button>
+                            <button
+                                class="actionButton deleteButton"
+                                onclick="supprItem('ingredient', {{ ingredient.id }})"
+                            >
+                                Supprimer
+                            </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <!-- Fin liste ingrédient -->
+        </div>
+        <div class="ingredientCardDeck">
+            <!-- Liste types ingrédients -->
+            <div class="table">
+                <table class="ingredientTypeTable ingredientTableStyle">
+                    <h4 class="title">
+                        Liste type ingrédient
+                    </h4>
+                    <tbody>
+                    <tr class="colonneTitleContainer">
+                        <th class="colonneTitleItem">Nom</th>
+                        <th class="colonneTitleItem">Action</th>
+                    </tr>
+
+                    {% for type in types %}
+                    <tr class="ingredientTypeItem" id="type-{{ type.id }}">
+
+                        <td class="ingredientTypePart">
+                            {{ type.nom }}
+                        </td>
+                        <td class="ingredientTypePart buttonGroup">
+                            <button
+                                class="actionButton updateButton"
+                                onclick="openModal(event ,'type', {{ type.id }})"
+                            >
+                                <i class="bi bi-pencil-square" data-nomtype="{{ type.nom }}"></i>
+                            </button>
+                            <button
+                                class="actionButton deleteButton"
+                                onclick="supprItem('typeIngredient', {{ type.id }})"
+                            >
+                                Supprimer
+                            </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <!-- Fin liste type ingredient -->
+
+            <!-- Formulaire d'ajout type ingredient -->
+            <div class="card">
+                <h4 class="formTitle">
+                    Ajouter type d'ingrédient
+                </h4>
+                <form action={{ path('admin.ingredient.addtype') }} method="POST">
+                    <div class="inputGroup">
+                        <label for="ingredientTypeNom" class="inputLabel">
+                            <input
+                                type="text"
+                                class="inputItem"
+                                name="nom"
+                                id="ingredientTypeNom"
+                                placeholder="Nom"
+                            />
+                            <span>Nom</span>
+                        </label>
+                    </div>
+                    <button type="submit" class="addButton">
+                        Ajouter
+                    </button>
+                </form>
+            </div>
+            <!-- Fin formulaire d'ajout type ingredient -->
+
+
+            <!-- MODAL Modification Type ingredient -->
+            <div class="modalContainer hiddenModal" id="modalTypeIngredient">
+                <div class="modalUpdateType">
+                    <div class="modalHead">
+                        <div class="modalTitle">
+                            Modifier un type d'ingrédient
+                        </div>
+                        <button class="closeModalButton" onclick="closeModalType()">
+                            &times;
+                        </button>
+                    </div>
+                    <div class="modalBody">
+                        <form action="{{ path('admin.ingredient.updateType') }}" method="POST" class="updateTypeForm">
+                            <input type="hidden" id="ingredientTypeIdUpdate" name="id" value="">
+                            <div class="inputGroup">
+                                <label for="ingredientTypeNomUpdate" class="inputLabel">
+                                    <input
+                                        type="text"
+                                        class="inputItem"
+                                        name="nom"
+                                        id="ingredientTypeNomUpdate"
+                                        value=""
+                                        placeholder="Nom"
+                                        required
+                                    />
+                                    <span>Nom</span>
+                                </label>
+                            </div>
+                            <button type="submit" class="addButton">
+                                Modifier
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fin Modal modification type ingredient -->
+
+            <!-- Modal modification ingredient -->
+
+            <div class="modalContainer hiddenModal" id="modalIngredient">
+                <div class="modalUpdateType">
+                    <div class="modalHead">
+                        <div class="modalTitle">
+                            Modifier un ingrédient
+                        </div>
+                        <button class="closeModalButton" onclick="closeModalIngredient()">
+                            &times;
+                        </button>
+                    </div>
+                    <div class="modalBody">
+                        <form action="" method="POST" class="updateTypeForm">
+                            <input type="hidden" id="ingredientIdUpdate" name="ingredientIdUpdate" value="">
+                            <div class="inputGroup">
+                                <label for="ingredientNomUpdate" class="inputLabel">
+                                    <input type="text" class="inputItem" name="ingredientNomUpdate" id="ingredientNomUpdate" value="" placeholder="Nom" required />
+                                    <span>Nom</span>
+                                </label>
+                            </div>
+                            <div class="inputGroup">
+                                <label for="ingredientPrixUpdate" class="inputLabel">
+                                    <input type="text" class="inputItem" name="ingredientPrixUpdate" id="ingredientPrixUpdate" value="" placeholder="Prix" required />
+                                    <span>Prix</span>
+                                </label>
+                            </div>
+                            <label for="ingredientDispoUpdate" class="dispoLabel">
+                                <input type="checkbox" name="ingredientDispoUpdate" id="ingredientDispoUpdate">
+                                <span class="circleOnOff">
+                        <span class="onOffTick"></span>
+                    </span>
+                            </label>
+                            <div class="typeChoice">
+                                <label for="ingredientTypeModif">
+                                    <span>Type d'ingrédient</span>
+                                </label>
+                                <select class="inputItem" name="ingredientType" id="ingredientTypeModif" placeholder="Type d'ingrédient" default="false" required>
+                                    <option class="typeOption" value="false">....</option>
+                                    {% for type in types %}
+                                    <option id="ingredientTypeModifOption-{{ type.id }}" value="<?= $type->getID() ?>">{{ type.nom }}</option>
+
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <button type="submit" class="addButton">
+                                Modifier
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fin modal modification ingredient -->
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    <script type="text/javascript" src="../assets/js/admin/priceCheck.js"></script>
+
+    <script type="text/javascript" src="../assets/js/admin/toastController.js"></script>
+    <script type="text/javascript" src="../assets/js/admin/controlModal.js"></script>
+
+    <script type="text/javascript" src="../assets/js/admin/suppressionAjax.js"></script>
+    <script type="text/javascript" src="../assets/js/admin/animation.js"></script>
+{% endblock %}

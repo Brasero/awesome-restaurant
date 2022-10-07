@@ -12,26 +12,24 @@ class ImageUploader
 
     public ResizeImage $resizer;
 
-    public  $saveImage;
+    public $saveImage;
 
-    public function __construct(array $data, string $base) {
+    public function __construct(array $data, string $base)
+    {
 
         $this->basePath = $base;
-        if(isset($data['image'])){
-            if($data['image']['error'] == 0){
+        if (isset($data['image'])) {
+            if ($data['image']['error'] == 0) {
                 $image = $data['image'];
                 $this->image = new SourceImage($image);
                 $this->resizer = new ResizeImage($this->image);
-                if($this->getFunction()){
+                if ($this->getFunction()) {
                     $this->success = true;
                 }
-            }
-            else {
+            } else {
                 $this->success = false;
             }
         }
-
-
     }
 
     public function getName(): string
@@ -41,8 +39,7 @@ class ImageUploader
 
     private function getFunction()
     {
-        switch($this->image->type)
-        {
+        switch ($this->image->type) {
             case 'image/jpeg':
                 $image_create_func = 'imagecreatefromjpeg';
                 $image_save_func = 'imagejpeg';
@@ -55,7 +52,7 @@ class ImageUploader
                 $image_create_func = 'imagecreatefromgif';
                 $image_save_func = 'imagegif';
                 break;
-            default: 
+            default:
                 return false;
         }
 
@@ -71,9 +68,8 @@ class ImageUploader
         return true;
     }
 
-    public function isSuccess(): bool 
+    public function isSuccess(): bool
     {
         return $this->success;
     }
-
 }

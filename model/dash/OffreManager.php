@@ -2,9 +2,9 @@
 
 namespace Model\Dash;
 
-use PDO;
-use Tool\Toast;
+use App\Framework\Toaster\Toast;
 use Control\Dash\Offre;
+use PDO;
 use Tool\AbstractEntityManager;
 
 class OffreManager extends AbstractEntityManager

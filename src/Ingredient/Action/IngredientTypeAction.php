@@ -1,0 +1,102 @@
+<?php
+
+namespace App\Ingredient\Action;
+
+use App\Entity\TypeIngredient;
+use App\Framework\Toaster\Toaster;
+use Doctrine\ORM\EntityManagerInterface;
+use Framework\Router\RedirectTrait;
+use Framework\Router\Router;
+use GuzzleHttp\Psr7\ServerRequest;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\ContainerInterface;
+use Psr\Container\NotFoundExceptionInterface;
+
+class IngredientTypeAction
+{
+
+    use RedirectTrait;
+
+
+    /**
+     * @var ContainerInterface
+     */
+    private ContainerInterface $container;
+
+
+    /**
+     * @var Toaster|mixed
+     */
+    private Toaster $toaster;
+
+
+    /**
+     * @var EntityManagerInterface|mixed
+     */
+    private EntityManagerInterface $manager;
+
+
+    /**
+     * @var Router|mixed
+     */
+    private Router $router;
+
+    /**
+     * @param ContainerInterface $container
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
+    public function __construct(ContainerInterface $container)
+    {
+        $this->container = $container;
+        $this->toaster = $container->get(Toaster::class);
+        $this->manager = $container->get(EntityManagerInterface::class);
+        $this->router = $container->get(Router::class);
+    }
+
+
+    public function add(ServerRequest $request)
+    {
+        $data = $request->getParsedBody();
+        if (!isset($data['nom']) or empty($data['nom'])) {
+            $this->toaster->createToast('Merci de saisir un nom', Toaster::ERROR);
+            return $this->redirect('admin.ingredient.show');
+        }
+        $type = new TypeIngredient();
+        $type->setNom($data['nom']);
+        $this->manager->persist($type);
+        $this->manager->flush();
+        $this->toaster->createToast('Votre type '.$type->getNom().' à bien été ajouté', Toaster::SUCCESS);
+        return $this->redirect('admin.ingredient.show');
+    }
+
+
+    public function delete(ServerRequest $request): string
+    {
+        $id = $request->getAttribute('id');
+        $type = $this->manager->find(TypeIngredient::class, $id);
+
+        $this->manager->remove($type);
+        $this->manager->flush();
+        $type = $this->manager->find(TypeIngredient::class, $id);
+        if (!is_null($type)) {
+            return "false";
+        }
+        return "true";
+    }
+
+    public function update(ServerRequest $request)
+    {
+        $data = $request->getParsedBody();
+        $id = $data['id'];
+        $nom = $data['nom'];
+        $type = $this->manager->find(TypeIngredient::class, $id);
+        $type->setNom($nom);
+        $this->toaster->createToast('Modification enregistrée', Toaster::SUCCESS);
+        $this->manager->persist($type);
+        $this->manager->flush();
+        return $this->redirect('admin.ingredient.show');
+    }
+
+
+}

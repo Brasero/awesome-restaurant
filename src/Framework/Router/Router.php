@@ -33,6 +33,12 @@ class Router
         $this->routes[] = $name;
     }
 
+    public function post(string $path, $callable, string $name)
+    {
+        $this->router->addRoute(new ZendRoute($path, $callable, ['POST'], $name));
+        $this->routes[] = $name;
+    }
+
     public function match(ServerRequestInterface $request): ?Route
     {
         $result = $this->router->match($request);
@@ -48,7 +54,7 @@ class Router
         return null;
     }
 
-    public function generateUrl(string $name, ?array $params = []): ?string
+    public function generateUrl(string $name, array $params = []): ?string
     {
         return $this->router->generateUri($name, $params);
     }

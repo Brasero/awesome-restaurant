@@ -69,7 +69,7 @@ class App
         } elseif ($response instanceof ResponseInterface) {
             return $response;
         } else {
-            throw new \Exception("The response is not available");
+            throw new \Exception("Le serveur n'a pas renvoyé de réponse valable.");
         }
     }
 

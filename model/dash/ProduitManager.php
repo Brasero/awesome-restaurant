@@ -2,9 +2,9 @@
 
 namespace Model\Dash;
 
-use PDO;
-use Tool\Toast;
+use App\Framework\Toaster\Toast;
 use Control\Dash\Produit;
+use PDO;
 use Tool\AbstractEntityManager;
 
 class ProduitManager extends AbstractEntityManager

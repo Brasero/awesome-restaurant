@@ -16,9 +16,9 @@ class DatabaseFactory
      * @throws NotFoundExceptionInterface
      * @throws ContainerExceptionInterface
      */
-    public function __invoke(ContainerInterface $container, array $modules): ?EntityManager
+    public function __invoke(ContainerInterface $container): ?EntityManager
     {
-        $paths = [dirname(__DIR__)];
+        $paths = [dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'Entity'];
         $isDevMode = (bool)$container->get("doctrine.is_dev_mode");
         $dbParams = [
             "driver" => "pdo_mysql",
