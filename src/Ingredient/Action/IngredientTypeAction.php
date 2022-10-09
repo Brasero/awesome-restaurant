@@ -64,6 +64,15 @@ class IngredientTypeAction
         }
         $type = new TypeIngredient();
         $type->setNom($data['nom']);
+        $repository = $this->manager->getRepository(TypeIngredient::class);
+        $types = $repository->findAll();
+        foreach ($types as $ty) {
+            if ($ty->getNom() == $type->getNom()) {
+                var_dump($ty->getNom());
+                $this->toaster->createToast("ERREUR : Ce nom existe déjà.", Toaster::ERROR);
+                return $this->redirect('admin.ingredient.show');
+            }
+        }
         $this->manager->persist($type);
         $this->manager->flush();
         $this->toaster->createToast('Votre type '.$type->getNom().' à bien été ajouté', Toaster::SUCCESS);
@@ -92,11 +101,18 @@ class IngredientTypeAction
         $nom = $data['nom'];
         $type = $this->manager->find(TypeIngredient::class, $id);
         $type->setNom($nom);
+        $repository = $this->manager->getRepository(TypeIngredient::class);
+        $types = $repository->findAll();
+        foreach ($types as $ty) {
+            if ($ty->getNom() === $type->getNom() && $ty != $type) {
+                var_dump($ty->getNom());
+                $this->toaster->createToast("ERREUR : Ce nom existe déjà.", Toaster::ERROR);
+                return $this->redirect('admin.ingredient.show');
+            }
+        }
         $this->toaster->createToast('Modification enregistrée', Toaster::SUCCESS);
         $this->manager->persist($type);
         $this->manager->flush();
         return $this->redirect('admin.ingredient.show');
     }
-
-
 }

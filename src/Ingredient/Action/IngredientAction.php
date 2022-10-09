@@ -63,7 +63,15 @@ class IngredientAction
         }
 
         $ing = new Ingredient();
+        $repository = $this->manager->getRepository(Ingredient::class);
+        $ingredients = $repository->findAll();
         $ing->setNom($data['nom']);
+        foreach ($ingredients as $ingredient) {
+            if ($ingredient->getNom() === $ing->getNom()) {
+                $this->toaster->createToast("ERREUR : Ce nom existe déjà.", Toaster::ERROR);
+                return $this->redirect("admin.ingredient.show");
+            }
+        }
         $ing->setPrix($data['prix']);
         $type = $this->manager->find(TypeIngredient::class, $data['type']);
         $ing->setType($type);

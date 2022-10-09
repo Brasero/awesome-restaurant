@@ -18,7 +18,8 @@
 
         <!-- debut boucle pour boucle categorie -->
         <div class="cardDeck">
-            <h1>Categorie</h1>
+            {% for category in categorys %}
+            <h1>{{ category.nom }}</h1>
             <span></span>
             <!-- debut pour boucle produit -->
             {% for prod in products %}
@@ -38,7 +39,7 @@
                     </div>
                 </div>
             {% endfor %}
-
+        {% endfor %}
 
             <!-- debut panier -->
 

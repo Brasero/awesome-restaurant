@@ -47,6 +47,12 @@ class Ingredient
     private TypeIngredient $type;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Produit", mappedBy="ingredients")
+     * @ORM\JoinTable(name="ingredient_produit")
+     */
+    private $produits;
+
+    /**
      * @return int
      */
     public function getID(): int

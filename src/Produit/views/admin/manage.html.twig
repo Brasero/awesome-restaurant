@@ -92,7 +92,7 @@
                             <th class="colonneTitleItem">Action</th>
                         </tr>
                     {% for produit in produits %}
-                        <tr class="categorieTypeItem" id="categorie-<?= $categorie->getID() ?>">
+                        <tr class="categorieTypeItem" id="categorie-{{ categorie.id }}">
                             <td class="categorieTypePart">{{ produit.nom }}</td>
                             <td class="categorieTypePart">{{ currencyFormat(produit.prix, '€') }}</td>
                             <td class="categorieTypePart">{{ produit.nom }}</td>
@@ -130,19 +130,19 @@
                             <th class="colonneTitleItem">Action</th>
                         </tr>
                             {% for categorie in categories %}
-                                <tr class="categorieTypeItem" id="categorie-<?= $categorie->getID() ?>">
+                                <tr class="categorieTypeItem" id="categorie-{{ categorie.id }}">
                                     <td class="categorieTypePart">{{ ucfirst(categorie.nom) }} </td>
                                     <td class="categorieTypePart buttonGroup">
-                                        <button
-                                            class="actionButton updateButton"
-                                            onclick="openModal(
-                                                event,
-                                                'categorie',
-                                                {{ categorie.id }}
-                                                )"
-                                        >
-                                            <i class="bi bi-pencil-square"
-                                                 data-nomcategorie="<?= $categorie->getNom() ?>">
+                                        <button class="actionButton updateButton">
+                                            <i
+                                                class="bi bi-pencil-square"
+                                                data-nomcategorie="{{ categorie.nom }}"
+                                                onclick="openModal(
+                                                    event,
+                                                    'categorie',
+                                                    {{ categorie.id }}
+                                                    )"
+                                            >
                                             </i>
                                         </button>
                                         <button
@@ -169,7 +169,7 @@
                     Ajouter categorie
                 </h4>
                 <form
-                    action="{{ path('admin.produit.add') }}"
+                    action="{{ path('admin.addCategorie') }}"
                     method="POST"
                     enctype="multipart/form-data"
                     class="produitFormContainer"
@@ -179,7 +179,7 @@
                             <input
                                 type="text"
                                 class="inputItem"
-                                name="Nom_categorie"
+                                name="nom"
                                 id="categorieNom"
                                 placeholder="Nom"
                                 required
@@ -202,9 +202,10 @@
                                 />
                             </div>
                             <div class="fakeFile">
-                                <button disabled>Choisir une photo</button>
+                                <button disabled> Choisir une photo </button>
                                 <br>
-                                <span id="fakeInput">Veuillez ajouter une photo
+                                <span id="fakeInput">
+                                    Veuillez ajouter une photo
                                 </span>
                             </div>
                         </div>
@@ -215,7 +216,77 @@
                 </form>
             </div>
         </div>
-            <!-- Fin de form ajout categorie -->
+        <!-- Fin de form ajout categorie -->
+
+        <!-- Emplacement des modal de modofication -->
+        <div class="modalContainer hiddenModal" id="modalCategorie">
+            <div class="modalUpdateType">
+                <div class="modalHead">
+                    <div class="modalTitle">
+                        Modifier une catégorie
+                    </div>
+                    <button class="closeModalButton" onclick="closeModalCategorie()">
+                        &times;
+                    </button>
+                </div>
+                <div class="modalBody">
+                    <form action="" method="POST" class="uptadeTypeForm">
+                        <input type="hidden" id="categorieIdUpdate" name="id" value="">
+                        <div class="inputGroup">
+                            <label for="categorieNomUpdate" class="inputLabel">
+                                <input type="text" class="inputItem" name="nom" id="categorieNomUpdate" value="" placeholder="Nom" required />
+                                <span>Nom</span>
+                            </label>
+                        </div>
+                        <button type="submit" class="addButton">
+                            Modifier
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- FIN emplacement des modal de modification -->
+        <!-- Emplacement du modal de modification des taxe -->
+        <div class="modalContainer hiddenModal" id="modalTaxe">
+            <div class="modalUpdateType">
+                <div class="modalHead">
+                    <div class="modalTitle">
+                        Modifier une taxe
+                    </div>
+                    <button class="closeModalButton" onclick="closeModalTaxe()">
+                        &times;
+                    </button>
+                </div>
+                <div class="modalBody">
+                    <form action="" method="POST" class="uptadeTypeForm">
+                        <input type="hidden" id="taxeIdUpdate" name="taxeIdUpdate" value="">
+                        <div class="inputGroup">
+                            <label for="taxeTauxUpdate" class="inputLabel">
+                                <input
+                                    type="number"
+                                    min="0"
+                                    max="100"
+                                    step="0.1"
+                                    class="inputItem"
+                                    name="taxeTauxUpdate"
+                                    id="taxeTauxUpdate"
+                                    value=""
+                                    placeholder="Taux"
+                                    required
+                                />
+                                <span>Taux</span>
+                            </label>
+                        </div>
+                        <button type="submit" class="addButton">
+                            Modifier
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+<!-- FIN emplacement des modal de modification -->
 {% endblock %}
 
 {% block script %}

@@ -5,6 +5,7 @@ use App\Entity\Categorie;
 use App\Entity\Ingredient;
 use App\Entity\Produit;
 use App\Entity\TypeIngredient;
+use App\Produit\Action\CategorieAction;
 use Doctrine\ORM\EntityManagerInterface;
 use Framework\Module;
 use Framework\Renderer\RendererInterface;
@@ -17,6 +18,9 @@ use Psr\Http\Message\RequestInterface;
 
 class ProduitModule extends Module
 {
+
+    public const DEFINITIONS = __DIR__ . DIRECTORY_SEPARATOR . 'config.php';
+
     /**
      * @var RendererInterface
      */
@@ -30,6 +34,7 @@ class ProduitModule extends Module
      */
     public function __construct(ContainerInterface $container)
     {
+        $categorieAction = new CategorieAction($container);
         $renderer = $container->get(RendererInterface::class);
         $router = $container->get(Router::class);
         $manager = $container->get(EntityManagerInterface::class);
@@ -40,16 +45,22 @@ class ProduitModule extends Module
         $router->get('/carte/{id:[0-9]}', [$this, 'show'], 'produit.show');
         $this->manager = $manager;
         if ($container->has('admin.prefix')) {
+            $prefix = $container->get('admin.prefix');
             $renderer->addPath('produit_admin', __DIR__.'/views/admin');
             $router->get(
-                $container->get('admin.prefix') . '/produit/manage',
+                $prefix . '/produit/manage',
                 [$this, 'manage'],
                 'admin.produit.manage'
             );
             $router->post(
-                $container->get('admin.prefix') . '/produit/add',
-                [$this, 'addProd'],
-                'admin.produit.add'
+                $prefix . '/produit/addCategorie',
+                [$categorieAction, 'add'],
+                'admin.addCategorie'
+            );
+            $router->get(
+                "/ajax/category/delete/{id:\d+}/{apiKey:[a-z0-9-]+}",
+                [$categorieAction, 'delete'],
+                'ajax.category.delete'
             );
         }
     }
@@ -58,31 +69,17 @@ class ProduitModule extends Module
     {
         $repository = $this->manager->getRepository(Produit::class);
         $prods = $repository->findAll();
+        $repository = $this->manager->getRepository(Categorie::class);
+        $categories = $repository->findAll();
         return $this->renderer->render('@produit/carte', [
-            "products" => $prods
+            "products" => $prods,
+            "categorys" => $categories
         ]);
     }
 
 
     public function panier(): string
     {
-        $produit = new Produit();
-        $ingredient = new Ingredient();
-        $ingredient->setPrix(0.50);
-        $ingredient->setNom('Salade');
-        $ingredient->setDispo(1);
-        $ingredient->setType();
-        $categorie = $this->manager->find(Categorie::class, 1);
-        $produit->setCategorie($categorie);
-        $produit->setId_offre(1);
-        $produit->setId_taxe(1);
-        $produit->setImg('test/img.jpg');
-        $produit->setNom('Produit test');
-        $produit->setPrix('1.5');
-
-        $this->manager->persist($produit);
-        $this->manager->flush();
-
         return $this->renderer->render('@produit/panier');
     }
 

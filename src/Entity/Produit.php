@@ -45,16 +45,17 @@ class Produit
     private string $nom;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Categorie")
+     * @ORM\ManyToOne(targetEntity="Categorie", inversedBy="produits")
+     * @ORM\JoinTable(name="categorie_id")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private Categorie $categorie;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Ingredient")
+     * @ORM\ManyToMany(targetEntity="Ingredient", mappedBy="produits")
      * @ORM\JoinTable(name="ingredient_produit")
-     * @var Ingredient[]
      */
-    private array $ingredient;
+    private $ingredients;
 
     /**
      * @Column(type="integer")
@@ -142,16 +143,16 @@ class Produit
     /**
      * @return Ingredient[]
      */
-    public function getIngredient(): array
+    public function getIngredients(): array
     {
-        return $this->ingredient;
+        return $this->ingredients;
     }
 
     /**
      * @param Ingredient $ingredient
      */
-    public function setIngredient(Ingredient $ingredient): void
+    public function setIngredients(Ingredient $ingredient): void
     {
-        $this->ingredient[] = $ingredient;
+        $this->ingredients[] = $ingredient;
     }
 }

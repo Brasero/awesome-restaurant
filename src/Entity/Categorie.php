@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\Table;
 use Doctrine\ORM\Mapping\Id;
@@ -34,6 +35,11 @@ class Categorie
     private string $img;
 
     /**
+     * @ORM\OneToMany(targetEntity="Produit", mappedBy="categorie")
+     */
+    private $produits;
+
+    /**
      * @return int
      */
     public function getID(): int
@@ -46,7 +52,7 @@ class Categorie
      */
     public function getNom(): string
     {
-        return $this->nom;
+        return ucfirst(html_entity_decode($this->nom));
     }
 
     /**
@@ -54,7 +60,7 @@ class Categorie
      */
     public function setNom(string $nom): void
     {
-        $this->nom = $nom;
+        $this->nom = strtolower(htmlentities($nom));
     }
 
     /**
@@ -70,7 +76,7 @@ class Categorie
      */
     public function setImg(string $img): void
     {
-        $this->img = $img;
+        $this->img = ($img);
     }
 
 }

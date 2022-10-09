@@ -9,12 +9,7 @@
     ],
     "autoload" : {
         "psr-4": {
-            "Inter\\" : "interface/",
-            "Tool\\" : "class/",
-            "Model\\" : "model/",
-            "Control\\" : "controller/",
             "Config\\" : "config/",
-            "Dash\\" : "dash/",
             "Framework\\" : "src/Framework",
             "App\\" : "src/"
         },
