@@ -1,0 +1,78 @@
+{% extends 'layout.html.twig' %}
+
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="../assets/css/carte.css">
+{% endblock %}
+
+{% block body %}
+    <div class="carteContainer">
+        <div class="selectCarte">
+            <h1>Notre carte</h1>
+            <!-- A modifier -->
+            <select name="" id="selectCat">
+                <option value="">burger</option>
+            </select>
+            <!-- Fin -->
+        </div>
+
+        <!-- debut boucle pour boucle categorie -->
+        <div class="cardDeck">
+            {% for category in categorys %}
+            <h1>{{ category.nom }}</h1>
+            <span></span>
+            <!-- debut pour boucle produit -->
+            {% for prod in products %}
+                <div class="cardProd">
+                    <img src="../assets/img/ressources/background/carte/test.png" alt="">
+                    <div>
+                        <h2>{{ prod.nom }}</h2>
+                        <p>La liste des ingredient</p>
+                    </div>
+                    <div class="cardButtonGroup">
+                        <button class="cardButtonAdd">
+                            <img src="../assets/img/ressources/icon/carte/tomate.svg" alt="">
+                        </button>
+                        <button class="cardButtonAdd">
+                            <iconify-icon id="cartIcone" icon="noto-v1:shopping-cart"></iconify-icon>
+                        </button>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+            <!-- debut panier -->
+
+        </div>
+        <div class="panierContainer">
+            <div class="cardPanier">
+                <h1>Mon panier</h1>
+                <span></span>
+                <!-- debut boucle produit dans panier -->
+                <div class="containerPanierProd">
+                    <div class="panierProd">
+                        <img src="../assets/img/ressources/background/carte/test.png" alt="" class="imageProdPanier">
+                        <p class="nomProduit">Nom produit</p>
+                        <p class="prixProduit">10.50</p>
+                        <span></span>
+                    </div>
+                    <!-- fin de boucle -->
+                    <div class="cardTotal">
+                        <span id="spanTotal"></span>
+                        <p class="textTotal">Total:</p>
+                        <p class="prixPanier">32.50€</p>
+                    </div>
+                </div>
+
+                <!-- fin panier -->
+                <div class="panierToggle" onclick="togglePanier()">
+                    <div class="top"></div>
+                    <div class="bottom"></div>
+                    <div class="mid"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <script src="../assets/js/togglePanier.js"></script>
+{% endblock %}

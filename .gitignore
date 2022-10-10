@@ -1,3 +1,4 @@
-categorie/*
-/vendor/
-
+vendor/
+.idea/
+categorie/
+.phpunit.result.cache
