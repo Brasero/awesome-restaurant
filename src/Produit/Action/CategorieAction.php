@@ -57,7 +57,8 @@ class CategorieAction
     /**
      * @param ServerRequest $request
      * @return MessageInterface
-     * @throws Exception
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
     public function add(ServerRequest $request): MessageInterface
     {

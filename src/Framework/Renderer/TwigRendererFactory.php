@@ -16,9 +16,10 @@ class TwigRendererFactory
         $viewPath = $container->get('config.view_path');
         $loader = new FilesystemLoader($viewPath);
         $twig = new Environment($loader, []);
-        $twig->addExtension($container->get(RouteurTwigExtension::class));
-        $twig->addExtension($container->get(TwigFormatExtension::class));
-        $twig->addExtension($container->get(ToasterTwigExtension::class));
+        $extensions = $container->get("twig.extensions");
+        foreach ($extensions as $extension) {
+            $twig->addExtension($container->get($extension));
+        }
         return new TwigRenderer($loader, $twig);
     }
 }

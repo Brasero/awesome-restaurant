@@ -31,26 +31,17 @@
             Déconnnexion
           </a>
         </li>
-          <li class="navItem"  style="--i: 0;">
-            <a href={{ path('user.connexion') }} class="navHref">
+          <li class="navItem {{ is_active("user.connexion") ? 'active' }}"  style="--i: 0;">
+            <a href="{{ path('user.connexion') }}" class="navHref">
               Connexion
             </a>
           </li>
-          <li class="navItem"  style="--i: 1;">
-            <a href={{ path('user.inscription') }} class="navHref">
+          <li class="navItem {{ is_active("user.inscription") ? 'active' }}"  style="--i: 1;">
+            <a href="{{ path('user.inscription') }}" class="navHref">
               Inscription
             </a>
           </li>
-        <li class="navItem" style="--i: 2;">
-          <a href={{ path('produit.carte')}} class="navHref">
-            Carte
-          </a>
-        </li>
-        <li class="navItem" style="--i: 3;">
-          <a href={{ path('produit.panier') }} class="navHref">
-            Panier
-          </a>
-        </li>
+          {{ nav_link() }}
       </ul>
     </nav>
   </header>

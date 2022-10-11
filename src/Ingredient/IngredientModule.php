@@ -20,6 +20,8 @@ class IngredientModule extends Module
 {
     use RedirectTrait;
 
+    public const DEFINITIONS = __DIR__ . DIRECTORY_SEPARATOR . 'config.php';
+
     /**
      * @var ContainerInterface
      */
@@ -54,6 +56,7 @@ class IngredientModule extends Module
         $this->renderer = $container->get(RendererInterface::class);
         $this->router = $container->get(Router::class);
         $this->manager = $container->get(EntityManagerInterface::class);
+        $adminprefix = $container->get('admin.prefix');
         $this->renderer->addPath('ingredient', __DIR__.'/views');
         $this->router->get('/admin/ingredient', [$this, 'show'], 'admin.ingredient.show');
         $this->router->get(
@@ -62,7 +65,7 @@ class IngredientModule extends Module
             'ajax.ingredient.delete'
         );
         $this->router->post(
-            '/admin/ingredient/addIngredient',
+            $adminprefix.'/ingredient/addIngredient',
             [$ingredientAction, 'add'],
             'admin.ingredient.add'
         );
@@ -72,12 +75,12 @@ class IngredientModule extends Module
             'ajax.type.delete'
         );
         $this->router->post(
-            '/admin/ingredient/addtype',
+            $adminprefix.'ingredient/addtype',
             [$typeAction, 'add'],
             'admin.ingredient.addtype'
         );
         $this->router->post(
-            '/admin/ingredient/updatetype',
+            $adminprefix.'ingredient/updatetype',
             [$typeAction, 'update'],
             'admin.ingredient.updateType'
         );

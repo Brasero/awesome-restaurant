@@ -1,5 +1,9 @@
 <?php
 
+use App\Admin\AdminTwigExtension;
+
 return [
-    'admin.prefix' => '/admin'
+    "admin.widgets" => [],
+    'admin.prefix' => '/admin',
+    AdminTwigExtension::class => \DI\create()->constructor(\DI\get("admin.widgets")),
 ];

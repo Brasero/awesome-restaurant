@@ -1,8 +1,9 @@
 <?php
 namespace Framework;
 
-use Framework\Router\Router;
-use GuzzleHttp\Psr7\Response;
+use App\Framework\Middleware\MiddlewareInterface;
+use DI\ContainerBuilder;
+use Exception;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
@@ -16,7 +17,12 @@ class App
      *
      * @var array
      */
-    private $modules;
+    private array $modules;
+
+    /**
+     * @var MiddlewareInterface
+     */
+    private MiddlewareInterface $middleware;
 
     /**
      * Conteneur de dépendances
@@ -25,12 +31,18 @@ class App
      */
     private ContainerInterface $container;
 
-    public function __construct(ContainerInterface $container, array $modules = [])
+
+    /**
+     * Chemin du fichier de configuration
+     * @var string
+     */
+    private string $definitions;
+
+    /**
+     */
+    public function __construct(string $definitions)
     {
-        $this->container = $container;
-        foreach ($modules as $module) {
-            $this->modules[] = $container->get($module);
-        }
+        $this->definitions = $definitions;
     }
 
     /**
@@ -38,43 +50,45 @@ class App
      * @return ResponseInterface
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
+     * @throws Exception
      */
     public function run(ServerRequestInterface $request): ResponseInterface
     {
-        $uri = $request->getUri()->getPath();
-        if (!empty($uri) && $uri[-1] === "/") {
-            return (new Response())
-                    ->withStatus(301)
-                    ->withHeader('Location', substr($uri, 0, -1));
+        foreach ($this->modules as $module) {
+            $this->getContainer()->get($module);
         }
-
-        $router = $this->container->get(Router::class);
-        $route = $router->match($request);
-
-        if (is_null($route)) {
-            return new Response(404, [], "<h1>Erreur 404</h1>");
-        }
-
-        $params = $route->getParams();
-        $request = array_reduce(array_keys($params), function ($request, $key) use ($params) {
-            return $request->withAttribute($key, $params[$key]);
-        }, $request);
-
-        $callback = $route->getCallback();
-
-        $response = call_user_func_array($callback, [$request]);
-
-        if (is_string($response)) {
-            return new Response(200, [], $response);
-        } elseif ($response instanceof ResponseInterface) {
-            return $response;
-        } else {
-            throw new \Exception("Le serveur n'a pas renvoyé de réponse valable.");
-        }
+        return $this->middleware->process($request);
     }
 
+    /**
+     * @throws Exception
+     */
     public function getContainer(): ContainerInterface
     {
+        if (empty($this->container)) {
+            $builder = new ContainerBuilder();
+            $builder->addDefinitions($this->definitions);
+
+            foreach ($this->modules as $module) {
+                if ($module::DEFINITIONS) {
+                    $builder->addDefinitions($module::DEFINITIONS);
+                }
+            }
+            $this->container = $builder->build();
+        }
+
         return $this->container;
+    }
+
+    public function linkMiddleware(MiddlewareInterface $middleware): MiddlewareInterface
+    {
+        $this->middleware = $middleware;
+        return $middleware;
+    }
+
+    public function addModule($module): self
+    {
+        $this->modules[] = $module;
+        return $this;
     }
 }

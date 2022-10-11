@@ -1,5 +1,5 @@
-/**  Toast style  **/
-.main > .container .error, .main > .container .success{
+/**  Toast style for connexion admin  **/
+.error, .success{
     align-items: flex-start;
     background: var(--color-light);
     font-family: var(--font-primary) !important;
@@ -20,8 +20,8 @@
 }
 
 
-.main > .container .error .progressBar,
-.main > .container .success .progressBar{
+.error .progressBar,
+.success .progressBar{
     width: 0;
     animation: progress 5s forwards linear;
     height: 5px;
@@ -33,28 +33,29 @@
     }
 }
 
-.main > .container .error .progressBar{
+.error .progressBar{
     background: var(--color-red);
 }
 
-.main > .container .success .progressBar{
+.success .progressBar{
     background: var(--color-green);
 }
 
-.main > .container .error .message, .main > .container .success .message{
+.error .message, .success .message{
     padding: 15px 10px;
     text-align: center;
+    background: var(--color-light);
 }
 
-.main > .container .error .message{
+.error .message{
     color: var(--color-red);
 }
 
-.main > .container .success .message{
+.success .message{
     color: var(--color-green);
 }
 
-.main > .container .hidden{
+.hidden{
     opacity: 0;
 }
 
