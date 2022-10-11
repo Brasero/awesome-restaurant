@@ -1,0 +1,256 @@
+[33mdaa79fb[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m HEAD@{0}: commit (amend): adding middleware system and widget / button
+[33me3f1b29[m HEAD@{1}: commit: adding middleware system
+[33m5380e87[m[33m ([m[1;31morigin/master[m[33m)[m HEAD@{2}: pull: Fast-forward
+[33m5da6d43[m[33m ([m[1;31morigin/designPagePanier[m[33m)[m HEAD@{3}: checkout: moving from ttransition to master
+[33mfd59f05[m[33m ([m[1;31morigin/ttransition[m[33m, [m[1;32mttransition[m[33m)[m HEAD@{4}: reset: moving to HEAD
+[33mfd59f05[m[33m ([m[1;31morigin/ttransition[m[33m, [m[1;32mttransition[m[33m)[m HEAD@{5}: commit: Le travail peut reprendre
+[33m691fbaa[m HEAD@{6}: commit: add readme.md
+[33m93ca327[m HEAD@{7}: commit: crud ingrédient, type ingredient
+[33m9a77198[m HEAD@{8}: reset: moving to 9a77198
+[33m9a77198[m HEAD@{9}: merge origin/ttransition: Fast-forward
+[33me75d300[m HEAD@{10}: reset: moving to HEAD~
+[33m9a77198[m HEAD@{11}: reset: moving to HEAD
+[33m9a77198[m HEAD@{12}: reset: moving to HEAD
+[33m9a77198[m HEAD@{13}: commit: ajout de doctrine
+[33me75d300[m HEAD@{14}: commit: ajout des vues produit et de la base de l objet
+[33m01fed3d[m HEAD@{15}: commit: ajout du conteneur de dépendances
+[33m9c2911e[m HEAD@{16}: commit: ajout twig renderer
+[33m73a4b80[m HEAD@{17}: commit: ajout renderer php
+[33m063a730[m HEAD@{18}: commit: ajout du router, debut du renderer
+[33mff21645[m[33m ([m[1;31morigin/ajoutProduit[m[33m, [m[1;32majoutProduit[m[33m)[m HEAD@{19}: checkout: moving from ajoutProduit to ttransition
+[33mff21645[m[33m ([m[1;31morigin/ajoutProduit[m[33m, [m[1;32majoutProduit[m[33m)[m HEAD@{20}: commit: adding stylesheet
+[33m96a6714[m HEAD@{21}: checkout: moving from master to ajoutProduit
+[33m5da6d43[m[33m ([m[1;31morigin/designPagePanier[m[33m)[m HEAD@{22}: checkout: moving from ajoutProduit to master
+[33m96a6714[m HEAD@{23}: merge master: Merge made by the 'ort' strategy.
+[33m4686ffc[m HEAD@{24}: checkout: moving from master to ajoutProduit
+[33m5da6d43[m[33m ([m[1;31morigin/designPagePanier[m[33m)[m HEAD@{25}: pull: Fast-forward
+[33m1171a33[m HEAD@{26}: checkout: moving from ajoutProduit to master
+[33m4686ffc[m HEAD@{27}: commit: reformatting namespace
+[33m1171a33[m HEAD@{28}: checkout: moving from master to ajoutProduit
+[33m1171a33[m HEAD@{29}: checkout: moving from designProductPage to master
+[33m2740a12[m HEAD@{30}: pull: Fast-forward
+[33m52757b3[m HEAD@{31}: checkout: moving from master to designProductPage
+[33m1171a33[m HEAD@{32}: pull: Fast-forward
+[33mabff9bb[m HEAD@{33}: checkout: moving from designInscriptionPage to master
+[33m62451af[m HEAD@{34}: commit: finish design page & responsive
+[33m25f6882[m HEAD@{35}: commit (amend): slider form
+[33mf090eef[m HEAD@{36}: checkout: moving from master to designInscriptionPage
+[33mabff9bb[m HEAD@{37}: checkout: moving from designProductPage to master
+[33m52757b3[m HEAD@{38}: checkout: moving from master to designProductPage
+[33mabff9bb[m HEAD@{39}: pull: Fast-forward
+[33mdd2215d[m HEAD@{40}: checkout: moving from designInscriptionPage to master
+[33mf090eef[m HEAD@{41}: commit: slider form
+[33m9248a6a[m HEAD@{42}: checkout: moving from master to designInscriptionPage
+[33mdd2215d[m HEAD@{43}: checkout: moving from ajoutCategorieProduitjs to master
+[33mbdbd5ea[m HEAD@{44}: commit (initial): ok
+[33m8b27490[m HEAD@{45}: checkout: moving from ajoutcategorieProduitjs to ajoutCategorieProduitjs
+[33m8b27490[m HEAD@{46}: checkout: moving from master to ajoutcategorieProduitjs
+[33mdd2215d[m HEAD@{47}: pull: Fast-forward
+[33mbafe24f[m HEAD@{48}: checkout: moving from designDashProduit to master
+[33m9df79dd[m HEAD@{49}: pull: Fast-forward
+[33m2d372cb[m HEAD@{50}: checkout: moving from designInscriptionPage to designDashProduit
+[33m9248a6a[m HEAD@{51}: commit: fixing form css bug
+[33md8317d5[m HEAD@{52}: checkout: moving from designDashProduit to designInscriptionPage
+[33m2d372cb[m HEAD@{53}: checkout: moving from master to designDashProduit
+[33mbafe24f[m HEAD@{54}: checkout: moving from designInscriptionPage to master
+[33md8317d5[m HEAD@{55}: commit: changing style of form
+[33mbafe24f[m HEAD@{56}: checkout: moving from master to designInscriptionPage
+[33mbafe24f[m HEAD@{57}: pull: Fast-forward
+[33m799549c[m HEAD@{58}: checkout: moving from bugIngredientProduitPage to master
+[33m76616f2[m HEAD@{59}: commit: fixing all problèms
+[33mcc86a41[m HEAD@{60}: commit: ingredient page fixed
+[33m799549c[m HEAD@{61}: checkout: moving from master to bugIngredientProduitPage
+[33m799549c[m HEAD@{62}: pull: Fast-forward
+[33mbd7748c[m HEAD@{63}: checkout: moving from color to master
+[33mdd1a074[m HEAD@{64}: commit: make blue var
+[33mbd7748c[m HEAD@{65}: checkout: moving from master to color
+[33mbd7748c[m HEAD@{66}: pull: Fast-forward
+[33m7c82f05[m HEAD@{67}: checkout: moving from offreCRUD to master
+[33mf394fe6[m HEAD@{68}: commit: ajout d'un commentaire sur dashboard.php
+[33m7971acd[m HEAD@{69}: commit: finish CREATE UPDATE READ for offre
+[33m21441f4[m HEAD@{70}: commit: Add namespace to all object spaces
+[33mcdb4ee0[m HEAD@{71}: commit: adding composer autoloader
+[33m8f76832[m HEAD@{72}: commit: READ, CREATE offre
+[33m7c82f05[m HEAD@{73}: checkout: moving from master to offreCRUD
+[33m7c82f05[m HEAD@{74}: pull --prune: Fast-forward
+[33m755cc0a[m HEAD@{75}: checkout: moving from dashboardPage to master
+[33m5863ddc[m HEAD@{76}: commit: responsive layout
+[33mb023ed5[m HEAD@{77}: commit: making layout for dashboard
+[33m755cc0a[m HEAD@{78}: checkout: moving from master to dashboardPage
+[33m755cc0a[m HEAD@{79}: checkout: moving from OffrePOO to master
+[33m7f87ea1[m HEAD@{80}: commit: new row
+[33m9a700b8[m HEAD@{81}: reset: moving to HEAD
+[33m9a700b8[m HEAD@{82}: pull: Fast-forward
+[33m755cc0a[m HEAD@{83}: checkout: moving from master to OffrePOO
+[33m755cc0a[m HEAD@{84}: pull: Fast-forward
+[33m9846387[m HEAD@{85}: checkout: moving from uploadImage to master
+[33m192dad9[m HEAD@{86}: reset: moving to HEAD
+[33m192dad9[m HEAD@{87}: commit: upload file object
+[33m9846387[m HEAD@{88}: checkout: moving from master to uploadImage
+[33m9846387[m HEAD@{89}: pull: Fast-forward
+[33maefb57f[m HEAD@{90}: pull: Fast-forward
+[33me4efe84[m HEAD@{91}: checkout: moving from responsiveConnexionUser to master
+[33mfcb8292[m HEAD@{92}: commit: changing background image for respopnsive
+[33mee4c3fb[m HEAD@{93}: checkout: moving from master to responsiveConnexionUser
+[33me4efe84[m HEAD@{94}: checkout: moving from responsiveConnexionUser to master
+[33mee4c3fb[m HEAD@{95}: commit: finish
+[33m54f5aaf[m HEAD@{96}: commit: fixing navBar z-index problem
+[33me4efe84[m HEAD@{97}: checkout: moving from master to responsiveConnexionUser
+[33me4efe84[m HEAD@{98}: pull: Fast-forward
+[33m8c7d450[m HEAD@{99}: checkout: moving from IngredientControllerPOO to master
+[33m5302cbb[m HEAD@{100}: checkout: moving from master to IngredientControllerPOO
+[33m8c7d450[m HEAD@{101}: checkout: moving from IngredientControllerPOO to master
+[33m5302cbb[m HEAD@{102}: checkout: moving from master to IngredientControllerPOO
+[33m8c7d450[m HEAD@{103}: checkout: moving from responsiveNavBar to master
+[33macad6eb[m HEAD@{104}: commit: making navBar responsive
+[33m8c7d450[m HEAD@{105}: checkout: moving from master to responsiveNavBar
+[33m8c7d450[m HEAD@{106}: reset: moving to HEAD
+[33m8c7d450[m HEAD@{107}: pull --prune: Fast-forward
+[33m84ad362[m HEAD@{108}: checkout: moving from userConnexionDesign to master
+[33m9d84465[m HEAD@{109}: commit: making front connexion page / no responsive
+[33m84ad362[m HEAD@{110}: checkout: moving from master to userConnexionDesign
+[33m84ad362[m HEAD@{111}: pull --prune: Fast-forward
+[33m1618a35[m HEAD@{112}: checkout: moving from ingredientTypePoo to master
+[33m60d114c[m HEAD@{113}: commit: CRUD POO OK
+[33m34a0bbc[m HEAD@{114}: commit: making branch
+[33m1618a35[m HEAD@{115}: checkout: moving from master to ingredientTypePoo
+[33m1618a35[m HEAD@{116}: reset: moving to HEAD
+[33m1618a35[m HEAD@{117}: pull: Fast-forward
+[33m342a75c[m HEAD@{118}: checkout: moving from addProduct to master
+[33m595ef04[m HEAD@{119}: commit: start poo transition
+[33m5f3276f[m HEAD@{120}: commit: insert SQLQueryBuilder interface and MySqlQueryBuilder class
+[33m520a596[m HEAD@{121}: commit: preparing project for SOLID developpement
+[33m92a12ed[m HEAD@{122}: commit: modify ajaxController connexion
+[33mb669a1f[m HEAD@{123}: reset: moving to HEAD
+[33mb669a1f[m HEAD@{124}: commit: make object manager base
+[33md277c7f[m HEAD@{125}: commit: retrieve old version
+[33m699f1d5[m HEAD@{126}: commit: commit a ignorer
+[33m342a75c[m HEAD@{127}: checkout: moving from master to addProduct
+[33m342a75c[m HEAD@{128}: reset: moving to HEAD
+[33m342a75c[m HEAD@{129}: pull --prune: Fast-forward
+[33m930929f[m HEAD@{130}: checkout: moving from fonts to master
+[33m6946fcb[m HEAD@{131}: commit: fucking commit on wrong branch !!
+[33m5d10194[m HEAD@{132}: commit: adding new font 'Alex Brush' to all style.css
+[33m930929f[m HEAD@{133}: checkout: moving from master to fonts
+[33m930929f[m HEAD@{134}: reset: moving to HEAD
+[33m930929f[m HEAD@{135}: reset: moving to HEAD
+[33m930929f[m HEAD@{136}: pull --prune: Fast-forward
+[33m34ddf2a[m HEAD@{137}: checkout: moving from styleFormulaireAjoutProduit to master
+[33mdcea07a[m HEAD@{138}: commit: adding text-shadow to back button, changing root css variable name en alphabetique sort, testing theme color on client side, adding favIcon
+[33m54d1824[m HEAD@{139}: commit: adding text-shadow
+[33m568d4d7[m HEAD@{140}: commit: finish animation and style
+[33m0bd066b[m HEAD@{141}: commit: start styling form
+[33m34ddf2a[m HEAD@{142}: checkout: moving from master to styleFormulaireAjoutProduit
+[33m34ddf2a[m HEAD@{143}: pull: Fast-forward
+[33m0a91e6c[m HEAD@{144}: checkout: moving from styleConnexionAdmin to master
+[33m7a6b609[m HEAD@{145}: commit: styling connexion admin page
+[33m0a91e6c[m HEAD@{146}: checkout: moving from master to styleConnexionAdmin
+[33m0a91e6c[m HEAD@{147}: pull: Fast-forward
+[33m4b48ab8[m HEAD@{148}: checkout: moving from suppressionCategorie to master
+[33mbe740f2[m HEAD@{149}: commit: fixing style problem
+[33m2d87461[m HEAD@{150}: pull: Fast-forward
+[33m45c009a[m HEAD@{151}: commit (merge): fixing conflits
+[33m10c5927[m HEAD@{152}: checkout: moving from master to suppressionCategorie
+[33m4b48ab8[m HEAD@{153}: pull: Fast-forward
+[33m9d2e38e[m HEAD@{154}: checkout: moving from suppressionCategorie to master
+[33m10c5927[m HEAD@{155}: pull: Fast-forward
+[33madf789a[m HEAD@{156}: checkout: moving from master to suppressionCategorie
+[33m9d2e38e[m HEAD@{157}: checkout: moving from suppressionCategorie to master
+[33madf789a[m HEAD@{158}: commit: fixing probleme
+[33m17a5904[m HEAD@{159}: checkout: moving from master to suppressionCategorie
+[33m9d2e38e[m HEAD@{160}: pull: Fast-forward
+[33m6e1a0ce[m HEAD@{161}: checkout: moving from suppressionIngredient to master
+[33m0c172a4[m HEAD@{162}: commit: end suppression ingredient
+[33mb7448f4[m HEAD@{163}: commit: generalize suppressionAjax.js
+[33m2d7856f[m HEAD@{164}: checkout: moving from modificationCategorie to suppressionIngredient
+[33m2d7856f[m HEAD@{165}: merge suppressionIngredient: Fast-forward
+[33m048b9b0[m HEAD@{166}: checkout: moving from suppressionIngredient to modificationCategorie
+[33m2d7856f[m HEAD@{167}: commit (merge): fixing conflit
+[33m149f75f[m HEAD@{168}: checkout: moving from modificationCategorie to suppressionIngredient
+[33m048b9b0[m HEAD@{169}: pull: Fast-forward
+[33m6f994a9[m HEAD@{170}: checkout: moving from suppressionIngredient to modificationCategorie
+[33m149f75f[m HEAD@{171}: commit: changing some file
+[33m070faec[m HEAD@{172}: commit: modif animation.js
+[33m6e1a0ce[m HEAD@{173}: checkout: moving from master to suppressionIngredient
+[33m6e1a0ce[m HEAD@{174}: pull: Fast-forward
+[33mc0b02e7[m HEAD@{175}: checkout: moving from modificationIngredient to master
+[33m123cd82[m HEAD@{176}: commit: animation bonus
+[33mc0b02e7[m HEAD@{177}: merge master: Fast-forward
+[33mad37edd[m HEAD@{178}: checkout: moving from master to modificationIngredient
+[33mc0b02e7[m HEAD@{179}: merge modificationIngredient: Merge made by the 'ort' strategy.
+[33m9975dcf[m HEAD@{180}: pull: Fast-forward
+[33m2e92464[m HEAD@{181}: checkout: moving from modificationIngredient to master
+[33mad37edd[m HEAD@{182}: commit: update ingredient v1
+[33m6d23f64[m HEAD@{183}: checkout: moving from modificationCategorie to modificationIngredient
+[33m6f994a9[m HEAD@{184}: checkout: moving from modificationIngredient to modificationCategorie
+[33m6d23f64[m HEAD@{185}: commit: don't care
+[33m5acf0df[m HEAD@{186}: checkout: moving from ajoutCateg to modificationIngredient
+[33m2e20579[m HEAD@{187}: commit: probleme solved
+[33m25d5464[m HEAD@{188}: pull: Fast-forward
+[33mc2b8215[m HEAD@{189}: checkout: moving from modificationIngredient to ajoutCateg
+[33m5acf0df[m HEAD@{190}: commit: don't care
+[33mfd49927[m HEAD@{191}: commit: make ingredient table, styled it and styled on/off diode for avaibility
+[33m0038cba[m HEAD@{192}: commit: making READ function for ingredient
+[33m5f45843[m HEAD@{193}: checkout: moving from ajoutCateg to modificationIngredient
+[33mc2b8215[m HEAD@{194}: checkout: moving from modificationIngredient to ajoutCateg
+[33m5f45843[m HEAD@{195}: commit: commentaire index.php /dash
+[33m2e92464[m HEAD@{196}: checkout: moving from master to modificationIngredient
+[33m2e92464[m HEAD@{197}: pull -p: Fast-forward
+[33m287b76d[m HEAD@{198}: checkout: moving from sortStyleSheet to master
+[33mecb5a06[m HEAD@{199}: commit: Create personalized style sheet for each element that can be reused
+[33m1802386[m HEAD@{200}: checkout: moving from suppressionTypeIngredientAjax to sortStyleSheet
+[33m1802386[m HEAD@{201}: commit: DELETE type ingredient AJAX
+[33m287b76d[m HEAD@{202}: checkout: moving from master to suppressionTypeIngredientAjax
+[33m287b76d[m HEAD@{203}: pull: Fast-forward
+[33mba86aab[m HEAD@{204}: checkout: moving from modalModificationProduitResponsive to master
+[33m0dba1d9[m HEAD@{205}: commit: making responsive for modal, changed z-index for error & success message, remake the of animation of toggle button
+[33mba86aab[m HEAD@{206}: checkout: moving from master to modalModificationProduitResponsive
+[33mba86aab[m HEAD@{207}: pull: Fast-forward
+[33m64ac679[m HEAD@{208}: checkout: moving from bugUpdateTypeIngredient to master
+[33m6231504[m HEAD@{209}: commit: solve bug
+[33mb882760[m HEAD@{210}: checkout: moving from navBarResponsiveBug to bugUpdateTypeIngredient
+[33mb882760[m HEAD@{211}: checkout: moving from modificationTypeIngredient to navBarResponsiveBug
+[33md7fb95f[m HEAD@{212}: checkout: moving from navBarResponsiveBug to modificationTypeIngredient
+[33mb882760[m HEAD@{213}: commit: z-index navBar & toggleButton
+[33m64ac679[m HEAD@{214}: checkout: moving from master to navBarResponsiveBug
+[33m64ac679[m HEAD@{215}: pull: Fast-forward
+[33m4a358ac[m HEAD@{216}: checkout: moving from modificationTypeIngredient to master
+[33md7fb95f[m HEAD@{217}: commit: styling table type_ingredient and all élément, UPDATE type ingredient done, maked a modal group
+[33m18f07b3[m HEAD@{218}: commit: Commentaire du fichier priceCheck.js
+[33md117791[m HEAD@{219}: checkout: moving from ajoutIngredient to modificationTypeIngredient
+[33md117791[m HEAD@{220}: commit: Ajout d'ingredient términé, les message d'erreur & de success sont affiché comme voulu
+[33m9796bde[m HEAD@{221}: checkout: moving from toggleNavBarAdmin to ajoutIngredient
+[33m9796bde[m HEAD@{222}: checkout: moving from master to toggleNavBarAdmin
+[33m4a358ac[m HEAD@{223}: pull: Fast-forward
+[33m1125d1a[m HEAD@{224}: checkout: moving from toggleNavBarAdmin to master
+[33m9796bde[m HEAD@{225}: pull: Fast-forward
+[33m2d79468[m HEAD@{226}: checkout: moving from ajoutTypeIngredient to toggleNavBarAdmin
+[33m7650d1a[m HEAD@{227}: commit: fixing bug : block empty submission for type ingredient
+[33m063b89e[m HEAD@{228}: checkout: moving from toggleNavBarAdmin to ajoutTypeIngredient
+[33m2d79468[m HEAD@{229}: commit: modify some style
+[33m0964d98[m HEAD@{230}: commit: making nav bar toggle system
+[33m063b89e[m HEAD@{231}: checkout: moving from ajoutTypeIngredient to toggleNavBarAdmin
+[33m063b89e[m HEAD@{232}: commit: ajout de type ingredient & affichage en liste déroulante dans l ajout d ingredient
+[33m4798eeb[m HEAD@{233}: commit: Structure of ingredient page
+[33m66b7163[m HEAD@{234}: commit: bug to fix
+[33m08e51a8[m HEAD@{235}: commit: base of style for ingredient page
+[33mcb4d9c0[m HEAD@{236}: commit: changing routing mode
+[33m1125d1a[m HEAD@{237}: checkout: moving from master to ajoutTypeIngredient
+[33m1125d1a[m HEAD@{238}: checkout: moving from ajoutProduit to master
+[33m1125d1a[m HEAD@{239}: checkout: moving from master to ajoutProduit
+[33m1125d1a[m HEAD@{240}: pull: Fast-forward
+[33m9a62109[m HEAD@{241}: checkout: moving from designConnexionAdmin to master
+[33mbd176fb[m HEAD@{242}: commit: change login button font weight
+[33m58a8a97[m HEAD@{243}: commit: adding modification on connexion style
+[33m9a62109[m HEAD@{244}: checkout: moving from master to designConnexionAdmin
+[33m9a62109[m HEAD@{245}: commit: inscription user / ajax ville / connexion user / connexion admin / navBar Admin / scheme color change
+[33me926513[m HEAD@{246}: commit: adding new database
+[33mc5c866c[m HEAD@{247}: reset: moving to HEAD
+[33mc5c866c[m HEAD@{248}: commit: make base for AJAX
+[33ma767a45[m HEAD@{249}: commit: adding BDD copy
+[33md10251c[m HEAD@{250}: commit: fixing loop bug
+[33mad55a58[m HEAD@{251}: commit: add comments for supprProd() panierController.php
+[33mf33dd4c[m HEAD@{252}: commit: Finish panier
+[33m5cbe263[m HEAD@{253}: commit: comments paniercontroller and panierModel
+[33md22e478[m HEAD@{254}: commit: making CRUD on cart system, left the D of CRUD
+[33m5d67d23[m HEAD@{255}: commit (initial): first commit

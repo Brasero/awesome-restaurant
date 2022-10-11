@@ -25,5 +25,4 @@ class TwigFormatExtension extends AbstractExtension
     {
         return number_format($number, 2, ',', '.') . $currency;
     }
-
 }

@@ -61,6 +61,7 @@ class App
     }
 
     /**
+     * @return ContainerInterface
      * @throws Exception
      */
     public function getContainer(): ContainerInterface

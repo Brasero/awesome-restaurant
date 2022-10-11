@@ -6,7 +6,9 @@ use Framework\Module;
 use Framework\Renderer\RendererInterface;
 use Framework\Router\RedirectTrait;
 use Framework\Router\Router;
+use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 class DashboardModule extends Module
 {
@@ -27,8 +29,9 @@ class DashboardModule extends Module
     private Router $router;
 
     /**
-     * @param RendererInterface $renderer
-     * @param Router $router
+     * @param ContainerInterface $container
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
     public function __construct(ContainerInterface $container)
     {

@@ -72,6 +72,4 @@ class TypeIngredient
     {
         $this->ingredients = $ingredients;
     }
-
-
 }

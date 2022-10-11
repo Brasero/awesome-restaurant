@@ -78,6 +78,4 @@ class Categorie
     {
         $this->img = ($img);
     }
-
 }
-
