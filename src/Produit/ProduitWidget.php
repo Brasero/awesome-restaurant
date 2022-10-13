@@ -20,7 +20,7 @@ class ProduitWidget implements AdminWidgetInterface
 
     public function render(): string
     {
-        return "";
+        return $this->renderer->render('@produit/admin/widget');
     }
 
     public function menuButtonAdmin(): string

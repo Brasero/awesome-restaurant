@@ -23,10 +23,7 @@
 
             <!-- FIRST ROW WITH CARD -->
             <section class="row card__sm__wrapper">
-                <div class="card__sm"></div>
-                <div class="card__sm"></div>
-                <div class="card__sm"></div>
-                <div class="card__sm"></div>
+                {{ admin_widget() }}
             </section>
 
             <!-- END FIRST ROW WITH CARD -->
@@ -51,7 +48,7 @@
             <section class="row">
                 <div class="col-4">
                     <div class="card__md__height">
-                        <form action="" method="POST" class="offreForm">
+                        <form action="{{ path('admin.add.offre') }}" method="POST" class="offreForm">
                         <span class="part formTitle">
                             Nouvelle offre
                         </span>
@@ -60,7 +57,7 @@
                                 <label for="nom_offre" class="inputLabel">
                                     <input
                                             type="text"
-                                            name="nom_offre" placeholder="Nom de l'offre"
+                                            name="nom" placeholder="Nom de l'offre"
                                             id="nom_offre"
                                             required />
                                     <span>Nom de l'offre</span>
@@ -71,7 +68,7 @@
                                 <label for="pourcentage_offre" class="inputLabel">
                                     <input
                                             type="text"
-                                            name="taux_offre" placeholder="pourcentage de l'offre"
+                                            name="taux" placeholder="pourcentage de l'offre"
                                             id="pourcentage_offre"
                                             required />
                                     <span>% de l'offre</span>
@@ -80,13 +77,29 @@
                         </span>
                             <div class="inputGroup">
                                 <label for="date_debut_offre" class="inputLabel">
-                                    <input type="date" class="inputItem" name="date_debut_offre" id="date_debut_offre" value="" placeholder="Débute le :" required />
+                                    <input
+                                        type="date"
+                                        class="inputItem"
+                                        name="date_debut"
+                                        id="date_debut_offre"
+                                        value=""
+                                        placeholder="Débute le :"
+                                        required
+                                    />
                                     <span>Débute le :</span>
                                 </label>
                             </div>
                             <div class="inputGroup">
                                 <label for="date_fin_offre" class="inputLabel">
-                                    <input type="date" class="inputItem" name="date_fin_offre" id="date_fin_offre" value="" placeholder="Fin le :" required />
+                                    <input
+                                        type="date"
+                                        class="inputItem"
+                                        name="date_fin"
+                                        id="date_fin_offre"
+                                        value=""
+                                        placeholder="Fin le :"
+                                        required
+                                    />
                                     <span>Fin le :</span>
                                 </label>
                             </div>
@@ -111,35 +124,33 @@
                                 <th class="part">Fin</th>
                                 <th class="part">Action</th>
                             </tr>
-                            <?php foreach($offres as $offre): ?>
+                            {% for offre in offres %}
                             <tr class="offreItem tableRow">
                                 <td class="offrePart">
-                                    <?= $offre->getNom(); ?>
+                                    {{ offre.nom }}
                                 </td>
                                 <td class="offrePart">
-                                    <?= $offre->getTauxLitteral(); ?>
+                                    {{ offre.taux }}
                                 </td>
                                 <td class="offrePart">
-                                    <?php
-                                            echo $offre->getEtat();
-                                    ?>
+                                    {{ offre.taux }}
                                 </td>
                                 <td class="offrePart">
-                                    <?= $offre->getDate_debutShort(); ?>
+                                    {{ offre.dateDebut|date('d/m/Y') }}
                                 </td>
                                 <td class="offrePart">
-                                    <?= $offre->getDate_finShort(); ?>
+                                    {{ offre.dateFin|date('d/m/Y') }}
                                 </td>
                                 <td class="offrePart">
                                     <button
                                             class="actionButton updateButton"
-                                            onclick='openModal(event, "offre", <?= json_encode([$offre, $offre->getID()]) ?>)'
+                                            onclick='openModal(event, "offre", {{ offre.id }})'
                                     >
                                         <i class="bi bi-pencil-square"></i>
                                     </button>
                                 </td>
                             </tr>
-                            <?php endforeach; ?>
+                            {% endfor %}
                             </tbody>
                         </table>
                     </div>

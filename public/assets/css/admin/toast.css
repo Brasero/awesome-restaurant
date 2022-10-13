@@ -1,4 +1,17 @@
 /**  Toast style  **/
+.main > .container .toastContainer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 4;
+    width: 300px;
+    margin: 10px;
+    padding: 0;
+    list-style: none;
+    text-align: left;
+    background: transparent;
+}
+
 .main > .container .error, .main > .container .success{
     align-items: flex-start;
     background: var(--color-light);
@@ -6,7 +19,7 @@
     border: none;
     border-radius: 2px;
     box-shadow: 0 0 10px 1px rgba(var(--color-black-rgb), 0.8);
-    position: fixed;
+    position: relative;
     top: 25px;
     right: 15px;
     min-width: 100px;
@@ -17,6 +30,7 @@
     flex-direction: column;
     justify-content: space-between;
     z-index: 5;
+    margin-bottom: 5px;
 }
 
 

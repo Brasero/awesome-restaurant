@@ -35,9 +35,10 @@ class Produit
     private string $prix;
 
     /**
-     * @Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="Offre", inversedBy="produits")
+     * @ORM\JoinColumn(name="offre_id", referencedColumnName="id", onDelete="CASCADE")
      */
-    private ?int $ID_offre;
+    private ?Offre $offre;
 
     /**
      * @Column(type="string", name="nom_produit")
@@ -88,9 +89,9 @@ class Produit
         $this->img = $img;
     }
 
-    public function getId_offre()
+    public function getOffre(): ?Offre
     {
-        return $this->ID_offre;
+        return $this->offre;
     }
 
     public function setId_taxe(int $ID_taxe)
@@ -98,9 +99,9 @@ class Produit
         $this->ID_taxe = $ID_taxe;
     }
 
-    public function setId_offre($ID_offre)
+    public function setOffre(Offre $offre = null): void
     {
-        $this->ID_offre = $ID_offre;
+        $this->offre = $offre;
     }
 
     public function getNom()

@@ -4,8 +4,6 @@ namespace App\Framework\Toaster;
 
 class Toast
 {
-    public string $message = "";
-
     public function success(string $message): string
     {
         return '<span class="success">

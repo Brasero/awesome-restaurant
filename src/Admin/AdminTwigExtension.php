@@ -20,7 +20,8 @@ class AdminTwigExtension extends AbstractExtension
     public function getFunctions()
     {
         return [
-            new TwigFunction('admin_menu', [$this, 'adminMenu'], ['is_safe' => ['html']])
+            new TwigFunction('admin_menu', [$this, 'adminMenu'], ['is_safe' => ['html']]),
+            new TwigFunction('admin_widget', [$this, 'adminWidget'], ['is_safe' => ['html']]),
         ];
     }
 

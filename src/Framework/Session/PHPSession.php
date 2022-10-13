@@ -24,6 +24,12 @@ class PHPSession implements SessionInterface
         $_SESSION[$key] = $value;
     }
 
+    public function setArray(string $key, string $value): void
+    {
+        $this->ensureStarted();
+        $_SESSION[$key][] = $value;
+    }
+
     public function delete(string $key): void
     {
         $this->ensureStarted();

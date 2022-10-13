@@ -1,18 +1,23 @@
 
 //Donne la class 'hidden' au element ayant la class success ou error
-function setToastDisparition(){
+function setToastDisparition()
+{
     //Selection des éléments du dom si ils existe (l'élément ciblé est le message de retour envoyer par les controlleur php lors d'une action, exemple : ajout d'un produit)
-    var elementSuccess = document.querySelector('.success');
-    var elementError = document.querySelector('.error');
+    const elementSuccess = document.querySelectorAll('.success');
+    const elementError = document.querySelectorAll('.error');
 
-    if(elementSuccess != null){
-        elementSuccess.classList.add('hidden')
-        setTimeout(() => {elementSuccess.remove()}, 500)
+    if (elementSuccess != null) {
+        for (let element of elementSuccess) {
+            element.classList.add('hidden');
+            setTimeout(() => {element.remove()}, 500)
+        }
     }
 
-    if(elementError != null){
-        elementError.classList.add('hidden')
-        setTimeout(() => {elementError.remove()}, 500)
+    if (elementError != null) {
+        for (let element of elementError) {
+            element.classList.add('hidden');
+            setTimeout(() => {element.remove()}, 500)
+        }
     }
 }
 

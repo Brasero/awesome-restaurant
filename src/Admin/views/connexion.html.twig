@@ -14,7 +14,9 @@
 
 {% block content %}
     {% if hasToast() %}
-        {{ renderToast() | raw }}
+        {% for toast in renderToast() %}
+            {{ toast }}
+        {% endfor %}
     {% endif %}
     <div class="connexionContainer">
         <div class="formContainer">

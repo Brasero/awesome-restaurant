@@ -29,8 +29,6 @@ class AdminAuthMiddleware extends AbstractMiddleware
 
     /**
      * @param ContainerInterface $container
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
      */
     public function __construct(ContainerInterface $container)
     {

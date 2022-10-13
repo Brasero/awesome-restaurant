@@ -49,7 +49,11 @@
         </nav>
         <div class="container">
             {% if hasToast() %}
-                {{ renderToast() | raw }}
+                <div class="toastContainer">
+                {% for toast in renderToast() %}
+                    {{ toast | raw }}
+                {% endfor %}
+                </div>
             {% endif %}
             {% block body %}
             {% endblock %}

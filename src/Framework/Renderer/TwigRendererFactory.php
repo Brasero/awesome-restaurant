@@ -1,13 +1,9 @@
 <?php
 namespace Framework\Renderer;
 
-use App\Framework\Format\TwigFormatExtension;
-use App\Framework\Toaster\ToasterTwigExtension;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
-use Framework\Renderer\TwigRenderer;
 use Psr\Container\ContainerInterface;
-use Framework\Router\RouteurTwigExtension;
 
 class TwigRendererFactory
 {
