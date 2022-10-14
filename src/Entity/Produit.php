@@ -59,9 +59,10 @@ class Produit
     private $ingredients;
 
     /**
-     * @Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="Taxe", inversedBy="produits")
+     * @ORM\JoinColumn(name="taxe_id", referencedColumnName="id", onDelete="CASCADE")
      */
-    private int $ID_taxe;
+    private int $taxe;
 
 
     public function setPrix(string $prix)
@@ -94,10 +95,6 @@ class Produit
         return $this->offre;
     }
 
-    public function setId_taxe(int $ID_taxe)
-    {
-        $this->ID_taxe = $ID_taxe;
-    }
 
     public function setOffre(Offre $offre = null): void
     {
@@ -118,11 +115,6 @@ class Produit
     {
         $nom = strtolower(htmlentities(strip_tags($this->nom)));
         $this->setNom($nom);
-    }
-
-    public function getId_taxe()
-    {
-        return $this->ID_taxe;
     }
 
     /**
@@ -155,5 +147,21 @@ class Produit
     public function setIngredients(Ingredient $ingredient): void
     {
         $this->ingredients[] = $ingredient;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTaxe(): int
+    {
+        return $this->taxe;
+    }
+
+    /**
+     * @param int $taxe
+     */
+    public function setTaxe(int $taxe): void
+    {
+        $this->taxe = $taxe;
     }
 }

@@ -1,4 +1,19 @@
 /**  Toast style for connexion admin  **/
+
+/**  Toast style  **/
+.toastContainer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 4;
+    width: 300px;
+    margin: 10px;
+    padding: 0;
+    list-style: none;
+    text-align: left;
+    background: transparent;
+}
+
 .error, .success{
     align-items: flex-start;
     background: var(--color-light);

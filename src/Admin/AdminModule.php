@@ -73,7 +73,7 @@ class AdminModule extends Module
      */
     public function authenticate(ServerRequest $request)
     {
-        $method = $_SERVER['REQUEST_METHOD'];
+        $method = $request->getMethod();
         if ($method === 'POST') {
             $session = $this->container->get(SessionInterface::class);
             $params = $request->getParsedBody();

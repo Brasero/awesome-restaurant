@@ -3,6 +3,7 @@
 namespace App\Framework\Toaster;
 
 use App\Framework\Session\SessionInterface;
+use App\Framework\Validator\ValidatorError;
 
 class Toaster
 {
@@ -32,10 +33,24 @@ class Toaster
     {
         if (is_array($message)) {
             foreach ($message as $msg) {
-                $this->session->setArray(self::SESSION_KEY, $this->toastFactory->makeToast($msg, $etat));
+                if ($msg instanceof ValidatorError) {
+                    $this->session->setArray(
+                        self::SESSION_KEY,
+                        $this->toastFactory->makeToast($msg->toString(), $etat)
+                    );
+                } else {
+                    $this->session->setArray(self::SESSION_KEY, $this->toastFactory->makeToast($msg, $etat));
+                }
             }
         } else {
-            $this->session->setArray(self::SESSION_KEY, $this->toastFactory->makeToast($message, $etat));
+            if ($message instanceof ValidatorError) {
+                $this->session->setArray(
+                    self::SESSION_KEY,
+                    $this->toastFactory->makeToast($message->toString(), $etat)
+                );
+            } else {
+                $this->session->setArray(self::SESSION_KEY, $this->toastFactory->makeToast($message, $etat));
+            }
         }
     }
 

@@ -18,7 +18,9 @@ class ValidatorError
         'required' => 'Le champ %s est requis',
         'intlenght' => 'Le champ %s ne contient pas une valeur valide',
         "strlenght" => "Le champ %s dépasse le nombre de caractères autorisés",
-        'email' => 'Le champ %s doit être un email valide'
+        'email' => 'Le champ %s doit être un email valide',
+        'float' => 'Le champ %s doit être un nombre à virgule',
+        'integer' => 'Le champ %s doit être un nombre entier',
     ];
 
     /**
@@ -33,12 +35,8 @@ class ValidatorError
         $this->rule = $rule;
     }
 
-    public function __toString(): string
-    {
-        return sprintf($this->messages[$this->rule], $this->key);
-    }
 
-    public function string(): string
+    public function toString(): string
     {
         return sprintf($this->messages[$this->rule], $this->key);
     }

@@ -5,6 +5,13 @@ namespace App\Framework\Toaster;
 class ToastFactory
 {
 
+    private Toast $toast;
+
+    public function __construct()
+    {
+        $this->toast = new Toast();
+    }
+
     public function makeToast(string $message, int $etat): string
     {
         $toast = "";
@@ -26,19 +33,16 @@ class ToastFactory
 
     private function error(string $message): string
     {
-        $toast = new Toast();
-        return $toast->error($message);
+        return $this->toast->error($message);
     }
 
     private function success(string $message): string
     {
-        $toast = new Toast();
-        return $toast->success($message);
+        return $this->toast->success($message);
     }
 
     private function warning(string $message): string
     {
-        $toast = new Toast();
-        return $toast->warning($message);
+        return $this->toast->warning($message);
     }
 }

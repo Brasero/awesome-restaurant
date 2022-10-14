@@ -57,7 +57,7 @@ class OffreAction
         $errors = $validator->getErrors();
         if (!empty($errors)) {
             foreach ($errors as $error) {
-                $this->toaster->createToast($error->string(), Toaster::ERROR);
+                $this->toaster->createToast($error, Toaster::ERROR);
             }
             return $this->redirect('admin.home');
         }

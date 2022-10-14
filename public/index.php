@@ -9,6 +9,7 @@ use App\Framework\Middleware\TrailingSlashMiddleware;
 use App\Framework\Middleware\RouterDispatcherMiddleware;
 use App\Framework\Middleware\NotFoundMiddleware;
 use App\Ingredient\IngredientModule;
+use App\Taxe\TaxeModule;
 use Framework\App;
 use App\User\UserModule;
 use function Http\Response\send;
@@ -20,10 +21,11 @@ require dirname(__DIR__)."/vendor/autoload.php";
 $app = new App(dirname(__DIR__) . "/config/config.php");
 
 $app->addModule(AdminModule::class)
-    ->addModule(UserModule::class)
     ->addModule(DashboardModule::class)
+    ->addModule(UserModule::class)
     ->addModule(ProduitModule::class)
     ->addModule(IngredientModule::class)
+    ->addModule(TaxeModule::class)
     ->linkMiddleware(new TrailingSlashMiddleware())
     ->linkWith(new RouterMiddleware($app->getContainer()))
     ->linkWith(new RedirectAuthMiddleware($app->getContainer()))

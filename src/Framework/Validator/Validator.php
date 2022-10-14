@@ -115,6 +115,7 @@ class Validator
      */
     public function float(string $key): self
     {
+        $this->params[$key] = floatval($this->params[$key]);
         if (!filter_var($this->params[$key], FILTER_VALIDATE_FLOAT)) {
             $this->addError($key, 'float');
         }
@@ -141,6 +142,6 @@ class Validator
         if (!isset($this->errors[$key])) {
             $this->errors[$key] = [];
         }
-        $this->errors[$key] = new ValidatorError($key, $rule);
+        $this->errors[$key][] = new ValidatorError($key, $rule);
     }
 }
