@@ -51,8 +51,8 @@ class OffreAction
         $data = $request->getParsedBody();
         $validator = new Validator($data);
         $validator->required('nom', 'taux', 'date_debut', 'date_fin')
-            ->strLenght('nom', 2, 255)
-            ->intLenght('taux', 0, 100)
+            ->strLength('nom', 2, 255)
+            ->intLength('taux', 0, 100)
             ->integer('taux');
         $errors = $validator->getErrors();
         if (!empty($errors)) {

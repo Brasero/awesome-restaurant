@@ -14,14 +14,14 @@
     background: transparent;
 }
 
-.error, .success{
+.error, .success, .warning{
     align-items: flex-start;
     background: var(--color-light);
     font-family: var(--font-primary) !important;
     border: none;
     border-radius: 2px;
     box-shadow: 0 0 10px 1px rgba(var(--color-black-rgb), 0.8);
-    position: fixed;
+    position: relative;
     top: 25px;
     right: 15px;
     min-width: 100px;
@@ -32,6 +32,7 @@
     flex-direction: column;
     justify-content: space-between;
     z-index: 5;
+    margin-bottom: 5px;
 }
 
 
@@ -56,7 +57,11 @@
     background: var(--color-green);
 }
 
-.error .message, .success .message{
+.warning .progressBar{
+    background: var(--color-blue);
+}
+
+.error .message, .success .message, .warning .message{
     padding: 15px 10px;
     text-align: center;
     background: var(--color-light);
@@ -68,6 +73,10 @@
 
 .success .message{
     color: var(--color-green);
+}
+
+.warning .message{
+    color: var(--color-blue);
 }
 
 .hidden{

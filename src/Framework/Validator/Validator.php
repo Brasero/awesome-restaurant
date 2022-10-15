@@ -57,26 +57,32 @@ class Validator
      * @param int $max taille maximale
      * @return $this
      */
-    public function strLenght(string $key, int $min, int $max): self
+    public function strLength(string $key, int $min, int $max): self
     {
         if (!array_key_exists($key, $this->params)) {
             return $this;
         }
         $lenght = mb_strlen($this->params[$key]);
-        if ($lenght < $min || $lenght > $max) {
-            $this->addError($key, 'strlenght');
+        if ($lenght < $min) {
+            $this->addError($key, 'strlenghtMin');
+        }
+        if ($lenght > $max) {
+            $this->addError($key, 'strlenghtMax');
         }
         return $this;
     }
 
-    public function intLenght(string $key, int $min, int $max): self
+    public function intLength(string $key, int $min, int $max): self
     {
         if (!array_key_exists($key, $this->params)) {
             return $this;
         }
         $lenght = $this->params[$key];
-        if ($lenght < $min || $lenght > $max) {
-            $this->addError($key, 'intlenght');
+        if ($lenght < $min) {
+            $this->addError($key, 'intlenghtMin');
+        }
+        if ($lenght > $max) {
+            $this->addError($key, 'intlenghtMax');
         }
         return $this;
     }
@@ -118,6 +124,18 @@ class Validator
         $this->params[$key] = floatval($this->params[$key]);
         if (!filter_var($this->params[$key], FILTER_VALIDATE_FLOAT)) {
             $this->addError($key, 'float');
+        }
+        return $this;
+    }
+
+    public function confirm(string $key): self
+    {
+        $confirm = $key . '_confirm';
+        if (!array_key_exists($key, $this->params) or !array_key_exists($confirm, $this->params)) {
+            return $this;
+        }
+        if ($this->params[$key] !== $this->params[$confirm]) {
+            $this->addError($key, 'confirm');
         }
         return $this;
     }

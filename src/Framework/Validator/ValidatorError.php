@@ -16,11 +16,14 @@ class ValidatorError
 
     private array $messages = [
         'required' => 'Le champ %s est requis',
-        'intlenght' => 'Le champ %s ne contient pas une valeur valide',
-        "strlenght" => "Le champ %s dépasse le nombre de caractères autorisés",
+        'intlenghtMin' => 'Le champ %s n\'atteint pas la valeur minimale',
+        'intlenghtMax' => 'Le champ %s dépasse la valeur maximale autorisée',
+        "strlenghtMin" => "Le champ %s n'atteint le nombre de caractères requis",
+        "strlenghtMax" => "Le champ %s dépasse le nombre de caractères autorisés",
         'email' => 'Le champ %s doit être un email valide',
         'float' => 'Le champ %s doit être un nombre à virgule',
         'integer' => 'Le champ %s doit être un nombre entier',
+        'confirm' => 'Le champ mot de passe et confirmation de mot de passe doivent être identiques'
     ];
 
     /**

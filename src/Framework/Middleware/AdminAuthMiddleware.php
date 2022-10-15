@@ -2,6 +2,7 @@
 
 namespace App\Framework\Middleware;
 
+use App\Framework\Auth\AdminAuth;
 use App\Framework\Session\SessionInterface;
 use App\Framework\Toaster\Toaster;
 use Framework\Router\RedirectTrait;
@@ -43,14 +44,21 @@ class AdminAuthMiddleware extends AbstractMiddleware
     {
         $uri = $request->getUri()->getPath();
         if (str_starts_with($uri, $this->container->get('admin.prefix'))
-            && $uri !== $this->container->get('admin.prefix') . '/authenticate'
+            && (
+                $uri !== $this->container->get('admin.prefix') . '/authenticate'
+                && $uri !== $this->container->get('admin.prefix') . '/authenticate/first'
+                )
         ) {
-            $session = $this->container->get(SessionInterface::class);
-            if (!$session->has('auth')) {
+            $auth = $this->container->get(AdminAuth::class);
+            if (!$auth->isLogged() || !$auth->checkTimestamp()) {
                 $router = $this->container->get(Router::class);
                 $this->router = $router;
                 $toaster = $this->container->get(Toaster::class);
-                $toaster->createToast('Vous devez être connecté pour accéder à cette page', Toaster::ERROR);
+                if (!$auth->isLogged()) {
+                    $toaster->createToast('Vous devez être connecté pour accéder à cette page', Toaster::ERROR);
+                } else {
+                    $toaster->createToast('Vous avez déconnecté pour inactivité.', Toaster::WARNING);
+                }
                 return $this->redirect('admin.auth');
             }
         }

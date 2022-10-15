@@ -1,15 +1,15 @@
 {% extends '@admin/layout.html.twig' %}
 
 {% block stylesheet %}
-    <link rel="shortcut icon" href="../assets/icon/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../assets/css/admin/style.css">
-    <link rel="stylesheet" href="../assets/css/admin/ingredient.css">
-    <link rel="stylesheet" href="../assets/css/admin/produit.css">
-    <link rel="stylesheet" href="../assets/css/admin/formulaire.css">
-    <link rel="stylesheet" href="../assets/css/admin/modalIngredient.css">
-    <link rel="stylesheet" href="../assets/css/admin/adminConnexion.css">
-    <link rel="stylesheet" href="../assets/css/admin/dashboard.css">
-    <link rel="stylesheet" href="../assets/css/admin/connexiontoast.css">
+    <link rel="shortcut icon" href="../../assets/icon/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../assets/css/admin/style.css">
+    <link rel="stylesheet" href="../../assets/css/admin/ingredient.css">
+    <link rel="stylesheet" href="../../assets/css/admin/produit.css">
+    <link rel="stylesheet" href="../../assets/css/admin/formulaire.css">
+    <link rel="stylesheet" href="../../assets/css/admin/modalIngredient.css">
+    <link rel="stylesheet" href="../../assets/css/admin/adminConnexion.css">
+    <link rel="stylesheet" href="../../assets/css/admin/dashboard.css">
+    <link rel="stylesheet" href="../../assets/css/admin/connexiontoast.css">
 {% endblock %}
 
 {% block content %}
@@ -23,10 +23,10 @@
     <div class="connexionContainer">
         <div class="formContainer">
             <h1 class="formTitle">
-                <div class="top">Administration</div>
-                <div class="bottom"><span class="left">Burger</span> <span class="right">Compagny</span></div>
+                <div class="top">Première</div>
+                <div class="bottom"><span class="right">Connexion</span></div>
             </h1>
-            <form action="{{ path('admin.auth') }}" method="POST" class="loginForm">
+            <form action="{{ path('admin.auth.first') }}" method="POST" class="loginForm">
                 <div class="inputGroup">
                     <label for="mail" class="inputLabel">
                         <input type="text" name="username" id="mail" placeholder="Nom d'utilisateur" class="signInput">
@@ -37,10 +37,16 @@
                 <div class="inputGroup">
                     <label for="mdp" class="inputLabel">
                         <input type="password" name="password" placeholder="Mot de passe" id="mdp" class="signInput">
-                        <span>Mot de passe</span>
+                        <span>Choisir un mot de passe</span>
                     </label>
                 </div>
-                <a href="{{ path('admin.auth.first') }}">Première connexion</a>
+
+                <div class="inputGroup">
+                    <label for="mdpc" class="inputLabel">
+                        <input type="password" name="password_confirm" placeholder="Mot de passe" id="mdpc" class="signInput">
+                        <span>Confirmez votre mot de passe</span>
+                    </label>
+                </div>
 
 
 

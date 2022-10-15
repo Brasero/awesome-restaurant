@@ -54,11 +54,6 @@ class User
      */
     private string $telephone;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Role", inversedBy="users")
-     * @ORM\JoinColumn(name="role_id", referencedColumnName="id", onDelete="CASCADE")
-     */
-    private Role $role;
 
     /**
      * @return int
