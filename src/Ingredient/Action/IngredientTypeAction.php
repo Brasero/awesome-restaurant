@@ -58,10 +58,18 @@ class IngredientTypeAction
     public function add(ServerRequest $request)
     {
         $data = $request->getParsedBody();
-        if (!isset($data['nom']) or empty($data['nom'])) {
-            $this->toaster->createToast('Merci de saisir un nom', Toaster::ERROR);
+        $validator = new Validator($data);
+        $errors = $validator->required('nom')
+            ->strLength('nom', 3, 50)
+            ->getErrors();
+
+        if (!empty($errors)) {
+            foreach ($errors as $error) {
+                $this->toaster->createToast($error, Toaster::ERROR);
+            }
             return $this->redirect('admin.ingredient.show');
         }
+
         $type = new TypeIngredient();
         $type->setNom($data['nom']);
         $repository = $this->manager->getRepository(TypeIngredient::class);

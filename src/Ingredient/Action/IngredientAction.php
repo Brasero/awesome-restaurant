@@ -5,8 +5,10 @@ namespace App\Ingredient\Action;
 use App\Entity\Ingredient;
 use App\Entity\TypeIngredient;
 use App\Framework\Toaster\Toaster;
+use App\Framework\Validator\Validator;
 use Doctrine\ORM\EntityManagerInterface;
 use Framework\Router\RedirectTrait;
+use Framework\Router\Router;
 use GuzzleHttp\Psr7\ServerRequest;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
@@ -33,6 +35,11 @@ class IngredientAction
     private EntityManagerInterface $manager;
 
     /**
+     * @var Router
+     */
+    private Router $router;
+
+    /**
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
@@ -41,27 +48,28 @@ class IngredientAction
         $this->container = $container;
         $this->toaster = $container->get(Toaster::class);
         $this->manager = $container->get(EntityManagerInterface::class);
+        $this->router = $container->get(Router::class);
     }
 
 
     public function add(ServerRequest $request)
     {
         $data = $request->getParsedBody();
+        $validator = new Validator($data);
+        $errors = $validator->required('nom', 'prix', 'type')
+                    ->strLength('nom', 3, 50)
+                    ->intLength('prix', 0.01, 5)
+                    ->float('prix')
+                    ->getErrors();
 
-        if (!isset(
-            $data['nom'],
-            $data['prix'],
-            $data['type']
-        )
-            or empty($data['nom'])
-            or empty($data['prix'])
-            or empty($data['type'])
-            or $data['type'] == "false"
-        ) {
-            $this->toaster->createToast('Merci de renseigner tout les champs', Toaster::ERROR);
+        if (!empty($errors)) {
+            foreach ($errors as $error) {
+                $this->toaster->createToast($error, Toaster::ERROR);
+            }
             return $this->redirect('admin.ingredient.show');
         }
 
+        /** Verifie que le nom est unique */
         $ing = new Ingredient();
         $repository = $this->manager->getRepository(Ingredient::class);
         $ingredients = $repository->findAll();
@@ -72,6 +80,8 @@ class IngredientAction
                 return $this->redirect("admin.ingredient.show");
             }
         }
+
+        /** Enregistrement en bdd */
         $ing->setPrix($data['prix']);
         $type = $this->manager->find(TypeIngredient::class, $data['type']);
         $ing->setType($type);

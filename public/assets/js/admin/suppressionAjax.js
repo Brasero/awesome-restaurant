@@ -1,4 +1,6 @@
-function supprItem(type, idItem){
+
+function supprItem(type, idItem)
+{
     let elementToSuppr;
     let req = new XMLHttpRequest();
 
@@ -29,10 +31,10 @@ function supprItem(type, idItem){
         
         if (req.response === "true") {
             elementToSuppr.remove()
-            document.querySelector('.container').innerHTML += "<span class='success'><span class='message'>Supprimé avec succées</span><span class='progressBar'></span></span>";
+            document.querySelector('.toastContainer').innerHTML += "<span class='success'><span class='message'>Supprimé avec succées</span><span class='progressBar'></span></span>";
             setTimeout(setToastDisparition, 5000)
         } else {
-            document.querySelector('.container').innerHTML += "<span class='error'><span class='message'>Une erreur s'est produite, réessayez.</span><span class='progressBar'></span></span>"
+            document.querySelector('.toastContainer').innerHTML += "<span class='error'><span class='message'>Une erreur s'est produite, réessayez.</span><span class='progressBar'></span></span>"
             setTimeout(setToastDisparition, 5000)
         }
     }
