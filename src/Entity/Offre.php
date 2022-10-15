@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -130,5 +131,16 @@ class Offre
     public function setProduits($produits): void
     {
         $this->produits[] = $produits;
+    }
+
+    public function getEtat(): string
+    {
+        $date = new DateTime();
+        $date = $date->format('Y-m-d');
+        if ($this->date_debut <= $date && $this->date_fin >= $date) {
+            return 'actif';
+        } else {
+            return 'inactif';
+        }
     }
 }
