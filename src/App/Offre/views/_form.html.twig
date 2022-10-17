@@ -1,0 +1,64 @@
+<div class="col-4">
+    <div class="card__md__height">
+        <form action="{{ path('admin.offre.add') }}" method="POST" class="offreForm">
+                        <span class="part formTitle">
+                            Nouvelle offre
+                        </span>
+            <span class="part">
+                            <div class="inputGroup">
+                                <label for="nom_offre" class="inputLabel">
+                                    <input
+                                            type="text"
+                                            name="nom" placeholder="Nom de l'offre"
+                                            id="nom_offre"
+                                            required />
+                                    <span>Nom de l'offre</span>
+                                </label>
+                            </div>
+                        </span>
+            <span class="part">
+                    <div class="inputGroup">
+                        <label for="pourcentage_offre" class="inputLabel">
+                            <input
+                                    type="text"
+                                    name="taux" placeholder="pourcentage de l'offre"
+                                    id="pourcentage_offre"
+                                    required />
+                            <span>% de l'offre</span>
+                        </label>
+                    </div>
+                </span>
+            <div class="inputGroup">
+                <label for="date_debut_offre" class="inputLabel">
+                    <input
+                            type="date"
+                            class="inputItem"
+                            name="date_debut"
+                            id="date_debut_offre"
+                            value=""
+                            placeholder="Débute le :"
+                            required
+                    />
+                    <span>Débute le :</span>
+                </label>
+            </div>
+            <div class="inputGroup">
+                <label for="date_fin_offre" class="inputLabel">
+                    <input
+                            type="date"
+                            class="inputItem"
+                            name="date_fin"
+                            id="date_fin_offre"
+                            value=""
+                            placeholder="Fin le :"
+                            required
+                    />
+                    <span>Fin le :</span>
+                </label>
+            </div>
+            <span class="part">
+                <input type="submit" class="subButton" value="Ajouter">
+            </span>
+        </form>
+    </div>
+</div>

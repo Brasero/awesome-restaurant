@@ -73,7 +73,7 @@ class Taxe
      *
      * @return Taxe
      */
-    public function addProduit(Produit $produit)
+    public function addProduit(Produit $produit): self
     {
         $this->produits[] = $produit;
 
@@ -87,7 +87,7 @@ class Taxe
      *
      * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
      */
-    public function removeProduit(Produit $produit)
+    public function removeProduit(Produit $produit): bool
     {
         return $this->produits->removeElement($produit);
     }

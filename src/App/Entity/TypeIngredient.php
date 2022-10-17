@@ -19,14 +19,14 @@ class TypeIngredient
      * @ORM\Column(type="integer", name="id")
      * @var int
      */
-    private $ID;
+    private int $ID;
 
 
     /**
      * @ORM\Column(type="string", name="nom_type_ingredient")
      * @var string
      */
-    private $nom;
+    private string $nom;
 
 
     /**
@@ -83,7 +83,7 @@ class TypeIngredient
      *
      * @return TypeIngredient
      */
-    public function addIngredient(Ingredient $ingredient)
+    public function addIngredient(Ingredient $ingredient): self
     {
         $this->ingredients[] = $ingredient;
 
@@ -97,7 +97,7 @@ class TypeIngredient
      *
      * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
      */
-    public function removeIngredient(Ingredient $ingredient)
+    public function removeIngredient(Ingredient $ingredient): bool
     {
         return $this->ingredients->removeElement($ingredient);
     }

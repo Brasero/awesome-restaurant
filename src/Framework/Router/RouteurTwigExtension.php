@@ -22,7 +22,8 @@ class RouteurTwigExtension extends \Twig\Extension\AbstractExtension
     {
         return [
             new TwigFunction('path', [$this, 'pathFor']),
-            new TwigFunction('is_active', [$this, 'isActive'])
+            new TwigFunction('is_active', [$this, 'isActive']),
+            new Twigfunction('is_active_strict', [$this, 'isActiveStrict'])
         ];
     }
 
@@ -36,5 +37,12 @@ class RouteurTwigExtension extends \Twig\Extension\AbstractExtension
         $uri = $_SERVER['REQUEST_URI'] ?? '/';
         $expectedUri = $this->routeur->generateUrl($path);
         return str_contains($expectedUri, $uri);
+    }
+
+    public function isActiveStrict(string $path, array $params = []): bool
+    {
+        $uri = $_SERVER['REQUEST_URI'] ?? '/';
+        $expectedUri = $this->routeur->generateUrl($path, $params);
+        return $expectedUri === $uri;
     }
 }

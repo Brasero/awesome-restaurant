@@ -164,7 +164,7 @@ background-color: white;
     padding: 25px 15px;
 }
 
-.main > .container .ingredientTableStyle .colonneTitleContainer .colonneTitleItem, 
+.main > .container .ingredientTableStyle .colonneTitleContainer .colonneTitleItem,
 .main > .container .ingredientTableStyle .ingredientTypeItem .ingredientTypePart{
     background-color: white;
     text-align: center;
@@ -174,7 +174,7 @@ background-color: white;
 
 .main > .container .ingredientTableStyle .ingredientTypeItem{
     background: white;
-    border-bottom: 1px solid var(--color-primary);    
+    border-bottom: 1px solid var(--color-primary);
 }
 
 .main > .container .ingredientTableStyle .ingredientTypeItem .ingredientTypePart:first-child{
@@ -215,8 +215,7 @@ font-family: var(--font-primary);
 }
 
 .main > .container .ingredientTableStyle .ingredientTypeItem .ingredientTypePart .deleteButton{
-    background: linear-gradient(90deg, transparent, var(--color-red));
-    background-position: left;
+    background: linear-gradient(90deg, transparent, var(--color-red)) left;
     background-size: 10000px;
     color: var(--color-black);
 }
@@ -241,7 +240,7 @@ font-family: var(--font-primary);
     
 }
 
-.main > .container .ingredientTableStyle .ingredientTypeItem .ingredientTypePart .itemDisponible, 
+.main > .container .ingredientTableStyle .ingredientTypeItem .ingredientTypePart .itemDisponible,
 .main > .container .ingredientTableStyle .ingredientTypeItem .ingredientTypePart .itemIndisponible{
     width: 20%;
     aspect-ratio: 1/1;
@@ -251,12 +250,12 @@ font-family: var(--font-primary);
 }
 
 .main > .container .ingredientTableStyle .ingredientTypeItem .ingredientTypePart .itemDisponible{
-    background: radial-gradient(var(--color-light) 3%, 
+    background: radial-gradient(var(--color-light) 3%,
         var(--color-green)) bottom right 200px;
 }
 
 .main > .container .ingredientTableStyle .ingredientTypeItem .ingredientTypePart .itemIndisponible{
-    background: radial-gradient(var(--color-light) 3%, 
+    background: radial-gradient(var(--color-light) 3%,
         var(--color-red)) bottom right 200px;
 }
 

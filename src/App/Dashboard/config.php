@@ -1,12 +1,11 @@
 <?php
 
-use App\Dashboard\Action\OffreAction;
 use App\Dashboard\DashboardWidget;
+use App\Offre\Action\OffreAction;
 
 return [
     "admin.widgets" => \DI\add([
         \DI\get(DashboardWidget::class)
     ]),
     DashboardWidget::class => \DI\autowire(),
-    OffreAction::class => \DI\autowire(),
 ];

@@ -69,7 +69,7 @@
     overflow: hidden;
     padding: 10px 20px;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
 }
 
 .card__md__height {
@@ -102,6 +102,7 @@
 
 .main > .container .container__dahsboard .row .card__sm {
     aspect-ratio: 16/9;
+    padding: 15px 10px;
     width: 250px;
     background-color: #fff;
     border:1px solid #fff;
@@ -110,6 +111,12 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
+}
+
+.main > .container .container__dahsboard .row .card__sm * {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
 }
 
 .main > .container .container__dahsboard .row .card__md__height .offreForm {
@@ -201,8 +208,7 @@ label:focus-within > span, input:not(:placeholder-shown) + span {
 }
 
 .main> .container .offreListTable .head.tableRow .part {
-    padding: 10px 25px;
-    padding-left: 0;
+    padding: 10px 25px 10px 0;
     width: 17%;
     text-align: left;
     font-family: var(--font-primary);
@@ -210,7 +216,7 @@ label:focus-within > span, input:not(:placeholder-shown) + span {
     border-bottom: 1px solid var(--color-primary);
 }
 
-.main> .container .offreListTable .head.tableRow .part:nth-child(1), 
+.main> .container .offreListTable .head.tableRow .part:nth-child(1),
 .main> .container .offreListTable .offreItem.tableRow .offrePart:nth-child(1)
 {
     width: 240px;
@@ -262,6 +268,73 @@ label:focus-within > span, input:not(:placeholder-shown) + span {
     border-radius: 10px;
     padding: 10px 15px;
     width: 200px;
+}
+
+/** Style pagination offre **/
+
+.main> .container .pagination.offrePagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.main> .container .pagination.offrePagination .pagination__title {
+    color: var(--color-primary);
+    font-family: var(--font-primary);
+}
+
+.main> .container .pagination.offrePagination .pagination__link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    background: transparent;
+    color: var(--color-black);
+    font-family: var(--font-secondary);
+    font-size: 0.7rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.main> .container .pagination.offrePagination .pagination__link.active {
+    background: var(--color-primary);
+    color: var(--color-light);
+}
+
+.main> .container .pagination.offrePagination .pagination__link span {
+    background: transparent;
+}
+
+.main > .container .btn {
+    text-decoration: none;
+    padding: 4px 6px;
+    border-radius: 5px;
+    border: none;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background-position 1s,  color .5s ease-in-out;
+    background-color: transparent;
+}
+
+.main > .container .deleteButton{
+    background: linear-gradient(90deg, transparent, var(--color-red)) left;
+    background-size: 10000px;
+    color: var(--color-red-shade);
+}
+
+.main > .container .deleteButton:hover{
+    background-position: 400px;
+    transform: scale(1.1);
+    color: var(--color-light);
+}
+
+.main > .container .ingredientTableStyle .updateButton:hover{
+    transform: scale(1.1);
+    color: var(--color-light);
 }
 
 .actionButton{
@@ -317,7 +390,7 @@ label:focus-within > span, input:not(:placeholder-shown) + span {
 .main > .container .closeModalButton {
     font-size: 1rem;
     border-radius: 40px;
-    width: 25px; 
+    width: 25px;
     aspect-ratio: 1/1;
     background: var(--color-red);
     color: var(--color-light);
