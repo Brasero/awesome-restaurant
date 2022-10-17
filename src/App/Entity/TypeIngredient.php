@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,7 +32,16 @@ class TypeIngredient
     /**
      * @ORM\OneToMany(targetEntity="Ingredient", mappedBy="TypeIngredient")
      */
-    private $ingredients;
+    private ArrayCollection $ingredients;
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->ingredients = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -58,18 +68,37 @@ class TypeIngredient
     }
 
     /**
-     * @return mixed
+     * @return Collection|null
      */
-    public function getIngredients()
+    public function getIngredients(): ?Collection
     {
         return $this->ingredients;
     }
 
+
     /**
-     * @param $ingredients
+     * Add ingredient.
+     *
+     * @param Ingredient $ingredient
+     *
+     * @return TypeIngredient
      */
-    public function setIngredients($ingredients): void
+    public function addIngredient(Ingredient $ingredient)
     {
-        $this->ingredients = $ingredients;
+        $this->ingredients[] = $ingredient;
+
+        return $this;
+    }
+
+    /**
+     * Remove ingredient.
+     *
+     * @param Ingredient $ingredient
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeIngredient(Ingredient $ingredient)
+    {
+        return $this->ingredients->removeElement($ingredient);
     }
 }

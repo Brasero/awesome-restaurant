@@ -5,7 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\IngredientRepository")
  * @ORM\Table(name="ingredient")
  */
 class Ingredient
@@ -65,7 +65,7 @@ class Ingredient
      */
     public function getNom(): string
     {
-        return $this->nom;
+        return ucfirst(html_entity_decode($this->nom));
     }
 
     /**
@@ -73,7 +73,7 @@ class Ingredient
      */
     public function setNom(string $nom): void
     {
-        $this->nom = $nom;
+        $this->nom = strtolower(htmlentities($nom));
     }
 
     /**
@@ -124,5 +124,58 @@ class Ingredient
     public function setType(TypeIngredient $type): void
     {
         $this->type = $type;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->produits = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get dispo.
+     *
+     * @return bool
+     */
+    public function getDispo()
+    {
+        return $this->dispo;
+    }
+
+    /**
+     * Add produit.
+     *
+     * @param \App\Entity\Produit $produit
+     *
+     * @return Ingredient
+     */
+    public function addProduit(\App\Entity\Produit $produit)
+    {
+        $this->produits[] = $produit;
+
+        return $this;
+    }
+
+    /**
+     * Remove produit.
+     *
+     * @param \App\Entity\Produit $produit
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeProduit(\App\Entity\Produit $produit)
+    {
+        return $this->produits->removeElement($produit);
+    }
+
+    /**
+     * Get produits.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProduits()
+    {
+        return $this->produits;
     }
 }

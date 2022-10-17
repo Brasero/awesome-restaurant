@@ -158,20 +158,4 @@ class User
     {
         $this->telephone = $telephone;
     }
-
-    /**
-     * @return Role
-     */
-    public function getRole(): Role
-    {
-        return $this->role;
-    }
-
-    /**
-     * @param Role $role
-     */
-    public function setRole(Role $role): void
-    {
-        $this->role = $role;
-    }
 }

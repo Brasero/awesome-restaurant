@@ -3,21 +3,15 @@
 namespace App\Admin;
 
 use App\Admin\Action\AuthAction;
-use App\Framework\Auth\AdminAuth;
-use App\Framework\Session\SessionInterface;
 use App\Framework\Toaster\Toaster;
-use App\Framework\Validator\Validator;
 use Framework\Module;
 use Framework\Renderer\RendererInterface;
 use Framework\Renderer\TwigRenderer;
 use Framework\Router\RedirectTrait;
 use Framework\Router\Router;
-use GuzzleHttp\Psr7\ServerRequest;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
-use Psr\Http\Message\MessageInterface;
-use Psr\Http\Message\RequestInterface;
 use Twig\Error\LoaderError;
 
 class AdminModule extends Module
@@ -25,7 +19,7 @@ class AdminModule extends Module
 
     use RedirectTrait;
 
-    public const DEFINITIONS = __DIR__ . '/config.php';
+    public const DEFINITIONS = __DIR__ . DIRECTORY_SEPARATOR . 'config.php';
 
     /**
      * @var Router
@@ -62,7 +56,7 @@ class AdminModule extends Module
             $this->renderer->getTwig()->addExtension($adminTwigExtension);
         }
 
-        $this->renderer->addPath('admin', __DIR__."/views");
+        $this->renderer->addPath('admin', __DIR__ . "/views");
         $this->router->get(
             $container->get('admin.prefix').'/authenticate',
             [$authAction, 'authenticate'],

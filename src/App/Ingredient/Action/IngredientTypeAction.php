@@ -4,6 +4,7 @@ namespace App\Ingredient\Action;
 
 use App\Entity\TypeIngredient;
 use App\Framework\Toaster\Toaster;
+use App\Framework\Validator\Validator;
 use Doctrine\ORM\EntityManagerInterface;
 use Framework\Router\RedirectTrait;
 use Framework\Router\Router;
@@ -31,7 +32,7 @@ class IngredientTypeAction
 
 
     /**
-     * @var EntityManagerInterface|mixed
+     * @var EntityManagerInterface
      */
     private EntityManagerInterface $manager;
 
@@ -76,7 +77,6 @@ class IngredientTypeAction
         $types = $repository->findAll();
         foreach ($types as $ty) {
             if ($ty->getNom() == $type->getNom()) {
-                var_dump($ty->getNom());
                 $this->toaster->createToast("ERREUR : Ce nom existe déjà.", Toaster::ERROR);
                 return $this->redirect('admin.ingredient.show');
             }

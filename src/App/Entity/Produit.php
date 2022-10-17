@@ -164,4 +164,37 @@ class Produit
     {
         $this->taxe = $taxe;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->ingredients = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add ingredient.
+     *
+     * @param \App\Entity\Ingredient $ingredient
+     *
+     * @return Produit
+     */
+    public function addIngredient(\App\Entity\Ingredient $ingredient)
+    {
+        $this->ingredients[] = $ingredient;
+
+        return $this;
+    }
+
+    /**
+     * Remove ingredient.
+     *
+     * @param \App\Entity\Ingredient $ingredient
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeIngredient(\App\Entity\Ingredient $ingredient)
+    {
+        return $this->ingredients->removeElement($ingredient);
+    }
 }

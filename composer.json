@@ -10,8 +10,8 @@
     "autoload" : {
         "psr-4": {
             "Config\\" : "config/",
-            "Framework\\" : "src/Framework",
-            "App\\" : "src/"
+            "App\\Framework\\" : "src/Framework",
+            "App\\" : "src/App/"
         },
         "psr-0": {
             "" : "src/"

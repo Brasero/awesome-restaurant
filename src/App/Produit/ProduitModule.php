@@ -40,7 +40,7 @@ class ProduitModule extends Module
         $renderer = $container->get(RendererInterface::class);
         $router = $container->get(Router::class);
         $manager = $container->get(EntityManagerInterface::class);
-        $renderer->addPath('produit', __DIR__.'/views');
+        $renderer->addPath('produit', __DIR__ . '/views');
         $this->renderer = $renderer;
         $router->get('/carte', [$this, 'carte'], 'produit.carte');
         $router->get('/panier', [$this, 'panier'], 'produit.panier');
@@ -48,7 +48,7 @@ class ProduitModule extends Module
         $this->manager = $manager;
         if ($container->has('admin.prefix')) {
             $prefix = $container->get('admin.prefix');
-            $renderer->addPath('produit_admin', __DIR__.'/views/admin');
+            $renderer->addPath('produit_admin', __DIR__ . '/views/admin');
             $router->get(
                 $prefix . '/produit/manage',
                 [$this, 'manage'],
@@ -69,10 +69,8 @@ class ProduitModule extends Module
 
     public function carte(): string
     {
-        $repository = $this->manager->getRepository(Produit::class);
-        $prods = $repository->findAll();
-        $repository = $this->manager->getRepository(Categorie::class);
-        $categories = $repository->findAll();
+        $prods = $this->manager->getRepository(Produit::class)->findAll();
+        $categories = $this->manager->getRepository(Categorie::class)->findAll();
         return $this->renderer->render('@produit/carte', [
             "products" => $prods,
             "categorys" => $categories

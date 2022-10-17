@@ -20,7 +20,7 @@ class IngredientModule extends Module
 {
     use RedirectTrait;
 
-    public const DEFINITIONS = __DIR__ . DIRECTORY_SEPARATOR . 'config.php';
+    public const DEFINITIONS = __DIR__ . DIRECTORY_SEPARATOR . "config.php";
 
     /**
      * @var ContainerInterface
@@ -57,7 +57,7 @@ class IngredientModule extends Module
         $this->router = $container->get(Router::class);
         $this->manager = $container->get(EntityManagerInterface::class);
         $adminprefix = $container->get('admin.prefix');
-        $this->renderer->addPath('ingredient', __DIR__.'/views');
+        $this->renderer->addPath('ingredient', __DIR__ . '/views');
         $this->router->get('/admin/ingredient', [$this, 'show'], 'admin.ingredient.show');
         $this->router->get(
             '/ajax/ingredient/delete/{id:[0-9]+}',
@@ -89,16 +89,14 @@ class IngredientModule extends Module
 
     public function show(ServerRequest $request): string
     {
-        $toast = $request->getAttribute('toast');
+        $ingredientPagination = $request->getAttribute('ingredientPage', 1) ;
         $repository = $this->manager->getRepository(Ingredient::class);
-        $ingredients = $repository->findAll();
+        $ingredients = $repository->findPaginated($ingredientPagination, 10);
         $repository = $this->manager->getRepository(TypeIngredient::class);
         $types = $repository->findAll();
         return $this->renderer->render('@ingredient/show', [
             "ingredients" => $ingredients,
-            "types" => $types,
-            "toast" => $toast,
-            "active" => "ingredient"
+            "types" => $types
         ]);
     }
 }

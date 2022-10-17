@@ -78,4 +78,47 @@ class Categorie
     {
         $this->img = ($img);
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->produits = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add produit.
+     *
+     * @param \App\Entity\Produit $produit
+     *
+     * @return Categorie
+     */
+    public function addProduit(\App\Entity\Produit $produit)
+    {
+        $this->produits[] = $produit;
+
+        return $this;
+    }
+
+    /**
+     * Remove produit.
+     *
+     * @param \App\Entity\Produit $produit
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeProduit(\App\Entity\Produit $produit)
+    {
+        return $this->produits->removeElement($produit);
+    }
+
+    /**
+     * Get produits.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProduits()
+    {
+        return $this->produits;
+    }
 }
