@@ -32,16 +32,9 @@ class TypeIngredient
     /**
      * @ORM\OneToMany(targetEntity="Ingredient", mappedBy="TypeIngredient")
      */
-    private ArrayCollection $ingredients;
+    private $ingredients;
 
 
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->ingredients = new ArrayCollection();
-    }
 
     /**
      * @return int
@@ -67,10 +60,7 @@ class TypeIngredient
         $this->nom = strtolower(htmlentities($nom));
     }
 
-    /**
-     * @return Collection|null
-     */
-    public function getIngredients(): ?Collection
+    public function getIngredients()
     {
         return $this->ingredients;
     }

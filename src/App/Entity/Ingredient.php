@@ -125,13 +125,6 @@ class Ingredient
     {
         $this->type = $type;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->produits = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * Get dispo.
@@ -146,11 +139,11 @@ class Ingredient
     /**
      * Add produit.
      *
-     * @param \App\Entity\Produit $produit
+     * @param Produit $produit
      *
      * @return Ingredient
      */
-    public function addProduit(\App\Entity\Produit $produit)
+    public function addProduit(Produit $produit)
     {
         $this->produits[] = $produit;
 
@@ -160,20 +153,15 @@ class Ingredient
     /**
      * Remove produit.
      *
-     * @param \App\Entity\Produit $produit
+     * @param Produit $produit
      *
      * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
      */
-    public function removeProduit(\App\Entity\Produit $produit)
+    public function removeProduit(Produit $produit): bool
     {
         return $this->produits->removeElement($produit);
     }
 
-    /**
-     * Get produits.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
     public function getProduits()
     {
         return $this->produits;
