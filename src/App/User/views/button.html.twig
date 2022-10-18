@@ -1,0 +1,15 @@
+<li class="navItem" style="--i: 0;">
+    <a href="../controller/deconnexionController.php" class="navHref">
+        Déconnnexion
+    </a>
+</li>
+<li class="navItem {{ is_active("user.connexion") ? 'active' }}"  style="--i: 0;">
+    <a href="{{ path('user.connexion') }}" class="navHref">
+        Connexion
+    </a>
+</li>
+<li class="navItem {{ is_active("user.inscription") ? 'active' }}"  style="--i: 1;">
+    <a href="{{ path('user.inscription') }}" class="navHref">
+        Inscription
+    </a>
+</li>

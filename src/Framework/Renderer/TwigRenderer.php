@@ -2,6 +2,7 @@
 namespace Framework\Renderer;
 
 use Twig\Environment;
+use Twig\Error\LoaderError;
 use Twig\Loader\FilesystemLoader;
 
 class TwigRenderer implements RendererInterface
@@ -31,6 +32,9 @@ class TwigRenderer implements RendererInterface
         $this->twig->addGlobal($key, $value);
     }
 
+    /**
+     * @throws LoaderError
+     */
     public function addPath(string $namespace, ?string $path = null): void
     {
         $this->loader->addPath($path, $namespace);
@@ -39,5 +43,13 @@ class TwigRenderer implements RendererInterface
     public function render(string $view, array $params = []): string
     {
         return $this->twig->render($view . '.html.twig', $params);
+    }
+
+    /**
+     * @return Environment
+     */
+    public function getTwig(): Environment
+    {
+        return $this->twig;
     }
 }

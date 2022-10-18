@@ -1,0 +1,35 @@
+{% extends '@admin/connected.html.twig' %}
+
+{% block body %}
+    <div class="col-4">
+        <div class="card__md__height">
+            <form action="{{ path('admin.taxe.add') }}" method="POST" class="offreForm">
+                        <span class="part formTitle">
+                            Ajouter une TVA
+                        </span>
+
+                <span class="part">
+                    <div class="inputGroup">
+                        <label for="pourcentage_offre" class="inputLabel">
+                            <input
+                                    type="text"
+                                    name="taux" placeholder="pourcentage de l'offre"
+                                    id="pourcentage_offre"
+                                    required />
+                            <span>Taux TVA</span>
+                        </label>
+                    </div>
+                </span>
+                <span class="part">
+                    <input type="submit" class="subButton" value="Ajouter">
+                </span>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script type="text/javascript" src="../../assets/js/admin/toastController.js"></script>
+    <script type="text/javascript" src="../../assets/js/admin/animation.js"></script>
+    <script type="text/javascript" src="../../assets/js/admin/controlModal.js"></script>
+{% endblock %}

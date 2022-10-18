@@ -33,7 +33,7 @@ class Router
         $this->routes[] = $name;
     }
 
-    public function post(string $path, $callable, string $name)
+    public function post(string $path, $callable, ?string $name = null)
     {
         $this->router->addRoute(new ZendRoute($path, $callable, ['POST'], $name));
         $this->routes[] = $name;

@@ -1,0 +1,55 @@
+{% extends '@admin/layout.html.twig' %}
+
+{% block stylesheet %}
+    <link rel="shortcut icon" href="../../assets/icon/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../assets/css/admin/style.css">
+    <link rel="stylesheet" href="../../assets/css/admin/formulaire.css">
+    <link rel="stylesheet" href="../../assets/css/admin/toast.css">
+    <link rel="stylesheet" href="../../assets/css/admin/modalIngredient.css">
+    <link rel="stylesheet" href="../../assets/css/admin/adminConnexion.css">
+    <link rel="stylesheet" href="../../assets/css/admin/dashboard.css">
+    <link rel="stylesheet" href="../../assets/css/admin/produit.css">
+    <link rel="stylesheet" href="../../assets/css/admin/ingredient.css">
+{% endblock %}
+
+{% block content %}
+    <div class="main">
+        <nav class="navBar active">
+            <ul class="navLinks active">
+                <div class="toggleButton active" onclick="toggleNav()">
+                    <div class="top"></div>
+                    <div class="bottom"></div>
+                </div>
+                <div class="brand">
+                    <h1>Burger Compagny</h1>
+                </div>
+                {{ admin_menu() }}
+                <a href="index.php?page=stats" class="navLink">
+                    <li>
+                        <i class="bi bi-graph-up"></i>
+                        <span>
+                                Statistiques
+                            </span>
+                    </li>
+                </a>
+                <a href="{{ path('admin.logout') }}" class="navLink deconnect">
+                    <li>
+                        <i class="bi bi-box-arrow-left"></i>
+                        <span>Déconnexion</span>
+                    </li>
+                </a>
+            </ul>
+        </nav>
+        <div class="container">
+            {% if hasToast() %}
+                <div class="toastContainer">
+                {% for toast in renderToast() %}
+                    {{ toast | raw }}
+                {% endfor %}
+                </div>
+            {% endif %}
+            {% block body %}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}

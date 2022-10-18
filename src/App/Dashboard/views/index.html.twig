@@ -1,0 +1,122 @@
+{% extends '@admin/connected.html.twig' %}
+
+{% block body %}
+
+    <div class="container__dahsboard">
+        <aside class="leftPart">
+            <h1 class="pageTitle">
+                <span class="top"></span>
+                <span class="bottom" style="transform: translateY(30px);">
+                Dashboard
+            </span>
+                <span class="message">
+                <span class="hello">
+                    Bonjour
+                </span>
+                <span class="name">
+                    <!---- Nom Admin  ------>
+                    Brandon
+                </span>
+            </span>
+            </h1>
+
+
+            <!-- FIRST ROW WITH CARD -->
+            <section class="row card__sm__wrapper">
+                {{ admin_widget() }}
+            </section>
+
+            <!-- END FIRST ROW WITH CARD -->
+            <!--  SECOND ROW CARD --->
+            <section class="row secondPartRow">
+                <div class="col-4">
+                    <div class="col-row">
+                        <div class="card__md"></div>
+                    </div>
+                    <div class="col-row">
+                        <div class="card__md"></div>
+                    </div>
+                </div>
+                <div class="col-8">
+                    <div class="card__lg">
+
+                    </div>
+                </div>
+            </section>
+            <!-- END SECOND ROW CARD --->
+
+            {{ include('@offre/_offre_dashboard_widget.html.twig') }}
+
+            <!-- Inclure la vue offre -->
+
+        </aside>
+
+        <aside class="rightPart">
+            <article class="container">
+
+            </article>
+        </aside>
+
+    </div>
+
+
+    <!-----  Emplacement de modal modification  -------->
+
+    <!---- MODAL modification offre ------>
+
+    <div class="modalContainer hiddenModal" id="modalOffre">
+        <div class="modalUpdateOffre">
+            <div class="modalHead">
+                <div class="modalTitle">
+                    Modifier un type d'ingrédient
+                </div>
+                <button class="closeModalButton" onclick="closeModalOffre()">
+                    &times;
+                </button>
+            </div>
+            <div class="modalBody">
+                <form action="" method="POST" class="updateOffreForm">
+                    <input type="hidden" id="ID_offre_update" name="ID_offre_update" value="">
+                    <div class="inputGroup">
+                        <label for="offreNomUpdate" class="inputLabel">
+                            <input type="text" class="inputItem" name="nom_offre_update" id="offreNomUpdate" value="" placeholder="Nom" required />
+                            <span>Nom</span>
+                        </label>
+                    </div>
+                    <div class="inputGroup">
+                        <label for="tauxOffreUpdate" class="inputLabel">
+                            <input type="text" class="inputItem" name="taux_offre_update" id="tauxOffreUpdate" value="" placeholder="% de l'offre" required />
+                            <span>% de l'offre</span>
+                        </label>
+                    </div>
+                    <div class="inputGroup">
+                        <label for="date_debut_offre_update" class="inputLabel">
+                            <input type="date" class="inputItem" name="date_debut_offre_update" id="date_debut_offre_update" value="" placeholder="Débute le :" required />
+                            <span>Débute le :</span>
+                        </label>
+                    </div>
+                    <div class="inputGroup">
+                        <label for="date_fin_offre_update" class="inputLabel">
+                            <input type="date" class="inputItem" name="date_fin_offre_update" id="date_fin_offre_update" value="" placeholder="Fin le :" required />
+                            <span>Fin le :</span>
+                        </label>
+                    </div>
+                    <button type="submit" class="addButton">
+                        Modifier
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!---- MODAL modification offre ------>
+
+
+    <!----- END  Emplacement de modal modification  -------->
+{% endblock %}
+
+{% block script %}
+    <script type="text/javascript" src="../../assets/js/admin/toastController.js"></script>
+    <script type="text/javascript" src="../../assets/js/admin/animation.js"></script>
+    <script type="text/javascript" src="../../assets/js/admin/controlModal.js"></script>
+{% endblock %}

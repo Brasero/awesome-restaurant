@@ -2,51 +2,68 @@
 
 namespace App\Framework\Toaster;
 
+use App\Framework\Session\SessionInterface;
+use App\Framework\Validator\ValidatorError;
+
 class Toaster
 {
-
-    /**
-     * @var Toast
-     */
-    private Toast $toast;
+    private const SESSION_KEY = 'toast[]';
 
     const ERROR = 0;
     const SUCCESS = 1;
     const WARNING = 2;
 
-    public function __construct()
+
+    private SessionInterface $session;
+    /**
+     * @var Toast
+     */
+    private Toast $toast;
+    private ToastFactory $toastFactory;
+
+    public function __construct(SessionInterface $session)
     {
-        session_start();
+        $this->session = $session;
+        $this->session->start();
         $this->toast = new Toast();
+        $this->toastFactory = new ToastFactory();
     }
 
-    public function createToast(string $message, int $etat): void
+    public function createToast($message, int $etat): void
     {
-        switch ($etat) {
-            case 0:
-                $this->toast->error($message);
-                break;
-
-            case 1:
-                $this->toast->success($message);
-                break;
-
-            case 2:
-                $this->toast->warning($message);
-                break;
+        if (is_array($message)) {
+            foreach ($message as $msg) {
+                if ($msg instanceof ValidatorError) {
+                    $this->session->setArray(
+                        self::SESSION_KEY,
+                        $this->toastFactory->makeToast($msg->toString(), $etat)
+                    );
+                } else {
+                    $this->session->setArray(self::SESSION_KEY, $this->toastFactory->makeToast($msg, $etat));
+                }
+            }
+        } else {
+            if ($message instanceof ValidatorError) {
+                $this->session->setArray(
+                    self::SESSION_KEY,
+                    $this->toastFactory->makeToast($message->toString(), $etat)
+                );
+            } else {
+                $this->session->setArray(self::SESSION_KEY, $this->toastFactory->makeToast($message, $etat));
+            }
         }
     }
 
-    public function renderToast(): string
+    public function renderToast()
     {
-        $message = $_SESSION['toast'];
-        unset($_SESSION['toast']);
+        $message = $this->session->get(self::SESSION_KEY);
+        $this->session->delete(self::SESSION_KEY);
         return $message;
     }
 
     public function hasToast(): bool
     {
-        if (isset($_SESSION['toast']) && !empty($_SESSION['toast'])) {
+        if ($this->session->has(self::SESSION_KEY) && sizeof($this->session->get(self::SESSION_KEY)) > 0) {
             return true;
         }
         return false;

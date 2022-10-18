@@ -1,34 +1,44 @@
 /**  Toast style  **/
-.main > .container .error, .main > .container .success{
+.main > .container .toastContainer {
     position: fixed;
-    top: 25px; 
+    top: 0;
+    right: 0;
+    z-index: 4;
+    width: 300px;
+    margin: 10px;
+    padding: 0;
+    list-style: none;
+    text-align: left;
+    background: transparent;
+}
+
+.main > .container .error, .main > .container .success{
+    align-items: flex-start;
+    background: var(--color-light);
+    font-family: var(--font-primary) !important;
+    border: none;
+    border-radius: 2px;
+    box-shadow: 0 0 10px 1px rgba(var(--color-black-rgb), 0.8);
+    position: relative;
+    top: 25px;
     right: 15px;
     min-width: 100px;
-    border: none;
-    border-radius: 5px;
     opacity: 1;
     overflow: hidden;
     transition: var(--transition);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: flex-start;
     z-index: 5;
+    margin-bottom: 5px;
 }
 
-.main > .container .error{
-    box-shadow: 0px 0px 10px 1px rgba(var(--color-red-rgb), 0.8);
-}
 
-.main > .container .success{
-    box-shadow: 0px 0px 10px 1px rgba(var(--color-green-rgb), 0.8);
-}
-
-.main > .container .error .progressBar, 
+.main > .container .error .progressBar,
 .main > .container .success .progressBar{
-    width: 0%;
+    width: 0;
     animation: progress 5s forwards linear;
-    height: 10px;
+    height: 5px;
 }
 
 @keyframes progress{

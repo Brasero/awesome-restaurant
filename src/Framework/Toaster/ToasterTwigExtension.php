@@ -29,7 +29,7 @@ class ToasterTwigExtension extends AbstractExtension
     {
         return [
             new TwigFunction('hasToast', [$this, 'hasToast']),
-            new TwigFunction('renderToast', [$this, 'render'])
+            new TwigFunction('renderToast', [$this, 'render'], ['is_safe' => ['html']])
         ];
     }
 
@@ -38,7 +38,7 @@ class ToasterTwigExtension extends AbstractExtension
         return $this->toaster->hasToast();
     }
 
-    public function render(): string
+    public function render()
     {
         return $this->toaster->renderToast();
     }

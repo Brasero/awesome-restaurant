@@ -4,39 +4,34 @@ namespace App\Framework\Toaster;
 
 class Toast
 {
-    public string $message = "";
-
-    public function success(string $message): void
+    public function success(string $message): string
     {
-        $this->message =  '<span class="success">
+        return '<span class="success">
                             <span class="message">
                                 '.$message.'
                             </span>
                             <span class="progressBar"></span>
                         </span>';
-        $_SESSION['toast'] = $this->message;
     }
 
-    public function error(string $message): void
+    public function error(string $message): string
     {
-        $this->message = '<span class="error">
+        return '<span class="error">
                             <span class="message">
                                 '.$message.'
                             </span>
                             <span class="progressBar"></span>
                         </span>';
-        $_SESSION['toast'] = $this->message;
     }
 
     
-    public function warning(string $message): void
+    public function warning(string $message): string
     {
-        $this->message = '<span class="warning">
+        return '<span class="warning">
                             <span class="message">
                                 '.$message.'
                             </span>
                             <span class="progressBar"></span>
                         </span>';
-        $_SESSION['toast'] = $this->message;
     }
 }

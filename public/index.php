@@ -1,35 +1,39 @@
 <?php
 
 use App\Admin\AdminModule;
+use App\Dashboard\DashboardModule;
+use App\Framework\Middleware\AdminAuthMiddleware;
+use App\Framework\Middleware\RedirectAuthMiddleware;
+use App\Framework\Middleware\RouterMiddleware;
+use App\Framework\Middleware\TrailingSlashMiddleware;
+use App\Framework\Middleware\RouterDispatcherMiddleware;
+use App\Framework\Middleware\NotFoundMiddleware;
 use App\Ingredient\IngredientModule;
+use App\Offre\OffreModule;
+use App\Taxe\TaxeModule;
 use Framework\App;
 use App\User\UserModule;
-use DI\ContainerBuilder;
 use function Http\Response\send;
 use GuzzleHttp\Psr7\ServerRequest;
-use \App\Produit\ProduitModule;
+use App\Produit\ProduitModule;
 
 require dirname(__DIR__)."/vendor/autoload.php";
 
-$modules = [
-    AdminModule::class,
-    UserModule::class,
-    ProduitModule::class,
-    IngredientModule::class
-];
+$app = new App(dirname(__DIR__) . "/config/config.php");
 
-$builder = new ContainerBuilder();
-$builder->addDefinitions(dirname(__DIR__) . "/config/config.php");
-
-foreach ($modules as $module) {
-    if ($module::DEFINITIONS) {
-        $builder->addDefinitions($module::DEFINITIONS);
-    }
-}
-
-$container = $builder->build();
-
-$app = new App($container, $modules);
+$app->addModule(AdminModule::class)
+    ->addModule(DashboardModule::class)
+    ->addModule(OffreModule::class)
+    ->addModule(UserModule::class)
+    ->addModule(ProduitModule::class)
+    ->addModule(IngredientModule::class)
+    ->addModule(TaxeModule::class)
+    ->linkMiddleware(new TrailingSlashMiddleware())
+    ->linkWith(new RouterMiddleware($app->getContainer()))
+    ->linkWith(new RedirectAuthMiddleware($app->getContainer()))
+    ->linkWith(new AdminAuthMiddleware($app->getContainer()))
+    ->linkWith(new RouterDispatcherMiddleware())
+    ->linkWith(new NotFoundMiddleware());
 
 if (php_sapi_name() != 'cli') {
     $response = $app->run(ServerRequest::fromGlobals());

@@ -26,31 +26,7 @@
         Burger compagny
       </div>
       <ul class="linkList">
-        <li class="navItem" style="--i: 0;">
-          <a href="../controller/deconnexionController.php" class="navHref">
-            Déconnnexion
-          </a>
-        </li>
-          <li class="navItem"  style="--i: 0;">
-            <a href={{ path('user.connexion') }} class="navHref">
-              Connexion
-            </a>
-          </li>
-          <li class="navItem"  style="--i: 1;">
-            <a href={{ path('user.inscription') }} class="navHref">
-              Inscription
-            </a>
-          </li>
-        <li class="navItem" style="--i: 2;">
-          <a href={{ path('produit.carte')}} class="navHref">
-            Carte
-          </a>
-        </li>
-        <li class="navItem" style="--i: 3;">
-          <a href={{ path('produit.panier') }} class="navHref">
-            Panier
-          </a>
-        </li>
+          {{ nav_link() }}
       </ul>
     </nav>
   </header>
