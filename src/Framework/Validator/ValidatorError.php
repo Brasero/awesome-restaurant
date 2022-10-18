@@ -20,6 +20,8 @@ class ValidatorError
         'intlenghtMax' => 'Le champ %s dépasse la valeur maximale autorisée',
         "strlenghtMin" => "Le champ %s n'atteint le nombre de caractères requis",
         "strlenghtMax" => "Le champ %s dépasse le nombre de caractères autorisés",
+        "strsizeMin" => "Le champ %s n'atteint la taille minimale",
+        "strsizeMax" => "Le champ %s dépasse la taille maximale autorisée",
         'email' => 'Le champ %s doit être un email valide',
         'float' => 'Le champ %s doit être un nombre à virgule',
         'integer' => 'Le champ %s doit être un nombre entier',

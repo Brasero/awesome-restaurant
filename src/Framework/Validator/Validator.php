@@ -72,6 +72,28 @@ class Validator
         return $this;
     }
 
+    /**
+     * Assure que la longueur d'une chaine de caractère est comprise entre 2 valeurs
+     * @param string $key clé du champ
+     * @param int $min taille minimale
+     * @param int $max taille maximale
+     * @return $this
+     */
+    public function strSize(string $key, int $min, int $max): self
+    {
+        if (!array_key_exists($key, $this->params)) {
+            return $this;
+        }
+        $size = strlen($this->params[$key]);
+        if ($size < $min) {
+            $this->addError($key, 'strsizeMin');
+        }
+        if ($size > $max) {
+            $this->addError($key, 'strsizeMax');
+        }
+        return $this;
+    }
+
     public function intLength(string $key, int $min, int $max): self
     {
         if (!array_key_exists($key, $this->params)) {
