@@ -55,7 +55,7 @@ class TaxeModule extends Module
         $data = $request->getParsedBody();
         $validator = new Validator($data);
         $errors = $validator->required('taux')
-            ->intLenght('taux', 0, 100)
+            ->intLength('taux', 0, 100)
             ->float('taux')
             ->getErrors();
 
