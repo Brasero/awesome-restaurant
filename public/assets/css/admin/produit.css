@@ -348,22 +348,29 @@ border: 1px solid var(--color-primary);
 }
 
 .main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup {
+    display: flex;
+    flex-wrap: wrap;
     background-color: white;
+    
+}
+
+.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > span {
+    border: none;
+    
 }
 
 .main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup >  .fileInput{
 position: relative;
 background-color: transparent;
-width: 100%;
+width: 156px;
 background-color: white;
-height: 80px;
+height: 38px;
 }
 
 .main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup >  .fileInput  .inputItem{
     position: absolute;
-    width: 77%;
-    left: 70px;
-    height: 40px;
+    width: 155px;
+    height: 38px;
 }
 
 .main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup > .fileInput > .inputFile
@@ -374,44 +381,46 @@ height: 80px;
 .main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup > .fileInput > .fakeFile{
 position: absolute;
 top: 0;
-left: 25px;
 z-index: 1;
 background-color: white;
-text-align: center;
 }
 
 .main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup > .fileInput > .fakeFile > button{
 position: relative;
-
 top: 0px;
-left: 12px;
 color: var(--color-primary);
 padding: 5px;
 border-radius: 15px;
 border: solid 1px var(--color-primary);
 z-index: 1;
 background-color: white;
+transition: var(--transition);
 }
 
-.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup > .fileInput > .fakeFile > button:hover{
+
+.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup >  .fileInput:hover > .fakeFile > .fakeButton{
 background-color: var(--color-primary);
+color: white;
+
 }
 
-.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup > .fileInput > .fakeFile > #fakeInput{
+
+.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup >  #fakeInput{
 position: relative;
-left: 12px;
 background-color: white;
 color: var(--color-black);
 top:10px;
+word-break: break-all;
+
+
 }
 
 .inputFile{
 position: relative;
-	text-align: right;
 	opacity: 0;
 	z-index: 2;
     background-color: white;
-    width: 70%;
+    left: -23%;
 }
 
 
