@@ -63,6 +63,7 @@ class OffreAction
             ->strLength('nom', 2, 255)
             ->strSize('nom', 2, 100)
             ->intLength('taux', 0, 100)
+            ->checkInterval('date_debut', 'date_fin')
             ->float('taux');
 
         // Si les données sont invalides
@@ -86,10 +87,7 @@ class OffreAction
             }
         }
 
-        // On converti le taux en float
-        $taux = (int) $data['taux'] / 100;
-
-        $newOffre->setTaux($taux);
+        $newOffre->setTaux($data['taux']);
 
         // ToDo : Convertir les dates en DateTime
 
@@ -145,6 +143,11 @@ class OffreAction
 
     public function delete(ServerRequest $request)
     {
-        return 'delete';
+        $id = $request->getAttribute('id');
+        $offre = $this->manager->getRepository(Offre::class)->find($id);
+        $this->manager->remove($offre);
+        $this->manager->flush();
+        $this->toaster->createToast('Offre supprimée avec succès', Toaster::SUCCESS);
+        return $this->redirect('admin.home');
     }
 }

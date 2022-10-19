@@ -25,7 +25,8 @@ class ValidatorError
         'email' => 'Le champ %s doit être un email valide',
         'float' => 'Le champ %s doit être un nombre à virgule',
         'integer' => 'Le champ %s doit être un nombre entier',
-        'confirm' => 'Le champ mot de passe et confirmation de mot de passe doivent être identiques'
+        'confirm' => 'Le champ mot de passe et confirmation de mot de passe doivent être identiques',
+        'interval' => 'La date du champ %s doit être antérieur à la date de fin'
     ];
 
     /**

@@ -150,6 +150,11 @@ class Validator
         return $this;
     }
 
+    /**
+     * Assure que la valeur d'un champs est egal à une autre qui a le meme nom avec un _confirm
+     * @param string $key
+     * @return $this
+     */
     public function confirm(string $key): self
     {
         $confirm = $key . '_confirm';
@@ -158,6 +163,17 @@ class Validator
         }
         if ($this->params[$key] !== $this->params[$confirm]) {
             $this->addError($key, 'confirm');
+        }
+        return $this;
+    }
+
+    public function checkInterval(string $keyStart, string $keyEnd): self
+    {
+        if (!array_key_exists($keyStart, $this->params) or !array_key_exists($keyEnd, $this->params)) {
+            return $this;
+        }
+        if ($this->params[$keyStart] > $this->params[$keyEnd]) {
+            $this->addError($keyStart, 'interval');
         }
         return $this;
     }
