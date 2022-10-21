@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Framework\Middleware;
+namespace Framework\Middleware;
 
-use App\Framework\Session\SessionInterface;
+use Framework\Session\SessionInterface;
 use Framework\Router\RedirectTrait;
 use Framework\Router\Router;
 use Psr\Container\ContainerInterface;

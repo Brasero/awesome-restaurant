@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Framework\Middleware;
+namespace Framework\Middleware;
 
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ServerRequestInterface;

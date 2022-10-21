@@ -1,7 +1,7 @@
 <?php
 namespace App\User;
 
-use App\Framework\TwigExtension\MenuTwigExtension;
+use Framework\TwigExtension\MenuTwigExtension;
 use Framework\Module;
 use Framework\Renderer\TwigRenderer;
 use Framework\Router\Router;

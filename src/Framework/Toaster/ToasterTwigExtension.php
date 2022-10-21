@@ -1,5 +1,5 @@
 <?php
-namespace App\Framework\Toaster;
+namespace Framework\Toaster;
 
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;

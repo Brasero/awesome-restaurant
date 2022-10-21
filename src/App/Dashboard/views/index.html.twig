@@ -21,31 +21,25 @@
             </h1>
 
 
-            <!-- FIRST ROW WITH CARD -->
-            <section class="row card__sm__wrapper">
+            <div class="isotope-grid">
+                <!-- FIRST ROW WITH CARD -->
                 {{ admin_widget() }}
-            </section>
 
-            <!-- END FIRST ROW WITH CARD -->
-            <!--  SECOND ROW CARD --->
-            <section class="row secondPartRow">
-                <div class="col-4">
-                    <div class="col-row">
-                        <div class="card__md"></div>
-                    </div>
-                    <div class="col-row">
-                        <div class="card__md"></div>
-                    </div>
+                <!-- END FIRST ROW WITH CARD -->
+                <!--  SECOND ROW CARD --->
+                <div class="col-row">
+                    <div class="card__md isotope-item"></div>
                 </div>
-                <div class="col-8">
-                    <div class="card__lg">
-
-                    </div>
+                <div class="col-row">
+                    <div class="card__md isotope-item"></div>
                 </div>
-            </section>
-            <!-- END SECOND ROW CARD --->
+                <div class="card__lg isotope-item">
 
-            {{ include('@offre/_offre_dashboard_widget.html.twig') }}
+                </div>
+                <!-- END SECOND ROW CARD --->
+                {{ include('@offre/_offre_dashboard_widget.html.twig') }}
+            </div>
+
 
             <!-- Inclure la vue offre -->
 
@@ -119,4 +113,7 @@
     <script type="text/javascript" src="../../assets/js/admin/toastController.js"></script>
     <script type="text/javascript" src="../../assets/js/admin/animation.js"></script>
     <script type="text/javascript" src="../../assets/js/admin/controlModal.js"></script>
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
+    <script type="text/javascript" src="../../assets/js/admin/isotope_packery.js"></script>
+    <script type="text/javascript" src="../../assets/js/admin/isotope_dashboard.js"></script>
 {% endblock %}

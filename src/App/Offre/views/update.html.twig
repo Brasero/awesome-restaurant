@@ -2,7 +2,7 @@
 
 {% block body %}
     <a href="{{ path('admin.home') }}">Retour</a>
-<div class="card__md__height">
+<div class="update__offre__card">
     <form action="{{ path('admin.offre.update', {id: offre.id}) }}" method="POST" class="offreForm">
                     <span class="part formTitle" style="color: var(--color-primary);">
                         Modifier l'offre {{ offre.nom }}
@@ -27,7 +27,7 @@
                                 type="text"
                                 name="taux" placeholder="pourcentage de l'offre"
                                 id="pourcentage_offre"
-                                value="{{ offre.taux * 100 }}"
+                                value="{{ offre.taux }}"
                                 required />
                         <span>% de l'offre</span>
                     </label>

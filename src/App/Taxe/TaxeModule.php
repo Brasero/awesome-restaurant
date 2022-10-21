@@ -3,8 +3,8 @@
 namespace App\Taxe;
 
 use App\Entity\Taxe;
-use App\Framework\Toaster\Toaster;
-use App\Framework\Validator\Validator;
+use Framework\Toaster\Toaster;
+use Framework\Validator\Validator;
 use Doctrine\ORM\EntityManagerInterface;
 use Framework\Module;
 use Framework\Renderer\RendererInterface;

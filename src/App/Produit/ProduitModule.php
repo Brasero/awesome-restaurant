@@ -5,7 +5,7 @@ use App\Entity\Categorie;
 use App\Entity\Ingredient;
 use App\Entity\Produit;
 use App\Entity\TypeIngredient;
-use App\Framework\TwigExtension\MenuTwigExtension;
+use Framework\TwigExtension\MenuTwigExtension;
 use App\Produit\Action\CategorieAction;
 use Doctrine\ORM\EntityManagerInterface;
 use Framework\Module;
