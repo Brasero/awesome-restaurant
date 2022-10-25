@@ -69,6 +69,11 @@ class IngredientModule extends Module
             [$ingredientAction, 'add'],
             'admin.ingredient.add'
         );
+        $this->router->post(
+            $adminprefix . '/ingredient/update',
+            [$ingredientAction, 'update'],
+            'admin.ingredient.update'
+        );
         $this->router->get(
             '/ajax/type/delete/{id:[0-9]+}',
             [$typeAction, 'delete'],

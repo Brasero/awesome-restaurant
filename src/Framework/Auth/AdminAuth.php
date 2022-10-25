@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Framework\Auth;
+namespace Framework\Auth;
 
 use App\Entity\Admin;
-use App\Framework\Session\SessionInterface;
+use Framework\Session\SessionInterface;
 use Doctrine\ORM\EntityManagerInterface;
 
 class AdminAuth
@@ -114,7 +114,7 @@ class AdminAuth
      */
     private function setTimestamp(): void
     {
-        $time = 5*100;
+        $time = 5*1000;
         $this->session->set('timestamp', time() + $time);
     }
 }

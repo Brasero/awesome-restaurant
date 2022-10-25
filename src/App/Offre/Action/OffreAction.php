@@ -3,8 +3,8 @@
 namespace App\Offre\Action;
 
 use App\Entity\Offre;
-use App\Framework\Toaster\Toaster;
-use App\Framework\Validator\Validator;
+use Framework\Toaster\Toaster;
+use Framework\Validator\Validator;
 use Doctrine\ORM\EntityManagerInterface;
 use Framework\Renderer\RendererInterface;
 use Framework\Router\RedirectTrait;
@@ -60,9 +60,11 @@ class OffreAction
         // Validation des données
         $validator = new Validator($data);
         $validator->required('nom', 'taux', 'date_debut', 'date_fin')
+            ->isUnique('nom', $this->manager->getRepository(Offre::class))
             ->strLength('nom', 2, 255)
             ->strSize('nom', 2, 100)
             ->intLength('taux', 0, 100)
+            ->checkInterval('date_debut', 'date_fin')
             ->float('taux');
 
         // Si les données sont invalides
@@ -77,19 +79,8 @@ class OffreAction
         $newOffre = new Offre();
         $newOffre->setNom($data['nom']);
 
-        // On verifie que le nom de l'offre n'existe pas déjà
-        $offres = $this->manager->getRepository(Offre::class)->findAll();
-        foreach ($offres as $offre) {
-            if ($offre->getNom() === $newOffre->getNom()) {
-                $this->toaster->createToast('Une offre porte déjà ce nom', Toaster::ERROR);
-                return $this->redirect('admin.home');
-            }
-        }
 
-        // On converti le taux en float
-        $taux = (int) $data['taux'] / 100;
-
-        $newOffre->setTaux($taux);
+        $newOffre->setTaux($data['taux']);
 
         // ToDo : Convertir les dates en DateTime
 
@@ -121,6 +112,7 @@ class OffreAction
                 ->strLength('nom', 2, 255)
                 ->intLength('taux', 0, 100)
                 ->integer('taux')
+                ->checkInterval('date_debut', 'date_fin')
                 ->getErrors();
             if (!empty($errors)) {
                 foreach ($errors as $error) {
@@ -145,6 +137,11 @@ class OffreAction
 
     public function delete(ServerRequest $request)
     {
-        return 'delete';
+        $id = $request->getAttribute('id');
+        $offre = $this->manager->getRepository(Offre::class)->find($id);
+        $this->manager->remove($offre);
+        $this->manager->flush();
+        $this->toaster->createToast('Offre supprimée avec succès', Toaster::SUCCESS);
+        return $this->redirect('admin.home');
     }
 }

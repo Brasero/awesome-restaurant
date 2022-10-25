@@ -242,22 +242,22 @@
                         </button>
                     </div>
                     <div class="modalBody">
-                        <form action="" method="POST" class="updateTypeForm">
-                            <input type="hidden" id="ingredientIdUpdate" name="ingredientIdUpdate" value="">
+                        <form action="{{ path('admin.ingredient.update') }}" method="POST" class="updateTypeForm">
+                            <input type="hidden" id="ingredientIdUpdate" name="id" value="">
                             <div class="inputGroup">
                                 <label for="ingredientNomUpdate" class="inputLabel">
-                                    <input type="text" class="inputItem" name="ingredientNomUpdate" id="ingredientNomUpdate" value="" placeholder="Nom" required />
+                                    <input type="text" class="inputItem" name="nom" id="ingredientNomUpdate" value="" placeholder="Nom" required />
                                     <span>Nom</span>
                                 </label>
                             </div>
                             <div class="inputGroup">
                                 <label for="ingredientPrixUpdate" class="inputLabel">
-                                    <input type="text" class="inputItem" name="ingredientPrixUpdate" id="ingredientPrixUpdate" value="" placeholder="Prix" required />
+                                    <input type="text" class="inputItem" name="prix" id="ingredientPrixUpdate" value="" placeholder="Prix" required />
                                     <span>Prix</span>
                                 </label>
                             </div>
                             <label for="ingredientDispoUpdate" class="dispoLabel">
-                                <input type="checkbox" name="ingredientDispoUpdate" id="ingredientDispoUpdate">
+                                <input type="checkbox" name="dispo" id="ingredientDispoUpdate">
                                 <span class="circleOnOff">
                         <span class="onOffTick"></span>
                     </span>
@@ -266,10 +266,10 @@
                                 <label for="ingredientTypeModif">
                                     <span>Type d'ingrédient</span>
                                 </label>
-                                <select class="inputItem" name="ingredientType" id="ingredientTypeModif" placeholder="Type d'ingrédient" default="false" required>
+                                <select class="inputItem" name="type" id="ingredientTypeModif" placeholder="Type d'ingrédient" default="false" required>
                                     <option class="typeOption" value="false">....</option>
                                     {% for type in types %}
-                                    <option id="ingredientTypeModifOption-{{ type.id }}" value="<?= $type->getID() ?>">{{ type.nom }}</option>
+                                    <option id="ingredientTypeModifOption-{{ type.id }}" value="{{ type.id }}">{{ type.nom }}</option>
 
                                     {% endfor %}
                                 </select>

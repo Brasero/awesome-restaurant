@@ -2,7 +2,7 @@
 
 namespace Framwork;
 
-use App\Framework\Validator\Validator;
+use Framework\Validator\Validator;
 use PHPUnit\Framework\TestCase;
 
 class ValidatorTest extends TestCase

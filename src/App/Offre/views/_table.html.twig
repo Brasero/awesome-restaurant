@@ -1,53 +1,52 @@
-<div class="col-8">
-    <div class="card__lg offre__card" style="flex-direction: column; justify-content: flex-start; overflow-y: auto;">
-        <theader class='tableTitle'>
-            Offres
-        </theader>
-        <table class="offreListTable" id="offreTable">
-            <tbody>
-            <tr class="head tableRow">
-                <th class="part">Nom</th>
-                <th class="part">%</th>
-                <th class='part'>Etat</th>
-                <th class="part">Début</th>
-                <th class="part">Fin</th>
-                <th class="part">Action</th>
+
+<div class="card__lg offre__card isotope-item" style="flex-direction: column; justify-content: flex-start; overflow-y: auto;">
+    <theader class='tableTitle'>
+        Offres
+    </theader>
+    <table class="offreListTable" id="offreTable">
+        <tbody>
+        <tr class="head tableRow">
+            <th class="part">Nom</th>
+            <th class="part">%</th>
+            <th class='part'>Etat</th>
+            <th class="part">Début</th>
+            <th class="part">Fin</th>
+            <th class="part">Action</th>
+        </tr>
+        {% for offre in offres %}
+            <tr class="offreItem tableRow">
+                <td class="offrePart">
+                    {{ offre.nom }}
+                </td>
+                <td class="offrePart">
+                    {{ offre.taux }}%
+                </td>
+                <td class="offrePart">
+                    {{ offre.taux }}
+                </td>
+                <td class="offrePart">
+                    {{ offre.dateDebut|date('d/m/Y') }}
+                </td>
+                <td class="offrePart">
+                    {{ offre.dateFin|date('d/m/Y') }}
+                </td>
+                <td class="offrePart">
+                    <a href="{{ path('admin.offre.update', {'id': offre.id}) }}" class="btn btn-primary updateButton"><i class="bi bi-pencil-square"></i></a>
+                    <a href="{{ path('admin.offre.delete', {'id': offre.id}) }}" class="btn btn-danger deleteButton">Supprimer</a>
+                </td>
             </tr>
-            {% for offre in offres %}
-                <tr class="offreItem tableRow">
-                    <td class="offrePart">
-                        {{ offre.nom }}
-                    </td>
-                    <td class="offrePart">
-                        {{ offre.taux * 100 }}%
-                    </td>
-                    <td class="offrePart">
-                        {{ offre.taux }}
-                    </td>
-                    <td class="offrePart">
-                        {{ offre.dateDebut|date('d/m/Y') }}
-                    </td>
-                    <td class="offrePart">
-                        {{ offre.dateFin|date('d/m/Y') }}
-                    </td>
-                    <td class="offrePart">
-                        <a href="{{ path('admin.offre.update', {'id': offre.id}) }}" class="btn btn-primary updateButton"><i class="bi bi-pencil-square"></i></a>
-                        <a href="{{ path('admin.offre.delete', {'id': offre.id}) }}" class="btn btn-danger deleteButton">Supprimer</a>
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-        <div class="pagination offrePagination" style="margin-top: auto; width: 100%; padding: 5px 0;">
-            <span class="pagination__title">Page</span>
-            {% for i in 1..nbPagesOffre %}
-                <a
-                    href="{{ path('admin.offre.paginated', {page: i}) }}#offreTable"
-                    class="pagination__link {{ is_active_strict('admin.offre.paginated', {page: i}) ? 'active' }}"
-                >
-                    <span>{{ i }}</span>
-                </a>
-            {% endfor %}
-        </div>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="pagination offrePagination" style="margin-top: auto; width: 100%; padding: 5px 0;">
+        <span class="pagination__title">Page</span>
+        {% for i in 1..nbPagesOffre %}
+            <a
+                href="{{ path('admin.offre.paginated', {page: i}) }}#offreTable"
+                class="pagination__link {{ is_active_strict('admin.offre.paginated', {page: i}) ? 'active' }}"
+            >
+                <span>{{ i }}</span>
+            </a>
+        {% endfor %}
     </div>
 </div>
