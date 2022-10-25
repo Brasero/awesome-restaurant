@@ -60,6 +60,7 @@ class OffreAction
         // Validation des données
         $validator = new Validator($data);
         $validator->required('nom', 'taux', 'date_debut', 'date_fin')
+            ->isUnique('nom', $this->manager->getRepository(Offre::class))
             ->strLength('nom', 2, 255)
             ->strSize('nom', 2, 100)
             ->intLength('taux', 0, 100)
@@ -78,14 +79,6 @@ class OffreAction
         $newOffre = new Offre();
         $newOffre->setNom($data['nom']);
 
-        // On verifie que le nom de l'offre n'existe pas déjà
-        $offres = $this->manager->getRepository(Offre::class)->findAll();
-        foreach ($offres as $offre) {
-            if ($offre->getNom() === $newOffre->getNom()) {
-                $this->toaster->createToast('Une offre porte déjà ce nom', Toaster::ERROR);
-                return $this->redirect('admin.home');
-            }
-        }
 
         $newOffre->setTaux($data['taux']);
 
@@ -119,6 +112,7 @@ class OffreAction
                 ->strLength('nom', 2, 255)
                 ->intLength('taux', 0, 100)
                 ->integer('taux')
+                ->checkInterval('date_debut', 'date_fin')
                 ->getErrors();
             if (!empty($errors)) {
                 foreach ($errors as $error) {

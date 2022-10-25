@@ -22,11 +22,9 @@
 
 
             <div class="isotope-grid">
-                <!-- FIRST ROW WITH CARD -->
+
                 {{ admin_widget() }}
 
-                <!-- END FIRST ROW WITH CARD -->
-                <!--  SECOND ROW CARD --->
                 <div class="col-row">
                     <div class="card__md isotope-item"></div>
                 </div>
@@ -36,8 +34,8 @@
                 <div class="card__lg isotope-item">
 
                 </div>
-                <!-- END SECOND ROW CARD --->
-                {{ include('@offre/_offre_dashboard_widget.html.twig') }}
+                {{ include('@offre/_form.html.twig') }}
+                {{ include('@offre/_table.html.twig') }}
             </div>
 
 
@@ -45,11 +43,11 @@
 
         </aside>
 
-        <aside class="rightPart">
-            <article class="container">
+{#        <aside class="rightPart">#}
+{#            <article class="container">#}
 
-            </article>
-        </aside>
+{#            </article>#}
+{#        </aside>#}
 
     </div>
 
@@ -62,7 +60,7 @@
         <div class="modalUpdateOffre">
             <div class="modalHead">
                 <div class="modalTitle">
-                    Modifier un type d'ingrédient
+                    Modifier une offre
                 </div>
                 <button class="closeModalButton" onclick="closeModalOffre()">
                     &times;

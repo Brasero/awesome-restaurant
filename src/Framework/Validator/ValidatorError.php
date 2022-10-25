@@ -26,7 +26,8 @@ class ValidatorError
         'float' => 'Le champ %s doit être un nombre à virgule',
         'integer' => 'Le champ %s doit être un nombre entier',
         'confirm' => 'Le champ mot de passe et confirmation de mot de passe doivent être identiques',
-        'interval' => 'La date du champ %s doit être antérieur à la date de fin'
+        'interval' => 'La date du champ %s doit être antérieur à la date de fin',
+        'unique' => 'La valeur du champ %s doit être unique'
     ];
 
     /**

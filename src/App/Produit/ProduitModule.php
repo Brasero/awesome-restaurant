@@ -111,12 +111,4 @@ class ProduitModule extends Module
             "active" => "produit"
         ]);
     }
-
-    public function addProd(ServerRequest $request)
-    {
-        $data = $request->getParsedBody();
-        $file = $request->getUploadedFiles()['image']->getStream()->getMetadata();
-
-        var_dump($data, $file);
-    }
 }
