@@ -29,7 +29,7 @@ class Taxe
     /**
      * @ORM\OneToMany(targetEntity="Produit", mappedBy="taxe")
      */
-    private ArrayCollection $produits;
+    //private ArrayCollection $produits;
 
 
     /**
@@ -37,7 +37,8 @@ class Taxe
      */
     public function __construct()
     {
-        $this->produits = new ArrayCollection();
+        //$this->produits = new ArrayCollection();
+
     }
 
     /**

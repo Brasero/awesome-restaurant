@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Offre\Action;
 
-use App\Entity\Offre;
+namespace App\Taxe\Action;
+
+use App\Entity\taxe;
 use App\Framework\Toaster\Toaster;
 use App\Framework\Validator\Validator;
 use Doctrine\ORM\EntityManagerInterface;
@@ -11,8 +12,9 @@ use Framework\Router\RedirectTrait;
 use Framework\Router\Router;
 use GuzzleHttp\Psr7\ServerRequest;
 use Psr\Http\Message\MessageInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
-class OffreAction
+class TaxeAction
 {
     use RedirectTrait;
 
@@ -37,11 +39,12 @@ class OffreAction
     private RendererInterface $renderer;
 
     public function __construct(
-        RendererInterface $renderer,
-        Toaster $toaster,
-        Router $router,
+        RendererInterface      $renderer,
+        Toaster                $toaster,
+        Router                 $router,
         EntityManagerInterface $manager
-    ) {
+    )
+    {
         $this->toaster = $toaster;
         $this->router = $router;
         $this->manager = $manager;
@@ -49,7 +52,7 @@ class OffreAction
     }
 
     /**
-     * Valide les données de l'offre et les enregistre en base de données
+     * Valide les données de l'taxe et les enregistre en base de données
      * @param ServerRequest $request
      * @return MessageInterface
      */
@@ -59,9 +62,8 @@ class OffreAction
 
         // Validation des données
         $validator = new Validator($data);
-        $validator->required( 'taux')
-            ->strLength('nom', 2, 255)
-            ->strSize('nom', 2, 100)
+        $validator->required('taux')
+
             ->intLength('taux', 0, 100)
             ->float('taux');
 
@@ -74,51 +76,45 @@ class OffreAction
             return $this->redirect('admin.home');
         }
 
-        $newOffre = new Offre();
-        $newOffre->setNom($data['nom']);
+        $newtaxe = new taxe();
+        $newtaxe->setTaux($data['taux']);
 
-        // On verifie que le nom de l'offre n'existe pas déjà
-        $offres = $this->manager->getRepository(Offre::class)->findAll();
-        foreach ($offres as $offre) {
-            if ($offre->getNom() === $newOffre->getNom()) {
-                $this->toaster->createToast('Une offre porte déjà ce nom', Toaster::ERROR);
+        // On verifie que le nom de la taxe n'existe pas déjà
+        $taxes = $this->manager->getRepository(taxe::class)->findAll();
+        foreach ($taxes as $taxe) {
+            if ($taxe->getTaux() === $newtaxe->getTaux()) {
+                $this->toaster->createToast('Ce taux existe déjà.', Toaster::ERROR);
                 return $this->redirect('admin.home');
             }
         }
 
         // On converti le taux en float
-        $taux = (int) $data['taux'] / 100;
+        $taux = (int)$data['taux'] / 100;
 
-        $newOffre->setTaux($taux);
-
-        // ToDo : Convertir les dates en DateTime
-
-        $newOffre->setDateDebut($data['date_debut']);
-        $newOffre->setDateFin($data['date_fin']);
+        $newtaxe->setTaux($taux);
 
         // ToDo End
 
-        // On enregistre l'offre en base de données
-        $this->manager->persist($newOffre);
+        // On enregistre la taxe en base de données
+        $this->manager->persist($newtaxe);
         $this->manager->flush();
 
         // On affiche un message de succès
-        $this->toaster->createToast('Offre créée avec succès', Toaster::SUCCESS);
+        $this->toaster->createToast('taxe créée avec succès', Toaster::SUCCESS);
         // On redirige vers la page d'accueil du dashboard
-        return $this->redirect('admin.home');
+        return $this->redirect('admin.Taxe.show');
     }
 
     public function update(ServerRequest $request)
     {
         $method = $request->getMethod();
         $id = $request->getAttribute('id');
-        $offre = $this->manager->getRepository(Offre::class)->find($id);
+        $taxe = $this->manager->getRepository(taxe::class)->find($id);
         if ($method === 'POST') {
             $data = $request->getParsedBody();
-            $offre = $this->manager->getRepository(Offre::class)->find($id);
+            $taxe = $this->manager->getRepository(taxe::class)->find($id);
             $validator = new Validator($data);
-            $errors = $validator->required('nom', 'taux', 'date_debut', 'date_fin')
-                ->strLength('nom', 2, 255)
+            $errors = $validator->required('taux')
                 ->intLength('taux', 0, 100)
                 ->integer('taux')
                 ->getErrors();
@@ -126,20 +122,17 @@ class OffreAction
                 foreach ($errors as $error) {
                     $this->toaster->createToast($error, Toaster::ERROR);
                 }
-                return $this->redirect('admin.home');
+                return $this->redirect('admin.Taxe.show');
             }
 
-            $offre->setNom($data['nom']);
-            $offre->setTaux($data['taux']);
-            $offre->setDateDebut($data['date_debut']);
-            $offre->setDateFin($data['date_fin']);
+            $taxe->setTaux($data['taux']);
             $this->manager->flush();
-            $this->toaster->createToast('Offre modifiée avec succès', Toaster::SUCCESS);
-            return $this->redirect('admin.home');
+            $this->toaster->createToast('taxe modifiée avec succès', Toaster::SUCCESS);
+            return $this->redirect('admin.Taxe.show');
         }
 
-        return $this->renderer->render('@offre/update', [
-            'offre' => $offre
+        return $this->renderer->render('@taxe/update', [
+            'taxe' => $taxe
         ]);
     }
 
@@ -147,4 +140,14 @@ class OffreAction
     {
         return 'delete';
     }
+
+    public function show(ServerRequestInterface $request): string
+    {
+
+        $taxes = $this->manager->getRepository(Taxe::class);
+        return $this->renderer->render('@taxe/index', [
+            'taxes' => $taxes
+        ]);
+    }
+
 }

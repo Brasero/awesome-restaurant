@@ -469,6 +469,26 @@ label:focus-within > span, input:not(:placeholder-shown) + span {
     flex: 10;
 }
 
+.taxeListTable
+{
+    border-collapse: collapse;
+}
+.taxeListTable>tbody>.head.tableRow >th
+{
+    text-align: right;
+    font-size: 1rem;
+    padding: 10px 25px 10px 0;
+    width: 17%;
+    font-family: var(--font-primary);
+    color: var(--color-primary);
+    border-bottom: 1px solid var(--color-primary);
+
+}
+.taxeListTable>tbody>.taxeItem.tableRow
+{
+    text-align: center;
+}
+
 
 @media screen and (max-width: 1024px) {
     .main > .container .container__dahsboard .row.card__sm__wrapper {

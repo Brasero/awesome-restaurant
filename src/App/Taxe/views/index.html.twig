@@ -3,7 +3,7 @@
 {% block body %}
     <div class="col-4">
         <div class="card__md__height">
-            <form action="{{ path('admin.taxe.add') }}" method="POST" class="offreForm">
+            <form action="{{ path('admin.Taxe.add') }}" method="POST" class="offreForm">
                         <span class="part formTitle">
                             Ajouter une TVA
                         </span>
@@ -26,6 +26,35 @@
             </form>
         </div>
     </div>
+
+
+    <div class="card__md taxe__card" style="flex-direction: column; justify-content: flex-start; overflow-y: auto;">
+        <theader class='tableTitle'>
+            taxes
+        </theader>
+        <table class="taxeListTable" id="taxeTable">
+            <tbody>
+            <tr class="head tableRow">
+                <th class="part">%</th>
+                <th class="part">Action</th>
+            </tr>
+            {% for taxe in taxes %}
+                <tr class="taxeItem tableRow">
+
+                    <td class="taxePart">
+                        {{ taxe.taux  }}
+                    </td>
+                    <td class="taxePart">
+                        <a href="" class="btn btn-danger deleteButton">Ajouter des Taxes</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+
 {% endblock %}
 
 {% block script %}
