@@ -4,8 +4,8 @@
 namespace App\Taxe\Action;
 
 use App\Entity\taxe;
-use App\Framework\Toaster\Toaster;
-use App\Framework\Validator\Validator;
+use Framework\Toaster\Toaster;
+use Framework\Validator\Validator;
 use Doctrine\ORM\EntityManagerInterface;
 use Framework\Renderer\RendererInterface;
 use Framework\Router\RedirectTrait;
@@ -53,7 +53,7 @@ class TaxeAction
     }
 
     /**
-     * Valide les données de l'taxe et les enregistre en base de données
+     * Valide les données de la taxe et les enregistre en base de données
      * @param ServerRequest $request
      * @return MessageInterface
      */
