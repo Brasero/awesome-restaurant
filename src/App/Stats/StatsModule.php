@@ -32,15 +32,11 @@ class StatsModule extends Module {
     }
 
     public function show(ServerRequest $request) {
-        $repository = $this->manager->getRepository(Produit::class);
-        $prods = $repository->findAll();
         $repositoryIngredient = $this->manager->getRepository(Ingredient::class);
-        // $ingredients = $repositoryIngredient->findAll();
         $nbIngredient = $repositoryIngredient->count([]);
 
         return $this->renderer->render("@stats/show", 
         [
-            "produits" => $prods,
             "ingredients" => $nbIngredient 
         ]
     );

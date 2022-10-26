@@ -3,18 +3,116 @@
 
 {% block body %}
 
-<section class="row card__sm__wrapper">
-    <div class="card__sm">
-        <h5 class="card__sm__title">Produit En vente</h5>
-        <p class="card__sm__text"><strong>{{ingredients}}</strong> </p>
+<div class="containerStats">
+
+    <div class="isotope-grid">
+        <div class="card__sm isotope-item">
+            {# {{utilisateurs}} #}
+            0
+            <br/>
+            <p class="card__sm__text">
+                Utilisateurs inscrit
+            </p>
+            <i class="bi bi-people"></i>
+        </div>
+        <div class="card__sm isotope-item">
+            {# {{utilisateursLastMonth}} #}
+            0
+            <br/>
+            <p class="card__sm__text">
+                Utilisateurs inscrit dans le mois
+            </p>
+            <i class="bi bi-person-plus"></i>
+        </div>
+        <div class="card__sm isotope-item">
+            {# {{utilisateursBannis}} #}
+            0
+            <br/>
+            <p class="card__sm__text">
+                Utilisateurs bannnis
+            </p>
+            <i class="bi bi-person-x"></i>
+        </div>
+        <div class="card__sm isotope-item">
+            {# {{commandeOk}} #}
+            0
+            <br/>
+            <p class="card__sm__text">
+                Commande confirmée
+            </p>
+            <i class="bi bi-bag-check"></i>
+        </div>
+        <div class="card__sm isotope-item">
+            {# {{commandeAttente}} #}
+            0
+            <br/>
+            <p class="card__sm__text">
+                Commande en attente
+            </p>
+            <i class="bi bi-bag-dash"></i>
+        </div>
+        <div class="card__sm isotope-item">
+            {# {{commandeAnnule}} #}
+            0
+            <br/>
+            <p class="card__sm__text">
+                Commande annulée
+            </p>
+            <i class="bi bi-bag-x"></i>
+        </div>
+        <div class="card__sm isotope-item">
+            {# {{produit}} #}
+            0
+            <br/>
+            <p class="card__sm__text">
+                Produit
+            </p>
+            <i class="bi bi-egg-fried"></i>
+        </div>
+        <div class="card__sm isotope-item">
+            {{ingredients}}
+            <br/>
+            <p class="card__sm__text">
+                Ingrédients
+            </p>
+            <i class="bi bi-egg"></i>
+        </div>
+        <div class="card__sm isotope-item">
+            {# {{recette}} #}
+            0€
+            <br/>
+            <p class="card__sm__text">
+                Recette
+            </p>
+            <i class="bi bi-cash-coin"></i>
+        </div>
+        <div class="card__sm isotope-item">
+            {# {{recetteMois}} #}
+            0€
+            <br/>
+            <p class="card__sm__text">
+                Recette dans le mois
+            </p>
+            <i class="bi bi-cash"></i>
+        </div>
     </div>
-</section>
+
+    <div class="graphStats">
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+
+</div>
+
 
 
 {% endblock %}
 
 {% block script %}
-    <script type="text/javascript" src="../../assets/js/admin/toastController.js"></script>
-    <script type="text/javascript" src="../../assets/js/admin/animation.js"></script>
-    <script type="text/javascript" src="../../assets/js/admin/controlModal.js"></script>
+<script type="text/javascript" src="../../assets/js/admin/toastController.js"></script>
+<script type="text/javascript" src="../../assets/js/admin/animation.js"></script>
+<script type="text/javascript" src="../../assets/js/admin/controlModal.js"></script>
+<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
+<script type="text/javascript" src="../../assets/js/admin/isotope_packery.js"></script>
+<script type="text/javascript" src="../../assets/js/admin/isotope_dashboard.js"></script>
 {% endblock %}
