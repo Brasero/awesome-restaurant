@@ -194,16 +194,6 @@ border-bottom: none;
     background-color: white;
 }
 
-.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .produitFormPart1 > .inputGroup > .inputLabel > .inputItem 
-{
-border: 1px solid var(--color-primary);
-}
-
-.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup > .inputLabel > .inputItem 
-{
-border: 1px solid var(--color-primary);
-}
-
 .main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .produitFormPart1 > .typeChoice > #categorieType
 {
     border: 1px solid var(--color-primary);
@@ -339,14 +329,6 @@ border: 1px solid var(--color-primary);
     height: unset;
 }
 
- .inputGroup >.inputLabel>.inputItem{
-    border: 1px solid var(--color-primary);
-    background-color: white;
-}
-.inputGroup >.inputLabel >  span{
-  background-color: white;
-}
-
 .main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup {
     display: flex;
     flex-wrap: wrap;
@@ -363,7 +345,6 @@ border: 1px solid var(--color-primary);
 position: relative;
 background-color: transparent;
 width: 156px;
-background-color: white;
 height: 38px;
 }
 

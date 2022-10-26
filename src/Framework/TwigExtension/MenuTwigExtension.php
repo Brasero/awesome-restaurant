@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Framework\TwigExtension;
+namespace Framework\TwigExtension;
 
 use App\Admin\AdminWidgetInterface;
-use Framework\Renderer\RendererInterface;
-use Psr\Container\ContainerInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 

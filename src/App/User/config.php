@@ -1,6 +1,6 @@
 <?php
 
-use App\Framework\TwigExtension\MenuTwigExtension;
+use Framework\TwigExtension\MenuTwigExtension;
 use App\User\UserModule;
 use App\User\UserWidget;
 use function DI\autowire;

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Framework\Middleware;
+namespace Framework\Middleware;
 
-use App\Framework\Auth\AdminAuth;
-use App\Framework\Session\SessionInterface;
-use App\Framework\Toaster\Toaster;
+use Framework\Auth\AdminAuth;
+use Framework\Session\SessionInterface;
+use Framework\Toaster\Toaster;
 use Framework\Router\RedirectTrait;
 use Framework\Router\Router;
 use Psr\Container\ContainerExceptionInterface;

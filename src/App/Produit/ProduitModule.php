@@ -5,7 +5,7 @@ use App\Entity\Categorie;
 use App\Entity\Ingredient;
 use App\Entity\Produit;
 use App\Entity\TypeIngredient;
-use App\Framework\TwigExtension\MenuTwigExtension;
+use Framework\TwigExtension\MenuTwigExtension;
 use App\Produit\Action\CategorieAction;
 use Doctrine\ORM\EntityManagerInterface;
 use Framework\Module;
@@ -110,13 +110,5 @@ class ProduitModule extends Module
             "ingredients" => $ingredients,
             "active" => "produit"
         ]);
-    }
-
-    public function addProd(ServerRequest $request)
-    {
-        $data = $request->getParsedBody();
-        $file = $request->getUploadedFiles()['image']->getStream()->getMetadata();
-
-        var_dump($data, $file);
     }
 }

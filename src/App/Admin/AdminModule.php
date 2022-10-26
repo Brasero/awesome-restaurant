@@ -3,7 +3,7 @@
 namespace App\Admin;
 
 use App\Admin\Action\AuthAction;
-use App\Framework\Toaster\Toaster;
+use Framework\Toaster\Toaster;
 use Framework\Module;
 use Framework\Renderer\RendererInterface;
 use Framework\Renderer\TwigRenderer;
