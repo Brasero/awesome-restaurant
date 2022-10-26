@@ -104,11 +104,11 @@ class Offre
     }
 
     /**
-     * @return float
+     * @return int
      */
-    public function getTaux(): float
+    public function getTaux(): int
     {
-        return floatval($this->taux);
+        return floatval($this->taux) * 100;
     }
 
     /**
@@ -116,7 +116,7 @@ class Offre
      */
     public function setTaux(float $taux): void
     {
-        $this->taux = floatval($taux);
+        $this->taux = $taux / 100;
     }
 
 
@@ -143,22 +143,15 @@ class Offre
             return 'inactif';
         }
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->produits = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * Add produit.
      *
-     * @param \App\Entity\Produit $produit
+     * @param Produit $produit
      *
      * @return Offre
      */
-    public function addProduit(\App\Entity\Produit $produit)
+    public function addProduit(Produit $produit)
     {
         $this->produits[] = $produit;
 
@@ -168,11 +161,11 @@ class Offre
     /**
      * Remove produit.
      *
-     * @param \App\Entity\Produit $produit
+     * @param Produit $produit
      *
      * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
      */
-    public function removeProduit(\App\Entity\Produit $produit)
+    public function removeProduit(Produit $produit)
     {
         return $this->produits->removeElement($produit);
     }

@@ -2,6 +2,9 @@
 
 namespace Framework\Validator;
 
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityRepository;
+
 class Validator
 {
 
@@ -71,6 +74,26 @@ class Validator
         }
         return $this;
     }
+
+    /**
+     * Assure que la valeur du champ est unique en base de données
+     * @param string $key clé du champ
+     * @param EntityRepository $repository manager de l'entité
+     * @param string $field nom du champ en base de données
+     */
+    public function isUnique(string $key, EntityRepository $repository, string $field = "nom", int $id = null): self
+    {
+        $all = $repository->findAll();
+        $method = "get".ucfirst($field);
+        foreach ($all as $item) {
+            if ($item->$method() === $this->params[$key] && $item->getId() !== $id) {
+                $this->addError($key, 'unique');
+                break;
+            }
+        }
+        return $this;
+    }
+
 
     /**
      * Assure que la longueur d'une chaine de caractère est comprise entre 2 valeurs
@@ -150,6 +173,11 @@ class Validator
         return $this;
     }
 
+    /**
+     * Assure que la valeur d'un champs est egal à une autre qui a le meme nom avec un _confirm
+     * @param string $key
+     * @return $this
+     */
     public function confirm(string $key): self
     {
         $confirm = $key . '_confirm';
@@ -158,6 +186,17 @@ class Validator
         }
         if ($this->params[$key] !== $this->params[$confirm]) {
             $this->addError($key, 'confirm');
+        }
+        return $this;
+    }
+
+    public function checkInterval(string $keyStart, string $keyEnd): self
+    {
+        if (!array_key_exists($keyStart, $this->params) or !array_key_exists($keyEnd, $this->params)) {
+            return $this;
+        }
+        if ($this->params[$keyStart] > $this->params[$keyEnd]) {
+            $this->addError($keyStart, 'interval');
         }
         return $this;
     }

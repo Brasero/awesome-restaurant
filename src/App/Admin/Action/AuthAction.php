@@ -135,5 +135,4 @@ class AuthAction
         $this->toaster->createToast('Vous êtes déconnecté', Toaster::SUCCESS);
         return $this->redirect('admin.auth');
     }
-
 }

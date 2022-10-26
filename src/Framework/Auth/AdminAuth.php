@@ -114,7 +114,7 @@ class AdminAuth
      */
     private function setTimestamp(): void
     {
-        $time = 5*100;
+        $time = 5*1000;
         $this->session->set('timestamp', time() + $time);
     }
 }

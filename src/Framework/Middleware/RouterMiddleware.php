@@ -30,7 +30,7 @@ class RouterMiddleware extends AbstractMiddleware
         $router = $this->container->get(Router::class);
         $route = $router->match($request);
         if (is_null($route)) {
-            return $this->next->process($request);
+            return parent::process($request);
         }
 
         $params = $route->getParams();
