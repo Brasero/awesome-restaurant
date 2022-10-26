@@ -2,3 +2,4 @@ vendor/
 .idea/
 categorie/
 .phpunit.result.cache
+package-lock.json
