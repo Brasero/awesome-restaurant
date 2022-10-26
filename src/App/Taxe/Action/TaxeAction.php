@@ -37,6 +37,7 @@ class TaxeAction
      * @var RendererInterface
      */
     private RendererInterface $renderer;
+    private $taxes;
 
     public function __construct(
         RendererInterface      $renderer,
@@ -48,6 +49,7 @@ class TaxeAction
         $this->router = $router;
         $this->manager = $manager;
         $this->renderer = $renderer;
+        $this->taxes = $this->manager->getRepository(taxe::class)->findAll();
     }
 
     /**
@@ -79,8 +81,7 @@ class TaxeAction
         $newtaxe->setTaux($data['taux']);
 
         // On verifie que la la taxe n'existe pas déjà
-        $taxes = $this->manager->getRepository(taxe::class)->findAll();
-        foreach ($taxes as $taxe) {
+        foreach ($this->taxes as $taxe) {
             if ($taxe->getTaux() === $newtaxe->getTaux()) {
                 $this->toaster->createToast('Ce taux existe déjà.', Toaster::ERROR);
                 return $this->redirect('admin.Taxe.show');
@@ -105,9 +106,7 @@ class TaxeAction
         $taux = $data['Taux'];
         $taxe = $this->manager->getRepository(Taxe::class)->find($id);
         $taxe->setTaux($taux);
-        $repository = $this->manager->getRepository(Taxe::class);
-        $taxes = $repository->findAll();
-        foreach ($taxes as $ta) {
+        foreach ($this->taxes as $ta) {
             if ($ta->getTaux() === $taxe->getTaux()&& $ta != $taxe) {
                 $this->toaster->createToast('Ce taux existe déjà.', Toaster::ERROR);
                 return $this->redirect('admin.Taxe.show');
