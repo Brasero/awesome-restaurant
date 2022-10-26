@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Framework\Validator;
+namespace Framework\Validator;
 
 class Validator
 {

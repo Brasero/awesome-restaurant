@@ -2,9 +2,9 @@
 
 namespace App\Admin\Action;
 
-use App\Framework\Auth\AdminAuth;
-use App\Framework\Toaster\Toaster;
-use App\Framework\Validator\Validator;
+use Framework\Auth\AdminAuth;
+use Framework\Toaster\Toaster;
+use Framework\Validator\Validator;
 use Framework\Renderer\RendererInterface;
 use Framework\Router\RedirectTrait;
 use Framework\Router\Router;

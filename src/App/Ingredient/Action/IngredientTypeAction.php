@@ -3,8 +3,8 @@
 namespace App\Ingredient\Action;
 
 use App\Entity\TypeIngredient;
-use App\Framework\Toaster\Toaster;
-use App\Framework\Validator\Validator;
+use Framework\Toaster\Toaster;
+use Framework\Validator\Validator;
 use Doctrine\ORM\EntityManagerInterface;
 use Framework\Router\RedirectTrait;
 use Framework\Router\Router;

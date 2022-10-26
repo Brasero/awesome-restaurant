@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Framework\Middleware;
+namespace Framework\Middleware;
 
 use Exception;
 use GuzzleHttp\Psr7\Response;

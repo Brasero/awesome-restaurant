@@ -1,9 +1,9 @@
 <?php
 
-use App\Framework\Format\TwigFormatExtension;
-use App\Framework\Session\PHPSession;
-use App\Framework\Session\SessionInterface;
-use App\Framework\Toaster\ToasterTwigExtension;
+use Framework\Format\TwigFormatExtension;
+use Framework\Session\PHPSession;
+use Framework\Session\SessionInterface;
+use Framework\Toaster\ToasterTwigExtension;
 use Doctrine\ORM\EntityManagerInterface;
 use Framework\Database\DatabaseFactory;
 use Framework\Renderer\TwigRendererFactory;

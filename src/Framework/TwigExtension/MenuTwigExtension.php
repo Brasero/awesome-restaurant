@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Framework\TwigExtension;
+namespace Framework\TwigExtension;
 
 use App\Admin\AdminWidgetInterface;
 use Framework\Renderer\RendererInterface;

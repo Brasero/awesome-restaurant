@@ -2,12 +2,12 @@
 
 use App\Admin\AdminModule;
 use App\Dashboard\DashboardModule;
-use App\Framework\Middleware\AdminAuthMiddleware;
-use App\Framework\Middleware\RedirectAuthMiddleware;
-use App\Framework\Middleware\RouterMiddleware;
-use App\Framework\Middleware\TrailingSlashMiddleware;
-use App\Framework\Middleware\RouterDispatcherMiddleware;
-use App\Framework\Middleware\NotFoundMiddleware;
+use Framework\Middleware\AdminAuthMiddleware;
+use Framework\Middleware\RedirectAuthMiddleware;
+use Framework\Middleware\RouterMiddleware;
+use Framework\Middleware\TrailingSlashMiddleware;
+use Framework\Middleware\RouterDispatcherMiddleware;
+use Framework\Middleware\NotFoundMiddleware;
 use App\Ingredient\IngredientModule;
 use App\Offre\OffreModule;
 use App\Taxe\TaxeModule;
