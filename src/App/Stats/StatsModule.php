@@ -2,6 +2,7 @@
 
 namespace App\Stats;
 
+use App\Entity\Ingredient;
 use App\Entity\Produit;
 use Doctrine\ORM\EntityManagerInterface;
 use Framework\Module;
@@ -27,23 +28,22 @@ class StatsModule extends Module {
         $this->manager = $manager;
         
         $this->router->get("/admin/stats", [$this, "show"], "admin.stats.show");
+        $this->router->get("/admin/manage", [$this, "manage"], "admin.stats.manage");
     }
 
     public function show(ServerRequest $request) {
-        $id = $request->getAttribute("id");
-        $prods = $this->manager->find(Produit::class, $id);
+        $repository = $this->manager->getRepository(Produit::class);
+        $prods = $repository->findAll();
+        $repositoryIngredient = $this->manager->getRepository(Ingredient::class);
+        // $ingredients = $repositoryIngredient->findAll();
+        $nbIngredient = $repositoryIngredient->count([]);
+
         return $this->renderer->render("@stats/show", 
         [
-            "prods" => $prods   
+            "produits" => $prods,
+            "ingredients" => $nbIngredient 
         ]
     );
     }
 
-    public function manage(RequestInterface $request){
-        $prodRepository = $this->manager->getRepository(Produit::class);
-        $produits = $prodRepository->findAll();
-        return $this->renderer->render("@stats/show", [
-            "produits" => $produits,
-        ]);
-    }
 }

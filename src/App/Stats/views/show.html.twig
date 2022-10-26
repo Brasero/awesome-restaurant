@@ -1,15 +1,13 @@
 {% extends '@admin/connected.html.twig' %}
 
+
 {% block body %}
 
 <section class="row card__sm__wrapper">
     <div class="card__sm">
         <h5 class="card__sm__title">Produit En vente</h5>
-        <p class="card__sm__text"><strong>115</strong> produits.</p>
+        <p class="card__sm__text"><strong>{{ingredients}}</strong> </p>
     </div>
-    {{% for produit in produits}}
-        {{produit.nom}}
-    {{% endfor %}}
 </section>
 
 

@@ -1,6 +1,7 @@
 <?php
 
 use App\Admin\AdminModule;
+use App\Clients\ClientsModule;
 use App\Dashboard\DashboardModule;
 use Framework\Middleware\AdminAuthMiddleware;
 use Framework\Middleware\RedirectAuthMiddleware;
