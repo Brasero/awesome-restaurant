@@ -16,6 +16,7 @@ use App\User\UserModule;
 use function Http\Response\send;
 use GuzzleHttp\Psr7\ServerRequest;
 use App\Produit\ProduitModule;
+use App\Stats\StatsModule;
 
 require dirname(__DIR__)."/vendor/autoload.php";
 
@@ -28,6 +29,7 @@ $app->addModule(AdminModule::class)
     ->addModule(ProduitModule::class)
     ->addModule(IngredientModule::class)
     ->addModule(TaxeModule::class)
+    ->addModule(StatsModule::class)
     ->linkMiddleware(new TrailingSlashMiddleware())
     ->linkWith(new RouterMiddleware($app->getContainer()))
     ->linkWith(new RedirectAuthMiddleware($app->getContainer()))
