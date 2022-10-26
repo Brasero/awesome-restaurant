@@ -21,7 +21,7 @@ function supprItem(type, idItem)
             break;
         case 'taxe':
             elementToSuppr = document.querySelector('#taxe-' + idItem);
-            req.open('GET', '../../controller/dash/ajaxController.php?action=supprTaxe&payload=' + idItem)
+            req.open('GET', '/ajax/Taxe/delete/' + idItem)
             break;
     }
 
