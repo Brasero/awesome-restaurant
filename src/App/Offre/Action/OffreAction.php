@@ -59,7 +59,7 @@ class OffreAction
 
         // Validation des données
         $validator = new Validator($data);
-        $validator->required( 'taux')
+        $validator->required( 'nom', 'taux', 'date_debut', 'date_fin')
             ->strLength('nom', 2, 255)
             ->strSize('nom', 2, 100)
             ->intLength('taux', 0, 100)
