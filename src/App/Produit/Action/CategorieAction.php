@@ -3,7 +3,7 @@
 namespace App\Produit\Action;
 
 use App\Entity\Categorie;
-use App\Framework\Toaster\Toaster;
+use Framework\Toaster\Toaster;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Framework\Router\RedirectTrait;

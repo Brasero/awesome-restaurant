@@ -56,6 +56,13 @@
     transition: all 300ms ease-in-out;
     background: transparent;
   }
+
+.inputGroup >.inputLabel>.inputItem{
+  background-color: var(--color-light);
+}
+.inputGroup >.inputLabel >  span{
+  background-color: var(--color-light);
+}
   
   /**---- label animation ----**/
   

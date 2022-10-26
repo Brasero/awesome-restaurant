@@ -1,7 +1,7 @@
 <?php
 namespace Framework;
 
-use App\Framework\Middleware\MiddlewareInterface;
+use Framework\Middleware\MiddlewareInterface;
 use DI\ContainerBuilder;
 use Exception;
 use Psr\Container\ContainerExceptionInterface;

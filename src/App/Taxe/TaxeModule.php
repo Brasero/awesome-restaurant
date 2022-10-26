@@ -3,7 +3,10 @@
 namespace App\Taxe;
 
 use App\Entity\Taxe;
+
 use App\Taxe\Action\TaxeAction;
+use Framework\Toaster\Toaster;
+use Framework\Validator\Validator;
 use Doctrine\ORM\EntityManagerInterface;
 use Framework\Module;
 use Framework\Renderer\RendererInterface;

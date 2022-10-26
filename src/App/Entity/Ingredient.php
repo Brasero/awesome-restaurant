@@ -70,10 +70,12 @@ class Ingredient
 
     /**
      * @param string $nom
+     * @return Ingredient
      */
-    public function setNom(string $nom): void
+    public function setNom(string $nom): self
     {
         $this->nom = strtolower(htmlentities($nom));
+        return $this;
     }
 
     /**
@@ -86,12 +88,14 @@ class Ingredient
 
     /**
      * @param string $prix
+     * @return Ingredient
      */
-    public function setPrix(string $prix): void
+    public function setPrix(string $prix): self
     {
         $prix = str_replace(',', '.', $prix);
         $prix = floatval($prix);
         $this->prix = $prix;
+        return $this;
     }
 
     /**
@@ -104,10 +108,12 @@ class Ingredient
 
     /**
      * @param bool $dispo
+     * @return Ingredient
      */
-    public function setDispo(bool $dispo): void
+    public function setDispo(bool $dispo): self
     {
         $this->dispo = $dispo;
+        return $this;
     }
 
     /**
@@ -121,9 +127,10 @@ class Ingredient
     /**
      * @param TypeIngredient $type
      */
-    public function setType(TypeIngredient $type): void
+    public function setType(TypeIngredient $type): self
     {
         $this->type = $type;
+        return $this;
     }
 
     /**

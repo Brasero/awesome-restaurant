@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Framework\Toaster;
+namespace Framework\Toaster;
 
 class ToastFactory
 {

@@ -4,8 +4,8 @@ namespace App\Ingredient\Action;
 
 use App\Entity\Ingredient;
 use App\Entity\TypeIngredient;
-use App\Framework\Toaster\Toaster;
-use App\Framework\Validator\Validator;
+use Framework\Toaster\Toaster;
+use Framework\Validator\Validator;
 use Doctrine\ORM\EntityManagerInterface;
 use Framework\Router\RedirectTrait;
 use Framework\Router\Router;
@@ -13,6 +13,7 @@ use GuzzleHttp\Psr7\ServerRequest;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
 class IngredientAction
 {
@@ -58,7 +59,7 @@ class IngredientAction
         $validator = new Validator($data);
         $errors = $validator->required('nom', 'prix', 'type')
                     ->strLength('nom', 3, 50)
-                    ->intLength('prix', 0.01, 5)
+                    ->intLength('prix', 0.01, 100)
                     ->float('prix')
                     ->getErrors();
 
@@ -92,6 +93,35 @@ class IngredientAction
 
         $this->toaster->createToast("Votre ingredient {$ing->getNom()} à bien été ajouté", Toaster::SUCCESS);
 
+        return $this->redirect('admin.ingredient.show');
+    }
+
+    public function update(ServerRequestInterface $request)
+    {
+        $id = $request->getParsedBody()['id'];
+        $data = $request->getParsedBody();
+        $repository = $this->manager->getRepository(Ingredient::class);
+        $validator = new Validator($data);
+        $errors = $validator->required('nom', 'prix', 'type')
+                    ->isUnique('nom', $repository, 'nom', $id)
+                    ->strLength('nom', 3, 50)
+                    ->intLength('prix', 0.01, 100)
+                    ->float('prix')
+                    ->getErrors();
+        if (!empty($errors)) {
+            foreach ($errors as $error) {
+                $this->toaster->createToast($error, Toaster::ERROR);
+            }
+            return $this->redirect('admin.ingredient.show');
+        }
+        $type = $this->manager->getRepository(TypeIngredient::class)->find($data['type']);
+        $ingredient = $repository->find($id);
+        $ingredient->setNom($data['nom'])
+            ->setPrix($data['prix'])
+            ->setType($type)
+            ->setDispo(1);
+        $this->manager->flush();
+        $this->toaster->createToast('Modification enregistrée.', Toaster::SUCCESS);
         return $this->redirect('admin.ingredient.show');
     }
 

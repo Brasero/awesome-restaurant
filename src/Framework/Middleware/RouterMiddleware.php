@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Framework\Middleware;
+namespace Framework\Middleware;
 
 use Framework\Router\Router;
 use Psr\Container\ContainerExceptionInterface;
@@ -30,7 +30,7 @@ class RouterMiddleware extends AbstractMiddleware
         $router = $this->container->get(Router::class);
         $route = $router->match($request);
         if (is_null($route)) {
-            return $this->next->process($request);
+            return parent::process($request);
         }
 
         $params = $route->getParams();

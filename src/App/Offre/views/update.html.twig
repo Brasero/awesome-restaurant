@@ -1,7 +1,8 @@
 {% extends '@admin/connected.html.twig' %}
 
 {% block body %}
-<div class="card__md__height">
+    <a href="{{ path('admin.home') }}">Retour</a>
+<div class="update__offre__card">
     <form action="{{ path('admin.offre.update', {id: offre.id}) }}" method="POST" class="offreForm">
                     <span class="part formTitle" style="color: var(--color-primary);">
                         Modifier l'offre {{ offre.nom }}

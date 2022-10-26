@@ -30,7 +30,7 @@ class TypeIngredient
 
 
     /**
-     * @ORM\OneToMany(targetEntity="Ingredient", mappedBy="TypeIngredient")
+     * @ORM\OneToMany(targetEntity="Ingredient", mappedBy="type")
      */
     private $ingredients;
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Framework\Toaster;
+namespace Framework\Toaster;
 
-use App\Framework\Session\SessionInterface;
-use App\Framework\Validator\ValidatorError;
+use Framework\Session\SessionInterface;
+use Framework\Validator\ValidatorError;
 
 class Toaster
 {

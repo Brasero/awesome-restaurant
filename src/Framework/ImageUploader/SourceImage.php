@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Framework\ImageUploader;
+namespace Framework\ImageUploader;
 
 use Exception;
 
