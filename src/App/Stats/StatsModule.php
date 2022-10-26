@@ -28,7 +28,6 @@ class StatsModule extends Module {
         $this->manager = $manager;
         
         $this->router->get("/admin/stats", [$this, "show"], "admin.stats.show");
-        $this->router->get("/admin/manage", [$this, "manage"], "admin.stats.manage");
     }
 
     public function show(ServerRequest $request) {
