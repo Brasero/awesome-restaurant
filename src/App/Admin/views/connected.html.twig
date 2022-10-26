@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../../assets/css/admin/produit.css">
     <link rel="stylesheet" href="../../assets/css/admin/ingredient.css">
     <link rel="stylesheet" href="../../assets/css/admin/taxe.css">
+    <link rel="stylesheet" href="../../assets/css/admin/stats.css">
 {% endblock %}
 
 {% block content %}
@@ -25,14 +26,7 @@
                     <h1>Burger Compagny</h1>
                 </div>
                 {{ admin_menu() }}
-                <a href="index.php?page=stats" class="navLink">
-                    <li>
-                        <i class="bi bi-graph-up"></i>
-                        <span>
-                                Statistiques
-                            </span>
-                    </li>
-                </a>
+                
                 <a href="{{ path('admin.logout') }}" class="navLink deconnect">
                     <li>
                         <i class="bi bi-box-arrow-left"></i>
