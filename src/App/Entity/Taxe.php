@@ -38,7 +38,6 @@ class Taxe
     public function __construct()
     {
         //$this->produits = new ArrayCollection();
-
     }
 
     /**
@@ -54,7 +53,7 @@ class Taxe
      */
     public function getTaux(): float
     {
-        return $this->taux;
+        return $this->taux*100;
     }
 
     /**
@@ -63,7 +62,7 @@ class Taxe
     public function setTaux($taux): void
     {
         $taux = str_replace(',', '.', $taux);
-        $this->taux = floatval($taux);
+        $this->taux = floatval($taux/100);
     }
 
 

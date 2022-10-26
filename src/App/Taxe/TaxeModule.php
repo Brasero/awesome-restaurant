@@ -44,19 +44,17 @@ class TaxeModule extends Module
             [$TaxeAction, 'create'],
             'admin.Taxe.add'
         );
-        $this->router->get(
-            $adminprefix . '/dashboard/Taxe-update-{id:\d+}',
+
+        $this->router->post(
+            $adminprefix . '/dashboard/TaxeUpdate',
             [$TaxeAction, 'update'],
             'admin.Taxe.update'
         );
+        
         $this->router->get(
-            $adminprefix . '/Taxe/delete/{id:\d+}',
+            '/ajax/Taxe/delete/{id:[0-9]+}',
             [$TaxeAction, 'delete'],
             'admin.Taxe.delete'
-        );
-        $this->router->post(
-            $adminprefix . '/dashboard/Taxe-update-{id:\d+}',
-            [$TaxeAction, 'update']
         );
     }
 }

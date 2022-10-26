@@ -469,26 +469,33 @@ label:focus-within > span, input:not(:placeholder-shown) + span {
     flex: 10;
 }
 
-.taxeListTable
-{
-    border-collapse: collapse;
+.cardTaxe{
+    display: flex;
+    width: 300px;
+    aspect-ratio: 4/2;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 15px;
+    background: transparent;
 }
-.taxeListTable>tbody>.head.tableRow >th
-{
-    text-align: right;
+
+.cardTaxe >a:hover {
+    background: var(--color-primary);
+    color: var(--color-light);
+}
+
+.cardTaxe >a{
+    color: var(--color-black);
+    border: 1px solid var(--color-primary);
+    border-radius: 10px;
+    padding: 10px 15px;
     font-size: 1rem;
-    padding: 10px 25px 10px 0;
-    width: 17%;
-    font-family: var(--font-primary);
-    color: var(--color-primary);
-    border-bottom: 1px solid var(--color-primary);
-
+    cursor: pointer;
+    transition: all 1s ease-in-out;
+    border: solid 1px var(--color-primary);
+    text-decoration: none;
+    font-size: 1.5rem;
 }
-.taxeListTable>tbody>.taxeItem.tableRow
-{
-    text-align: center;
-}
-
 
 @media screen and (max-width: 1024px) {
     .main > .container .container__dahsboard .row.card__sm__wrapper {
