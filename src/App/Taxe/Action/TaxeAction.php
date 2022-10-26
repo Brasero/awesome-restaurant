@@ -3,7 +3,7 @@
 
 namespace App\Taxe\Action;
 
-use App\Entity\taxe;
+use App\Entity\Taxe;
 use Framework\Toaster\Toaster;
 use Framework\Validator\Validator;
 use Doctrine\ORM\EntityManagerInterface;
@@ -37,7 +37,7 @@ class TaxeAction
      * @var RendererInterface
      */
     private RendererInterface $renderer;
-    private $taxes;
+    private $repository;
 
     public function __construct(
         RendererInterface      $renderer,
@@ -49,7 +49,7 @@ class TaxeAction
         $this->router = $router;
         $this->manager = $manager;
         $this->renderer = $renderer;
-        $this->taxes = $this->manager->getRepository(taxe::class)->findAll();
+        $this->repository = $this->manager->getRepository(Taxe::class);
     }
 
     /**
@@ -64,7 +64,7 @@ class TaxeAction
         // Validation des données
         $validator = new Validator($data);
         $validator->required('taux')
-
+            ->isUnique('taux', $this->repository, 'taux')
             ->intLength('taux', 0, 100)
             ->float('taux');
 
@@ -79,14 +79,6 @@ class TaxeAction
 
         $newtaxe = new taxe();
         $newtaxe->setTaux($data['taux']);
-
-        // On verifie que la la taxe n'existe pas déjà
-        foreach ($this->taxes as $taxe) {
-            if ($taxe->getTaux() === $newtaxe->getTaux()) {
-                $this->toaster->createToast('Ce taux existe déjà.', Toaster::ERROR);
-                return $this->redirect('admin.Taxe.show');
-            }
-        }
         $newtaxe->setTaux((float)$data['taux']);
 
         // On enregistre la taxe en base de données
@@ -104,9 +96,9 @@ class TaxeAction
         $data = $request->getParsedBody();
         $id = $data['id'];
         $taux = $data['Taux'];
-        $taxe = $this->manager->getRepository(Taxe::class)->find($id);
+        $taxe = $this->repository->find($id);
         $taxe->setTaux($taux);
-        foreach ($this->taxes as $ta) {
+        foreach ($this->repository->findAll() as $ta) {
             if ($ta->getTaux() === $taxe->getTaux()&& $ta != $taxe) {
                 $this->toaster->createToast('Ce taux existe déjà.', Toaster::ERROR);
                 return $this->redirect('admin.Taxe.show');
@@ -123,10 +115,10 @@ class TaxeAction
     public function delete(ServerRequest $request)
     {
         $id = $request->getAttribute('id');
-        $taxe = $this->manager->find(Taxe::class, $id);
+        $taxe = $this->repository->find($id);
         $this->manager->remove($taxe);
         $this->manager->flush();
-        $taxe = $this->manager->find(Taxe::class, $id);
+        $taxe = $this->repository->find($id);
         if (!is_null($taxe)) {
             return "false";
         }
@@ -136,7 +128,7 @@ class TaxeAction
     public function show(ServerRequestInterface $request): string
     {
 
-        $taxes = $this->manager->getRepository(Taxe::class)->findAll();
+        $taxes = $this->repository->findAll();
         return $this->renderer->render('@taxe/index', [
             'taxes' => $taxes
         ]);
