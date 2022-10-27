@@ -12,7 +12,8 @@ use GuzzleHttp\Psr7\ServerRequest;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\MessageInterface;
 
-class AuthAction {
+class AuthAction
+{
 
     use RedirectTrait;
 
@@ -27,7 +28,7 @@ class AuthAction {
         $this->container = $container;
         $this->toaster = $this->container->get(Toaster::class);
         $this->router = $this->container->get(Router::class);
-        $this->renderer = $this->container->get(Renderer::class);
+        $this->renderer = $this->container->get(RendererInterface::class);
     }
 
     /**
@@ -36,28 +37,28 @@ class AuthAction {
      * @param ServerRequest $request
      * @return void
      */
-    public function login(ServerRequest $request){
+    public function login(ServerRequest $request)
+    {
         $method = $request->getMethod();
-        if($method === "POST"){
+        if ($method === "POST") {
             $auth = $this->container->get(UserAuth::class);
             $params = $request->getParsedBody();
             $validator = new Validator($params);
             $errors = $validator
-                    ->required("email","mdp")
+                    ->required("email", "mdp")
                     ->getErrors();
-            if(!empty($errors)){
-                foreach($errors as $error){
+            if (!empty($errors)) {
+                foreach ($errors as $error) {
                     $this->toaster->createToast($error, Toaster::ERROR);
                 }
             }
             $email = $params["email"] ?? null;
             $mdp = $params["mdp"] ?? null;
-            if($auth->login($email,$mdp)){
+            if ($auth->login($email, $mdp)) {
                 $this->toaster->createToast("Vous êtes connecté", Toaster::SUCCESS);
                 return $this->redirect("user.espace");
             }
             $this->toaster->createToast("Indentifiant ou mot de passe inconnu", Toaster::ERROR);
-
         }
     }
 
@@ -67,42 +68,34 @@ class AuthAction {
      * @param ServerRequest $request
      * @return void
      */
-    public function register(ServerRequest $request){
+    public function inscription(ServerRequest $request)
+    {
 
         $method = $request->getMethod();
-        if($method === "POST"){
+        if ($method === "POST") {
             $auth = $this->container->get(UserAuth::class);
             $params = $request->getParsedBody();
             $validator = new Validator($params);
             $errors = $validator
-                        ->required("nom","prenom","tel","email","mdp","numeroAdresse","prefixAdresse","nameAdresse","adresseComplement","adresseVille","adresseCp")
+                        ->required("nom", "prenom", "tel", "email", "mdp", "numeroAdresse", "prefixAdresse", "nameAdresse", "adresseComplement")
                         ->strLength("mdp", 6, 50)
-                        ->confirm("mdp","email")
+                        ->confirm("mdp")
+                        ->confirm("email")
                         ->getErrors();
 
-            if(!empty($errors)){
-                foreach ($errors as $error){
+            if (!empty($errors)) {
+                foreach ($errors as $error) {
                     $this->toaster->createToast($error, Toaster::ERROR);
                 }
             }
 
-            $nom = $params["nom"] ?? null;
-            $prenom = $params["prenom"] ?? null;
-            $telephone = $params["telephone"] ?? null;
-            $email = $params["email"] ?? null;
-            $mdp = $params["mdp"] ?? null;
-            $numeroAdresse = $params["numeroAdresse"] ?? null;
-            $adresse = $params["nameAdresse"] ?? null;
-            $complementAdresse = $params["adresseComplement"] ?? null;
-            $ville = $params["adresseVille"] ?? null;
-            $cp = $params["adresseCp"] ?? null;
-            if($auth->register($params)){
-
+            if ($auth->inscription($params)) {
+                $this->toaster->createToast("Compte crée.", Toaster::SUCCESS);
             }
 
-            $this->toaster->createToast("Compte crée.", Toaster::SUCCESS);
-            return $this->redirect("user.auth");
+            return $this->redirect("user.connexion");
         }
+        return $this->renderer->render("@user/inscription");
     }
 
     /**
@@ -110,7 +103,8 @@ class AuthAction {
      *
      * @return MessageInterface
      */
-    public function logout(): MessageInterface {
+    public function logout(): MessageInterface
+    {
         $auth = $this->container->get(UserAuth::class);
         $auth->logout();
         $this->toaster->createToast("Vous êtes déconnecté", Toaster::SUCCESS);

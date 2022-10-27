@@ -34,18 +34,18 @@ class UserModule extends Module
         $renderer->addPath('user', __DIR__ . "/views");
         $this->renderer = $renderer;
         $router->get($prefix . '/connexion', [$this, 'connexion'], 'user.connexion');
-        $router->get($prefix . '/inscription', [$this, 'inscription'], 'user.inscription');
+        $authAction = $container->get(AuthAction::class);
+        $router->get($prefix . '/inscription', [$authAction, 'inscription'], 'user.inscription');
+        $router->post($prefix . "/inscription", [$authAction, 'inscription']);
         $router->get($prefix . '/espace', [$this, 'espace'], 'user.espace');
 
         if ($renderer instanceof TwigRenderer) {
             $renderer->getTwig()->addExtension($menuTwigExtension);
         }
-
-        // $authAction = $container->get(AuthAction::class);
+        
         $this->router = $router;
         $this->manager = $manager;
         $this->router->get("/admin/user", [$this, "show"], "admin.user.show");
-        
     }
 
 
@@ -69,7 +69,8 @@ class UserModule extends Module
         return $this->renderer->render('@user/espace');
     }
 
-    public function show(){
+    public function show()
+    {
         return $this->renderer->render("@user/admin/show");
     }
 }

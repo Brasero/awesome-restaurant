@@ -5,7 +5,8 @@ namespace App\Stats;
 use App\Admin\AdminWidgetInterface;
 use Framework\Renderer\RendererInterface;
 
-class StatsWidget implements AdminWidgetInterface {
+class StatsWidget implements AdminWidgetInterface
+{
 
     private RendererInterface $renderer;
 
@@ -28,5 +29,4 @@ class StatsWidget implements AdminWidgetInterface {
     {
         return "";
     }
-
-} 
+}
