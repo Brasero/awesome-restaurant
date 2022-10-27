@@ -1,29 +1,35 @@
 <?php
 namespace App\User;
 
-use Framework\TwigExtension\MenuTwigExtension;
 use Framework\Module;
-use Framework\Renderer\TwigRenderer;
 use Framework\Router\Router;
+use Framework\Toaster\Toaster;
+use App\User\Action\AuthAction;
+use Doctrine\ORM\EntityManager;
+use Framework\Renderer\TwigRenderer;
+use Psr\Container\ContainerInterface;
+use Doctrine\ORM\EntityManagerInterface;
 use Framework\Renderer\RendererInterface;
+use Framework\TwigExtension\MenuTwigExtension;
 
 class UserModule extends Module
 {
 
 
     const DEFINITIONS = __DIR__ . DIRECTORY_SEPARATOR . 'config.php';
-
-    /**
-     *
-     * @var RendererInterface
-     */
+    private Router $router;
     private RendererInterface $renderer;
+    private EntityManagerInterface $manager;
+    private Toaster $toaster;
+
 
     public function __construct(
         string $prefix,
         Router $router,
         RendererInterface $renderer,
-        MenuTwigExtension $menuTwigExtension
+        MenuTwigExtension $menuTwigExtension,
+        EntityManagerInterface $manager,
+        ContainerInterface $container
     ) {
         $renderer->addPath('user', __DIR__ . "/views");
         $this->renderer = $renderer;
@@ -34,6 +40,12 @@ class UserModule extends Module
         if ($renderer instanceof TwigRenderer) {
             $renderer->getTwig()->addExtension($menuTwigExtension);
         }
+
+        // $authAction = $container->get(AuthAction::class);
+        $this->router = $router;
+        $this->manager = $manager;
+        $this->router->get("/admin/user", [$this, "show"], "admin.user.show");
+        
     }
 
 
@@ -55,5 +67,9 @@ class UserModule extends Module
     public function espace(): string
     {
         return $this->renderer->render('@user/espace');
+    }
+
+    public function show(){
+        return $this->renderer->render("@user/admin/show");
     }
 }

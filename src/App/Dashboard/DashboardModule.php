@@ -60,6 +60,7 @@ class DashboardModule extends Module
         $repository = $this->manager->getRepository(Offre::class);
         $offres = $repository->findPaginated($page, $offrePerPage);
         $nbOffres = $repository->count([]);
+        $nbOffres = $nbOffres == null && 1;
         $nbPagesOffre =  intval(ceil($nbOffres / $offrePerPage));
 
         return $this->renderer->render('@dashboard/index', [

@@ -31,6 +31,12 @@ class User
     private string $prenom;
 
     /**
+     * @ORM\Column(type="string", name="telephone_user")
+     * @var string
+     */
+    private string $telephone;
+
+    /**
      * @ORM\Column(type="string", name="email_user")
      * @var string
      */
@@ -43,16 +49,40 @@ class User
     private string $password;
 
     /**
-     * @ORM\Column(type="string", name="adresse_user")
+     * @ORM\Column(type="string", name="numero_adresse_user")
+     * @var string
+     */
+    private string $numeroAdresse;
+
+    /**
+     * @ORM\Column(type="string", name="prefix_adresse_user")
+     * @var string
+     */
+    private string $adressePrefix;
+
+    /**
+     * @ORM\Column(type="string", name="name_adresse_user")
      * @var string
      */
     private string $adresse;
 
     /**
-     * @ORM\Column(type="string", name="telephone_user")
+     * @ORM\Column(type="string", name="complement_adresse_user", nullable="true")
      * @var string
      */
-    private string $telephone;
+    private string $complementAdresse;
+
+    /**
+     * @ORM\Column(type="string", name="ville_adresse_user")
+     * @var string
+     */
+    private string $ville;
+
+    /**
+     * @ORM\Column(type="string", name="cp_adresse_user")
+     * @var string
+     */
+    private string $cp;
 
 
     /**
@@ -98,6 +128,22 @@ class User
     /**
      * @return string
      */
+    public function getTelephone(): string
+    {
+        return $this->telephone;
+    }
+
+    /**
+     * @param string $telephone
+     */
+    public function setTelephone(string $telephone): void
+    {
+        $this->telephone = $telephone;
+    }
+
+    /**
+     * @return string
+     */
     public function getEmail(): string
     {
         return $this->email;
@@ -130,6 +176,38 @@ class User
     /**
      * @return string
      */
+    public function getNumeroAdresse(): string
+    {
+        return $this->numeroAdresse;
+    }
+
+    /**
+     * @param string $numeroAdresse
+     */
+    public function setNumeroAdresse(string $numeroAdresse): void
+    {
+        $this->numeroAdresse = $numeroAdresse;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAdressePrefix(): string
+    {
+        return $this->adressePrefix;
+    }
+
+    /**
+     * @param string $adressePrefix
+     */
+    public function setAdressePrefix(string $adressePrefix): void
+    {
+        $this->adressePrefix = $adressePrefix;
+    }
+
+    /**
+     * @return string
+     */
     public function getAdresse(): string
     {
         return $this->adresse;
@@ -146,16 +224,58 @@ class User
     /**
      * @return string
      */
-    public function getTelephone(): string
+    public function getComplementAdresse(): string
     {
-        return $this->telephone;
+        return $this->complementAdresse;
     }
 
     /**
-     * @param string $telephone
+     * @param string $complementAdresse
      */
-    public function setTelephone(string $telephone): void
+    public function setComplementAdresse(string $complementAdresse): void
     {
-        $this->telephone = $telephone;
+        $this->complementAdresse = $complementAdresse;
     }
+
+    /**
+     * @return string
+     */
+    public function getVille(): string
+    {
+        return $this->ville;
+    }
+
+    /**
+     * @param string $ville
+     */
+    public function setVille(string $ville): void
+    {
+        $this->ville = $ville;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCp(): string
+    {
+        return $this->cp;
+    }
+
+    /**
+     * @param string $cp
+     */
+    public function setCp(string $cp): void
+    {
+        $this->cp = $cp;
+    }
+
+
+
+
+
+
+
+
+
+
 }
