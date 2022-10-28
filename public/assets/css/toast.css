@@ -1,0 +1,76 @@
+/**  Toast style  **/
+.container .toastContainer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 4;
+    width: 300px;
+    margin: 10px;
+    padding: 0;
+    list-style: none;
+    text-align: left;
+    background: transparent;
+}
+
+.container .error, .container .success{
+    align-items: flex-start;
+    background: var(--color-light);
+    font-family: var(--font-primary) !important;
+    border: none;
+    border-radius: 2px;
+    box-shadow: 0 0 10px 1px rgba(var(--color-black-rgb), 0.8);
+    position: relative;
+    top: 25px;
+    right: 15px;
+    min-width: 100px;
+    opacity: 1;
+    overflow: hidden;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 5;
+    margin-bottom: 5px;
+}
+
+
+.container .error .progressBar,
+.container .success .progressBar{
+    width: 0;
+    animation: progress 5s forwards linear;
+    height: 5px;
+}
+
+@keyframes progress{
+    to {
+        width: 100%;
+    }
+}
+
+.container .error .progressBar{
+    background: var(--color-red);
+}
+
+.container .success .progressBar{
+    background: var(--color-green);
+}
+
+.container .error .message, .container .success .message{
+    padding: 15px 10px;
+    text-align: center;
+}
+
+.container .error .message{
+    color: var(--color-red);
+}
+
+.container .success .message{
+    color: var(--color-green);
+}
+
+.container .hidden{
+    opacity: 0;
+}
+
+
+/** END Toast style  **/

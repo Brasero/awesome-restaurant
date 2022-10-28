@@ -50,6 +50,7 @@ class AuthAction
             $validator = new Validator($params);
             $errors = $validator
                     ->required("email", "mdp")
+                    ->email("email")
                     ->getErrors();
 
             if (!empty($errors)) {
@@ -61,15 +62,9 @@ class AuthAction
 
             $email = $params["email"];
             $mdp = $params["mdp"];
-
-            if(!$auth->exist($email)) {
-                $this->toaster->createToast("Email inconnu", Toaster::ERROR);
-                return $this->redirect("user.inscription");
-            }
             if ($auth->connexion($email, $mdp)) {
                 $this->toaster->createToast("Vous êtes connecté", Toaster::SUCCESS);
                 return $this->redirect("produit.carte");
-                var_dump($auth);
             }
 
             $this->toaster->createToast("Indentifiant ou mot de passe inconnu", Toaster::ERROR);
@@ -92,13 +87,17 @@ class AuthAction
 
             $params = $request->getParsedBody();
             $auth = $this->container->get(UserAuth::class);
+            $repository = $this->manager->getRepository(User::class);
 
             $validator = new Validator($params);
             $errors = $validator
                         ->required("nom", "prenom", "telephone", "email", "mdp", "numeroAdresse", "prefixAdresse", "nameAdresse")
                         ->strLength("mdp", 6, 50)
                         ->strLength("telephone", 10, 10)
+                        ->integer("telephone")
                         ->email("email")
+                        ->isUnique("email", $repository, "email", "Email déjà existant")
+                        ->isUnique("telephone", $repository, "telephone", "Numéro de téléphone déjà existant")
                         ->confirm("mdp")
                         ->confirm("email")
                         ->getErrors();
@@ -107,32 +106,7 @@ class AuthAction
                 foreach ($errors as $error) {
                     $this->toaster->createToast($error, Toaster::ERROR);
                 }
-                var_dump($errors);
                 return $this->redirect("user.inscription");
-            }
-
-            /** Vérifie que l'email n'existe pas */
-            $emails = new User();
-            $repository = $this->manager->getRepository(User::class);
-            $checkEmail = $repository->findAll();
-            $emails->setEmail($params["email"]);
-            foreach($checkEmail as $email) {
-                if($email->getEmail() === $emails->getEmail()){
-                    $this->toaster->createToast("Email déjà existante", Toaster::ERROR);
-                    return $this->redirect("user.inscription");
-                }
-            }
-
-            /** Vérifie que le numéro de téléphone n'existe pas */
-            $tels = new User();
-            $repository = $this->manager->getRepository(User::class);
-            $checkTel = $repository->findAll();
-            $tels->setTelephone($params["telephone"]);
-            foreach($checkTel as $tel) {
-                if($tel->getTelephone() === $tels->getTelephone()){
-                    $this->toaster->createToast("Numéro de téléphone déjà existant", Toaster::ERROR);
-                    return $this->redirect("user.inscription");
-                }
             }
             
             /** Enregistre en bdd avec la fonction inscription */
