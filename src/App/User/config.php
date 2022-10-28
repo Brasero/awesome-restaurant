@@ -15,6 +15,4 @@ return [
     MenuTwigExtension::class => \DI\autowire()->constructorParameter('widgets', \DI\get('admin.widgets')),
     UserWidget::class => \DI\autowire(),
 
-    // UserWidget::class => autowire(),
-    // "admin.widgets" => \DI\add([\DI\get(UserWidget::class)])
 ];

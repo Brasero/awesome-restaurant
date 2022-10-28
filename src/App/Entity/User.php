@@ -46,7 +46,7 @@ class User
      * @ORM\Column(type="string", name="password_user")
      * @var string
      */
-    private string $password;
+    private string $mdp;
 
     
 
@@ -134,15 +134,15 @@ class User
      */
     public function getPassword(): string
     {
-        return $this->password;
+        return $this->mdp;
     }
 
     /**
      * @param string $password
      */
-    public function setPassword(string $password): void
+    public function setPassword(string $mdp): void
     {
-        $this->password = $password;
+        $this->mdp = password_hash($mdp, PASSWORD_BCRYPT);
     }
 
     

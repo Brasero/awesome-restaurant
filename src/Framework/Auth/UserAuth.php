@@ -31,7 +31,7 @@ class UserAuth
      * @param string $mdp
      * @return boolean
      */
-    public function login(string $email, string $mdp): bool
+    public function connexion(string $email, string $mdp): bool
     {
         $user = $this->manager->getRepository(User::class)->findOneBy(["email" => $email]);
         if ($user && password_verify($mdp, $user->getPassword()) or $this->isLogged()) {

@@ -33,10 +33,14 @@ class UserModule extends Module
     ) {
         $renderer->addPath('user', __DIR__ . "/views");
         $this->renderer = $renderer;
-        $router->get($prefix . '/connexion', [$this, 'connexion'], 'user.connexion');
         $authAction = $container->get(AuthAction::class);
+
+        $router->get($prefix . '/connexion', [$authAction, 'connexion'], 'user.connexion');
+        $router->post($prefix . '/connexion', [$authAction, 'connexion']);
+
         $router->get($prefix . '/inscription', [$authAction, 'inscription'], 'user.inscription');
         $router->post($prefix . "/inscription", [$authAction, 'inscription']);
+
         $router->get($prefix . '/espace', [$this, 'espace'], 'user.espace');
 
         if ($renderer instanceof TwigRenderer) {
