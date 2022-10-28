@@ -108,9 +108,10 @@ class User
     /**
      * @param string $telephone
      */
-    public function setTelephone(string $telephone): void
+    public function setTelephone(string $telephone): self
     {
         $this->telephone = $telephone;
+        return $this;
     }
 
     /**
@@ -124,9 +125,10 @@ class User
     /**
      * @param string $email
      */
-    public function setEmail(string $email): void
+    public function setEmail(string $email): self
     {
         $this->email = $email;
+        return $this;
     }
 
     /**

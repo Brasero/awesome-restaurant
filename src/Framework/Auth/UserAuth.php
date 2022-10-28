@@ -34,11 +34,26 @@ class UserAuth
     public function connexion(string $email, string $mdp): bool
     {
         $user = $this->manager->getRepository(User::class)->findOneBy(["email" => $email]);
-        if ($user && password_verify($mdp, $user->getPassword()) or $this->isLogged()) {
-            $this->session->set("auth", $user->getId());
+        // if ($user && password_verify($mdp, $user->getPassword()) 
+        // or $this->isLogged()) {
+        //     $this->session->set("auth", $user->getId());
+        //     return true;
+        // }
+        if($user && password_verify($mdp, $user->getPassword()))  {
             return true;
         }
         return false;
+    }
+
+    /**
+     * Vérifie si l'administrateur existe
+     * @param string $username
+     * @return bool
+     */
+    public function exist(string $email): bool
+    {
+        $email = $this->manager->getRepository(User::class)->findOneBy(['email' => $email]);
+        return $email !== null;
     }
 
     /**
@@ -68,14 +83,16 @@ class UserAuth
         $ville = $this->manager->getRepository(Ville::class)->findOneBy(["ville" => "Metz"]);
         
         $adresse = new Adresse();
+        $user = new User();
+        
         $adresse->setNumeroAdresse($data["numeroAdresse"]);
         $adresse->setAdressePrefix($data["prefixAdresse"]);
         $adresse->setAdresse($data["nameAdresse"]);
         $adresse->setComplementAdresse($data["adresseComplement"]);
         $adresse->setVille($ville);
+        $adresse->setUser($user);
         $this->manager->persist($adresse);
 
-        $user = new User();
         $user->setNom($data["nom"]);
         $user->setPrenom($data["prenom"]);
         $user->setTelephone($data["telephone"]);
