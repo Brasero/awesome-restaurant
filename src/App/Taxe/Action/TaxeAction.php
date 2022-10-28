@@ -60,7 +60,8 @@ class TaxeAction
     public function create(ServerRequest $request)
     {
         $data = $request->getParsedBody();
-
+        // Pour que le taux soit sous la forme 0.00 au lieu de 0,00 pour le validator
+        $data['taux'] = str_replace(',', '.', $data['taux']);
         // Validation des données
         $validator = new Validator($data);
         $validator->required('taux')

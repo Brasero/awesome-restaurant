@@ -86,7 +86,7 @@ class Validator
         $all = $repository->findAll();
         $method = "get".ucfirst($field);
         foreach ($all as $item) {
-            if ($item->$method() === $this->params[$key] && $item->getId() !== $id) {
+            if ($item->$method() == $this->params[$key] && $item->getId() !== $id) {
                 $this->addError($key, 'unique');
                 break;
             }
