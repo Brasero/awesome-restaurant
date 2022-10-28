@@ -44,8 +44,8 @@ class Adresse
     private string $complementAdresse;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="adresse")
-     *
+     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="adresses")
+     * @ORM\JoinColumn(name="user_id", onDelete="CASCADE")
      */
     private $user;
 
@@ -54,6 +54,7 @@ class Adresse
      *
      */
     private $ville;
+
 
     /**
      * @return int

@@ -51,18 +51,29 @@ class AuthAction
             $errors = $validator
                     ->required("email", "mdp")
                     ->getErrors();
+
             if (!empty($errors)) {
                 foreach ($errors as $error) {
                     $this->toaster->createToast($error, Toaster::ERROR);
                 }
+                return $this->redirect('user.connexion');
             }
-            $email = $params["email"] ?? null;
-            $mdp = $params["mdp"] ?? null;
+
+            $email = $params["email"];
+            $mdp = $params["mdp"];
+
+            if(!$auth->exist($email)) {
+                $this->toaster->createToast("Email inconnu", Toaster::ERROR);
+                return $this->redirect("user.inscription");
+            }
             if ($auth->connexion($email, $mdp)) {
                 $this->toaster->createToast("Vous êtes connecté", Toaster::SUCCESS);
-                return $this->redirect("user.espace");
+                return $this->redirect("produit.carte");
+                var_dump($auth);
             }
+
             $this->toaster->createToast("Indentifiant ou mot de passe inconnu", Toaster::ERROR);
+            return $this->redirect("user.connexion");
         }
         return $this->renderer->render("@user/connexion");
 
@@ -76,7 +87,6 @@ class AuthAction
      */
     public function inscription(ServerRequest $request)
     {
-
         $method = $request->getMethod();
         if ($method === "POST") {
 
@@ -87,6 +97,7 @@ class AuthAction
             $errors = $validator
                         ->required("nom", "prenom", "telephone", "email", "mdp", "numeroAdresse", "prefixAdresse", "nameAdresse")
                         ->strLength("mdp", 6, 50)
+                        ->strLength("telephone", 10, 10)
                         ->email("email")
                         ->confirm("mdp")
                         ->confirm("email")
@@ -125,13 +136,12 @@ class AuthAction
             }
             
             /** Enregistre en bdd avec la fonction inscription */
-            if ($auth->inscription($params)) {
-                $this->toaster->createToast("Compte crée.", Toaster::SUCCESS);
-                return $this->redirect("user.connexion");
-                var_dump($params);
-            }
-
+            $auth->inscription($params);
+            $this->toaster->createToast("Compte crée.", Toaster::SUCCESS);
+            return $this->redirect("user.connexion");
+            
         }
+        
         return $this->renderer->render("@user/inscription");
     }
 
