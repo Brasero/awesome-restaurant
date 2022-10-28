@@ -57,12 +57,12 @@ class Taxe
     }
 
     /**
-     * @param float $taux
+     * @param string $taux
      */
-    public function setTaux($taux): void
+    public function setTaux(string $taux): void
     {
         $taux = str_replace(',', '.', $taux);
-        $this->taux = floatval($taux/100);
+        $this->taux = floatval($taux)/100;
     }
 
 

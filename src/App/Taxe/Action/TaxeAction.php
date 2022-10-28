@@ -79,7 +79,7 @@ class TaxeAction
 
         $newtaxe = new taxe();
         $newtaxe->setTaux($data['taux']);
-        $newtaxe->setTaux((float)$data['taux']);
+        $newtaxe->setTaux($data['taux']);
 
         // On enregistre la taxe en base de données
         $this->manager->persist($newtaxe);
