@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Framework\Router\RedirectTrait;
 use Framework\Router\Router;
+use Framework\Validator\Validator;
 use GuzzleHttp\Psr7\ServerRequest;
 use GuzzleHttp\Psr7\UploadedFile;
 use Psr\Container\ContainerExceptionInterface;
@@ -153,27 +154,33 @@ class CategorieAction
     public function update(ServerRequest $request)
     {
         $data = $request->getParsedBody();
+        $file = $request->getUploadedFiles()['imageupdate'];
         $id = $data['id'];
         $nom = $data['nom'];
+        $data['img'] = $file->getClientFileName();
         $categorieProduit = $this->repository->find($id);
+        $validator= new Validator($data);
+        $validator->required('nom')
+            ->strLength('nom', 3, 50)
+            ->isUnique('nom', $this->repository,'nom','', $id);
         $categorieProduit->setNom($nom);
-        $file = $request->getUploadedFiles()['imageupdate'];
+
         if ($file->getError() != 4) {
+            $validator->isUnique('img', $this->repository,'img','', $id);
             $this->fileGuards($file);
             $ancienneImage= $this->container->get('categorie.img.basePath');
             $ancienneImage .= $categorieProduit->getImg();
             $categorieProduit->setImg($file->getClientFileName());
         }
-        foreach ($this->repository->findAll() as $cat) {
-            if ($cat->getNom() === $categorieProduit->getNom()&& $cat != $categorieProduit) {
-                $this->toaster->createToast('Cette categorie existe déjà.', Toaster::ERROR);
-                return $this->redirect('admin.produit.manage');
+        // Si les données sont invalides
+        $errors = $validator->getErrors();
+        if (!empty($errors)) {
+            foreach ($errors as $error) {
+                $this->toaster->createToast($error, Toaster::ERROR);
             }
-            if ($cat->getImg() === $categorieProduit->getImg() && $cat != $categorieProduit) {
-                $this->toaster->createToast('Cette image est déjà enregistrer.', Toaster::ERROR);
-                return $this->redirect('admin.produit.manage');
-            }
+            return $this->redirect('admin.Taxe.show');
         }
+
         if ($file->getError() != 4) {
             $file->moveTo($this->container->get('categorie.img.basePath') . $file->getClientFileName());
 
