@@ -5,6 +5,7 @@ namespace App\Entity;
 use DateTime;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
+use Exception;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\OffreRepository")
@@ -27,14 +28,14 @@ class Offre
     private string $nom;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="datetime")
      */
-    private string $date_debut;
+    private DateTime $date_debut;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="datetime")
      */
-    private string $date_fin;
+    private DateTime $date_fin;
 
     /**
      * @ORM\Column(type="float")
@@ -72,35 +73,37 @@ class Offre
     }
 
     /**
-     * @return string
+     * @return DateTime
      */
-    public function getDateDebut(): string
+    public function getDateDebut(): DateTime
     {
         return $this->date_debut;
     }
 
     /**
      * @param string $date_debut
+     * @throws Exception
      */
     public function setDateDebut(string $date_debut): void
     {
-        $this->date_debut = $date_debut;
+        $this->date_debut = new DateTime($date_debut);
     }
 
     /**
-     * @return string
+     * @return DateTime
      */
-    public function getDateFin(): string
+    public function getDateFin(): DateTime
     {
         return $this->date_fin;
     }
 
     /**
      * @param string $date_fin
+     * @throws Exception
      */
     public function setDateFin(string $date_fin): void
     {
-        $this->date_fin = $date_fin;
+        $this->date_fin = new DateTime($date_fin);
     }
 
     /**

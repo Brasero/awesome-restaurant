@@ -4,6 +4,7 @@ namespace App\Ingredient\Action;
 
 use App\Entity\Ingredient;
 use App\Entity\TypeIngredient;
+use Doctrine\ORM\EntityRepository;
 use Framework\Toaster\Toaster;
 use Framework\Validator\Validator;
 use Doctrine\ORM\EntityManagerInterface;
@@ -41,6 +42,11 @@ class IngredientAction
     private Router $router;
 
     /**
+     * @var EntityRepository
+     */
+    private EntityRepository $repository;
+
+    /**
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
@@ -50,6 +56,7 @@ class IngredientAction
         $this->toaster = $container->get(Toaster::class);
         $this->manager = $container->get(EntityManagerInterface::class);
         $this->router = $container->get(Router::class);
+        $this->repository = $this->manager->getRepository(Ingredient::class);
     }
 
 
@@ -72,7 +79,7 @@ class IngredientAction
 
         /** Verifie que le nom est unique */
         $ing = new Ingredient();
-        $repository = $this->manager->getRepository(Ingredient::class);
+        $repository = $this->repository;
         $ingredients = $repository->findAll();
         $ing->setNom($data['nom']);
         foreach ($ingredients as $ingredient) {
@@ -100,7 +107,7 @@ class IngredientAction
     {
         $id = $request->getParsedBody()['id'];
         $data = $request->getParsedBody();
-        $repository = $this->manager->getRepository(Ingredient::class);
+        $repository = $this->repository;
         $validator = new Validator($data);
         $errors = $validator->required('nom', 'prix', 'type')
             ->isUnique('nom', $repository, 'nom', $id)
@@ -132,10 +139,10 @@ class IngredientAction
     public function delete(ServerRequest $request): string
     {
         $id = $request->getAttribute('id');
-        $ingredient = $this->manager->find(Ingredient::class, $id);
+        $ingredient = $this->repository->find($id);
         $this->manager->remove($ingredient);
         $this->manager->flush();
-        $ingredient = $this->manager->find(Ingredient::class, $id);
+        $ingredient = $this->repository->find($id);
         if (!is_null($ingredient)) {
             return "false";
         }
