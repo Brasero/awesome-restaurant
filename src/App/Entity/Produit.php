@@ -1,11 +1,15 @@
 <?php
+
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\Entity;
-use Doctrine\ORM\Mapping\Table;
+use App\Entity\Offre;
+use App\Entity\Categorie;
+use App\Entity\Ingredient;
 use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\Table;
+use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 
 /**
@@ -53,8 +57,11 @@ class Produit
     private Categorie $categorie;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Ingredient", mappedBy="produits")
-     * @ORM\JoinTable(name="ingredient_produit")
+     * @ORM\ManyToMany(targetEntity="Ingredient")
+     * @ORM\JoinTable(name="ingredient_produit",
+     * joinColumns={@ORM\JoinColumn(name="produit_id",referencedColumnName="id")},
+     * inverseJoinColumns={@ORM\JoinColumn(name="ingredient_id", referencedColumnName="id")}
+     * )
      */
     private $ingredients;
 
@@ -64,9 +71,18 @@ class Produit
      */
     private int $taxe;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->ingredients = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     public function setPrix(string $prix)
     {
+        $prix = str_replace(',', '.', $prix);
+        $prix = floatval($prix);
         $this->prix = $prix;
     }
 
@@ -128,15 +144,16 @@ class Produit
     /**
      * @param Categorie $categorie
      */
-    public function setCategorie(Categorie $categorie): void
+    public function setCategorie(Categorie $categorie): self
     {
         $this->categorie = $categorie;
+        return $this;
     }
 
     /**
      * @return Ingredient[]
      */
-    public function getIngredients(): array
+    public function getIngredients()
     {
         return $this->ingredients;
     }
@@ -163,27 +180,6 @@ class Produit
     public function setTaxe(int $taxe): void
     {
         $this->taxe = $taxe;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->ingredients = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add ingredient.
-     *
-     * @param \App\Entity\Ingredient $ingredient
-     *
-     * @return Produit
-     */
-    public function addIngredient(\App\Entity\Ingredient $ingredient)
-    {
-        $this->ingredients[] = $ingredient;
-
-        return $this;
     }
 
     /**

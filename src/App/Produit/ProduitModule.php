@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Produit;
 
 use App\Entity\Categorie;
@@ -7,6 +8,7 @@ use App\Entity\Produit;
 use App\Entity\TypeIngredient;
 use Framework\TwigExtension\MenuTwigExtension;
 use App\Produit\Action\CategorieAction;
+use App\Produit\Action\ProduitAction;
 use Doctrine\ORM\EntityManagerInterface;
 use Framework\Module;
 use Framework\Renderer\RendererInterface;
@@ -36,6 +38,7 @@ class ProduitModule extends Module
      */
     public function __construct(ContainerInterface $container)
     {
+        $produitAction = $container->get(ProduitAction::class);
         $categorieAction = new CategorieAction($container);
         $renderer = $container->get(RendererInterface::class);
         $router = $container->get(Router::class);
@@ -70,6 +73,11 @@ class ProduitModule extends Module
                 "/ajax/category/delete/{id:\d+}/{apiKey:[a-z0-9-]+}",
                 [$categorieAction, 'delete'],
                 'ajax.category.delete'
+            );
+            $router->post(
+                $prefix . '/produit/addProduit',
+                [$produitAction, 'add'],
+                'admin.produit.add'
             );
         }
     }

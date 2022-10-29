@@ -14,18 +14,18 @@
                 <h4 class="formTitle">
                     Ajouter un produit
                 </h4>
-                <form action="" method="POST" class="produitFormContainer">
+                <form action="{{ path('admin.produit.add') }}" method="POST" class="produitFormContainer" enctype="multipart/form-data">
                 <span class="produitFormPart1">
                     <span class="inputGroup">
                         <label for="produitNom" class="inputLabel">
-                            <input type="text" class="inputItem" name="produitNom" id="ingredientNom" placeholder="Nom"
+                            <input type="text" class="inputItem" name="produitNom" id="produitNom" placeholder="Nom"
                                    required/>
                             <span>Nom</span>
                         </label>
                     </span>
                     <span class="inputGroup">
                         <label for="produitPrix" class="inputLabel">
-                            <input type="text" class="inputItem" name="produitPrix" id="produitPrix" placeholder="Prix"
+                            <input type="text" class="inputItem" name="produitPrix" id="produitPrix" placeholder="Prix" onkeypress="checkPrice(event); return false;"
                                    required/>
                             <span>Prix</span>
                         </label>
@@ -58,7 +58,7 @@
                         <label for="categorieType">
                             <span>Catégorie</span>
                         </label>
-                        <select name="categorie" id="categorieType" class="inputItem" placeholder="C    ategorie"
+                        <select name="categorie" id="categorieType" class="inputItem" placeholder="Categorie"
                                 default="false" required>
                             <option value="false" class="typeOption">....</option>
                             {% for categorie in categories %}
@@ -360,4 +360,5 @@
     <script type="text/javascript" src="../../assets/js/admin/dropDownIngredient.js"></script>
     <script type="text/javascript" src="../../assets/js/admin/switchForm.js"></script>
     <script type="text/javascript" src="../../assets/js/admin/ajoutImage.js"></script>
+    <script type="text/javascript" src="../../assets/js/admin/priceCheck.js"></script>
 {% endblock %}

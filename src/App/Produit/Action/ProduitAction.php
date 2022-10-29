@@ -2,6 +2,8 @@
 
 namespace App\Produit\Action;
 
+use App\Entity\Categorie;
+use App\Entity\Ingredient;
 use App\Entity\Produit;
 use Framework\Router\Router;
 use Framework\Router\RedirectTrait;
@@ -9,6 +11,7 @@ use Framework\Toaster\Toaster;
 use GuzzleHttp\Psr7\UploadedFile;
 use Psr\Container\ContainerInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\EntityRepository;
 use Framework\Validator\Validator;
 use GuzzleHttp\Psr7\ServerRequest;
 
@@ -36,7 +39,7 @@ class ProduitAction
      */
     private Router $router;
 
-    private $repository;
+    private EntityRepository $repository;
 
     public function __construct(ContainerInterface $container)
     {
@@ -53,16 +56,51 @@ class ProduitAction
         $file = $request->getUploadedFiles()['image'];
         $validator = new Validator($data);
         $errors = $validator->required('produitNom', 'produitPrix', 'categorie')
-            ->strLenght('produitNom', 3, 50)
-            ->intLenght('produitPrix', 0.01, 100)
-            ->float('prix')
+            ->strLength('produitNom', 3, 50)
+            ->intLength('produitPrix', 0.01, 100)
+            ->float('produitPrix')
+            ->isUnique('produitNom', $this->repository)
             ->getErrors();
         if (!empty($errors)) {
             foreach ($errors as $error) {
-                $this->toaster->createToats($error, Toaster::ERROR);
+                $this->toaster->createToast($error, Toaster::ERROR);
+            }
+            return $this->redirect('admin.produit.manage');
+        }
+
+        $this->fileGuards($file);
+        $fileName = $file->getClientFileName();
+        $file->moveTo($this->container->get('produit.img.basePath') . $fileName);
+        if (!$file->isMoved()) {
+            $this->toaster->createToast("ERREUR : problème", Toaster::class);
+            return $this->redirect('admin.produit.manage');
+        }
+
+        $prod = new Produit();
+        $prod->setNom($data['produitNom']);
+        $prod->setImg($fileName);
+        if (
+            isset($data['ingredients']) &&
+            sizeof($data['ingredients']) > 0
+        ) {
+            foreach ($data['ingredients'] as $id) {
+                $ingredient = $this->manager->getRepository(Ingredient::class)->find($id);
+                $prod->setIngredients($ingredient);
             }
         }
-        $this->fileGuards($file);
+
+
+        /** Enregistrement en bdd */
+        $prod->setPrix($data['produitPrix']);
+        $categorie = $this->manager->find(Categorie::class, $data['categorie']);
+        $prod->setCategorie($categorie);
+
+        $this->manager->persist($prod);
+        $this->manager->flush();
+
+        $this->toaster->createToast("Votre produit {$prod->getNom()} à bien été ajouté", Toaster::SUCCESS);
+
+        return $this->redirect('admin.produit.manage');
     }
 
     /**
@@ -75,7 +113,7 @@ class ProduitAction
         //Guard erreur de chargement server
         if ($file->getError() === 4) {
             $this->toaster->createToast("Une erreur est survenu lors du chargement de votre image", Toaster::ERROR);
-            $this->redirect('admin.produit.manage');
+            return $this->redirect('admin.produit.manage');
         }
 
         list($type, $format) = explode("/", $file->getClientMediaType());
@@ -86,7 +124,7 @@ class ProduitAction
                 "ERREUR : format non pris en charge, veuillez ajouté un .jpg, .jpeg ou .png",
                 Toaster::ERROR
             );
-            $this->redirect('admin.produit.manage');
+            return $this->redirect('admin.produit.manage');
         }
 
         //Guard taille de l'image inférieur a 2Mo
