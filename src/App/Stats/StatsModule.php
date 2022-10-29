@@ -12,7 +12,8 @@ use GuzzleHttp\Psr7\ServerRequest;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\RequestInterface;
 
-class StatsModule extends Module {
+class StatsModule extends Module
+{
 
     public const DEFINITIONS = __DIR__.DIRECTORY_SEPARATOR."config.php";
     private Router $router;
@@ -30,15 +31,16 @@ class StatsModule extends Module {
         $this->router->get("/admin/stats", [$this, "show"], "admin.stats.show");
     }
 
-    public function show(ServerRequest $request) {
+    public function show(ServerRequest $request)
+    {
         $repositoryIngredient = $this->manager->getRepository(Ingredient::class);
         $nbIngredient = $repositoryIngredient->count([]);
 
-        return $this->renderer->render("@stats/show", 
-        [
-            "ingredients" => $nbIngredient 
-        ]
-    );
+        return $this->renderer->render(
+            "@stats/show",
+            [
+            "ingredients" => $nbIngredient
+            ]
+        );
     }
-
 }
