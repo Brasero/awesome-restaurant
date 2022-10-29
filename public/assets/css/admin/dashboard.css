@@ -526,6 +526,13 @@ label:focus-within > span, input:not(:placeholder-shown) + span {
     /*    flex: 2;*/
     /*}*/
 
+    .card__sm {
+        width: 175px;
+    }
+
+    .card__md, .card__md__height {
+        width: 378px;
+    }
     .card__lg {
         display: none;
     }

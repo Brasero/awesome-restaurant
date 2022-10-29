@@ -59,6 +59,13 @@ class ProduitModule extends Module
                 [$categorieAction, 'add'],
                 'admin.addCategorie'
             );
+
+            $router->post(
+                $prefix . '/produit/updateCategorie',
+                [$categorieAction, 'update'],
+                'admin.Categorie.update'
+            );
+
             $router->get(
                 "/ajax/category/delete/{id:\d+}/{apiKey:[a-z0-9-]+}",
                 [$categorieAction, 'delete'],

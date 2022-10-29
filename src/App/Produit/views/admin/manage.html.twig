@@ -18,13 +18,15 @@
                 <span class="produitFormPart1">
                     <span class="inputGroup">
                         <label for="produitNom" class="inputLabel">
-                            <input type="text" class="inputItem" name="produitNom" id="ingredientNom" placeholder="Nom" required />
+                            <input type="text" class="inputItem" name="produitNom" id="ingredientNom" placeholder="Nom"
+                                   required/>
                             <span>Nom</span>
                         </label>
                     </span>
                     <span class="inputGroup">
                         <label for="produitPrix" class="inputLabel">
-                            <input type="text" class="inputItem" name="produitPrix" id="produitPrix" placeholder="Prix" required />
+                            <input type="text" class="inputItem" name="produitPrix" id="produitPrix" placeholder="Prix"
+                                   required/>
                             <span>Prix</span>
                         </label>
                     </span>
@@ -32,10 +34,11 @@
                         <label for="categorieType">
                             <span>Catégorie</span>
                         </label>
-                        <select name="categorie" id="categorieType" class="inputItem" placeholder="C    ategorie" default="false" required>
+                        <select name="categorie" id="categorieType" class="inputItem" placeholder="C    ategorie"
+                                default="false" required>
                             <option value="false" class="typeOption">....</option>
                             {% for categorie in categories %}
-                            <option value={{ categorie.ID }}>{{ categorie.nom }}</option>
+                                <option value={{ categorie.ID }}>{{ categorie.nom }}</option>
                             {% endfor %}
                         </select>
                     </span>
@@ -44,23 +47,27 @@
                     </button>
                 </span>
                     <span class="produitFormPart2">
-                    <button class="backButton" type="button" onclick="switchForm('toRight')"><i class="bi bi-arrow-left-short"></i>Retour</button>
+                    <button class="backButton" type="button" onclick="switchForm('toRight')"><i
+                                class="bi bi-arrow-left-short"></i>Retour</button>
                     <fieldset class="ingredientGroup">
 
                         {% for type in types %}
 
-                        <div class="typeIngredientGroupItem" id="type-{{ type.id }}" onclick="toggleIngredientList(event,{{ type.id }})" data-idtype={{ type.id }}>
+                            <div class="typeIngredientGroupItem" id="type-{{ type.id }}"
+                                 onclick="toggleIngredientList(event,{{ type.id }})" data-idtype={{ type.id }}>
                                 <div class="groupLabel">
                                     <span>{{ ucfirst(type.nom) }}</span> <i class="bi bi-caret-down-fill"></i>
                                 </div>
 
                             {% for ingredient in ingredients %}
-                                    {% if ingredient.type == type %}
-                                        <div class="groupItem">
-                                            <input type="checkbox" name="ingredients[]" value="{{ ingredient.id }}" id="ingredient-{{ ingredient.nom }}">
-                                            <label for="ingredient-{{ ingredient.nom }}" class="ingredientLabel">{{ ingredient.nom }}</label>
+                                {% if ingredient.type == type %}
+                                    <div class="groupItem">
+                                            <input type="checkbox" name="ingredients[]" value="{{ ingredient.id }}"
+                                                   id="ingredient-{{ ingredient.nom }}">
+                                            <label for="ingredient-{{ ingredient.nom }}"
+                                                   class="ingredientLabel">{{ ingredient.nom }}</label>
                                         </div>
-                                    {% endif %}
+                                {% endif %}
                             {% endfor %}
 
                             </div>
@@ -83,14 +90,14 @@
                         Liste produit
                     </h4>
                     <tbody>
-                        <tr class="colonneTitleContainer">
-                            <th class="colonneTitleItem">Nom</th>
-                            <th class="colonneTitleItem">prix</th>
-                            <th class="colonneTitleItem">taxe</th>
-                            <th class="colonneTitleItem">categorie</th>
-                            <th class="colonneTitleItem">offre</th>
-                            <th class="colonneTitleItem">Action</th>
-                        </tr>
+                    <tr class="colonneTitleContainer">
+                        <th class="colonneTitleItem">Nom</th>
+                        <th class="colonneTitleItem">prix</th>
+                        <th class="colonneTitleItem">taxe</th>
+                        <th class="colonneTitleItem">categorie</th>
+                        <th class="colonneTitleItem">offre</th>
+                        <th class="colonneTitleItem">Action</th>
+                    </tr>
                     {% for produit in produits %}
                         <tr class="categorieTypeItem" id="categorie-{{ categorie.id }}">
                             <td class="categorieTypePart">{{ produit.nom }}</td>
@@ -99,12 +106,14 @@
                             <td class="categorieTypePart">{{ produit.categorie.nom }}</td>
                             <td class="categorieTypePart">{{ produit.nom }}</td>
                             <td class="categorieTypePart buttonGroup">
-                                <button class="actionButton updateButton" onclick="openModal(event, 'produit', {{ produit.ID }})" >
+                                <button class="actionButton updateButton"
+                                        onclick="openModal(event, 'produit', {{ produit.ID }})">
                                     <i class="bi bi-pencil-square"
                                        data-nomcategorie={{ produit.ID_categorie.nom }}>
                                     </i>
                                 </button>
-                                <button class="actionButton deleteButton" onclick="supprItem('produit', {{ produit.ID }})">
+                                <button class="actionButton deleteButton"
+                                        onclick="supprItem('produit', {{ produit.ID }})">
                                     Supprimer
                                 </button>
                             </td>
@@ -118,71 +127,71 @@
 
         <!-- Tableau de categorie -->
         <div class="produitCardDeck">
-<!-- debut liste categorie produit -->
+            <!-- debut liste categorie produit -->
             <div class="table">
                 <table class="categorieTypeTable categorieTableStyle">
                     <h4 class="title">
                         Liste categorie
                     </h4>
                     <tbody>
-                        <tr class="colonneTitleContainer">
-                            <th class="colonneTitleItem">Nom</th>
-                            <th class="colonneTitleItem">Action</th>
-                        </tr>
-                            {% for categorie in categories %}
-                                <tr class="categorieTypeItem" id="categorie-{{ categorie.id }}">
-                                    <td class="categorieTypePart">{{ ucfirst(categorie.nom) }} </td>
-                                    <td class="categorieTypePart buttonGroup">
-                                        <button class="actionButton updateButton">
-                                            <i
-                                                class="bi bi-pencil-square"
-                                                data-nomcategorie="{{ categorie.nom }}"
-                                                onclick="openModal(
+                    <tr class="colonneTitleContainer">
+                        <th class="colonneTitleItem">Nom</th>
+                        <th class="colonneTitleItem">Action</th>
+                    </tr>
+                    {% for categorie in categories %}
+                        <tr class="categorieTypeItem" id="categorie-{{ categorie.id }}">
+                            <td class="categorieTypePart">{{ ucfirst(categorie.nom) }} </td>
+                            <td class="categorieTypePart buttonGroup">
+                                <button class="actionButton updateButton">
+                                    <i
+                                            class="bi bi-pencil-square"
+                                            data-nomcategorie="{{ categorie.nom }}"
+                                            onclick="openModal(
                                                     event,
                                                     'categorie',
-                                                    {{ categorie.id }}
+                                            {{ categorie.id }}
                                                     )"
-                                            >
-                                            </i>
-                                        </button>
-                                        <button
-                                            class="actionButton deleteButton"
-                                            onclick="supprItem(
+                                    >
+                                    </i>
+                                </button>
+                                <button
+                                        class="actionButton deleteButton"
+                                        onclick="supprItem(
                                                 'categorie',
-                                                {{ categorie.id }}
+                                        {{ categorie.id }}
                                                 )"
-                                        >
-                                            Supprimer
-                                        </button>
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-        <!-- Fin de tableau de categorie -->
+                                >
+                                    Supprimer
+                                </button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <!-- Fin de tableau de categorie -->
 
-        <!-- Form ajout categorie -->
+            <!-- Form ajout categorie -->
             <div class="card">
-    <!-- debut form ajout categorie produit -->
+                <!-- debut form ajout categorie produit -->
                 <h4 class="formTitle">
                     Ajouter categorie
                 </h4>
                 <form
-                    action="{{ path('admin.addCategorie') }}"
-                    method="POST"
-                    enctype="multipart/form-data"
-                    class="produitFormContainer"
+                        action="{{ path('admin.addCategorie') }}"
+                        method="POST"
+                        enctype="multipart/form-data"
+                        class="produitFormContainer"
                 >
                     <div class="inputGroup">
                         <label for="categorieNom" class="inputLabel">
                             <input
-                                type="text"
-                                class="inputItem"
-                                name="nom"
-                                id="categorieNom"
-                                placeholder="Nom"
-                                required
+                                    type="text"
+                                    class="inputItem"
+                                    name="nom"
+                                    id="categorieNom"
+                                    placeholder="Nom"
+                                    required
                             />
                             <span>Nom</span>
                         </label>
@@ -190,16 +199,16 @@
                     <span class="inputGroup">
                         <div class="fileInput">
                             <div class="inputFile">
-                                <input type="hidden" name="MAX_FILE_SIZE" value="20000000" />
+                                <input type="hidden" name="MAX_FILE_SIZE" value="20000000"/>
                                 <input
-                                    type="file"
-                                    class="inputItem"
-                                    name="image"
-                                    id="image"
-                                    placeholder="Image"
-                                    required
-                                    onchange="addFileText(event)"
-                                   
+                                        type="file"
+                                        class="inputItem"
+                                        name="image"
+                                        id="image"
+                                        placeholder="Image"
+                                        required
+                                        onchange="addFileText(event)"
+
                                 />
                             </div>
                             <div class="fakeFile">
@@ -231,40 +240,67 @@
                     </button>
                 </div>
                 <div class="modalBody">
-                    <form action="" method="POST" class="uptadeTypeForm">
+                    <form action="{{ path('admin.Categorie.update') }}" method="POST" class="uptadeTypeForm"
+                          enctype="multipart/form-data">
                         <input type="hidden" id="categorieIdUpdate" name="id" value="">
                         <div class="inputGroup">
                             <label for="categorieNomUpdate" class="inputLabel">
-                                <input type="text" class="inputItem" name="nom" id="categorieNomUpdate" value="" placeholder="Nom" required />
+                                <input type="text" class="inputItem" name="nom" id="categorieNomUpdate" value=""
+                                       placeholder="Nom" required/>
                                 <span>Nom</span>
                             </label>
                         </div>
-                        <button type="submit" class="addButton">
-                            Modifier
-                        </button>
+                        <div class="fileInput">
+                            <div class="inputFileUpdate">
+                                <input type="hidden" name="MAX_FILE_SIZE" value="20000000"/>
+                                <input
+                                        type="file"
+                                        class="inputItem"
+                                        name="imageupdate"
+                                        id="imageupdate"
+                                        placeholder="Image"
+                                        onchange="addFileTextupdate(event)"
+                                        value=""
+                                />
+                            </div>
+
+                            <div class="fakeFileUpdate">
+                                <button disabled class="fakeButton"> Choisir une photo</button>
+                                <br>
+                            </div>
+                        </div>
+                        <span id="fakeInputupdate">
+                                    Veuillez ajouter une photo
+                        </span>
                     </form>
+
                 </div>
+                <button type="submit" class="addButton">
+                    Modifier
+                </button>
+                </form>
             </div>
         </div>
+    </div>
 
-        <!-- FIN emplacement des modal de modification -->
-        <!-- Emplacement du modal de modification des taxe -->
-        <div class="modalContainer hiddenModal" id="modalTaxe">
-            <div class="modalUpdateType">
-                <div class="modalHead">
-                    <div class="modalTitle">
-                        Modifier une taxe
-                    </div>
-                    <button class="closeModalButton" onclick="closeModalTaxe()">
-                        &times;
-                    </button>
+    <!-- FIN emplacement des modal de modification -->
+    <!-- Emplacement du modal de modification des taxe -->
+    <div class="modalContainer hiddenModal" id="modalTaxe">
+        <div class="modalUpdateType">
+            <div class="modalHead">
+                <div class="modalTitle">
+                    Modifier une taxe
                 </div>
-                <div class="modalBody">
-                    <form action="" method="POST" class="uptadeTypeForm">
-                        <input type="hidden" id="taxeIdUpdate" name="taxeIdUpdate" value="">
-                        <div class="inputGroup">
-                            <label for="taxeTauxUpdate" class="inputLabel">
-                                <input
+                <button class="closeModalButton" onclick="closeModalTaxe()">
+                    &times;
+                </button>
+            </div>
+            <div class="modalBody">
+                <form action="" method="POST" class="uptadeTypeForm">
+                    <input type="hidden" id="taxeIdUpdate" name="taxeIdUpdate" value="">
+                    <div class="inputGroup">
+                        <label for="taxeTauxUpdate" class="inputLabel">
+                            <input
                                     type="number"
                                     min="0"
                                     max="100"
@@ -275,19 +311,19 @@
                                     value=""
                                     placeholder="Taux"
                                     required
-                                />
-                                <span>Taux</span>
-                            </label>
-                        </div>
-                        <button type="submit" class="addButton">
-                            Modifier
-                        </button>
-                    </form>
-                </div>
+                            />
+                            <span>Taux</span>
+                        </label>
+                    </div>
+                    <button type="submit" class="addButton">
+                        Modifier
+                    </button>
+                </form>
             </div>
         </div>
+    </div>
 
-<!-- FIN emplacement des modal de modification -->
+    <!-- FIN emplacement des modal de modification -->
 {% endblock %}
 
 {% block script %}

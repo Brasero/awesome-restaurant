@@ -60,7 +60,8 @@ class TaxeAction
     public function create(ServerRequest $request)
     {
         $data = $request->getParsedBody();
-
+        // Pour que le taux soit sous la forme 0.00 au lieu de 0,00 pour le validator
+        $data['taux'] = str_replace(',', '.', $data['taux']);
         // Validation des données
         $validator = new Validator($data);
         $validator->required('taux')
@@ -79,7 +80,7 @@ class TaxeAction
 
         $newtaxe = new taxe();
         $newtaxe->setTaux($data['taux']);
-        $newtaxe->setTaux((float)$data['taux']);
+        $newtaxe->setTaux($data['taux']);
 
         // On enregistre la taxe en base de données
         $this->manager->persist($newtaxe);

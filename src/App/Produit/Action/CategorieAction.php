@@ -40,6 +40,7 @@ class CategorieAction
      * @var Router|mixed
      */
     private Router $router;
+    private $repository;
 
     /**
      * @param ContainerInterface $container
@@ -52,6 +53,7 @@ class CategorieAction
         $this->toaster = $container->get(Toaster::class);
         $this->manager = $container->get(EntityManagerInterface::class);
         $this->router = $container->get(Router::class);
+        $this->repository = $this->manager->getRepository(Categorie::class);
     }
 
     /**
@@ -124,7 +126,7 @@ class CategorieAction
     private function fileGuards(UploadedFile $file)
     {
         //Guard erreur de chargement server
-        if ($file->getError() === 0) {
+        if ($file->getError() === 4) {
             $this->toaster->createToast("Une erreur est survenu lors du chargement de votre image", Toaster::ERROR);
             $this->redirect('admin.produit.manage');
         }
@@ -146,6 +148,46 @@ class CategorieAction
             return $this->redirect('admin.produit.manage');
         }
         return true;
+    }
+
+    public function update(ServerRequest $request)
+    {
+        $data = $request->getParsedBody();
+        $id = $data['id'];
+        $nom = $data['nom'];
+        $categorieProduit = $this->repository->find($id);
+        $categorieProduit->setNom($nom);
+        $file = $request->getUploadedFiles()['imageupdate'];
+        if ($file->getError() != 4) {
+            $this->fileGuards($file);
+            $ancienneImage= $this->container->get('categorie.img.basePath');
+            $ancienneImage .= $categorieProduit->getImg();
+            $categorieProduit->setImg($file->getClientFileName());
+        }
+        foreach ($this->repository->findAll() as $cat) {
+            if ($cat->getNom() === $categorieProduit->getNom()&& $cat != $categorieProduit) {
+                $this->toaster->createToast('Cette categorie existe déjà.', Toaster::ERROR);
+                return $this->redirect('admin.produit.manage');
+            }
+            if ($cat->getImg() === $categorieProduit->getImg() && $cat != $categorieProduit) {
+                $this->toaster->createToast('Cette image est déjà enregistrer.', Toaster::ERROR);
+                return $this->redirect('admin.produit.manage');
+            }
+        }
+        if ($file->getError() != 4) {
+            $file->moveTo($this->container->get('categorie.img.basePath') . $file->getClientFileName());
+
+            if (!$file->isMoved()) {
+                $this->toaster->createToast("ERREUR : problème", Toaster::ERROR);
+                $this->redirect('admin.produit.manage');
+            }
+            $this->deleteImage($ancienneImage);
+        }
+
+        $this->toaster->createToast('Modification enregistrée', Toaster::SUCCESS);
+        $this->manager->persist($categorieProduit);
+        $this->manager->flush();
+        return $this->redirect('admin.produit.manage');
     }
 
     /**
