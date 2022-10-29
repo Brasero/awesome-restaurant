@@ -30,6 +30,30 @@
                             <span>Prix</span>
                         </label>
                     </span>
+                    <span class="inputGroup">
+                        <div class="fileInput">
+                            <div class="inputFile">
+                                <input type="hidden" name="MAX_FILE_SIZE" value="20000000"/>
+                                <input
+                                        type="file"
+                                        class="inputItem"
+                                        name="image"
+                                        id="image"
+                                        placeholder="Image"
+                                        required
+                                        onchange="addFileText(event)"
+
+                                />
+                            </div>
+                            <div class="fakeFile">
+                                <button disabled class="fakeButton"> Choisir une photo </button>
+                                <br>
+                            </div>
+                        </div>
+                         <span id="fakeInput">
+                                    Veuillez ajouter une photo
+                        </span>
+                    </span>
                     <span class="typeChoice">
                         <label for="categorieType">
                             <span>Catégorie</span>

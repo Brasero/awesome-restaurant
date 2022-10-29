@@ -71,7 +71,6 @@ class AuthAction
             return $this->redirect("user.connexion");
         }
         return $this->renderer->render("@user/connexion");
-
     }
 
     /**
@@ -84,7 +83,6 @@ class AuthAction
     {
         $method = $request->getMethod();
         if ($method === "POST") {
-
             $params = $request->getParsedBody();
             $auth = $this->container->get(UserAuth::class);
             $repository = $this->manager->getRepository(User::class);
@@ -112,7 +110,6 @@ class AuthAction
             $auth->inscription($params);
             $this->toaster->createToast("Compte crée.", Toaster::SUCCESS);
             return $this->redirect("user.connexion");
-            
         }
         
         return $this->renderer->render("@user/inscription");

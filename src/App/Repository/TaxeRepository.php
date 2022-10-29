@@ -36,5 +36,4 @@ class TaxeRepository extends EntityRepository
         $offset = ($page - 1) * $limit;
         return $this->findBy([], ['id' => 'ASC'], $limit, $offset);
     }
-
 }

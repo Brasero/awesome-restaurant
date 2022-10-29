@@ -58,10 +58,10 @@ class IngredientAction
         $data = $request->getParsedBody();
         $validator = new Validator($data);
         $errors = $validator->required('nom', 'prix', 'type')
-                    ->strLength('nom', 3, 50)
-                    ->intLength('prix', 0.01, 100)
-                    ->float('prix')
-                    ->getErrors();
+            ->strLength('nom', 3, 50)
+            ->intLength('prix', 0.01, 100)
+            ->float('prix')
+            ->getErrors();
 
         if (!empty($errors)) {
             foreach ($errors as $error) {
@@ -103,11 +103,11 @@ class IngredientAction
         $repository = $this->manager->getRepository(Ingredient::class);
         $validator = new Validator($data);
         $errors = $validator->required('nom', 'prix', 'type')
-                    ->isUnique('nom', $repository, 'nom', $id)
-                    ->strLength('nom', 3, 50)
-                    ->intLength('prix', 0.01, 100)
-                    ->float('prix')
-                    ->getErrors();
+            ->isUnique('nom', $repository, 'nom', $id)
+            ->strLength('nom', 3, 50)
+            ->intLength('prix', 0.01, 100)
+            ->float('prix')
+            ->getErrors();
         if (!empty($errors)) {
             foreach ($errors as $error) {
                 $this->toaster->createToast($error, Toaster::ERROR);
