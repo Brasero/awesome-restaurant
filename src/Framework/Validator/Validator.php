@@ -79,15 +79,19 @@ class Validator
      * Assure que la valeur du champ est unique en base de données
      * @param string $key clé du champ
      * @param EntityRepository $repository manager de l'entité
-     * @param string $field nom du champ en base de données
+     * @param string $field nom de la propriété de l'entité 
      */
-    public function isUnique(string $key, EntityRepository $repository, string $field = "nom", int $id = null): self
+    public function isUnique(string $key, EntityRepository $repository, string $field = "nom", ?string $message = null, int $id = null): self
     {
         $all = $repository->findAll();
         $method = "get".ucfirst($field);
         foreach ($all as $item) {
-            if ($item->$method() == $this->params[$key] && $item->getId() !== $id) {
-                $this->addError($key, 'unique');
+            if ($item->$method() === $this->params[$key] && $item->getId() !== $id) {
+                if(!is_null($message)){
+                    $this->addError($key, $message);
+                } else {
+                    $this->addError($key, 'unique');
+                }
                 break;
             }
         }

@@ -14,4 +14,5 @@ return [
     UserModule::class => autowire()->constructorParameter('prefix', get('user.prefix')),
     MenuTwigExtension::class => \DI\autowire()->constructorParameter('widgets', \DI\get('admin.widgets')),
     UserWidget::class => \DI\autowire(),
+
 ];

@@ -31,6 +31,12 @@ class User
     private string $prenom;
 
     /**
+     * @ORM\Column(type="string", name="telephone_user")
+     * @var string
+     */
+    private string $telephone;
+
+    /**
      * @ORM\Column(type="string", name="email_user")
      * @var string
      */
@@ -40,19 +46,15 @@ class User
      * @ORM\Column(type="string", name="password_user")
      * @var string
      */
-    private string $password;
+    private string $mdp;
+
+    
 
     /**
-     * @ORM\Column(type="string", name="adresse_user")
-     * @var string
+     * @ORM\OneToOne(targetEntity="App\Entity\Adresse", mappedBy="user")
+     * @ORM\JoinColumn(name="id_adresse", onDelete="CASCADE")
      */
-    private string $adresse;
-
-    /**
-     * @ORM\Column(type="string", name="telephone_user")
-     * @var string
-     */
-    private string $telephone;
+    private $adresse;
 
 
     /**
@@ -98,54 +100,6 @@ class User
     /**
      * @return string
      */
-    public function getEmail(): string
-    {
-        return $this->email;
-    }
-
-    /**
-     * @param string $email
-     */
-    public function setEmail(string $email): void
-    {
-        $this->email = $email;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPassword(): string
-    {
-        return $this->password;
-    }
-
-    /**
-     * @param string $password
-     */
-    public function setPassword(string $password): void
-    {
-        $this->password = $password;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAdresse(): string
-    {
-        return $this->adresse;
-    }
-
-    /**
-     * @param string $adresse
-     */
-    public function setAdresse(string $adresse): void
-    {
-        $this->adresse = $adresse;
-    }
-
-    /**
-     * @return string
-     */
     public function getTelephone(): string
     {
         return $this->telephone;
@@ -154,8 +108,58 @@ class User
     /**
      * @param string $telephone
      */
-    public function setTelephone(string $telephone): void
+    public function setTelephone(string $telephone): self
     {
         $this->telephone = $telephone;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param string $email
+     */
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPassword(): string
+    {
+        return $this->mdp;
+    }
+
+    /**
+     * @param string $password
+     */
+    public function setPassword(string $mdp): void
+    {
+        $this->mdp = password_hash($mdp, PASSWORD_BCRYPT);
+    }
+
+    
+
+    public function getAdresse()
+    {
+        return $this->adresse;
+    }
+
+    /**
+     * @param Adresse $adresse
+     */
+    public function setAdresse(Adresse $adresse): self
+    {
+        $this->adresse = $adresse;
+        return $this;
     }
 }
