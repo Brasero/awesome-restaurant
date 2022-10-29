@@ -10,7 +10,9 @@ use Framework\Toaster\Toaster;
 use Framework\Validator\Validator;
 use GuzzleHttp\Psr7\ServerRequest;
 use Framework\Router\RedirectTrait;
+use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\MessageInterface;
 use Framework\Renderer\RendererInterface;
 
@@ -24,8 +26,12 @@ class AuthAction
     private Router $router;
     private RendererInterface $renderer;
     private EntityManagerInterface $manager;
-    
 
+
+    /**
+     * @throws NotFoundExceptionInterface
+     * @throws ContainerExceptionInterface
+     */
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
@@ -39,9 +45,11 @@ class AuthAction
      * Connexion de l'utilisateur
      *
      * @param ServerRequest $request
-     * @return void
+     * @return MessageInterface
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
-    public function connexion(ServerRequest $request)
+    public function connexion(ServerRequest $request): MessageInterface
     {
         $method = $request->getMethod();
         if ($method === "POST") {
@@ -71,27 +79,36 @@ class AuthAction
             return $this->redirect("user.connexion");
         }
         return $this->renderer->render("@user/connexion");
-
     }
 
     /**
      * Inscription de l'utilisateur
      *
      * @param ServerRequest $request
-     * @return void
+     * @return MessageInterface
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
-    public function inscription(ServerRequest $request)
+    public function inscription(ServerRequest $request): MessageInterface
     {
         $method = $request->getMethod();
         if ($method === "POST") {
-
             $params = $request->getParsedBody();
             $auth = $this->container->get(UserAuth::class);
             $repository = $this->manager->getRepository(User::class);
 
             $validator = new Validator($params);
             $errors = $validator
-                        ->required("nom", "prenom", "telephone", "email", "mdp", "numeroAdresse", "prefixAdresse", "nameAdresse", "email_confirm", "mdp_confirm")
+                        ->required(
+                            "nom",
+                            "prenom",
+                            "telephone",
+                            "email",
+                            "mdp",
+                            "numeroAdresse",
+                            "prefixAdresse",
+                            "nameAdresse",
+                        )
                         ->strLength("mdp", 6, 50)
                         ->strLength("telephone", 10, 10)
                         ->email("email")
@@ -112,7 +129,6 @@ class AuthAction
             $auth->inscription($params);
             $this->toaster->createToast("Compte crée.", Toaster::SUCCESS);
             return $this->redirect("user.connexion");
-            
         }
         
         return $this->renderer->render("@user/inscription");
@@ -122,6 +138,8 @@ class AuthAction
      * Deconnection de l'utilisateur
      *
      * @return MessageInterface
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
     public function logout(): MessageInterface
     {

@@ -70,7 +70,7 @@ class CategorieAction
         $this->fileGuards($file);
 
         $fileName = $file->getClientFileName();
-        $repository = $this->manager->getRepository(Categorie::class);
+        $repository = $this->repository;
         $categorys = $repository->findAll();
         $newCategorie = new Categorie();
         $newCategorie->setNom($data['nom']);
@@ -109,7 +109,7 @@ class CategorieAction
         if ($apiKey != "aed2548sqsa214dcq-gdfsd56q") {
             return "false";
         }
-        $categorie = $this->manager->find(Categorie::class, $id);
+        $categorie = $this->repository->find($id);
         $imagePath = $this->container->get('categorie.img.basePath');
         $imagePath .= $categorie->getImg();
         $this->deleteImage($imagePath);

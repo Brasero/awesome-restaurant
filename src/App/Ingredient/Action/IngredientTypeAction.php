@@ -3,6 +3,7 @@
 namespace App\Ingredient\Action;
 
 use App\Entity\TypeIngredient;
+use Doctrine\ORM\EntityRepository;
 use Framework\Toaster\Toaster;
 use Framework\Validator\Validator;
 use Doctrine\ORM\EntityManagerInterface;
@@ -43,6 +44,11 @@ class IngredientTypeAction
     private Router $router;
 
     /**
+     * @var EntityRepository
+     */
+    private EntityRepository $repository;
+
+    /**
      * @param ContainerInterface $container
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
@@ -53,6 +59,7 @@ class IngredientTypeAction
         $this->toaster = $container->get(Toaster::class);
         $this->manager = $container->get(EntityManagerInterface::class);
         $this->router = $container->get(Router::class);
+        $this->repository = $this->manager->getRepository(TypeIngredient::class);
     }
 
 
@@ -73,7 +80,7 @@ class IngredientTypeAction
 
         $type = new TypeIngredient();
         $type->setNom($data['nom']);
-        $repository = $this->manager->getRepository(TypeIngredient::class);
+        $repository = $this->repository;
         $types = $repository->findAll();
         foreach ($types as $ty) {
             if ($ty->getNom() == $type->getNom()) {
@@ -91,11 +98,11 @@ class IngredientTypeAction
     public function delete(ServerRequest $request): string
     {
         $id = $request->getAttribute('id');
-        $type = $this->manager->find(TypeIngredient::class, $id);
+        $type = $this->repository->find($id);
 
         $this->manager->remove($type);
         $this->manager->flush();
-        $type = $this->manager->find(TypeIngredient::class, $id);
+        $type = $this->repository->find($id);
         if (!is_null($type)) {
             return "false";
         }
@@ -107,9 +114,9 @@ class IngredientTypeAction
         $data = $request->getParsedBody();
         $id = $data['id'];
         $nom = $data['nom'];
-        $type = $this->manager->find(TypeIngredient::class, $id);
+        $type = $this->repository->find($id);
         $type->setNom($nom);
-        $repository = $this->manager->getRepository(TypeIngredient::class);
+        $repository = $this->repository;
         $types = $repository->findAll();
         foreach ($types as $ty) {
             if ($ty->getNom() === $type->getNom() && $ty != $type) {
