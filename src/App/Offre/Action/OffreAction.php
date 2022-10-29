@@ -3,6 +3,7 @@
 namespace App\Offre\Action;
 
 use App\Entity\Offre;
+use Doctrine\ORM\EntityRepository;
 use Framework\Toaster\Toaster;
 use Framework\Validator\Validator;
 use Doctrine\ORM\EntityManagerInterface;
@@ -36,6 +37,11 @@ class OffreAction
      */
     private RendererInterface $renderer;
 
+    /**
+     * @var EntityRepository<Offre>
+     */
+    private EntityRepository $repository;
+
     public function __construct(
         RendererInterface $renderer,
         Toaster $toaster,
@@ -46,6 +52,7 @@ class OffreAction
         $this->router = $router;
         $this->manager = $manager;
         $this->renderer = $renderer;
+        $this->repository = $this->manager->getRepository(Offre::class);
     }
 
     /**
@@ -82,12 +89,8 @@ class OffreAction
 
         $newOffre->setTaux($data['taux']);
 
-        // ToDo : Convertir les dates en DateTime
-
         $newOffre->setDateDebut($data['date_debut']);
         $newOffre->setDateFin($data['date_fin']);
-
-        // ToDo End
 
         // On enregistre l'offre en base de données
         $this->manager->persist($newOffre);
@@ -103,10 +106,10 @@ class OffreAction
     {
         $method = $request->getMethod();
         $id = $request->getAttribute('id');
-        $offre = $this->manager->getRepository(Offre::class)->find($id);
+        $offre = $this->repository->find($id);
         if ($method === 'POST') {
             $data = $request->getParsedBody();
-            $offre = $this->manager->getRepository(Offre::class)->find($id);
+            $offre = $this->repository->find($id);
             $validator = new Validator($data);
             $errors = $validator->required('nom', 'taux', 'date_debut', 'date_fin')
                 ->strLength('nom', 2, 255)
@@ -138,7 +141,7 @@ class OffreAction
     public function delete(ServerRequest $request)
     {
         $id = $request->getAttribute('id');
-        $offre = $this->manager->getRepository(Offre::class)->find($id);
+        $offre = $this->repository->find($id);
         $this->manager->remove($offre);
         $this->manager->flush();
         $this->toaster->createToast('Offre supprimée avec succès', Toaster::SUCCESS);
