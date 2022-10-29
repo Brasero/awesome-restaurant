@@ -91,10 +91,9 @@ class AuthAction
 
             $validator = new Validator($params);
             $errors = $validator
-                        ->required("nom", "prenom", "telephone", "email", "mdp", "numeroAdresse", "prefixAdresse", "nameAdresse")
+                        ->required("nom", "prenom", "telephone", "email", "mdp", "numeroAdresse", "prefixAdresse", "nameAdresse", "email_confirm", "mdp_confirm")
                         ->strLength("mdp", 6, 50)
                         ->strLength("telephone", 10, 10)
-                        ->integer("telephone")
                         ->email("email")
                         ->isUnique("email", $repository, "email", "Email déjà existant")
                         ->isUnique("telephone", $repository, "telephone", "Numéro de téléphone déjà existant")
@@ -129,6 +128,6 @@ class AuthAction
         $auth = $this->container->get(UserAuth::class);
         $auth->logout();
         $this->toaster->createToast("Vous êtes déconnecté", Toaster::SUCCESS);
-        return $this->redirect("user.auth");
+        return $this->redirect("user.connexion");
     }
 }

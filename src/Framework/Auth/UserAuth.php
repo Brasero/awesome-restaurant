@@ -35,7 +35,7 @@ class UserAuth
         $user = $this->manager->getRepository(User::class)->findOneBy(["email" => $email]);
         if ($user && password_verify($mdp, $user->getPassword()) 
         or $this->isLogged()) {
-            $this->session->set("auth", $user->getId());
+            $this->session->set("auth", $user);
             return true;
         }
         return false;
