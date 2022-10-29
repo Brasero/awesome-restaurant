@@ -1,0 +1,69 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="../assets/css/profil.css">
+
+{% endblock %}
+
+{% block body %}
+    <div class="profilContainer">
+        <div class="firstContainer">
+            <div class="title">
+                <h1>Mon compte</h1>
+                <div></div>
+            </div>
+
+            <div>
+                <div class="card">
+                    <div class="rondcommande">
+                        <img src="../assets/img/ressources/icon/commande/commandeIcon.svg">
+                    </div>
+                    <a href="">Mes commandes</a>
+                </div>
+                <div class="card">
+                    <div class="rondAdresse">
+                        <img src="../assets/img/ressources/icon/Adresse/Adresse.png" alt="">
+                    </div>
+                    <a href="">Mes adresses</a>
+                </div>
+                <div class="card">
+
+                    <div class="rondparam">
+                        <img src="../assets/img/ressources/icon/Param/Param.png" alt="">
+                    </div>
+                    <a href="">Paramètres profil</a>
+                </div>
+                <div class="card">
+                    <div class="rondAide">
+                        <img src="../assets/img/ressources/icon/Aide/Aide.png" alt="">
+                    </div>
+                    <a href="">Aide et question</a>
+                </div>
+            </div>
+        </div>
+        <div class="secondContainer">
+            <div class="title">
+                <h1>Mes dernières commandes</h1>
+                <div></div>
+            </div>
+            <div class="tableCommande">
+                <div class="tablecolumn">
+                    <p class="partName">Date</p>
+                    <p>28/10/2022</p>
+                </div>
+                <div class="tablecolumn">
+                    <p class="partName">Numéro de commande</p>
+                    <p>123456789</p>
+                </div>
+                <div class="tablecolumn">
+                    <p class="partName">Produit</p>
+                    <p>burger</p>
+                </div>
+                <div class="tablecolumn">
+                    <p class="partName">prix</p>
+                    <p>5€</p>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}
