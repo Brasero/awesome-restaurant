@@ -108,8 +108,6 @@ class AuthAction
                             "numeroAdresse",
                             "prefixAdresse",
                             "nameAdresse",
-                            "email_confirm",
-                            "mdp_confirm"
                         )
                         ->strLength("mdp", 6, 50)
                         ->strLength("telephone", 10, 10)
