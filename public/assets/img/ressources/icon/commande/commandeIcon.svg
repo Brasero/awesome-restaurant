@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="132.472" height="141.719" viewBox="0 0 132.472 141.719">
+  <defs>
+    <radialGradient id="radial-gradient" cx="0.145" cy="0.152" r="0.806" gradientTransform="matrix(0.306, 0.966, -0.603, 0.137, -5.88, -8.564)" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#d9d9d9"/>
+      <stop offset="1" stop-color="#fff"/>
+    </radialGradient>
+    <linearGradient id="linear-gradient" x1="0.499" y1="-60.301" x2="0.498" y2="-61.708" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#4c4c4c"/>
+      <stop offset="0.151" stop-color="#c7c7c7"/>
+      <stop offset="0.342" stop-color="#fff4f4"/>
+      <stop offset="0.659" stop-color="#cacaca"/>
+      <stop offset="0.851" stop-color="#798093"/>
+      <stop offset="1" stop-color="#aeaeaf"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0.31" y1="-153.388" x2="0.31" y2="-154.388" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#a2a2a2"/>
+      <stop offset="0.143" stop-color="#d0d0d0"/>
+      <stop offset="0.286" stop-color="#fff"/>
+      <stop offset="0.571" stop-color="#acacc0"/>
+      <stop offset="1" stop-color="#fff"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="0.6" x2="0.6" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0"/>
+      <stop offset="1" stop-color="#8d8d97"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="0.693" y1="0.033" x2="0.576" y2="0.893" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#936c06"/>
+      <stop offset="0.5" stop-color="#d89e18"/>
+      <stop offset="0.83" stop-color="#fff8e8"/>
+      <stop offset="1" stop-color="#ccc"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="0.455" y1="-0.005" x2="0.454" y2="1.03" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#c4b18e"/>
+      <stop offset="0.277" stop-color="orange"/>
+      <stop offset="0.582" stop-color="#ffd27f"/>
+      <stop offset="0.859" stop-color="#ffe8bf"/>
+      <stop offset="1" stop-color="#c8c8cf"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-6" x1="13.266" y1="-42.829" x2="13.266" y2="-44.249" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#727272"/>
+      <stop offset="0.44" stop-color="#c0c0c3"/>
+      <stop offset="0.638" stop-color="#f9f9ff"/>
+      <stop offset="0.767" stop-color="#fff"/>
+      <stop offset="1" stop-color="#a0a0ac"/>
+    </linearGradient>
+    <radialGradient id="radial-gradient-2" cx="0.913" cy="0.393" r="0.735" gradientTransform="matrix(0.247, 0.961, 1.011, -0.325, 97.451, -127.014)" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ff8d14"/>
+      <stop offset="0.467" stop-color="#f19b42" stop-opacity="0.749"/>
+      <stop offset="0.793" stop-color="#ff8f1e" stop-opacity="0.498"/>
+      <stop offset="1" stop-color="#ea6e06"/>
+    </radialGradient>
+  </defs>
+  <g id="checklist-1295319" transform="translate(-3.639 -927.917)">
+    <path id="Tracé_93" data-name="Tracé 93" d="M29.062,936.27c-5.707,0-11.414,5.707-11.414,11.414v108.435c0,5.707,5.707,11.414,11.414,11.414h91.314c5.707,0,12.555-5.707,12.555-11.414L131.79,947.684c0-5.707-5.707-11.414-11.414-11.414Z" transform="translate(2.705 1.628)" fill="#202020"/>
+    <path id="Tracé_93_-_Contour" data-name="Tracé 93 - Contour" d="M29.062,935.795h91.313a12.746,12.746,0,0,1,11.89,11.886l1.141,108.438c0,2.8-1.567,5.793-4.3,8.2a13.879,13.879,0,0,1-8.732,3.686H29.062a11.878,11.878,0,0,1-8.183-3.706,11.878,11.878,0,0,1-3.706-8.183V947.684a11.879,11.879,0,0,1,3.706-8.183A11.878,11.878,0,0,1,29.062,935.795Zm103.394,120.329-1.141-108.44c0-5.418-5.521-10.939-10.939-10.939H29.062c-5.418,0-10.939,5.521-10.939,10.939v108.435c0,5.418,5.521,10.939,10.939,10.939h91.314a12.912,12.912,0,0,0,8.1-3.448c2.526-2.229,3.975-4.958,3.977-7.488Z" transform="translate(2.705 1.628)"/>
+    <path id="Tracé_94" data-name="Tracé 94" d="M26.932,946.294l.078,111.428,94.307-.378.265-111.255Z" transform="translate(4.567 3.597)" fill="url(#radial-gradient)"/>
+    <g id="Groupe_16" data-name="Groupe 16" transform="translate(50.315 928.155)">
+      <path id="Tracé_95" data-name="Tracé 95" d="M38.539,886.575V903.7h55.93V886.575Z" transform="translate(-38.539 -879.521)" fill="url(#linear-gradient)"/>
+      <path id="Tracé_95_-_Contour" data-name="Tracé 95 - Contour" d="M38.3,886.337H94.707v17.6H38.3Zm55.93.475H38.777v16.646H94.231Z" transform="translate(-38.539 -879.521)"/>
+      <path id="Tracé_96" data-name="Tracé 96" d="M50.528,887.548,44.821,880.7h39.95l-5.707,6.849Z" transform="translate(-37.279 -880.699)" fill="url(#linear-gradient-2)"/>
+      <path id="Tracé_96_-_Contour" data-name="Tracé 96 - Contour" d="M79.175,887.785H50.417l-6.1-7.324H85.278Zm-28.536-.475H78.952l5.311-6.373H45.328Z" transform="translate(-37.279 -880.699)"/>
+    </g>
+    <g id="Groupe_17" data-name="Groupe 17" transform="translate(44.163 963.356)">
+      <path id="Tracé_97" data-name="Tracé 97" d="M73.515,40.67H73.5l-48.535-.119a4.422,4.422,0,0,1,.022-8.845l48.535.119a4.422,4.422,0,0,1-.011,8.845Z" transform="translate(-24.98 -25.855)" fill="#979797"/>
+      <path id="Tracé_98" data-name="Tracé 98" d="M73.836,31.153H84.157V43.01H73.836Zm9.879.442H74.279V42.568h9.437Z" transform="translate(-15.136 -26.809)" fill="#787878"/>
+      <path id="Tracé_99" data-name="Tracé 99" d="M76.856,33.279,74.88,35.561l3.952,6.849L91.674,27.571,78.832,38.986Z" transform="translate(-14.971 -27.571)" fill="#7b82f9"/>
+    </g>
+    <g id="Groupe_18" data-name="Groupe 18" transform="translate(43.81 986.185)">
+      <path id="Tracé_100" data-name="Tracé 100" d="M73.515,40.67H73.5l-48.535-.119a4.422,4.422,0,0,1,.022-8.845l48.535.119a4.422,4.422,0,0,1-.011,8.845Z" transform="translate(-24.98 -25.855)" fill="#979797"/>
+      <path id="Tracé_101" data-name="Tracé 101" d="M73.836,31.153H84.157V43.01H73.836Zm9.879.442H74.279V42.568h9.437Z" transform="translate(-15.136 -26.809)" fill="#787878"/>
+      <path id="Tracé_102" data-name="Tracé 102" d="M76.856,33.279,74.88,35.561l3.952,6.849L91.674,27.571,78.832,38.986Z" transform="translate(-14.971 -27.571)" fill="#7b82f9"/>
+    </g>
+    <g id="Groupe_19" data-name="Groupe 19" transform="translate(44.67 1008.895)">
+      <path id="Tracé_103" data-name="Tracé 103" d="M73.515,40.67H73.5l-48.535-.119a4.422,4.422,0,0,1,.022-8.845l48.535.119a4.422,4.422,0,0,1-.011,8.845Z" transform="translate(-24.98 -25.855)" fill="#979797"/>
+      <path id="Tracé_104" data-name="Tracé 104" d="M73.836,31.153H84.157V43.01H73.836Zm9.879.442H74.279V42.568h9.437Z" transform="translate(-15.136 -26.809)" fill="#787878"/>
+      <path id="Tracé_105" data-name="Tracé 105" d="M76.856,33.279,74.88,35.561l3.952,6.849L91.674,27.571,78.832,38.986Z" transform="translate(-14.971 -27.571)" fill="#7b82f9"/>
+    </g>
+    <g id="Groupe_20" data-name="Groupe 20" transform="translate(43.81 1031.839)">
+      <path id="Tracé_106" data-name="Tracé 106" d="M73.515,40.67H73.5l-48.535-.119a4.422,4.422,0,0,1,.022-8.845l48.535.119a4.422,4.422,0,0,1-.011,8.845Z" transform="translate(-24.98 -25.855)" fill="#979797"/>
+      <path id="Tracé_107" data-name="Tracé 107" d="M73.836,31.153H84.157V43.01H73.836Zm9.879.442H74.279V42.568h9.437Z" transform="translate(-15.136 -26.809)" fill="#787878"/>
+      <path id="Tracé_108" data-name="Tracé 108" d="M76.856,33.279,74.88,35.561l3.952,6.849L91.674,27.571,78.832,38.986Z" transform="translate(-14.971 -27.571)" fill="#7b82f9"/>
+    </g>
+    <g id="Groupe_24" data-name="Groupe 24" transform="translate(4.162 940.436)">
+      <g id="Groupe_23" data-name="Groupe 23" transform="translate(0 13.757) rotate(-8.783)">
+        <g id="Groupe_22" data-name="Groupe 22" transform="matrix(-0.556, -0.831, 0.831, -0.556, 78.039, 125.433)">
+          <g id="Groupe_21" data-name="Groupe 21" transform="translate(0 0)">
+            <path id="Tracé_109" data-name="Tracé 109" d="M0,2.414,9.239,4.828V0Z" transform="translate(0 4.848)" fill="url(#linear-gradient-3)"/>
+            <path id="Tracé_109_-_Contour" data-name="Tracé 109 - Contour" d="M9.415,5.056-.7,2.414,9.415-.228ZM.7,2.414,9.063,4.6V.228Z" transform="translate(0 4.848)"/>
+            <path id="Tracé_110" data-name="Tracé 110" d="M0,4.828,14.783,0V14.485C11.688,13.56,6.576,11.882,0,9.657Z" transform="translate(9.239)" fill="url(#linear-gradient-4)"/>
+            <path id="Tracé_110_-_Contour" data-name="Tracé 110 - Contour" d="M14.959-.243V14.722l-.226-.068c-2.961-.885-7.8-2.465-14.789-4.83l-.12-.04V4.7Zm-.352,14.491V.243L.176,4.956V9.531C6.923,11.813,11.649,13.358,14.607,14.249Z" transform="translate(9.239)"/>
+          </g>
+          <path id="Tracé_111" data-name="Tracé 111" d="M0,0H92.391V14.485H0Z" transform="translate(24.022 0.019)" fill="url(#linear-gradient-5)"/>
+          <path id="Tracé_111_-_Contour" data-name="Tracé 111 - Contour" d="M-.176-.176H92.567V14.661H-.176ZM92.215.176H.176V14.309H92.215Z" transform="translate(24.022 0.019)"/>
+        </g>
+        <path id="Tracé_112" data-name="Tracé 112" d="M22.316,15.357,12.038,0,0,8.057,10.278,23.414Z" transform="translate(3.023 5.266)" fill="url(#linear-gradient-6)"/>
+        <path id="Tracé_112_-_Contour" data-name="Tracé 112 - Contour" d="M10.153,24.047-.634,7.932l12.8-8.565L22.95,15.482ZM.634,8.183l9.77,14.6,11.279-7.549L11.913.634Z" transform="translate(3.023 5.266)"/>
+        <path id="Tracé_113" data-name="Tracé 113" d="M3.453,13.031S-1.027,6.941.219,6.2C2.363,3.074,6.577.993,9.477,0c1.929.13,5.086,5.6,5.086,5.6Z" fill="url(#radial-gradient-2)"/>
+        <path id="Tracé_113_-_Contour" data-name="Tracé 113 - Contour" d="M3.344,13.654,3.085,13.3c-.009-.013-.954-1.3-1.849-2.747C-.455,7.819-.525,6.883-.431,6.417a.905.905,0,0,1,.32-.546,14.717,14.717,0,0,1,4.436-3.96,25.829,25.829,0,0,1,5-2.343l.087-.03.092.006c.952.064,2.13,1.055,3.6,3.03a32.1,32.1,0,0,1,1.849,2.793l.214.37ZM.469,6.579c-.025.083-.136.741,1.442,3.329.628,1.03,1.3,2,1.655,2.5L13.947,5.458c-.3-.495-.887-1.421-1.576-2.344C10.763.956,9.887.535,9.526.466,7.912,1.029,2.985,2.975.6,6.455l-.057.082Z"/>
+      </g>
+    </g>
+  </g>
+</svg>
