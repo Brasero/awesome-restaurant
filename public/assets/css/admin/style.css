@@ -269,4 +269,64 @@ body {
 
 /**-----END NavBar Style------**/
 
+/* hamburger pour responsive */ 
+.hamburger-nav {
+  display: none;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  left: 5px;
+}
+
+.hamburger-nav i {
+  font-size: 1.8rem;
+}
+
 /**-----END Main Style-----**/
+
+@media screen and (max-width : 768px) {
+  /* .main .navBar {
+    display: block;
+    position: absolute;
+    left: -100%;
+  } */
+
+  /* .main > .navBar > .navLinks .navLink {
+    display: none;
+  }
+
+  .main > .navBar > .navLinks {
+    height: 7%;
+  } */
+
+  .main > .navBar, .main > .navBar > .navLinks {
+    /* width: 100%; */
+    align-items: center;
+  } 
+  
+  .main > .navBar.active,
+  .main > .navBar > .navLinks.active {
+    width: 10%;
+  }
+  .main > .navBar,
+  .main > .navBar .active > .navLinks.active {
+    width: 8%;
+  } 
+
+
+
+  .main > .navBar > .navLinks .navLink {
+    /* display: none!important; */
+    padding: 1rem;
+  }
+
+  .main > .navBar, .main > .navBar > .navLinks > .navLink{
+    /* display: block!important; */
+  }
+
+
+
+
+
+
+}

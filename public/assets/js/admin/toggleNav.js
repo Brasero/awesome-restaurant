@@ -7,3 +7,4 @@ function toggleNav(){
     navBar.classList.toggle('active')
     toggleButton.classList.toggle('active')
 }
+
