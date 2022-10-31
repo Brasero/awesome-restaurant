@@ -1,6 +1,8 @@
 <?php
 namespace App\User;
 
+use App\Entity\User;
+use App\Entity\Ville;
 use Framework\Module;
 use Framework\Router\Router;
 use Framework\Toaster\Toaster;
@@ -75,6 +77,12 @@ class UserModule extends Module
 
     public function show()
     {
-        return $this->renderer->render("@user/admin/show");
+        $repository = $this->manager->getRepository(User::class);
+        $nbUsers = $repository->count([]);
+        $users = $repository->findAll();
+        return $this->renderer->render("@user/admin/show", [
+            "nbUsers" => $nbUsers,
+            "users" => $users,
+        ]);
     }
 }

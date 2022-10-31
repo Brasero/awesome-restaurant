@@ -1,0 +1,97 @@
+.input-control {
+    display: flex;
+    align-items: center;
+    width: 90%;
+    background: var(--color-primary)!important;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 25px;
+}
+
+.input-control input {
+    width: 100%;
+    font-size: 1rem;
+    padding-left: 10px;
+    outline: none;
+    border: none;
+    background: var(--color-primary)!important;
+}
+
+.input-control i {
+    cursor: pointer;
+    background: var(--color-primary)!important;
+
+}
+
+.input-control input::placeholder {
+    background: var(--color-primary)!important;
+    font-size: 16px;
+}
+
+.tableUser {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 4.5rem;
+    width: 100%;
+}
+
+.tableTitle {
+    text-align: center;
+}
+
+
+.nbUser {
+    margin-top: 2rem;
+    position: absolute;
+    left: 8.3rem;
+    top: 5rem;
+}
+
+.tableStyle  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.userTable {
+    width: 100%;
+    border-radius: 15px;
+    border-collapse: collapse;
+    box-shadow: var(--box-shadow);
+    margin: 15px;
+}
+
+.tdResult {
+    width: 20%;
+    text-align: center;
+    padding: 15px 20px;
+}
+
+.tdResult:first-child{
+    color: var(--color-primary);
+}
+
+.show:nth-child(even){
+    /* background-color: #f3f3f3; */
+    background-color: red;
+}
+
+/* thead tr {
+    background-color: midnightblue;
+    color: #fff;
+    text-align: left;
+}  */
+
+/* th, td {
+    padding: 15px 20px;
+    text-align: center;
+    width: 50%; 
+} */
+
+/* 
+tbody tr, td, th {
+    border: 1px solid #ddd;
+} */
