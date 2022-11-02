@@ -1,54 +1,160 @@
 {% extends 'layout.html.twig' %}
 
 {% block stylesheet %}
-    <link rel="stylesheet" href="../assets/css/panier.css">
+
+<link rel="stylesheet" href="../assets/css/panier.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 {% endblock %}
 
 {% block body %}
 
-    <div class="panierContainer">
-        <h1 class="panierTitle">
-            Mon panier
-        </h1>
-        <ul class="itemList">
-            <li class="item">
-                <div class="nameImage">
-                    <img class="image" src="./assets/img/burger.jpg" />
-                    <span class="name">  <!-- Nom produit -->   </span>
-                </div>
-                <div class="price">
-                    <!-- Prix produit --> €
-                </div>
-                <div class="qte">
-                    <a href="index.php?page=panier&action=decreaseProd&idProd=<?= $item['ID_produit'] ?>" >
-                        <span class="decreaseButton">
-                            <button role="button" id="<?= $item['ID_produit'] ?>-minus">-</button>
-                        </span>
-                    </a>
-                    <?= $item['qte_panier_ligne'] ?>
-                    <a href="index.php?page=panier&action=increaseProd&idProd=<?= $item['ID_produit'] ?>">
-                        <span class="increaseButton">
-                            <button role="button" id="<?= $item['ID_produit'] ?>-plus">+</button>
-                        </span>
-                    </a>
-                </div>
-                <div class="action">
-                    <a href="index.php?page=panier&action=supprProd&idProd=<?= $item['ID_produit'] ?>">
-                        <button class="deleteButton" id="<?= $item['ID_produit'] ?>-delete">
-                            Supprimer
-                        </button>
-                    </a>
-                </div>
-            </li>
-            <!-- if total != 0 -->
-        </ul>
-        <h2 class="total">
-            Total : <!-- Total panier --> €
-        </h2>
-        <!-- else -->
-        <h2 class="total">
-            Votre panier est vide.
-        </h2>
-        <!-- endif -->
+<div class="panierContainer">
+    <h1 class="panierTitle">
+        Mon panier
+    </h1>
+    <div class="panier">
+        <section>
+            <table>
+                <tr>
+                    <th></th>
+                    <th>Nom</th>
+                    <th>Prix</th>
+                    <th>Quantité</th>
+                    <th>Action</th>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="nameImage">
+                            <img class="image" src="./assets/img/burger.jpg" />
+                        </div>
+                    </td>
+                    <td>
+                        <div class="nom">
+                            CheesBurger
+                        </div>
+                    </td>
+                    <td>
+                        <div class="price">
+                            5€
+                        </div>
+                    </td>
+                    <td>
+                        <div class="qte">
+                            <a href="index.php?page=panier&action=decreaseProd&idProd=<?= $item['ID_produit'] ?>">
+                                <span class="decreaseButton">
+                                    <button role="button" id="<?= $item['ID_produit'] ?>-minus">-</button>
+                                </span>
+                            </a>
+                            <span>1</span>
+                            <a href="index.php?page=panier&action=increaseProd&idProd=<?= $item['ID_produit'] ?>">
+                                <span class="increaseButton">
+                                    <button role="button" id="<?= $item['ID_produit'] ?>-plus">+</button>
+                                </span>
+                            </a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="action">
+                            <a href="index.php?page=panier&action=supprProd&idProd=<?= $item['ID_produit'] ?>">
+                                <button class="deleteButton" id="<?= $item['ID_produit'] ?>-delete">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="nameImage">
+                            <img class="image" src="./assets/img/burger.jpg" />
+                        </div>
+                    </td>
+                    <td>
+                        <div class="nom">
+                            CheesBurger
+                        </div>
+                    </td>
+                    <td>
+                        <div class="price">
+                            5€
+                        </div>
+                    </td>
+                    <td>
+                        <div class="qte">
+                            <a href="index.php?page=panier&action=decreaseProd&idProd=<?= $item['ID_produit'] ?>">
+                                <span class="decreaseButton">
+                                    <button role="button" id="<?= $item['ID_produit'] ?>-minus">-</button>
+                                </span>
+                            </a>
+                            <span>1</span>
+                            <a href="index.php?page=panier&action=increaseProd&idProd=<?= $item['ID_produit'] ?>">
+                                <span class="increaseButton">
+                                    <button role="button" id="<?= $item['ID_produit'] ?>-plus">+</button>
+                                </span>
+                            </a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="action">
+                            <a href="index.php?page=panier&action=supprProd&idProd=<?= $item['ID_produit'] ?>">
+                                <button class="deleteButton" id="<?= $item['ID_produit'] ?>-delete">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="nameImage">
+                            <img class="image" src="./assets/img/burger.jpg" />
+                        </div>
+                    </td>
+                    <td>
+                        <div class="nom">
+                            CheesBurger
+                        </div>
+                    </td>
+                    <td>
+                        <div class="price">
+                            5€
+                        </div>
+                    </td>
+                    <td>
+                        <div class="qte">
+                            <a href="index.php?page=panier&action=decreaseProd&idProd=<?= $item['ID_produit'] ?>">
+                                <span class="decreaseButton">
+                                    <button role="button" id="<?= $item['ID_produit'] ?>-minus">-</button>
+                                </span>
+                            </a>
+                            <span>1</span>
+                            <a href="index.php?page=panier&action=increaseProd&idProd=<?= $item['ID_produit'] ?>">
+                                <span class="increaseButton">
+                                    <button role="button" id="<?= $item['ID_produit'] ?>-plus">+</button>
+                                </span>
+                            </a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="action">
+                            <a href="index.php?page=panier&action=supprProd&idProd=<?= $item['ID_produit'] ?>">
+                                <button class="deleteButton" id="<?= $item['ID_produit'] ?>-delete">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr class="total">
+                    <th>Total : 50€</th>
+                    <th class="commander"><a href="">Commander</a></th>
+                </tr>
+            </table>
+        </section>
     </div>
+</div>
 {% endblock %}

@@ -128,7 +128,7 @@ header > .navBar > .toggleButton {
   }
 
   header > .navBar.expanded {
-    height: 300px;
+    height: 55vh;
     align-items: flex-start;
   }
 
