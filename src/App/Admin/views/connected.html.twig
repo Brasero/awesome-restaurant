@@ -36,13 +36,13 @@
             </ul>
         </nav>
         <div class="container">
-            {% if hasToast() %}
-                <div class="toastContainer">
+            <div class="toastContainer">
+                {% if hasToast() %}
                 {% for toast in renderToast() %}
                     {{ toast | raw }}
                 {% endfor %}
+                {% endif %}
                 </div>
-            {% endif %}
             {% block body %}
             {% endblock %}
         </div>

@@ -56,7 +56,8 @@ body {
 }
 
 
-.panier td .action .deleteButton {
+.panier td .action .deleteButton,
+.panier td .action .editButton {
     background: transparent;
     border: none;
     cursor: pointer;
@@ -66,12 +67,18 @@ body {
     color: var(--color-red);
     font-size: 1.15rem;
     transition: 0.125s ease-in-out;
-
 }
 
-.panier td .action:hover .deleteButton i {
-    /* opacity: 0.5; */
-    transform : scale(1.8);
+.panier td .action .editButton i {
+    color: var(--color-primary);
+    font-size: 1.15rem;
+    transition: 0.125s ease-in-out;
+    margin-right: 0.5rem;
+}
+
+.panier td .action:hover .deleteButton i,
+.panier td .action:hover .editButton i {
+    opacity: 0.5;
 }
 
 .panier section {

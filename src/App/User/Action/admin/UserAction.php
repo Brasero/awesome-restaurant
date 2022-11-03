@@ -1,6 +1,6 @@
 <?php
 
-namespace App\User\Action;
+namespace App\User\Action\Admin;
 
 use App\Entity\User;
 use Framework\Toaster\Toaster;
@@ -29,11 +29,10 @@ class UserAction {
         $this->manager->flush();
         $user = $this->manager->find(User::class, $id);
         if(!is_null($user)){
-            return "false";
             $this->toaster->createToast("Une erreur s'est produite", Toaster::ERROR);
+            return "false";
         }
-        return "true";
         $this->toaster->createToast("Utilisateur supprimé", Toaster::SUCCESS);
-
+        return "true";
     }
 }

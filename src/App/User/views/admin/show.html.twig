@@ -17,23 +17,23 @@
     </div>
 
     <table class="userTable">
-        <div class="tableUser">
-            <h3 class="tableTitle"> Nom</h3>
-            <h3 class="tableTitle"> Prénom</h3>
-            <h3 class="tableTitle"> Email</h3>
-            <h3 class="tableTitle"> Téléphone</h3>
-            <h3 class="tableTitle"> Gestion</h3>
-        </div>
+        <tr class="tableUser">
+            <th class="tableTitle"> Nom</th>
+            <th class="tableTitle"> Prénom</th>
+            <th class="tableTitle"> Email</th>
+            <th class="tableTitle"> Téléphone</th>
+            <th class="tableTitle"> Gestion</th>
+        </tr>
 
         {% for user in users %}
-            <tr class="show">
+            <tr class="show" id="user-{{user.id}}">
                 <td class="tdResult">{{user.nom}}</td>
                 <td class="tdResult">{{user.prenom}}</td>
                 <td class="tdResult">{{user.email}}</td>
                 <td class="tdResult">{{user.telephone}}</td>
                 <td class="tdResult">
                     <button
-                    class="actionButton deleteButton"
+                    class="actionButton deleteButton" onclick="supprItem('user',{{user.id}})"
                 >
                     Supprimer
                 </button>
@@ -54,4 +54,5 @@
 <script type="text/javascript" src="../../assets/js/admin/isotope_packery.js"></script>
 <script type="text/javascript" src="../../assets/js/admin/isotope_dashboard.js"></script>
 <script type="text/javascript" src="../../assets/js/admin/searchClient.js"></script>
+<script type="text/javascript" src="../../assets/js/admin/suppressionAjax.js"></script>
 {% endblock %}

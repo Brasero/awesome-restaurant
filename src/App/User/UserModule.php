@@ -7,6 +7,7 @@ use Framework\Module;
 use Framework\Router\Router;
 use Framework\Toaster\Toaster;
 use App\User\Action\AuthAction;
+use App\User\Action\Admin\UserAction;
 use Doctrine\ORM\EntityManager;
 use Framework\Renderer\TwigRenderer;
 use Psr\Container\ContainerInterface;
@@ -36,12 +37,15 @@ class UserModule extends Module
         $renderer->addPath('user', __DIR__ . "/views");
         $this->renderer = $renderer;
         $authAction = $container->get(AuthAction::class);
+        $userAction = $container->get(UserAction::class);
 
         $router->get($prefix . '/connexion', [$authAction, 'connexion'], 'user.connexion');
         $router->post($prefix . '/connexion', [$authAction, 'connexion']);
 
         $router->get($prefix . '/inscription', [$authAction, 'inscription'], 'user.inscription');
         $router->post($prefix . "/inscription", [$authAction, 'inscription']);
+
+        $router->get("/ajax/user/delete/{id:\d+}", [$userAction, "delete"], "user.delete");
 
         $router->get($prefix . '/espace', [$this, 'espace'], 'user.espace');
 
