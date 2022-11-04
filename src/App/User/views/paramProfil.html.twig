@@ -1,0 +1,65 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="../assets/css/paramProfil.css">
+{% endblock %}
+
+{% block body %}
+    <div class="paramProfilContainer">
+        <aside>
+            <div id="title">
+                <h1>Mon profil</h1>
+            </div>
+            <div id="lienContainer">
+                <ul>
+                    <li>
+                        <a href="">Mes adresses</a>
+                    </li>
+                    <li>
+                        <a href="">Mes commandes</a>
+                    </li>
+                    <li>
+                        <a href="">Aide et question</a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+        <main>
+            <div id="title">
+                <h1>Gérer les paramétre de mon profil</h1>
+            </div>
+            <div id="form">
+                <div id="nomPrenom">
+                    <div>
+                        <label for="nom">Nom</label>
+                        <input type="text" id="nom">
+                    </div>
+                    <div class="inputBasique">
+                        <label for="prenom">Prénom</label>
+                        <input type="text"  id="prenom">
+                    </div>
+                </div>
+                <div>
+                    <div class="inputBasique">
+                        <label for="email">Email</label>
+                        <input type="email" id="email">
+                    </div>
+                    <div class="inputBasique">
+                        <label for="telephone">Numéro de téléphone</label>
+                        <input type="tel" id="telephone">
+                    </div>
+                    <div class="inputBasique">
+                        <label for="password">Mot de passe</label>
+                        <input type="password" id="password">
+
+                    </div>
+                    <div id="button">
+                        <button>Modifier</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+{% endblock %}

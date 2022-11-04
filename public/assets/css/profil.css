@@ -44,7 +44,11 @@ body {
     width: 80%;
 }
 
-.firstContainer > div > .card {
+.firstContainer > div > a{
+    text-decoration:none;
+}
+
+.firstContainer > div > a> .card {
     display: flex;
     border-radius: 41px;
     justify-content: center;
@@ -57,13 +61,7 @@ body {
 
 }
 
-.param {
-    position: absolute;
-    top: 11px;
-    left: 5px;
-    width: 100%;
 
-}
 
 .rond {
     position: relative;
@@ -71,13 +69,22 @@ body {
     height: 160px;
     border-radius: 50%;
     background-color: var(--color-primary);
-    box-shadow: var(--shadow-1);
+
+}
+
+.param {
+    position: absolute;
+    top: 11px;
+    left: 5px;
+    width: 100%;
+    filter: drop-shadow(var(--shadow-1));
 }
 
 .commande {
     position: absolute;
     top: 11px;
     width: 90%;
+    filter: drop-shadow(var(--shadow-1));
 
 }
 
@@ -86,6 +93,7 @@ body {
     top: -5px;
     left: 17px;
     width: 70%;
+    filter: drop-shadow(var(--shadow-1));
 }
 
 .adresse {
@@ -93,13 +101,14 @@ body {
     left: -3px;
     top: 5px;
     width: 123%;
-
+    filter: drop-shadow(var(--shadow-1));
 }
 
-.firstContainer > div > .card > a {
+.firstContainer > div > a > .card > p {
     margin-top: 15%;
     color: var(--color-light);
     font-size: 1.8rem;
+    text-decoration: underline;
 }
 
 .secondContainer {

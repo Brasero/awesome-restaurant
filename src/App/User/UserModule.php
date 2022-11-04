@@ -42,6 +42,7 @@ class UserModule extends Module
         $router->post($prefix . "/inscription", [$authAction, 'inscription']);
 
         $router->get($prefix . '/espace', [$this, 'espace'], 'user.espace');
+        $router->get($prefix . '/paramProfil', [$this, 'paramProfil'], 'user.paramProfil');
 
         if ($renderer instanceof TwigRenderer) {
             $renderer->getTwig()->addExtension($menuTwigExtension);
@@ -71,6 +72,11 @@ class UserModule extends Module
     public function espace(): string
     {
         return $this->renderer->render('@user/profil');
+    }
+
+    public function paramProfil(): string
+    {
+        return $this->renderer->render('@user/paramProfil');
     }
 
     public function show()
