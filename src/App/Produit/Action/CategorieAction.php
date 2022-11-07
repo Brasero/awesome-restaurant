@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Framework\Router\RedirectTrait;
 use Framework\Router\Router;
+use Framework\Validator\Validator;
 use GuzzleHttp\Psr7\ServerRequest;
 use GuzzleHttp\Psr7\UploadedFile;
 use Psr\Container\ContainerExceptionInterface;
@@ -40,6 +41,7 @@ class CategorieAction
      * @var Router|mixed
      */
     private Router $router;
+    private $repository;
 
     /**
      * @param ContainerInterface $container
@@ -52,6 +54,7 @@ class CategorieAction
         $this->toaster = $container->get(Toaster::class);
         $this->manager = $container->get(EntityManagerInterface::class);
         $this->router = $container->get(Router::class);
+        $this->repository = $this->manager->getRepository(Categorie::class);
     }
 
     /**
@@ -68,7 +71,7 @@ class CategorieAction
         $this->fileGuards($file);
 
         $fileName = $file->getClientFileName();
-        $repository = $this->manager->getRepository(Categorie::class);
+        $repository = $this->repository;
         $categorys = $repository->findAll();
         $newCategorie = new Categorie();
         $newCategorie->setNom($data['nom']);
@@ -107,7 +110,7 @@ class CategorieAction
         if ($apiKey != "aed2548sqsa214dcq-gdfsd56q") {
             return "false";
         }
-        $categorie = $this->manager->find(Categorie::class, $id);
+        $categorie = $this->repository->find($id);
         $imagePath = $this->container->get('categorie.img.basePath');
         $imagePath .= $categorie->getImg();
         $this->deleteImage($imagePath);
@@ -124,7 +127,7 @@ class CategorieAction
     private function fileGuards(UploadedFile $file)
     {
         //Guard erreur de chargement server
-        if ($file->getError() === 0) {
+        if ($file->getError() === 4) {
             $this->toaster->createToast("Une erreur est survenu lors du chargement de votre image", Toaster::ERROR);
             $this->redirect('admin.produit.manage');
         }
@@ -146,6 +149,52 @@ class CategorieAction
             return $this->redirect('admin.produit.manage');
         }
         return true;
+    }
+
+    public function update(ServerRequest $request)
+    {
+        $data = $request->getParsedBody();
+        $file = $request->getUploadedFiles()['imageupdate'];
+        $id = $data['id'];
+        $nom = $data['nom'];
+        $data['img'] = $file->getClientFileName();
+        $categorieProduit = $this->repository->find($id);
+        $validator= new Validator($data);
+        $validator->required('nom')
+            ->strLength('nom', 3, 50)
+            ->isUnique('nom', $this->repository,'nom','', $id);
+        $categorieProduit->setNom($nom);
+
+        if ($file->getError() != 4) {
+            $validator->isUnique('img', $this->repository,'img','', $id);
+            $this->fileGuards($file);
+            $ancienneImage= $this->container->get('categorie.img.basePath');
+            $ancienneImage .= $categorieProduit->getImg();
+            $categorieProduit->setImg($file->getClientFileName());
+        }
+        // Si les données sont invalides
+        $errors = $validator->getErrors();
+        if (!empty($errors)) {
+            foreach ($errors as $error) {
+                $this->toaster->createToast($error, Toaster::ERROR);
+            }
+            return $this->redirect('admin.Taxe.show');
+        }
+
+        if ($file->getError() != 4) {
+            $file->moveTo($this->container->get('categorie.img.basePath') . $file->getClientFileName());
+
+            if (!$file->isMoved()) {
+                $this->toaster->createToast("ERREUR : problème", Toaster::ERROR);
+                $this->redirect('admin.produit.manage');
+            }
+            $this->deleteImage($ancienneImage);
+        }
+
+        $this->toaster->createToast('Modification enregistrée', Toaster::SUCCESS);
+        $this->manager->persist($categorieProduit);
+        $this->manager->flush();
+        return $this->redirect('admin.produit.manage');
     }
 
     /**

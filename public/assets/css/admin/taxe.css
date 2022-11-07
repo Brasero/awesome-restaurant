@@ -1,0 +1,43 @@
+.container>.cardFormTaxe  {
+    background: white;
+    border-radius: 15px;
+}
+
+.cardFormTaxe>.card {
+    min-width: 250px;
+    aspect-ratio: 1/1;
+    background-color: white;
+    padding: 15px 20px;
+    border-radius: 15px;
+    justify-content: flex-start;
+}
+.cardFormTaxe >.card >.formTitle {
+    margin-top: 0;
+    font-family: var(--font-primary);
+    color: var(--color-primary);
+    box-shadow: none;
+    text-decoration: underline;
+    background: transparent;
+}
+
+.cardFormTaxe >.card >.taxeForm
+{
+    background-color: transparent;
+}
+
+.table>.title{
+    padding: 20px 15px;
+    text-align: center;
+    background-color: var(--color-light);
+    color: var(--color-primary);
+    text-decoration: underline;
+    font-family: var(--font-primary);
+}
+.retourDashboard{
+    margin-bottom: 3px;
+}
+.retourDashboard>a{
+    color: var(--color-black);
+    text-decoration: underline;
+    font-family: var(--font-secondary);
+}

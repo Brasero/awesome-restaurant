@@ -1,0 +1,148 @@
+body {
+    background-image: url("../img/ressources/background/connexion/connexion@3.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    backdrop-filter: blur(20px);
+    min-height: 100vh;
+}
+
+.container > .profilContainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.firstContainer {
+    width: 100%
+}
+
+.firstContainer > .title {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.title > h1 {
+    font-family: var(--font-primary);
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: rgb(99, 55, 44);
+    margin-top: 2rem;
+}
+
+.title > div {
+    width: 20%;
+    background-color: var(--color-black);
+    height: 2px;
+}
+
+.firstContainer > div {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2%;
+    margin-left: 10%;
+    width: 80%;
+}
+
+.firstContainer > div > .card {
+    display: flex;
+    border-radius: 41px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 332px;
+    height: 332px;
+    background-color: rgb(var(--color-light-rgb), 0.25);
+    box-shadow: var(--shadow-50);
+
+}
+
+.param {
+    position: absolute;
+    top: 11px;
+    left: 5px;
+    width: 100%;
+
+}
+
+.rond {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    box-shadow: var(--shadow-1);
+}
+
+.commande {
+    position: absolute;
+    top: 11px;
+    width: 90%;
+
+}
+
+.Aide {
+    position: absolute;
+    top: -5px;
+    left: 17px;
+    width: 70%;
+}
+
+.adresse {
+    position: absolute;
+    left: -3px;
+    top: 5px;
+    width: 123%;
+
+}
+
+.firstContainer > div > .card > a {
+    margin-top: 15%;
+    color: var(--color-light);
+    font-size: 1.8rem;
+}
+
+.secondContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.secondContainer > .title > div {
+    width: 35%;
+    margin-left: 10%;
+}
+
+.secondContainer > .title > h1 {
+    margin-left: 10%;
+}
+
+.secondContainer > .tableCommande {
+    margin-left: 10%;
+    display: flex;
+    width: 80%;
+    justify-content: space-around;
+    margin-top: 2%;
+    background-color: rgb(var(--color-light-rgb), 0.15);
+    box-shadow: var(--shadow-50);
+    border-radius: 40px;
+}
+
+.secondContainer > .tableCommande > .tablecolumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+.secondContainer > .tableCommande > .tablecolumn > .partName {
+    font-family: var(--font-primary);
+    color: var(--color-primary);
+    font-size: 2rem;
+    margin-bottom: 7%;
+}
+
+.secondContainer > .tableCommande > .tablecolumn > p {
+    color: var(--color-light);
+}

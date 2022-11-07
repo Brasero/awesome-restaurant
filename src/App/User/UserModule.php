@@ -76,7 +76,7 @@ class UserModule extends Module
 
     public function espace(): string
     {
-        return $this->renderer->render('@user/espace');
+        return $this->renderer->render('@user/profil');
     }
 
     public function show()

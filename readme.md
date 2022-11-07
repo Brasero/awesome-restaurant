@@ -23,7 +23,7 @@ Appliquer les modification sur la base de données
 
 >**./vendor/bin/doctrine** orm:schema-tool:update --force
 
-Lancer l'hébergement | Ou bien créer un virtual host WAMP|MAMP|XAMPP pointant le dossier public
+Lancer l'hébergement 
 
 >php -S localhost:8000 -t public
 

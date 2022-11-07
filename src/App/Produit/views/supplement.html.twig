@@ -1,0 +1,172 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="../assets/css/supplement.css">
+{% endblock %}
+
+{% block body %}
+    <div class="containerSupplement">
+        <div class="name">
+            <div class="nameBurger">
+                CheesBurger
+            </div>
+            <div class="intro">
+                Délicieux chessburger, avec son steack angus et sa sauce fromagère maison.
+            </div>
+        </div>
+
+        <div class="photo">
+            <img src="./assets/img/burger.jpg" alt="">
+        </div>
+
+        <div class="ingredients">
+            <div class="choixCuissons m-1-2">
+                <h3 class="title">Cuisson du boeuf</h3>
+
+                <div class="cuissons">
+                    <input type="radio" id="saignant" name="cuisson" value="saignant" checked>
+                    <label for="saignant">Saignant</label>
+                </div>
+
+                <div class="cuisson">
+                    <input type="radio" id="aPoint" name="cuisson" value="aPoint">
+                    <label for="aPoint">A point</label>
+                </div>
+
+                <div class="cuisson">
+                    <input type="radio" id="bienCuit" name="cuisson" value="bienCuit">
+                    <label for="bienCuit">Bien cuit</label>
+                </div>
+            </div>
+
+            <div class="tresFaim m-1-2">
+                <h3 class="title"> Envie d'un extras ?</h3>
+                <div class="containerDropdown">
+                    <div class="dropdown">
+                        <div class="select">
+                            <span class="selected">Viande</span>
+                            <div class="caret"></div>
+                        </div>
+                        <ul class="menu">
+                            <div class="faim" id="faim">
+                                <input type="checkbox">
+                                <p class="faimIngredient">Un steack</p>
+                                <p class="prix">{{ currencyFormat(1.5, "€")}}</p>
+                            </div>
+                            <div class="faim">
+                                <input type="checkbox">
+                                <p class="faimIngredient">Double steack</p>
+                                <p class="prix">{{ currencyFormat(3, "€")}}</p>
+                            </div>
+                        </ul>
+                    </div>
+
+                    <div class="dropdown">
+                        <div class="select">
+                            <span class="selected">Fromage</span>
+                            <div class="caret"></div>
+                        </div>
+                        <ul class="menu">
+                            <div class="faim" id="faim">
+                                <input type="checkbox">
+                                <p class="faimIngredient">Goudat</p>
+                                <p class="prix">{{ currencyFormat(2.1, "€")}}</p>
+                            </div>
+                            <div class="faim">
+                                <input type="checkbox">
+                                <p class="faimIngredient">Raclette</p>
+                                <p class="prix">{{ currencyFormat(1.5, "€")}}</p>
+                            </div>
+                            <div class="faim">
+                                <input type="checkbox">
+                                <p class="faimIngredient">Beaufort</p>
+                                <p class="prix">{{ currencyFormat(2, "€")}}</p>
+                            </div>
+                        </ul>
+                    </div>
+
+                    <div class="dropdown">
+                        <div class="select">
+                            <span class="selected">Légumes</span>
+                            <div class="caret"></div>
+                        </div>
+                        <ul class="menu">
+                            <div class="faim" id="faim">
+                                <input type="checkbox">
+                                <p class="faimIngredient">Salade</p>
+                                <p class="prix">{{ currencyFormat(0, "€")}}</p>
+                            </div>
+                            <div class="faim">
+                                <input type="checkbox">
+                                <p class="faimIngredient">Tomate</p>
+                                <p class="prix">{{ currencyFormat(0, "€")}}</p>
+                            </div>
+                            <div class="faim">
+                                <input type="checkbox">
+                                <p class="faimIngredient">Oignon</p>
+                                <p class="prix">{{ currencyFormat(0, "€")}}</p>
+                            </div>
+                            <div class="faim">
+                                <input type="checkbox">
+                                <p class="faimIngredient">Cornichon</p>
+                                <p class="prix">{{ currencyFormat(0, "€")}}</p>
+                            </div>
+                        </ul>
+                    </div>
+
+                    <div class="dropdown">
+                        <div class="select">
+                            <span class="selected">Autre</span>
+                            <div class="caret"></div>
+                        </div>
+                        <ul class="menu">
+                            <div class="faim" id="faim">
+                                <input type="checkbox">
+                                <p class="faimIngredient">Oignon Frit</p>
+                                <p class="prix">{{ currencyFormat(1, "€")}}</p>
+                            </div>
+                            <div class="faim">
+                                <input type="checkbox">
+                                <p class="faimIngredient">Poitrine de porc fumée</p>
+                                <p class="prix">{{ currencyFormat(1, "€")}}</p>
+                            </div>
+                            <div class="faim">
+                                <input type="checkbox">
+                                <p class="faimIngredient">Oeuf</p>
+                                <p class="prix">{{ currencyFormat(1, "€")}}</p>
+                            </div>
+                        </ul>
+                    </div>
+                </div>  
+            </div>
+
+            <div class="beurk m-1-2">
+                <h3 class="title">Quelque chose ne vous plait pas ? </h3>
+
+                <div class="ingreBeurk">
+                    <input type="checkbox">
+                    <p class="faimIngredient">Salade</p>
+                </div>
+                <div class="ingreBeurk">
+                    <input type="checkbox">
+                    <p class="faimIngredient">Tomate</p>
+                </div>
+                <div class="ingreBeurk">
+                    <input type="checkbox">
+                    <p class="faimIngredient">Oignon</p>
+                </div>
+            </div>
+
+            <div class="btnAction">
+                <div class="btn retour">
+                    <button> Retour</button>
+                </div>
+                <div class="btn confirm">
+                    <button> Confirmer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/js/supplementPanier.js"></script>
+
+{% endblock %}

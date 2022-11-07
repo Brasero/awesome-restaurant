@@ -10,7 +10,9 @@ use Framework\Toaster\Toaster;
 use Framework\Validator\Validator;
 use GuzzleHttp\Psr7\ServerRequest;
 use Framework\Router\RedirectTrait;
+use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\MessageInterface;
 use Framework\Renderer\RendererInterface;
 
@@ -26,6 +28,10 @@ class AuthAction
     private EntityManagerInterface $manager;
 
 
+    /**
+     * @throws NotFoundExceptionInterface
+     * @throws ContainerExceptionInterface
+     */
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
@@ -39,9 +45,11 @@ class AuthAction
      * Connexion de l'utilisateur
      *
      * @param ServerRequest $request
-     * @return void
+     * @return MessageInterface
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
-    public function connexion(ServerRequest $request)
+    public function connexion(ServerRequest $request): MessageInterface
     {
         $method = $request->getMethod();
         if ($method === "POST") {
@@ -77,13 +85,14 @@ class AuthAction
      * Inscription de l'utilisateur
      *
      * @param ServerRequest $request
-     * @return void
+     * @return MessageInterface
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
-    public function inscription(ServerRequest $request)
+    public function inscription(ServerRequest $request): MessageInterface
     {
         $method = $request->getMethod();
         if ($method === "POST") {
-
             $params = $request->getParsedBody();
             $auth = $this->container->get(UserAuth::class);
             $repository = $this->manager->getRepository(User::class);
@@ -99,6 +108,7 @@ class AuthAction
                 ->confirm("mdp")
                 ->confirm("email")
                 ->getErrors();
+
 
             if (!empty($errors)) {
                 foreach ($errors as $error) {
@@ -120,6 +130,8 @@ class AuthAction
      * Deconnection de l'utilisateur
      *
      * @return MessageInterface
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
     public function logout(): MessageInterface
     {

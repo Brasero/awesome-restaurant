@@ -1,35 +1,105 @@
 {% extends '@admin/connected.html.twig' %}
 
 {% block body %}
-    <div class="col-4">
-        <div class="card__md__height">
-            <form action="{{ path('admin.taxe.add') }}" method="POST" class="offreForm">
-                        <span class="part formTitle">
-                            Ajouter une TVA
-                        </span>
-
-                <span class="part">
+    <div class="retourDashboard"><a href="{{ path('admin.home') }}">Retour au dashboard</a></div>
+    <div class="cardFormTaxe">
+        <div class="card">
+              <h4 class="formTitle">
+                  Ajouter une TVA
+              </h4>
+            <form action="{{ path('admin.Taxe.add') }}" method="POST" class="taxeForm">
                     <div class="inputGroup">
-                        <label for="pourcentage_offre" class="inputLabel">
+                        <label for="pourcentage_taxe" class="inputLabel">
                             <input
                                     type="text"
-                                    name="taux" placeholder="pourcentage de l'offre"
-                                    id="pourcentage_offre"
+                                    name="taux" placeholder="pourcentage de la taxe"
+                                    id="pourcentage_taxe"
+                                    class="inputItem"
                                     required />
                             <span>Taux TVA</span>
                         </label>
                     </div>
-                </span>
-                <span class="part">
-                    <input type="submit" class="subButton" value="Ajouter">
-                </span>
+                    <input type="submit" class="addButton" value="Ajouter">
             </form>
         </div>
     </div>
+
+
+    <div class="table" style="">
+        <h4 class='title'>
+            taxes
+        </h4>
+        <table class="ingredientTypeTable ingredientTableStyle" id="">
+            <tbody>
+            <tr class="colonneTitleContainer">
+                <th class="colonneTitleItem">%</th>
+                <th class="colonneTitleItem">Action</th>
+            </tr>
+            {% for taxe in taxes %}
+                <tr class="ingredientTypeItem" id="taxe-{{ taxe.ID }}">
+
+                    <td class="ingredientTypePart">
+                        {{ taxe.taux  }}%
+                    </td>
+                    <td class="ingredientTypePart buttonGroup">
+                        <button class="actionButton updateButton" onclick="openModal(event, 'taxe', {{ taxe.ID }})" >
+                            <i class="bi bi-pencil-square"
+                               data-nomcategorie={{ taxe.taux }}>
+                            </i>
+                        </button>
+                        <button class="actionButton deleteButton" onclick="supprItem('taxe', {{ taxe.ID }})">
+                            Supprimer
+                        </button>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="modalContainer hiddenModal" id="modalTaxe">
+        <div class="modalUpdateType">
+            <div class="modalHead">
+                <div class="modalTitle">
+                    Modifier une taxe
+                </div>
+                <button class="closeModalButton" onclick="closeModalTaxe()">
+                    &times;
+                </button>
+            </div>
+            <div class="modalBody">
+                <form action="{{ path('admin.Taxe.update') }}" method="POST" class="updateTypeForm" >
+                    <input type="hidden" id="taxeIdUpdate" name="id" value="">
+                    <div class="inputGroup">
+                        <label for="taxeTauxUpdate" class="inputLabel">
+                            <input
+                                    type="number"
+                                    min="0"
+                                    max="100"
+                                    step="0.01"
+                                    class="inputItem"
+                                    name="Taux"
+                                    id="taxeTauxUpdate"
+                                    value=""
+                                    placeholder="Taux"
+                                    required
+                            />
+                            <span>Taux</span>
+                        </label>
+                    </div>
+                    <button type="submit" class="addButton">
+                        Modifier
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
 
 {% block script %}
     <script type="text/javascript" src="../../assets/js/admin/toastController.js"></script>
     <script type="text/javascript" src="../../assets/js/admin/animation.js"></script>
     <script type="text/javascript" src="../../assets/js/admin/controlModal.js"></script>
+    <script type="text/javascript" src="../../assets/js/admin/suppressionAjax.js"></script>
 {% endblock %}

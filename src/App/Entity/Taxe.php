@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\TaxeRepository")
  * @ORM\Table(name="taxe")
  */
 class Taxe
@@ -29,7 +29,7 @@ class Taxe
     /**
      * @ORM\OneToMany(targetEntity="Produit", mappedBy="taxe")
      */
-    private ArrayCollection $produits;
+    //private ArrayCollection $produits;
 
 
     /**
@@ -37,7 +37,7 @@ class Taxe
      */
     public function __construct()
     {
-        $this->produits = new ArrayCollection();
+        //$this->produits = new ArrayCollection();
     }
 
     /**
@@ -53,16 +53,16 @@ class Taxe
      */
     public function getTaux(): float
     {
-        return $this->taux;
+        return $this->taux*100;
     }
 
     /**
-     * @param float $taux
+     * @param string $taux
      */
-    public function setTaux($taux): void
+    public function setTaux(string $taux): void
     {
         $taux = str_replace(',', '.', $taux);
-        $this->taux = floatval($taux);
+        $this->taux = floatval($taux)/100;
     }
 
 

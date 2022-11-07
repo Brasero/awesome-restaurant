@@ -3,27 +3,25 @@
 namespace App\Taxe;
 
 use App\Entity\Taxe;
+
+use App\Taxe\Action\TaxeAction;
 use Framework\Toaster\Toaster;
 use Framework\Validator\Validator;
 use Doctrine\ORM\EntityManagerInterface;
 use Framework\Module;
 use Framework\Renderer\RendererInterface;
-use Framework\Router\RedirectTrait;
 use Framework\Router\Router;
-use GuzzleHttp\Psr7\ServerRequest;
-use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
-use Psr\Container\NotFoundExceptionInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
 class TaxeModule extends Module
 {
-    use RedirectTrait;
+    public const DEFINITIONS = __DIR__ . DIRECTORY_SEPARATOR . 'config.php';
 
     private ContainerInterface $container;
     private Router $router;
-    private RendererInterface $renderer;
-    private EntityManagerInterface $manager;
-    private Toaster $toaster;
+
+
 
     /**
      * @param ContainerInterface $container
@@ -32,46 +30,34 @@ class TaxeModule extends Module
      */
     public function __construct(ContainerInterface $container)
     {
+        $TaxeAction = $container->get(TaxeAction::class);
         $this->container = $container;
+        $container->get(RendererInterface::class)->addPath('taxe', __DIR__ . DIRECTORY_SEPARATOR . 'views');
+        $adminprefix = $container->get('admin.prefix');
         $this->router = $container->get(Router::class);
-        $this->renderer = $container->get(RendererInterface::class);
-        $this->manager = $container->get(EntityManagerInterface::class);
-        $this->toaster = $container->get(Toaster::class);
-        $this->renderer->addPath('taxe', __DIR__ . '/views');
-        $this->router->get($container->get('admin.prefix') . '/taxe', [$this, 'index'], 'admin.taxe.index');
-        $this->router->post($container->get('admin.prefix') . '/taxe/add', [$this, 'add'], 'admin.taxe.add');
-    }
 
-    public function index(): string
-    {
-        $taxes = $this->manager->getRepository(Taxe::class)->findAll();
-        return $this->renderer->render('@taxe/index', [
-            'taxes' => $taxes
-        ]);
-    }
 
-    public function add(ServerRequest $request)
-    {
-        $data = $request->getParsedBody();
-        $validator = new Validator($data);
-        $errors = $validator->required('taux')
-            ->intLength('taux', 0, 100)
-            ->float('taux')
-            ->getErrors();
+        $this->router->get(
+            $adminprefix . '/dashboard/Taxe',
+            [$TaxeAction, 'show'],
+            'admin.Taxe.show'
+        );
+        $this->router->post(
+            $adminprefix . '/dashboard/addTaxe',
+            [$TaxeAction, 'create'],
+            'admin.Taxe.add'
+        );
 
-        if (!empty($errors)) {
-            foreach ($errors as $error) {
-                $this->toaster->createToast($error, Toaster::ERROR);
-            }
-            return $this->redirect('admin.taxe.index');
-        }
-
-        $taxe = new Taxe();
-        $taxe->setTaux($data['taux']);
-        $this->manager->persist($taxe);
-        $this->manager->flush();
-        $this->toaster->createToast('La taxe a bien été ajoutée', Toaster::SUCCESS);
-
-        return $this->renderer->render('@taxe/index');
+        $this->router->post(
+            $adminprefix . '/dashboard/TaxeUpdate',
+            [$TaxeAction, 'update'],
+            'admin.Taxe.update'
+        );
+        
+        $this->router->get(
+            '/ajax/Taxe/delete/{id:[0-9]+}',
+            [$TaxeAction, 'delete'],
+            'admin.Taxe.delete'
+        );
     }
 }

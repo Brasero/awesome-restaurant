@@ -3,6 +3,7 @@
 namespace App\Dashboard;
 
 use App\Entity\Offre;
+use App\Entity\Taxe;
 use Doctrine\ORM\EntityManagerInterface;
 use Framework\Module;
 use Framework\Renderer\RendererInterface;
@@ -63,9 +64,12 @@ class DashboardModule extends Module
         $nbOffres = $nbOffres == null && 1;
         $nbPagesOffre =  intval(ceil($nbOffres / $offrePerPage));
 
+
+
         return $this->renderer->render('@dashboard/index', [
             'offres' => $offres,
             'nbPagesOffre' => $nbPagesOffre,
+
         ]);
     }
 }
