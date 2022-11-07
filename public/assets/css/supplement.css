@@ -1,0 +1,239 @@
+/* classe */
+.m-1-2 {
+    margin: 1rem 2rem;
+}
+
+.title {
+    color: var(--color-primary);
+    font-family: var(--font-primary);
+    margin-bottom: 1rem;
+}
+
+/* grid */
+.containerSupplement {
+    height: auto;
+    padding-bottom: 1rem;
+    background-color: var(--color-light);
+    box-shadow: var(--box-shadow);
+    width: 75%;
+    margin: 2rem auto;
+    border-radius: 8px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 20% 2fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "name name ingredients ingredients"
+        "photo photo ingredients ingredients";
+}
+
+label,
+.faimIngredient {
+    font-family: var(--font-secondary);
+}
+
+/* name */
+.name {
+    grid-area: name;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+    font-family: var(--font-primary);
+}
+
+.name .nameBurger {
+    color: var(--color-primary);
+    font-size: 2rem;
+}
+
+.name .intro {
+    font-family: var(--font-secondary);
+}
+
+/* photo */
+.photo {
+    grid-area: photo;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.photo img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+/* ingredients */
+.ingredients {
+    grid-area: ingredients;
+}
+
+/* très faim */
+.tresFaim .faim {
+    display: flex;
+    position: relative;
+    margin-bottom: 0.5rem;
+}
+
+.tresFaim .faim .faimIngredient {
+    margin-left: 0.5rem;
+    max-width: 65%;
+}
+
+.tresFaim .faim .prix {
+    color: var(--color-primary);
+    position: absolute;
+    right: 0;
+    font-family: var(--font-secondary);
+}
+
+/* beurk */
+.ingreBeurk {
+    display: flex;
+    margin-bottom: 0.5rem;
+}
+
+.ingreBeurk .faimIngredient {
+    margin-left: 0.5rem;
+}
+
+/* btn Action */
+.btnAction {
+    display: flex;
+    justify-content: space-around;
+}
+
+.btn button {
+    padding: 1rem;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    color: var(--color-light);
+    transition: 0.125s ease-in-out;
+}
+
+.btnAction .retour button {
+    background-color: var(--color-red);
+}
+
+.btnAction .confirm button {
+    background-color: var(--color-primary);
+}
+
+.btnAction .retour button:hover,
+.btnAction .confirm button:hover {
+    opacity: 0.85;
+}
+
+/* Dropdown extras */
+.containerDropdown {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.dropdown {
+    width: 45%;
+    position: relative;
+}
+
+.dropdown * {
+    box-sizing: border-box;
+}
+
+
+.select {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px var(--color-primary) solid;
+    border-radius: 8px;
+    padding: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.select:hover {
+    opacity: 0.8;
+}
+
+.caret {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid var(--color-primary);
+    transition: 0.3s;
+}
+
+.caret-rotate {
+    transform: rotate(180deg);
+}
+
+.menu {
+    padding: 0.5rem 1rem;
+    background-color: var(--color-light);
+    box-shadow: var(--box-shadow);
+    border-radius: 0.5em;
+    opacity: 0;
+    display: none;
+    transition: 0.2s;
+    z-index: 1;
+}
+
+.menu-open {
+    display: block;
+    opacity: 1;
+}
+
+/* Responsive */
+
+@media screen and (max-width: 1024px) {
+    .containerSupplement {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto 1fr;
+        grid-template-areas:
+            "name"
+            "photo"
+            "ingredients";
+        min-height: 100vh;
+    }
+    .photo {
+        margin-top: 1rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .containerSupplement {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto 1fr;
+        grid-template-areas:
+            "name"
+            "photo"
+            "ingredients";
+        min-height: 100vh;
+    }
+    .containerDropdown {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .dropdown {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .containerSupplement {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto 1fr;
+        grid-template-areas:
+            "name"
+            "photo"
+            "ingredients";
+        min-height: 100vh;
+    }
+}
