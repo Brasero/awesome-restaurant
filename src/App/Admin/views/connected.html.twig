@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../../assets/css/admin/ingredient.css">
     <link rel="stylesheet" href="../../assets/css/admin/taxe.css">
     <link rel="stylesheet" href="../../assets/css/admin/stats.css">
+    <link rel="stylesheet" href="../../assets/css/admin/user.css">
 {% endblock %}
 
 {% block content %}
@@ -36,13 +37,13 @@
             </ul>
         </nav>
         <div class="container">
-            {% if hasToast() %}
-                <div class="toastContainer">
+            <div class="toastContainer">
+                {% if hasToast() %}
                 {% for toast in renderToast() %}
                     {{ toast | raw }}
                 {% endfor %}
+                {% endif %}
                 </div>
-            {% endif %}
             {% block body %}
             {% endblock %}
         </div>

@@ -94,7 +94,7 @@ class ProduitModule extends Module
     public function supplement(): string
     {
         return $this->renderer->render('@produit/supplement');
-    }   
+    }
 
     public function show(ServerRequest $request): string
     {

@@ -45,11 +45,10 @@ class AuthAction
      * Connexion de l'utilisateur
      *
      * @param ServerRequest $request
-     * @return MessageInterface
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
-    public function connexion(ServerRequest $request): MessageInterface
+    public function connexion(ServerRequest $request)
     {
         $method = $request->getMethod();
         if ($method === "POST") {
@@ -57,9 +56,9 @@ class AuthAction
             $params = $request->getParsedBody();
             $validator = new Validator($params);
             $errors = $validator
-                    ->required("email", "mdp")
-                    ->email("email")
-                    ->getErrors();
+                ->required("email", "mdp")
+                ->email("email")
+                ->getErrors();
 
             if (!empty($errors)) {
                 foreach ($errors as $error) {
@@ -85,11 +84,10 @@ class AuthAction
      * Inscription de l'utilisateur
      *
      * @param ServerRequest $request
-     * @return MessageInterface
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
-    public function inscription(ServerRequest $request): MessageInterface
+    public function inscription(ServerRequest $request)
     {
         $method = $request->getMethod();
         if ($method === "POST") {
@@ -99,24 +97,27 @@ class AuthAction
 
             $validator = new Validator($params);
             $errors = $validator
-                        ->required(
-                            "nom",
-                            "prenom",
-                            "telephone",
-                            "email",
-                            "mdp",
-                            "numeroAdresse",
-                            "prefixAdresse",
-                            "nameAdresse",
-                        )
-                        ->strLength("mdp", 6, 50)
-                        ->strLength("telephone", 10, 10)
-                        ->email("email")
-                        ->isUnique("email", $repository, "email", "Email déjà existant")
-                        ->isUnique("telephone", $repository, "telephone", "Numéro de téléphone déjà existant")
-                        ->confirm("mdp")
-                        ->confirm("email")
-                        ->getErrors();
+                ->required(
+                    "nom",
+                    "prenom",
+                    "telephone",
+                    "email",
+                    "mdp",
+                    "numeroAdresse",
+                    "prefixAdresse",
+                    "nameAdresse",
+                    "email_confirm",
+                    "mdp_confirm"
+                )
+                ->strLength("mdp", 6, 50)
+                ->strLength("telephone", 10, 10)
+                ->email("email")
+                ->isUnique("email", $repository, "email", "Email déjà existant")
+                ->isUnique("telephone", $repository, "telephone", "Numéro de téléphone déjà existant")
+                ->confirm("mdp")
+                ->confirm("email")
+                ->getErrors();
+
 
             if (!empty($errors)) {
                 foreach ($errors as $error) {
@@ -124,13 +125,13 @@ class AuthAction
                 }
                 return $this->redirect("user.inscription");
             }
-            
+
             /** Enregistre en bdd avec la fonction inscription */
             $auth->inscription($params);
             $this->toaster->createToast("Compte crée.", Toaster::SUCCESS);
             return $this->redirect("user.connexion");
         }
-        
+
         return $this->renderer->render("@user/inscription");
     }
 

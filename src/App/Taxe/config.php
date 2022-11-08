@@ -14,5 +14,3 @@ return [
     TaxeWidget::class => \DI\autowire()
 
 ];
-
-

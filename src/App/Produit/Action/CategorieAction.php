@@ -162,11 +162,11 @@ class CategorieAction
         $validator= new Validator($data);
         $validator->required('nom')
             ->strLength('nom', 3, 50)
-            ->isUnique('nom', $this->repository,'nom','', $id);
+            ->isUnique('nom', $this->repository, 'nom', '', $id);
         $categorieProduit->setNom($nom);
 
         if ($file->getError() != 4) {
-            $validator->isUnique('img', $this->repository,'img','', $id);
+            $validator->isUnique('img', $this->repository, 'img', '', $id);
             $this->fileGuards($file);
             $ancienneImage= $this->container->get('categorie.img.basePath');
             $ancienneImage .= $categorieProduit->getImg();

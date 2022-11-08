@@ -45,7 +45,7 @@ class ValidatorError
 
     public function toString(): string
     {
-        if(isset($this->messages[$this->rule])){
+        if (isset($this->messages[$this->rule])) {
             return sprintf($this->messages[$this->rule], $this->key);
         }
         return $this->rule;
