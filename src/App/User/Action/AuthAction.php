@@ -45,11 +45,10 @@ class AuthAction
      * Connexion de l'utilisateur
      *
      * @param ServerRequest $request
-     * @return MessageInterface
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
-    public function connexion(ServerRequest $request): MessageInterface
+    public function connexion(ServerRequest $request)
     {
         $method = $request->getMethod();
         if ($method === "POST") {
@@ -85,11 +84,10 @@ class AuthAction
      * Inscription de l'utilisateur
      *
      * @param ServerRequest $request
-     * @return MessageInterface
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
-    public function inscription(ServerRequest $request): MessageInterface
+    public function inscription(ServerRequest $request)
     {
         $method = $request->getMethod();
         if ($method === "POST") {
@@ -99,7 +97,18 @@ class AuthAction
 
             $validator = new Validator($params);
             $errors = $validator
-                ->required("nom", "prenom", "telephone", "email", "mdp", "numeroAdresse", "prefixAdresse", "nameAdresse", "email_confirm", "mdp_confirm")
+                ->required(
+                    "nom",
+                    "prenom",
+                    "telephone",
+                    "email",
+                    "mdp",
+                    "numeroAdresse",
+                    "prefixAdresse",
+                    "nameAdresse",
+                    "email_confirm",
+                    "mdp_confirm"
+                )
                 ->strLength("mdp", 6, 50)
                 ->strLength("telephone", 10, 10)
                 ->email("email")

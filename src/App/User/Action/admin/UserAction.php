@@ -8,7 +8,8 @@ use Psr\Container\ContainerInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use GuzzleHttp\Psr7\ServerRequest;
 
-class UserAction {
+class UserAction
+{
 
     private EntityManagerInterface $manager;
     private Toaster $toaster;
@@ -20,7 +21,8 @@ class UserAction {
         $this->manager = $container->get(EntityManagerInterface::class);
     }
 
-    public function delete(ServerRequest $request): string {
+    public function delete(ServerRequest $request): string
+    {
 
         $id = $request->getAttribute("id");
         $user = $this->manager->find(User::class, $id);
@@ -28,7 +30,7 @@ class UserAction {
         $this->manager->remove($user);
         $this->manager->flush();
         $user = $this->manager->find(User::class, $id);
-        if(!is_null($user)){
+        if (!is_null($user)) {
             $this->toaster->createToast("Une erreur s'est produite", Toaster::ERROR);
             return "false";
         }
