@@ -38,7 +38,7 @@
                                         type="file"
                                         class="inputItem"
                                         name="image"
-                                        id="image"
+                                        id="imageProduit"
                                         placeholder="Image"
                                         required
                                         onchange="addFileText(event)"
@@ -50,7 +50,7 @@
                                 <br>
                             </div>
                         </div>
-                         <span id="fakeInput">
+                         <span class="fakeInput" id="fakeInputProduit">
                                     Veuillez ajouter une photo
                         </span>
                     </span>
@@ -98,6 +98,18 @@
                         {% endfor %}
 
                     </fieldset>
+                    <span class="typeChoice">
+                        <label for="taxeType">
+                            <span>Taxe</span>
+                        </label>
+                        <select name="taxe" id="taxeType" class="inputItem" placeholder="Taxe"
+                                default="false" required>
+                            <option value="false" class="typeOption">....</option>
+                            {% for taxe in taxes %}
+                                <option value={{ taxe.id }}>{{ taxe.taux }}</option>
+                            {% endfor %}
+                        </select>
+                    </span>
                     <button type="submit" class="addButton">
                         Valider
                     </button>
@@ -240,7 +252,7 @@
                                 <br>
                             </div>
                         </div>
-                         <span id="fakeInput">
+                         <span class="fakeInput" id="fakeInput">
                                     Veuillez ajouter une photo
                         </span>
                     </span>

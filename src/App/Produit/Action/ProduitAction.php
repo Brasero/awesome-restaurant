@@ -5,6 +5,7 @@ namespace App\Produit\Action;
 use App\Entity\Categorie;
 use App\Entity\Ingredient;
 use App\Entity\Produit;
+use App\Entity\Taxe;
 use Framework\Router\Router;
 use Framework\Router\RedirectTrait;
 use Framework\Toaster\Toaster;
@@ -94,6 +95,8 @@ class ProduitAction
         $prod->setPrix($data['produitPrix']);
         $categorie = $this->manager->find(Categorie::class, $data['categorie']);
         $prod->setCategorie($categorie);
+        $taxe = $this->manager->find(Taxe::class, $data['taxe']);
+        $prod->setTaxe($taxe);
 
         $this->manager->persist($prod);
         $this->manager->flush();

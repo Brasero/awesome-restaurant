@@ -5,6 +5,7 @@ namespace App\Produit;
 use App\Entity\Categorie;
 use App\Entity\Ingredient;
 use App\Entity\Produit;
+use App\Entity\Taxe;
 use App\Entity\TypeIngredient;
 use Framework\TwigExtension\MenuTwigExtension;
 use App\Produit\Action\CategorieAction;
@@ -114,6 +115,8 @@ class ProduitModule extends Module
         $produits = $prodRepository->findAll();
         $catRepository = $this->manager->getRepository(Categorie::class);
         $categories = $catRepository->findAll();
+        $taxeRepository = $this->manager->getRepository(Taxe::class);
+        $taxes = $taxeRepository->findAll();
         $typeRepository = $this->manager->getRepository(TypeIngredient::class);
         $types = $typeRepository->findAll();
         $ingredientRepository = $this->manager->getRepository(Ingredient::class);
@@ -121,6 +124,7 @@ class ProduitModule extends Module
         return $this->renderer->render('@produit_admin/manage', [
             "produits" => $produits,
             "categories" => $categories,
+            "taxes" => $taxes,
             "types" => $types,
             "ingredients" => $ingredients,
             "active" => "produit"

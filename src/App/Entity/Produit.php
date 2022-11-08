@@ -69,7 +69,7 @@ class Produit
      * @ORM\ManyToOne(targetEntity="Taxe", inversedBy="produits")
      * @ORM\JoinColumn(name="taxe_id", referencedColumnName="id", onDelete="CASCADE")
      */
-    private int $taxe;
+    private Taxe $taxe;
 
     /**
      * Constructor
@@ -167,19 +167,20 @@ class Produit
     }
 
     /**
-     * @return int
+     * @return Taxe $taxe
      */
-    public function getTaxe(): int
+    public function getTaxe(): Taxe
     {
         return $this->taxe;
     }
 
     /**
-     * @param int $taxe
+     * @param Taxe $taxe
      */
-    public function setTaxe(int $taxe): void
+    public function setTaxe(Taxe $taxe): self
     {
         $this->taxe = $taxe;
+        return $this;
     }
 
     /**
