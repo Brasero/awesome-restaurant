@@ -48,6 +48,7 @@ class ProduitModule extends Module
         $this->renderer = $renderer;
         $router->get('/carte', [$this, 'carte'], 'produit.carte');
         $router->get('/panier', [$this, 'panier'], 'produit.panier');
+        $router->get('/supplement', [$this, "supplement"], 'produit.supplement');
         $router->get('/carte/{id:[0-9]}', [$this, 'show'], 'produit.show');
         $this->manager = $manager;
         if ($container->has('admin.prefix')) {
@@ -99,6 +100,10 @@ class ProduitModule extends Module
         return $this->renderer->render('@produit/panier');
     }
 
+    public function supplement(): string
+    {
+        return $this->renderer->render('@produit/supplement');
+    }
 
     public function show(ServerRequest $request): string
     {
