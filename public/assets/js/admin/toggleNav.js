@@ -1,3 +1,4 @@
+// nav version pc 
 function toggleNav(){
     var navBarContainer = document.querySelector('.navBar')
     var navBar = document.querySelector('.navLinks')
