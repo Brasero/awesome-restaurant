@@ -51,6 +51,30 @@ body {
   margin-inline: auto;
 }
 
+.pageTitle {
+  text-align: left;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: hidden;
+  width: 100%;
+  padding-left: 50px;
+}
+
+.pageTitle .bottom,
+.pageTitle .top {
+  font-family: var(--font-secondary);
+  transition: var(--transition);
+}
+
+.pageTitle .bottom {
+  color: var(--color-primary);
+  font-family: var(--font-primary);
+  text-shadow: var(--shadow-1);
+}
+
 /**------ Main Style ------**/
 
 .main {
@@ -270,58 +294,74 @@ body {
 /**-----END NavBar Style------**/
 
 /* hamburger pour responsive */ 
-.hamburger-nav {
+.navBurger {
   display: none;
   cursor: pointer;
   position: absolute;
   top: 10px;
   left: 5px;
+  background: transparent;
 }
 
-.hamburger-nav i {
+.navBurger .open {
   font-size: 1.8rem;
+  color: var(--color-primary);
+  background: transparent;
+}
+
+.navBurger .close {
+  display: none;
+  font-size: 1.8rem;
+  color: var(--color-light);
+  background: transparent;
+  float: left;
+}
+
+.navBurger .close.active {
+  display: inline-block;
 }
 
 /**-----END Main Style-----**/
 
 @media screen and (max-width : 768px) {
-  /* .main .navBar {
-    display: block;
+  .main .navBurger {
+    display: inline-block;
     position: absolute;
-    left: -100%;
-  } */
+    top: 0;
+    z-index: 11;
+  }
 
-  /* .main > .navBar > .navLinks .navLink {
+  .main .navBar.active {
+    display: none;
+  }
+
+
+  .main > .navBar.active, .main > .navBar > .navLinks.active {
+    width: 100%;
+  }
+
+  .main > .navBar > .navLinks .toggleButton {
     display: none;
   }
 
   .main > .navBar > .navLinks {
-    height: 7%;
-  } */
+    width: 100%;
+  }
 
-  .main > .navBar, .main > .navBar > .navLinks {
-    /* width: 100%; */
+  .main > .navBar > .navLinks {
+    gap: 20px;
+  }
+
+  .main > .navBar .brand {
+    height: unset;
+  }
+
+  .main > .navBar > .navLinks {
     align-items: center;
-  } 
-  
-  .main > .navBar.active,
-  .main > .navBar > .navLinks.active {
-    width: 10%;
-  }
-  .main > .navBar,
-  .main > .navBar .active > .navLinks.active {
-    width: 8%;
-  } 
-
-
-
-  .main > .navBar > .navLinks .navLink {
-    /* display: none!important; */
-    padding: 1rem;
   }
 
-  .main > .navBar, .main > .navBar > .navLinks > .navLink{
-    /* display: block!important; */
+  .main > .navBar > .navLinks .navLink,
+  .main > .navBar > .navLinks .navLink > li  {
+    justify-content: center;
   }
-
 }

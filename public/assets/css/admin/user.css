@@ -2,7 +2,6 @@
     display: flex;
     align-items: center;
     width: 90%;
-    /* background: var(--color-primary)!important; */
     background: white;
     border: 1px solid var(--color-primary);
     border-radius: 8px;
@@ -35,6 +34,7 @@
 
 .tableTitle {
     text-align: center;
+    padding: 1rem 0;
 }
 
 
@@ -71,24 +71,38 @@
     color: var(--color-primary);
 }
 
-.show:nth-child(even){
-    /* background-color: #f3f3f3; */
-    background-color: red;
+
+@media screen and (max-width: 768px ) {
+    .tableUser .tableTitle:nth-child(2) , .tableTitle:nth-child(3),
+    .show .tdResult:nth-child(2), .tdResult:nth-child(3){
+        display: none;
+    }
+    .tableTitle,
+    .tdResult {
+        font-size: 1rem;
+    }
+    .nbUser {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 1.3rem;
+        align-self: unset;
+        margin-left: unset;
+    }
 }
 
-/* thead tr {
-    background-color: midnightblue;
-    color: #fff;
-    text-align: left;
-}  */
-
-/* th, td {
-    padding: 15px 20px;
-    text-align: center;
-    width: 50%; 
-} */
-
-/* 
-tbody tr, td, th {
-    border: 1px solid #ddd;
-} */
+@media screen and (max-width: 500px) {
+    .tdResult {
+        padding: 15px 0;
+    }
+    .userTable {
+        width: unset;
+    }
+    .tableTitle,
+    .tdResult {
+        font-size: 0.75rem;
+    }
+    .tdResult .actionButton {
+        padding: unset;
+    }
+}

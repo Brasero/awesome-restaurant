@@ -30,6 +30,7 @@
         "doctrine/orm": "^2.13",
         "doctrine/dbal": "^3.4",
         "symfony/cache": "^5.4",
-        "doctrine/annotations": "^1.13"
+        "doctrine/annotations": "^1.13",
+        "facebook/graph-sdk": "^5.7"
     }
 }
