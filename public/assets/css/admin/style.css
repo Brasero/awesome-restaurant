@@ -355,4 +355,13 @@ body {
   .main > .navBar .brand {
     height: unset;
   }
+
+  .main > .navBar > .navLinks {
+    align-items: center;
+  }
+
+  .main > .navBar > .navLinks .navLink,
+  .main > .navBar > .navLinks .navLink > li  {
+    justify-content: center;
+  }
 }
