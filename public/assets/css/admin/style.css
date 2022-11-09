@@ -51,6 +51,30 @@ body {
   margin-inline: auto;
 }
 
+.pageTitle {
+  text-align: left;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: hidden;
+  width: 100%;
+  padding-left: 50px;
+}
+
+.pageTitle .bottom,
+.pageTitle .top {
+  font-family: var(--font-secondary);
+  transition: var(--transition);
+}
+
+.pageTitle .bottom {
+  color: var(--color-primary);
+  font-family: var(--font-primary);
+  text-shadow: var(--shadow-1);
+}
+
 /**------ Main Style ------**/
 
 .main {
@@ -270,22 +294,38 @@ body {
 /**-----END NavBar Style------**/
 
 /* hamburger pour responsive */ 
-.hamburger-nav {
+.navBurger {
   display: none;
   cursor: pointer;
   position: absolute;
   top: 10px;
   left: 5px;
+  background: transparent;
 }
 
-.hamburger-nav i {
+.navBurger .open {
   font-size: 1.8rem;
+  color: var(--color-primary);
+  background: transparent;
+}
+
+.navBurger .close {
+  display: none;
+  font-size: 1.8rem;
+  color: var(--color-light);
+  background: transparent;
+  float: left;
+}
+
+.navBurger .close.active {
+  display: inline-block;
 }
 
 /**-----END Main Style-----**/
 
 @media screen and (max-width : 768px) {
   .main .navBurger {
+    display: inline-block;
     position: absolute;
     top: 0;
     z-index: 11;
@@ -295,6 +335,7 @@ body {
     display: none;
   }
 
+
   .main > .navBar.active, .main > .navBar > .navLinks.active {
     width: 100%;
   }
@@ -303,12 +344,12 @@ body {
     display: none;
   }
 
-  .main > .navBar > .navLinks.active .brand {
-    opacity: 1;
+  .main > .navBar > .navLinks {
+    width: 100%;
   }
 
   .main > .navBar > .navLinks {
-    width: 100%;
+    gap: 20px;
   }
 
   /* .main .navBar {
