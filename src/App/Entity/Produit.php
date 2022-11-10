@@ -79,16 +79,18 @@ class Produit
         $this->ingredients = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-    public function setPrix(string $prix)
+    public function setPrix(string $prix): self
     {
         $prix = str_replace(',', '.', $prix);
         $prix = floatval($prix);
         $this->prix = $prix;
+        return $this;
     }
 
-    public function setNom(string $nom)
+    public function setNom(string $nom): self
     {
         $this->nom = strtolower($nom);
+        return $this;
     }
 
     public function getPrix()
@@ -101,9 +103,10 @@ class Produit
         return $this->img;
     }
 
-    public function setImg(string $img)
+    public function setImg(string $img): self
     {
         $this->img = $img;
+        return $this;
     }
 
     public function getOffre(): ?Offre
@@ -112,9 +115,10 @@ class Produit
     }
 
 
-    public function setOffre(Offre $offre = null): void
+    public function setOffre(Offre $offre = null): self
     {
         $this->offre = $offre;
+        return $this;
     }
 
     public function getNom()
@@ -161,9 +165,10 @@ class Produit
     /**
      * @param Ingredient $ingredient
      */
-    public function setIngredients(Ingredient $ingredient): void
+    public function setIngredients(Ingredient $ingredient): self
     {
         $this->ingredients[] = $ingredient;
+        return $this;
     }
 
     /**

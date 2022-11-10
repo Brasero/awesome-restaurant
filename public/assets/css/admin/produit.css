@@ -4,7 +4,7 @@
     padding-left: 50px;
 }
 
-.produitContainer > .pageTitle {
+.pageTitle {
     text-align: left;
     text-transform: uppercase;
     display: flex;
@@ -14,13 +14,12 @@
     overflow: hidden;
 }
 
-.produitContainer > .pageTitle .bottom,
-.produitContainer > .pageTitle .top {
+.bottom, .top {
     font-family: var(--font-secondary);
     transition: var(--transition);
 }
 
-.produitContainer > .pageTitle .bottom {
+.bottom {
     color: var(--color-primary);
     font-family: var(--font-primary);
     text-shadow: var(--shadow-1);
@@ -328,7 +327,7 @@
 }
 
 .inputGroup {
-    display: flex;
+    display: flex !important;
     flex-wrap: wrap;
     background-color: white !important;
     

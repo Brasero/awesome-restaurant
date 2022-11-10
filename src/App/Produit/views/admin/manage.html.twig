@@ -50,7 +50,7 @@
                                 <br>
                             </div>
                         </div>
-                         <span class="fakeInput" id="fakeInputProduit">
+                        <span class="fakeInput" id="fakeInputProduit">
                                     Veuillez ajouter une photo
                         </span>
                     </span>
@@ -135,21 +135,19 @@
                         <th class="colonneTitleItem">Action</th>
                     </tr>
                     {% for produit in produits %}
-                        <tr class="categorieTypeItem" id="categorie-{{ categorie.id }}">
+                        <tr class="categorieTypeItem" id="produit-{{ produit.id }}">
                             <td class="categorieTypePart">{{ produit.nom }}</td>
                             <td class="categorieTypePart">{{ currencyFormat(produit.prix, '€') }}</td>
-                            <td class="categorieTypePart">{{ produit.nom }}</td>
+                            <td class="categorieTypePart">{{ currencyFormat(produit.taxe.taux, '%') }}</td>
                             <td class="categorieTypePart">{{ produit.categorie.nom }}</td>
                             <td class="categorieTypePart">{{ produit.nom }}</td>
                             <td class="categorieTypePart buttonGroup">
-                                <button class="actionButton updateButton"
-                                        onclick="openModal(event, 'produit', {{ produit.ID }})">
-                                    <i class="bi bi-pencil-square"
-                                       data-nomcategorie={{ produit.ID_categorie.nom }}>
-                                    </i>
-                                </button>
+                                <a class="actionButton updateButton"
+                                        href="{{path('admin.produit.update',{id:produit.id})}}">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
                                 <button class="actionButton deleteButton"
-                                        onclick="supprItem('produit', {{ produit.ID }})">
+                                        onclick="supprItem('produit',{{ produit.id }})">
                                     Supprimer
                                 </button>
                             </td>
@@ -252,6 +250,7 @@
                                 <br>
                             </div>
                         </div>
+                        
                          <span class="fakeInput" id="fakeInput">
                                     Veuillez ajouter une photo
                         </span>

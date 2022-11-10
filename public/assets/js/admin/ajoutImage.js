@@ -1,6 +1,8 @@
 function addFileText(event) {
-    var image = document.querySelector('#image')
-    var inputVisible = document.querySelector('#fakeInput')
+    const parent = event.target.parentNode
+    console.log()
+    var image = event.target
+    var inputVisible = parent.parentNode.parentElement.querySelector('.fakeInput')
     if (image.value) {
         var files = event.target.files
         for (var file of files) {

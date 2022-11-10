@@ -6,6 +6,7 @@ use App\Entity\Categorie;
 use App\Entity\Ingredient;
 use App\Entity\Produit;
 use App\Entity\Taxe;
+use App\Entity\TypeIngredient;
 use Framework\Router\Router;
 use Framework\Router\RedirectTrait;
 use Framework\Toaster\Toaster;
@@ -13,8 +14,10 @@ use GuzzleHttp\Psr7\UploadedFile;
 use Psr\Container\ContainerInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
+use Framework\Renderer\RendererInterface;
 use Framework\Validator\Validator;
 use GuzzleHttp\Psr7\ServerRequest;
+use SebastianBergmann\CodeCoverage\Report\Html\Renderer;
 
 class ProduitAction
 {
@@ -42,6 +45,8 @@ class ProduitAction
 
     private EntityRepository $repository;
 
+    private RendererInterface $renderer;
+
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
@@ -49,6 +54,7 @@ class ProduitAction
         $this->manager = $container->get(EntityManagerInterface::class);
         $this->router = $container->get(Router::class);
         $this->repository = $this->manager->getRepository(Produit::class);
+        $this->renderer = $container->get(RendererInterface::class);
     }
 
     public function add(ServerRequest $request)
@@ -136,5 +142,87 @@ class ProduitAction
             return $this->redirect('admin.produit.manage');
         }
         return true;
+    }
+
+    public function update(ServerRequest $request)
+    {
+        $method = $request->getMethod();
+
+        $id = $request->getAttribute('id');
+        $produit = $this->repository->find($id);
+
+
+        if ($method === 'POST') {
+            $data = $request->getParsedBody();
+            var_dump($data['produitNomUpdate'], $data['produitPrixUpdate']);
+            $file = $request->getUploadedFiles()['imageupdate'] ?? null;
+            $validator = new Validator($data);
+            $errors = $validator->required('produitNomUpdate', 'produitPrixUpdate', 'categorie')
+                ->strLength('produitNomUpdate', 3, 50)
+                ->intLength('produitPrixUpdate', 0.01, 100)
+                ->float('produitPrixUpdate')
+                ->isUnique('produitNomUpdate', $this->repository, 'nom', 'Ce produit existe déjà', $id)
+                ->getErrors();
+
+            if (!empty($errors)) {
+                foreach ($errors as $error) {
+                    $this->toaster->createToast($error, Toaster::ERROR);
+                }
+                return $this->redirect('admin.produit.update', ['id' => $id]);
+            }
+            $categorie = $this->manager->getRepository(Categorie::class)->find($data['categorie']);
+            $produit->setNom($data['produitNomUpdate'])
+                ->setPrix($data['produitPrixUpdate'])
+                ->setCategorie($categorie);
+            if (!is_null($file)) {
+                if ($file->getError() != 4) {
+
+                    $data['img'] = $file->getClientFileName();
+                    $validator->isUnique('img', $this->repository, 'img', '', $id);
+                    $this->fileGuards($file);
+                    $ancienneImage = $this->container->get('produit.img.basePath');
+                    $ancienneImage .= $produit->getImg();
+                    $produit->setImg($file->getClientFileName());
+                    $file->moveTo($this->container->get('produit.img.basePath') . $file->getClientFileName());
+
+                    if (!$file->isMoved()) {
+                        $this->toaster->createToast("ERREUR : problème", Toaster::ERROR);
+                        $this->redirect('admin.produit.update');
+                    }
+                    $this->deleteImage($ancienneImage);
+                }
+            }
+            $this->manager->flush();
+            $this->toaster->createToast('Modification enregistrée.', Toaster::SUCCESS);
+            return $this->redirect('admin.produit.manage');
+        }
+
+        $ingredients = $this->manager->getRepository(Ingredient::class)->findAll();
+        $categories = $this->manager->getRepository(Categorie::class)->findAll();
+        $taxes = $this->manager->getRepository(Taxe::class)->findAll();
+        $types = $this->manager->getRepository(TypeIngredient::class)->findAll();
+        return $this->renderer->render('@produit/admin/updateProduit', [
+            'produit' => $produit,
+            'ingredients' => $ingredients,
+            'categories' => $categories,
+            'taxes' => $taxes,
+            'types' => $types
+        ]);
+    }
+    public function delete(ServerRequest $request): string
+    {
+        $id = $request->getAttribute('id');
+        $produit = $this->repository->find($id);
+        $imagePath = $this->container->get('produit.img.basePath');
+        $imagePath .= $produit->getImg();
+        $this->deleteImage($imagePath);
+        $this->manager->remove($produit);
+        $this->manager->flush();
+        return "true";
+    }
+
+    public function deleteImage(string $path): void
+    {
+        unlink($path);
     }
 }
