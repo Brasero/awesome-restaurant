@@ -1,11 +1,15 @@
 <?php
+
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\Entity;
-use Doctrine\ORM\Mapping\Table;
+use App\Entity\Offre;
+use App\Entity\Categorie;
+use App\Entity\Ingredient;
 use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\Table;
+use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 
 /**
@@ -53,8 +57,11 @@ class Produit
     private Categorie $categorie;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Ingredient", mappedBy="produits")
-     * @ORM\JoinTable(name="ingredient_produit")
+     * @ORM\ManyToMany(targetEntity="Ingredient")
+     * @ORM\JoinTable(name="ingredient_produit",
+     * joinColumns={@ORM\JoinColumn(name="produit_id",referencedColumnName="id")},
+     * inverseJoinColumns={@ORM\JoinColumn(name="ingredient_id", referencedColumnName="id")}
+     * )
      */
     private $ingredients;
 
@@ -62,17 +69,28 @@ class Produit
      * @ORM\ManyToOne(targetEntity="Taxe", inversedBy="produits")
      * @ORM\JoinColumn(name="taxe_id", referencedColumnName="id", onDelete="CASCADE")
      */
-    private int $taxe;
+    private Taxe $taxe;
 
-
-    public function setPrix(string $prix)
+    /**
+     * Constructor
+     */
+    public function __construct()
     {
-        $this->prix = $prix;
+        $this->ingredients = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-    public function setNom(string $nom)
+    public function setPrix(string $prix): self
+    {
+        $prix = str_replace(',', '.', $prix);
+        $prix = floatval($prix);
+        $this->prix = $prix;
+        return $this;
+    }
+
+    public function setNom(string $nom): self
     {
         $this->nom = strtolower($nom);
+        return $this;
     }
 
     public function getPrix()
@@ -85,9 +103,10 @@ class Produit
         return $this->img;
     }
 
-    public function setImg(string $img)
+    public function setImg(string $img): self
     {
         $this->img = $img;
+        return $this;
     }
 
     public function getOffre(): ?Offre
@@ -96,9 +115,10 @@ class Produit
     }
 
 
-    public function setOffre(Offre $offre = null): void
+    public function setOffre(Offre $offre = null): self
     {
         $this->offre = $offre;
+        return $this;
     }
 
     public function getNom()
@@ -128,15 +148,16 @@ class Produit
     /**
      * @param Categorie $categorie
      */
-    public function setCategorie(Categorie $categorie): void
+    public function setCategorie(Categorie $categorie): self
     {
         $this->categorie = $categorie;
+        return $this;
     }
 
     /**
      * @return Ingredient[]
      */
-    public function getIngredients(): array
+    public function getIngredients()
     {
         return $this->ingredients;
     }
@@ -144,45 +165,26 @@ class Produit
     /**
      * @param Ingredient $ingredient
      */
-    public function setIngredients(Ingredient $ingredient): void
+    public function setIngredients(Ingredient $ingredient): self
     {
         $this->ingredients[] = $ingredient;
+        return $this;
     }
 
     /**
-     * @return int
+     * @return Taxe $taxe
      */
-    public function getTaxe(): int
+    public function getTaxe(): Taxe
     {
         return $this->taxe;
     }
 
     /**
-     * @param int $taxe
+     * @param Taxe $taxe
      */
-    public function setTaxe(int $taxe): void
+    public function setTaxe(Taxe $taxe): self
     {
         $this->taxe = $taxe;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->ingredients = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add ingredient.
-     *
-     * @param \App\Entity\Ingredient $ingredient
-     *
-     * @return Produit
-     */
-    public function addIngredient(\App\Entity\Ingredient $ingredient)
-    {
-        $this->ingredients[] = $ingredient;
-
         return $this;
     }
 

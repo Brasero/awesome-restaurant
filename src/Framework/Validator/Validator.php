@@ -84,9 +84,9 @@ class Validator
     public function isUnique(string $key, EntityRepository $repository, string $field = "nom", ?string $message = null, int $id = null): self
     {
         $all = $repository->findAll();
-        $method = "get".ucfirst($field);
+        $method = "get" . ucfirst($field);
         foreach ($all as $item) {
-            if ($item->$method() === $this->params[$key] && $item->getId() !== $id) {
+            if (strcasecmp($item->$method(), $this->params[$key]) === 0 && $item->getId() !== $id) {
                 if (!is_null($message)) {
                     $this->addError($key, $message);
                 } else {

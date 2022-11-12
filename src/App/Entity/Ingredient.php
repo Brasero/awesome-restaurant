@@ -46,11 +46,7 @@ class Ingredient
      */
     private TypeIngredient $type;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="Produit", mappedBy="ingredients")
-     * @ORM\JoinTable(name="ingredient_produit")
-     */
-    private $produits;
+
 
     /**
      * @return int
@@ -141,36 +137,5 @@ class Ingredient
     public function getDispo()
     {
         return $this->dispo;
-    }
-
-    /**
-     * Add produit.
-     *
-     * @param Produit $produit
-     *
-     * @return Ingredient
-     */
-    public function addProduit(Produit $produit)
-    {
-        $this->produits[] = $produit;
-
-        return $this;
-    }
-
-    /**
-     * Remove produit.
-     *
-     * @param Produit $produit
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
-     */
-    public function removeProduit(Produit $produit): bool
-    {
-        return $this->produits->removeElement($produit);
-    }
-
-    public function getProduits()
-    {
-        return $this->produits;
     }
 }

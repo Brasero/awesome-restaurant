@@ -303,11 +303,11 @@
     height: unset;
 }
 
-.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup {
-    display: flex;
+.inputGroup {
+    display: flex !important;
     flex-wrap: wrap;
-    background-color: white;
-
+    background-color: white !important;
+    
 }
 
 .main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > span {
@@ -315,31 +315,31 @@
 
 }
 
-.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup > .fileInput {
+ .fileInput {
     position: relative;
     background-color: transparent;
     width: 156px;
     height: 38px;
 }
 
-.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup > .fileInput .inputItem {
+.fileInput .inputItem {
     position: absolute;
     width: 155px;
     height: 38px;
 }
 
-.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup > .fileInput > .inputFile {
+ .fileInput > .inputFile {
     height: 80px;
 }
 
-.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup > .fileInput > .fakeFile {
+ .fileInput > .fakeFile {
     position: absolute;
     top: 0;
     z-index: 1;
     background-color: white;
 }
 
-.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup > .fileInput > .fakeFile > button {
+ .fileInput > .fakeFile > button {
     position: relative;
     top: 0px;
     color: var(--color-primary);
@@ -352,14 +352,14 @@
 }
 
 
-.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup > .fileInput:hover > .fakeFile > .fakeButton {
+.fileInput:hover > .fakeFile > .fakeButton {
     background-color: var(--color-primary);
     color: white;
 
 }
 
 
-.main > .container > .produitContainer > .produitCardDeck > .card > .produitFormContainer > .inputGroup > #fakeInput {
+.fakeInput {
     position: relative;
     background-color: white;
     color: var(--color-black);
@@ -418,7 +418,7 @@
     background-color: transparent;
 }
 
-.uptadeTypeForm > #fakeInput {
+.uptadeTypeForm > .fakeInput {
     position: relative;
     background-color: white;
     color: var(--color-black);

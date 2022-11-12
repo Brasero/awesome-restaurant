@@ -1,0 +1,114 @@
+{% extends '@admin/connected.html.twig' %}
+
+{% block body %}
+    
+<div class="produitContainer">
+    <h1 class="pageTitle">
+        <span class="top" style="transform: translateY(-30px);">
+            Modification des
+        </span>
+        <span class="bottom" style="transform: translateY(30px);">
+            produits
+        </span>
+    </h1>
+    <div class="produitUpdate">
+        {# Debut formulaire modification produit #}
+        <h4 class="formUpdateTitle">
+            Modifier {{produit.nom}}
+        </h4>
+        <form action="{{path('admin.produit.update')}}" method="POST" class="modifFormContainer" enctype="multipart/form-data">
+            <span class="inputGroup">
+                <label for="produitNomUpdate">
+                    <input type="text" class="inputItem inputUpdate" name="produitNomUpdate" id="produitNomUpdate" placeholder="Nom" value={{produit.nom}} required/>
+                    <span>Nom</span>
+                </label>
+            </span>
+            <span class="inputGroup">
+                <label for="produitPrixUpdate">
+                    <input type="text" class="inputItem inputUpdate" name="produitPrixUpdate" id="produitPrixUpdate" placeholder="Prix" onkeypress="checkPrice(event); return false;" value={{produit.prix}} required/>
+                    <span>Prix</span>
+                </label>
+            </span>
+            <div class="fileInput">
+                <div class="inputFile">
+                    <input type="hidden" name="MAX_FILE_SIZE" value="20000000"/>
+                    <input type="file" class="inputItem inputUpdate" name="imageProduitUpdate" id="imageProduitUpdate" placeholder="Image" onchange="addFileText(event)"/>
+                </div>
+                <div class="fakeFile">
+                    <button class="fakeButton" disabled>
+                        Choisir une photo
+                    </button>
+                    <br>
+                </div>
+            </div>
+            <span class="fakeInput">
+                Selectionnez une photo pour modifier
+            </span>
+            
+                <span class="typeUpdateChoice">
+                    <label for="categorieType" class="InputUpdateLabel">
+                        Catégorie
+                    </label>
+                    <select name="categorie" id="categorieUpdateType" class="inputItem" placeholder="Categorie" required>
+                        <option value={{produit.categorie.ID}} class="typeOption" selected>{{produit.categorie.nom}}</option>
+                        {% for categorie in categories %}
+                            <option value={{categorie.ID}}>{{categorie.nom}}</option>
+                        {% endfor %}
+                    </select>
+                </span>
+            
+            <span class="typeUpdateChoice">
+                <label for="taxeUpdateType">
+                    <span>Taxe</span>
+                </label>
+                <select name="taxe" id="taxeUpdateType" class="inputItem" placeholder="Taxe"
+                required>
+                    <option value={{produit.taxe.id}} class="typeOption" selected>{{ produit.taxe.taux}}</option>
+                    {% for taxe in taxes %}
+                        <option value={{ taxe.id }}>{{ taxe.taux }}</option>
+                    {% endfor %}
+                </select>
+            </span>
+            
+                <fieldset class="ingredientGroup">
+                    {% for type in types %}
+                        
+                        <div class="typeIngredientGroupItem" id="type-{{ type.id }}" onclick="toggleIngredientList(event, {{type.id}})" data-idtype={{ type.id }}>
+                            <div class="groupLabel">
+                                <span>{{ ucfirst(type.nom)}}</span> <i class="bi bi-caret-down-fill"></i>
+                            </div>
+                            {% for ingredient in ingredients %}
+                                {% if ingredient.type == type %}
+                                    <div class="groupItem">
+                                        <input type="checkbox" name="ingredients[]" checked="{{ingredient == produit.ingredients ? 'true' : 'false'}}"
+                                        value="{{ingredient.id}}"
+                                        id="ingredient-{{ ingredient.nom}}">
+                                        <label for="ingredient-{{ingredient.nom}}" class="ingredientLabel">{{ ingredient.nom}}</label>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+
+                        </div>
+                    {% endfor %}
+                </fieldset>
+            
+            
+                <button type="submit" class="addButton">
+                    Valider
+                </button>
+            
+        </form>
+        {# Fin formulaire modification produit #}
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript" src="{{ asset('/assets/js/admin/toastController.js')}}"></script>
+<script type="text/javascript" src="{{ asset('/assets/js/admin/animation.js')}}"></script>
+<script type="text/javascript" src="{{ asset('/assets/js/admin/dropDownIngredient.js')}}"></script>
+<script type="text/javascript" src="{{ asset('/assets/js/admin/ajoutImage.js')}}"></script>
+<script type="text/javascript" src="{{ asset('/assets/js/admin/priceCheck.js')}}"></script>
+
+{% endblock %}

@@ -10,6 +10,7 @@ use Framework\Renderer\TwigRendererFactory;
 use Framework\Renderer\RendererInterface;
 use Framework\Router\Router;
 use Framework\Router\RouteurTwigExtension;
+use Framework\TwigExtension\AssetsTwigExtension;
 
 return [
     "config.view_path" => dirname(__DIR__) . '\views',
@@ -27,9 +28,11 @@ return [
         RouteurTwigExtension::class,
         TwigFormatExtension::class,
         ToasterTwigExtension::class,
+        AssetsTwigExtension::class,
     ],
     RendererInterface::class => \DI\factory(TwigRendererFactory::class),
     Router::class => \DI\create(),
     EntityManagerInterface::class => \DI\factory(DatabaseFactory::class),
     SessionInterface::class => \DI\get(PHPSession::class),
+    AssetsTwigExtension::class => \DI\create(),
 ];
