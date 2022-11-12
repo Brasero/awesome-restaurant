@@ -1,10 +1,12 @@
 <?php
 
-use Framework\TwigExtension\MenuTwigExtension;
+use function DI\get;
 use App\User\UserModule;
 use App\User\UserWidget;
 use function DI\autowire;
-use function DI\get;
+use Framework\TwigExtension\MenuTwigExtension;
+
+
 
 return [
     "user.prefix" => "/user",

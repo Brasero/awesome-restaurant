@@ -58,22 +58,6 @@ class UserModule extends Module
         $this->router->get("/admin/user", [$this, "show"], "admin.user.show");
     }
 
-
-    public function __invoke(): string
-    {
-        return $this->connexion();
-    }
-
-    public function connexion(): string
-    {
-        return $this->renderer->render('@user/connexion');
-    }
-
-    public function inscription(): string
-    {
-        return $this->renderer->render('@user/inscription');
-    }
-
     public function espace(): string
     {
         return $this->renderer->render('@user/profil');

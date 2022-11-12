@@ -1,34 +1,7 @@
 .ingredientContainer{
     width: 100%;
     height: 100vh;
-    padding-left: 50px;
     background: var(--color-light);
-}
-
-.ingredientContainer > .pageTitle{
-    text-align: left;
-    text-transform: uppercase;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    overflow: hidden;
-    background-color: var(--color-light);
-
-}
-
-.ingredientContainer > .pageTitle .bottom,
-.ingredientContainer > .pageTitle .top{
-    font-family: var(--font-secondary);
-    transition: var(--transition);
-    background-color: var(--color-light);
-}
-
-.ingredientContainer > .pageTitle .bottom{
-    color: var(--color-primary);
-    font-family: var(--font-primary);
-    text-shadow: var(--shadow-1);
-    background-color: var(--color-light);
 }
 
 .ingredientContainer > .ingredientCardDeck{
