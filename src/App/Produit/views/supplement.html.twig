@@ -8,7 +8,7 @@
     <div class="containerSupplement">
         <div class="name">
             <div class="nameBurger">
-                CheesBurger
+                {{supplement.nom}}
             </div>
             <div class="intro">
                 Délicieux chessburger, avec son steack angus et sa sauce fromagère maison.
@@ -16,7 +16,7 @@
         </div>
 
         <div class="photo">
-            <img src="./assets/img/burger.jpg" alt="">
+            <img src="../assets/img/ressources/produit/{{supplement.img}}" alt="">
         </div>
 
         <div class="ingredients">
@@ -143,18 +143,15 @@
             <div class="beurk m-1-2">
                 <h3 class="title">Quelque chose ne vous plait pas ? </h3>
 
-                <div class="ingreBeurk">
-                    <input type="checkbox">
-                    <p class="faimIngredient">Salade</p>
-                </div>
-                <div class="ingreBeurk">
-                    <input type="checkbox">
-                    <p class="faimIngredient">Tomate</p>
-                </div>
-                <div class="ingreBeurk">
-                    <input type="checkbox">
-                    <p class="faimIngredient">Oignon</p>
-                </div>
+                {% for ingredient in supplement.ingredients %}
+                    <div class="ingreBeurk">
+                        <input type="checkbox" checked>
+                            <p class="faimIngredient">
+                                {{ingredient.nom}}
+                            </p>
+                    </div>
+                {% endfor %}
+    
             </div>
 
             <div class="btnAction">

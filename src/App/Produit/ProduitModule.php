@@ -2,24 +2,25 @@
 
 namespace App\Produit;
 
+use App\Entity\Taxe;
+use Framework\Module;
+use App\Entity\Produit;
 use App\Entity\Categorie;
 use App\Entity\Ingredient;
-use App\Entity\Produit;
-use App\Entity\Taxe;
-use App\Entity\TypeIngredient;
-use Framework\TwigExtension\MenuTwigExtension;
-use App\Produit\Action\CategorieAction;
-use App\Produit\Action\ProduitAction;
-use Doctrine\ORM\EntityManagerInterface;
-use Framework\Module;
-use Framework\Renderer\RendererInterface;
-use Framework\Renderer\TwigRenderer;
 use Framework\Router\Router;
+use App\Entity\TypeIngredient;
 use GuzzleHttp\Psr7\ServerRequest;
-use Psr\Container\ContainerExceptionInterface;
+use Framework\Renderer\TwigRenderer;
+use App\Produit\Action\ProduitAction;
 use Psr\Container\ContainerInterface;
-use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\RequestInterface;
+use App\Produit\Action\CategorieAction;
+use Framework\Session\SessionInterface;
+use Doctrine\ORM\EntityManagerInterface;
+use Framework\Renderer\RendererInterface;
+use Psr\Container\NotFoundExceptionInterface;
+use Framework\TwigExtension\MenuTwigExtension;
+use Psr\Container\ContainerExceptionInterface;
 
 class ProduitModule extends Module
 {
@@ -31,14 +32,16 @@ class ProduitModule extends Module
      */
     private RendererInterface $renderer;
     private EntityManagerInterface $manager;
+    private SessionInterface $session;
 
     /**
      * @param ContainerInterface $container
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
-    public function __construct(ContainerInterface $container)
+    public function __construct(ContainerInterface $container, SessionInterface $session)
     {
+        $this->session = $session;
         $produitAction = $container->get(ProduitAction::class);
         $categorieAction = new CategorieAction($container);
         $renderer = $container->get(RendererInterface::class);
@@ -48,8 +51,8 @@ class ProduitModule extends Module
         $this->renderer = $renderer;
         $router->get('/carte', [$this, 'carte'], 'produit.carte');
         $router->get('/panier', [$this, 'panier'], 'produit.panier');
-        $router->get('/supplement', [$this, "supplement"], 'produit.supplement');
-        $router->get('/carte/{id:[0-9]}', [$this, 'show'], 'produit.show');
+        $router->get('/supplement/{id:\d+}', [$this, "supplement"], 'produit.supplement');
+        $router->get('/carte/{id:\d+}', [$this, 'show'], 'produit.show');
         $this->manager = $manager;
         if ($container->has('admin.prefix')) {
             $prefix = $container->get('admin.prefix');
@@ -99,31 +102,46 @@ class ProduitModule extends Module
         }
     }
 
-    public function carte(): string
+    public function carte(ServerRequest $request): string
     {
         $prods = $this->manager->getRepository(Produit::class)->findAll();
         $categories = $this->manager->getRepository(Categorie::class)->findAll();
+
         return $this->renderer->render('@produit/carte', [
             "products" => $prods,
-            "categorys" => $categories
+            "categorys" => $categories,
         ]);
-    }
 
+    }
 
     public function panier(): string
     {
         return $this->renderer->render('@produit/panier');
     }
 
-    public function supplement(): string
-    {
-        return $this->renderer->render('@produit/supplement');
+
+
+
+
+    public function supplement(ServerRequest $request): string
+    {        
+        $id = $request->getAttribute('id');
+        $supplement = $this->manager->find(Produit::class, $id);
+
+        return $this->renderer->render('@produit/supplement', [
+            "supplement" => $supplement,
+        ]);
     }
+
+
+
+
 
     public function show(ServerRequest $request): string
     {
         $id = $request->getAttribute('id');
         $prod = $this->manager->find(Produit::class, $id);
+
         return $this->renderer->render('@produit/show', [
             "prod" => $prod
         ]);

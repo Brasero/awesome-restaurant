@@ -27,14 +27,18 @@
                     <img src="../assets/img/ressources/background/carte/test.png" alt="">
                     <div>
                         <h2>{{ prod.nom }}</h2>
-                        <p>La liste des ingredient</p>
+                        <p>La liste des ingredient </p>
                     </div>
                     <div class="cardButtonGroup">
                         <button class="cardButtonAdd">
-                            <img src="../assets/img/ressources/icon/carte/tomate.svg" alt="">
+                            <a href="/supplement/{{prod.id}}">
+                                <img src="../assets/img/ressources/icon/carte/tomate.svg" alt="">
+                            </a>
                         </button>
                         <button class="cardButtonAdd">
-                            <iconify-icon id="cartIcone" icon="noto-v1:shopping-cart"></iconify-icon>
+                            <a href="/carte/{{prod.id}}">
+                                <iconify-icon id="cartIcone" icon="noto-v1:shopping-cart"></iconify-icon>
+                            </a>
                         </button>
                     </div>
                 </div>
