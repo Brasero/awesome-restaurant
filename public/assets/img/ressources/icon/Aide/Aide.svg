@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="106.097" height="161.595" viewBox="0 0 106.097 161.595">
+  <defs>
+    <filter id="Tracé_153" x="0" y="0" width="106.097" height="161.595" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="question-mark-33777" transform="translate(-548.974 -168.229)">
+    <g transform="matrix(1, 0, 0, 1, 548.97, 168.23)" filter="url(#Tracé_153)">
+      <path id="Tracé_153-2" data-name="Tracé 153" d="M603.014,175.231q18.359,0,30.208,11.454t11.849,27.446a36.647,36.647,0,0,1-5.133,19.347,47.273,47.273,0,0,1-10.864,11.846q-4.736,3.754-9.472,7.309A13.7,13.7,0,0,0,615.45,262.7a34.966,34.966,0,0,0,.2,4.935L587.414,270.4a117.427,117.427,0,0,1-.789-14.412v-2.175q0-15.792,12.734-23.692t12.734-15a10.1,10.1,0,0,0-3.946-7.9,12.875,12.875,0,0,0-8.49-3.356,16.109,16.109,0,0,0-9.478,2.763,31.038,31.038,0,0,0-7.5,7.9l-23.3-17.57q16.588-21.721,43.635-21.722Zm-.4,100.1,20.342,20.336L602.617,316.4,581.89,295.67Z" transform="translate(-548.97 -168.23)" fill="#ededed" stroke="#707070" stroke-width="2"/>
+    </g>
+  </g>
+</svg>

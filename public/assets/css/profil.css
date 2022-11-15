@@ -74,9 +74,9 @@ body {
 
 .param {
     position: absolute;
-    top: 11px;
-    left: 5px;
-    width: 100%;
+    top: -18px;
+    left: -31px;
+    width: 150%;
     filter: drop-shadow(var(--shadow-1));
 }
 
@@ -90,9 +90,8 @@ body {
 
 .Aide {
     position: absolute;
-    top: -5px;
-    left: 17px;
-    width: 70%;
+    left: 21px;
+    width: 73%;
     filter: drop-shadow(var(--shadow-1));
 }
 

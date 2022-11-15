@@ -6,113 +6,174 @@ body {
     backdrop-filter: blur(20px);
     min-height: 100vh;
 }
-.paramProfilContainer{
+
+.container {
     display: flex;
 }
-aside{
-    width:20%;
-    height: 92.8vmin;
-    border-right: solid 2px white;
+
+.paramProfilContainer {
+    display: flex;
+    width: 90%;
 }
-aside>#title{
-    height: 17%;
-    border-bottom: 2px solid white;
+
+.navAdresse {
+    width: 98px;
+    top: 60px;
+    position: sticky;
+    height: 92.8vh;
 }
-aside>#title>h1{
-    font-family: var(--font-primary);
-    font-size: 3.5rem;
-    font-weight: normal;
-    color: var(--color-dark);
-    padding-top: 14%;
-    padding-left: 3%;
-    text-shadow: 0px 3px 6px rgba(0, 0, 0, 0.55);
-}
-aside>#lienContainer{
-    height: 83%;
+
+.navAdresse > ul {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-}
-aside>#lienContainer>ul>li{
-    margin-bottom: 25%;
-}
-aside>#lienContainer>ul>li>a{
-    color: white;
-    font-size: 2.5rem;
+    height: 100%;
+
 }
 
-main{
+.navAdresse > ul > li {
+    list-style: none;
     display: flex;
-    width: 80%;
     flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    border-right: white solid 2px;
+    width: 100%;
+    height: 100%;
+
 }
 
-main>#title{
+.toggleButton {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    cursor: pointer;
+    top: 0;
+    right: 10px;
+    height: 5%;
+}
+
+.toggleButton > div {
+    width: 30px;
+    height: 5px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+#paramNav {
+    border-top: white solid 2px;
+    border-bottom: white solid 2px;
+    border-right: none;
+
+}
+
+#commandeImg {
+    width: 60%;
+    margin-left: 14px;
+}
+
+#adresseImg {
+    width: 80%;
+    margin-left: 14px;
+}
+
+#profilImg {
+    width: 80%;
+    margin-left: 7px;
+}
+
+#aideImg {
+    width: 50%;
+    margin-left: 18px;
+}
+
+main {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+main > #title {
     display: flex;
     justify-content: center;
     margin-top: 1%;
-    height: 9%;
     width: 100%;
 }
-main>#title>h1{
+
+main > #title > h1 {
     font-family: var(--font-secondary);
     font-weight: normal;
     font-size: 3.5rem;
     color: var(--color-primary);
 
 }
-main>#form{
-    width: 100%;
-    height: 84%;
-}
-main>#form>#nomPrenom{
-    display: flex;
-    justify-content: space-around;
-}
-main>#form>#nomPrenom>div{
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-}
-input{
-    width: 462px;
-    height: 75px;
-    border-radius: 20px;
-    background: rgba(var(--color-light-rgb), 0.34);
-    border: 1px solid #707070;
-    align-self: center;
 
+form {
+    display: flex;
+    width: 80%;
+
+    gap: 5%;
 }
-label{
+
+label {
     font-family: var(--font-secondary);
     font-weight: normal;
     font-size: 50px;
+    text-align: left;
     color: white;
-    text-align: center;
-    margin-top: 1%;
+
 }
-.inputBasique{
+
+.positionChamp.mdp {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    margin-top: 5%;
+    width: 100%;
 }
-#button{
+.positionChamp.mdp> label {
+    text-align: center;
+}
+
+.positionChamp {
     display: flex;
-    justify-content: center;
 }
-button{
-    margin-top: 2%;
-    width: 376px;
-    height: 60px;
-    border-radius: 33px;
+
+input {
+    width: 582px;
+    height: 80px;
+    border-radius: 20px;
+    border: none;
+    background: rgba(255, 255, 255, 0.34);
+}
+.buttonChamp{
+    background: none;
+    border: none;
+    margin-left: 2%;
+    cursor: pointer;
+}
+#valider{
+    position: absolute;
+    bottom: 90px;
+    right: 155px;
+    width: 286px;
+    height: 67px;
+    border-radius: 33.5px;
     background: transparent;
     border: 1px solid var(--color-primary);
     font-family: var(--font-secondary);
     font-weight: normal;
     font-size: 50px;
+    text-align: center;
     color: white;
 }
-button:hover{
-    background-color: var(--color-primary);
+
+#valider:hover{
+    background: var(--color-primary);
     transition: var(--transition);
 }
