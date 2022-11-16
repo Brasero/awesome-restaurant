@@ -11,7 +11,7 @@
                 {{supplement.nom}}
             </div>
             <div class="intro">
-                Délicieux chessburger, avec son steack angus et sa sauce fromagère maison.
+                {{supplement.description}}
             </div>
         </div>
 
@@ -20,6 +20,28 @@
         </div>
 
         <div class="ingredients">
+            {# {% for steack in supplement.ingredients %}
+                <p>{{steack.nom}}</p>
+                {% if steack is same as ("Viande rouge") %}
+                <p> test </p>
+                {% else %}
+                <p>non</p>
+                {% endif %}
+            {% endfor %} #}
+            {# {% if type is same as ("viande blanche") %}
+                <p>ok</p>
+            {% else %}
+                <p>non ok</p>
+            {% endif %} #}
+
+            {# {% set var1="viande rouge" %}
+
+            {% for typetest in types %}
+                {% if types.nom is same as(var1) %}
+                    <p>ok</p>
+                {% endif %}
+            {% endfor %} #}
+
             <div class="choixCuissons m-1-2">
                 <h3 class="title">Cuisson du boeuf</h3>
 
@@ -42,50 +64,28 @@
             <div class="tresFaim m-1-2">
                 <h3 class="title"> Envie d'un extras ?</h3>
                 <div class="containerDropdown">
+                    {% for ingreType in types  %}
                     <div class="dropdown">
                         <div class="select">
-                            <span class="selected">Viande</span>
+                            <span class="selected">{{ingreType.nom}}</span>
                             <div class="caret"></div>
                         </div>
+
                         <ul class="menu">
-                            <div class="faim" id="faim">
-                                <input type="checkbox">
-                                <p class="faimIngredient">Un steack</p>
-                                <p class="prix">{{ currencyFormat(1.5, "€")}}</p>
-                            </div>
-                            <div class="faim">
-                                <input type="checkbox">
-                                <p class="faimIngredient">Double steack</p>
-                                <p class="prix">{{ currencyFormat(3, "€")}}</p>
-                            </div>
+                            {% for extras in ingredients  %}    
+                                <div class="faim" id="faim">
+                                    <input type="checkbox">
+                                    <p class="faimIngredient">{{extras.nom}}</p>
+                                    <p class="prix">
+                                        {{ currencyFormat(extras.prix , "€")}}
+                                    </p>
+                                </div>
+                            {% endfor %}
                         </ul>
                     </div>
+                    {% endfor %}
 
-                    <div class="dropdown">
-                        <div class="select">
-                            <span class="selected">Fromage</span>
-                            <div class="caret"></div>
-                        </div>
-                        <ul class="menu">
-                            <div class="faim" id="faim">
-                                <input type="checkbox">
-                                <p class="faimIngredient">Goudat</p>
-                                <p class="prix">{{ currencyFormat(2.1, "€")}}</p>
-                            </div>
-                            <div class="faim">
-                                <input type="checkbox">
-                                <p class="faimIngredient">Raclette</p>
-                                <p class="prix">{{ currencyFormat(1.5, "€")}}</p>
-                            </div>
-                            <div class="faim">
-                                <input type="checkbox">
-                                <p class="faimIngredient">Beaufort</p>
-                                <p class="prix">{{ currencyFormat(2, "€")}}</p>
-                            </div>
-                        </ul>
-                    </div>
-
-                    <div class="dropdown">
+                    {# <div class="dropdown">
                         <div class="select">
                             <span class="selected">Légumes</span>
                             <div class="caret"></div>
@@ -136,7 +136,7 @@
                                 <p class="prix">{{ currencyFormat(1, "€")}}</p>
                             </div>
                         </ul>
-                    </div>
+                    </div> #}
                 </div>  
             </div>
 

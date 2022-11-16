@@ -119,23 +119,23 @@ class ProduitModule extends Module
         return $this->renderer->render('@produit/panier');
     }
 
-
-
-
-
     public function supplement(ServerRequest $request): string
     {        
         $id = $request->getAttribute('id');
         $supplement = $this->manager->find(Produit::class, $id);
+        $typeRepository = $this->manager->getRepository(TypeIngredient::class);
+        $types = $typeRepository->findAll();
+        $ingredientRepository = $this->manager->getRepository(Ingredient::class);
+        $ingredients = $ingredientRepository->findAll();
+        // $ingredients = $this->manager->getRepository(Ingredient::class)->find($id);
+
 
         return $this->renderer->render('@produit/supplement', [
             "supplement" => $supplement,
+            "types" => $types,
+            "ingredients" => $ingredients,
         ]);
     }
-
-
-
-
 
     public function show(ServerRequest $request): string
     {

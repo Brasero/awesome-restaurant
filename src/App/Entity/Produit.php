@@ -72,6 +72,12 @@ class Produit
     private Taxe $taxe;
 
     /**
+     * @Column(type="string", name="description_produit", nullable="true")
+     * @var string
+     */
+    private string $description;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -90,6 +96,12 @@ class Produit
     public function setNom(string $nom): self
     {
         $this->nom = strtolower($nom);
+        return $this;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = strtolower($description);
         return $this;
     }
 
@@ -124,6 +136,11 @@ class Produit
     public function getNom()
     {
         return ucfirst($this->nom);
+    }
+
+    public function getDescription()
+    {
+        return ucfirst($this->description);
     }
 
     public function getId()
