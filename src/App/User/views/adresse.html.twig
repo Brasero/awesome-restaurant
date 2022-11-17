@@ -7,21 +7,21 @@
 {% block body %}
     <nav class="navAdresse">
         <ul>
-            <div class="toggleButton active" onclick="toggleNav()">
+            <div class="toggleButton active" onclick="toggleNav(event)">
                 <div class="top"></div>
                 <div class="bottom"></div>
             </div>
             <li>
                 <a href="">
                     <img src="../assets/img/ressources/icon/commande/commandeIcon.svg" alt="" id="commandeImg">
-                    <span style="display: none">Mes commande</span>
+                    <span >Mes commande</span>
                 </a>
             </li>
 
             <li id="adresseNav">
                 <a href="{{ path('user.adresse') }}">
                     <img src="../assets/img/ressources/icon/Adresse/Adresse.png" alt="" id="adresseImg">
-                    <span style="display: none">Mes adresse</span>
+                    <span>Mes adresse</span>
                 </a>
             </li>
 
@@ -29,13 +29,13 @@
             <li>
                 <a href="{{ path('user.paramProfil') }}">
                     <img src="../assets/img/ressources/icon/Param/Param.svg" alt="" id="profilImg">
-                    <span style="display: none">Mon profil</span>
+                    <span >Mon profil</span>
                 </a>
             </li>
             <li>
                 <a href="">
                     <img src="../assets/img/ressources/icon/Aide/Aide.svg" alt="" id="aideImg">
-                    <span style="display: none">Aide et question</span>
+                    <span >Aide et question</span>
                 </a>
             </li>
         </ul>

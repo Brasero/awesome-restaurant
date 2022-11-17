@@ -19,8 +19,15 @@ body {
     top: 60px;
     position: sticky;
     height: 92.8vh;
+    transition: var(--transition);
+}
 
-
+.navAdresse.expanded{
+    width:20%;
+    top: 60px;
+    transition: var(--transition);
+    position: sticky;
+    height: 92.8vh;
 }
 .navAdresse > ul{
     position: relative;
@@ -42,6 +49,28 @@ body {
     height: 100%;
 
 }
+.navAdresse > ul > li>a{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    align-items: center;
+    overflow: hidden;
+    gap: 10px;
+}
+
+
+.navAdresse > ul > li>a>span{
+    font-family: var(--font-secondary);
+    font-weight: bolder;
+    font-size: 1.5rem;
+    text-decoration: underline;
+    color: white;
+    white-space: nowrap;
+    padding: 10px;
+
+}
+
+
 .toggleButton{
     position: absolute;
     display: flex;
@@ -66,21 +95,26 @@ body {
 
 }
 #commandeImg{
-    width: 60%;
-    margin-left: 14px;
+    width: 58px;
+    height: 62px;
+
+
 }
 #adresseImg{
-    width: 80%;
-    margin-left: 14px;
+    width: 79px;
+    height: 58px;
+
 }
 #profilImg{
-    width: 80%;
-    margin-left: 7px;
+    width: 80px;
+    height: 67px;
+
 }
 
 #aideImg{
-    width: 50%;
-    margin-left: 18px;
+    width: 48px;
+    height: 73px;
+    margin-left: 10px;
 }
 main{
     width:100%;
