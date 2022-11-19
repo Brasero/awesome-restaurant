@@ -82,14 +82,13 @@ class ProduitModule extends Module
                 'admin.produit.add'
             );
             $router->get(
-                $prefix . '/produit/updateProduit/{id:\d+}',
+                $prefix . '/produit/manage/updateProduit/{id:\d+}',
                 [$produitAction, 'update'],
                 'admin.produit.update'
             );
             $router->post(
-                $prefix . '/produit/updateProduit/{id:\d+}',
+                $prefix . '/produit/manage/updateProduit/{id:\d+}',
                 [$produitAction, 'update']
-
             );
             $router->get(
                 "/ajax/produit/delete/{id:\d+}",

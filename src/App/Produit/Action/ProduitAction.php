@@ -86,8 +86,7 @@ class ProduitAction
         $prod = new Produit();
         $prod->setNom($data['produitNom']);
         $prod->setImg($fileName);
-        if (
-            isset($data['ingredients']) &&
+        if (isset($data['ingredients']) &&
             sizeof($data['ingredients']) > 0
         ) {
             foreach ($data['ingredients'] as $id) {
@@ -176,7 +175,6 @@ class ProduitAction
                 ->setCategorie($categorie);
             if (!is_null($file)) {
                 if ($file->getError() != 4) {
-
                     $data['img'] = $file->getClientFileName();
                     $validator->isUnique('img', $this->repository, 'img', '', $id);
                     $this->fileGuards($file);

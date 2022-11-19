@@ -1,5 +1,6 @@
 vendor/
 .idea/
-categorie/
+public/assets/img/ressources/categorie/
+public/assets/img/ressources/produit/
 .phpunit.result.cache
 package-lock.json
