@@ -71,8 +71,8 @@ class AuthAction
                 }
                 return $this->redirect('admin.auth');
             }
-            $username = $params['username'] ?? null;
-            $password = $params['password'] ?? null;
+            $username = $params['username'];
+            $password = $params['password'];
             if ($auth->login($username, $password)) {
                 $this->toaster->createToast('Vous êtes connecté', Toaster::SUCCESS);
                 return $this->redirect('admin.home');
