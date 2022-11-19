@@ -6,8 +6,6 @@ use App\User\UserWidget;
 use function DI\autowire;
 use Framework\TwigExtension\MenuTwigExtension;
 
-
-
 return [
     "user.prefix" => "/user",
     "admin.widgets" => \DI\add([

@@ -80,9 +80,17 @@ class Validator
      * @param string $key clé du champ
      * @param EntityRepository $repository manager de l'entité
      * @param string $field nom de la propriété de l'entité
+     * @param string|null $message message d'erreur personnalisé (optionnel)
+     * @param int|null $id id de l'entité à exclure (optionnel)
+     * @return Validator
      */
-    public function isUnique(string $key, EntityRepository $repository, string $field = "nom", ?string $message = null, int $id = null): self
-    {
+    public function isUnique(
+        string $key,
+        EntityRepository $repository,
+        string $field = "nom",
+        ?string $message = null,
+        int $id = null
+    ): self {
         $all = $repository->findAll();
         $method = "get" . ucfirst($field);
         foreach ($all as $item) {
@@ -121,6 +129,13 @@ class Validator
         return $this;
     }
 
+    /**
+     * Assure que le nombre de chiffres dans un nombre est compris entre 2 valeurs
+     * @param string $key clé du champ
+     * @param int $min nombre de chiffres minimum
+     * @param int $max  nombre de chiffres maximum
+     * @return $this
+     */
     public function intLength(string $key, int $min, int $max): self
     {
         if (!array_key_exists($key, $this->params)) {
@@ -194,6 +209,12 @@ class Validator
         return $this;
     }
 
+    /**
+     * Assure que la date de début est antérieure à la date de fin
+     * @param string $keyStart clé du champ de début
+     * @param string $keyEnd clé du champ de fin
+     * @return $this
+     */
     public function checkInterval(string $keyStart, string $keyEnd): self
     {
         if (!array_key_exists($keyStart, $this->params) or !array_key_exists($keyEnd, $this->params)) {
