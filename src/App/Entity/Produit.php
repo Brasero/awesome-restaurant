@@ -77,6 +77,13 @@ class Produit
      */
     private string $description;
 
+
+    /**
+     * @ORM\OneToMany(targetEntity="PanierLigne", mappedBy="produit")
+     * @ORM\JoinTable(name="panier_ligne")
+     */
+    private $panier_ligne;
+
     /**
      * Constructor
      */
@@ -215,5 +222,55 @@ class Produit
     public function removeIngredient(\App\Entity\Ingredient $ingredient)
     {
         return $this->ingredients->removeElement($ingredient);
+    }
+
+    /**
+     * Add ingredient.
+     *
+     * @param \App\Entity\Ingredient $ingredient
+     *
+     * @return Produit
+     */
+    public function addIngredient(\App\Entity\Ingredient $ingredient)
+    {
+        $this->ingredients[] = $ingredient;
+
+        return $this;
+    }
+
+    /**
+     * Add panierLigne.
+     *
+     * @param \App\Entity\PanierLigne $panierLigne
+     *
+     * @return Produit
+     */
+    public function addPanierLigne(\App\Entity\PanierLigne $panierLigne)
+    {
+        $this->panier_ligne[] = $panierLigne;
+
+        return $this;
+    }
+
+    /**
+     * Remove panierLigne.
+     *
+     * @param \App\Entity\PanierLigne $panierLigne
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removePanierLigne(\App\Entity\PanierLigne $panierLigne)
+    {
+        return $this->panier_ligne->removeElement($panierLigne);
+    }
+
+    /**
+     * Get panierLigne.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPanierLigne()
+    {
+        return $this->panier_ligne;
     }
 }

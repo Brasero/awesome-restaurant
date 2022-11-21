@@ -56,6 +56,11 @@ class User
      */
     private $adresse;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Panier", mappedBy="user")
+     */
+    private $panier;
+
 
     /**
      * @return int
@@ -161,5 +166,53 @@ class User
     {
         $this->adresse = $adresse;
         return $this;
+    }
+
+    /**
+     * Set mdp.
+     *
+     * @param string $mdp
+     *
+     * @return User
+     */
+    public function setMdp($mdp)
+    {
+        $this->mdp = $mdp;
+
+        return $this;
+    }
+
+    /**
+     * Get mdp.
+     *
+     * @return string
+     */
+    public function getMdp()
+    {
+        return $this->mdp;
+    }
+
+    /**
+     * Set panier.
+     *
+     * @param \App\Entity\Panier|null $panier
+     *
+     * @return User
+     */
+    public function setPanier(\App\Entity\Panier $panier = null)
+    {
+        $this->panier = $panier;
+
+        return $this;
+    }
+
+    /**
+     * Get panier.
+     *
+     * @return \App\Entity\Panier|null
+     */
+    public function getPanier()
+    {
+        return $this->panier;
     }
 }
