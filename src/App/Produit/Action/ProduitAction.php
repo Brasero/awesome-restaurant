@@ -85,6 +85,9 @@ class ProduitAction
 
         $prod = new Produit();
         $prod->setNom($data['produitNom']);
+        //
+        $prod->setDescription($data["produitDescription"]);
+        //
         $prod->setImg($fileName);
         if (isset($data['ingredients']) &&
             sizeof($data['ingredients']) > 0
