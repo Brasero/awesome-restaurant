@@ -44,6 +44,7 @@ class UserModule extends Module
         $router->get($prefix . '/espace', [$this, 'espace'], 'user.espace');
         $router->get($prefix . '/paramProfil', [$this, 'paramProfil'], 'user.paramProfil');
         $router->get($prefix . '/adresse', [$this, 'adresse'], 'user.adresse');
+        $router->get($prefix . '/aide', [$this, 'aide'], 'user.aide');
 
         if ($renderer instanceof TwigRenderer) {
             $renderer->getTwig()->addExtension($menuTwigExtension);
@@ -83,6 +84,10 @@ class UserModule extends Module
     public function adresse(): string
     {
         return $this->renderer->render('@user/adresse');
+    }
+    public function aide(): string
+    {
+        return $this->renderer->render('@user/aide');
     }
 
     public function show()

@@ -1,0 +1,104 @@
+.navAdresse{
+    width:98px;
+    top: 60px;
+    position: sticky;
+    height: 92.8vh;
+    transition: var(--transition);
+}
+
+.navAdresse.expanded{
+    width:20%;
+    top: 60px;
+    transition: var(--transition);
+    position: sticky;
+    height: 92.8vh;
+}
+.navAdresse > ul{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+
+}
+.navAdresse > ul > li{
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    border-right: white solid 2px;
+    width: 100%;
+    height: 100%;
+
+}
+.navAdresse > ul > li>a{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    align-items: center;
+    overflow: hidden;
+    gap: 10px;
+}
+
+
+.navAdresse > ul > li>a>span{
+    font-family: var(--font-secondary);
+    font-weight: bolder;
+    font-size: 1.5rem;
+    text-decoration: underline;
+    color: white;
+    white-space: nowrap;
+    padding: 10px;
+
+}
+
+.toggleButton {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    cursor: pointer;
+    top: 0;
+    right: 10px;
+    height: 5%;
+}
+
+.toggleButton > div {
+    width: 30px;
+    height: 5px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+#paramNav {
+    border-top: white solid 2px;
+    border-bottom: white solid 2px;
+    border-right: none;
+
+}
+
+#commandeImg{
+    width: 58px;
+    height: 62px;
+
+
+}
+#adresseImg{
+    width: 79px;
+    height: 58px;
+
+}
+#profilImg{
+    width: 80px;
+    height: 67px;
+
+}
+
+#aideImg{
+    width: 48px;
+    height: 73px;
+    margin-left: 10px;
+}
