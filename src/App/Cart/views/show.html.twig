@@ -1,0 +1,97 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{{ asset('/assets/css/supplement.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="containerSupplement">
+        <div class="name">
+            <div class="nameBurger">
+                {{product.nom}}
+            </div>
+            <div class="intro">
+                {{product.description}}
+            </div>
+        </div>
+
+        <div class="photo">
+            <img src="{{ asset('/assets/img/ressources/produit', product.img) }}" alt="">
+        </div>
+
+        <div class="ingredients">
+            {% if asCookingType %}
+            <div class="choixCuissons m-1-2">
+                <h3 class="title">Cuisson du boeuf</h3>
+
+                <div class="cuissons">
+                    <input type="radio" id="saignant" name="cuisson" value="saignant" checked>
+                    <label for="saignant">Saignant</label>
+                </div>
+
+                <div class="cuisson">
+                    <input type="radio" id="aPoint" name="cuisson" value="aPoint">
+                    <label for="aPoint">A point</label>
+                </div>
+
+                <div class="cuisson">
+                    <input type="radio" id="bienCuit" name="cuisson" value="bienCuit">
+                    <label for="bienCuit">Bien cuit</label>
+                </div>
+            </div>
+
+            {% endif %}
+
+            <div class="tresFaim m-1-2">
+                <h3 class="title"> Envie d'un extras ?</h3>
+                <div class="containerDropdown">
+                    {% for ingreType in typeIngredients  %}
+                    <div class="dropdown">
+                        <div class="select">
+                            <span class="selected">{{ingreType.nom}}</span>
+                            <div class="caret"></div>
+                        </div>
+
+                        <ul class="menu">
+                            {% for extras in ingreType.ingredients  %}
+                                <div class="faim" id="faim">
+                                    <input type="checkbox">
+                                    <p class="faimIngredient">{{extras.nom}}</p>
+                                    <p class="prix">
+                                        {{ currencyFormat(extras.prix , "€")}}
+                                    </p>
+                                </div>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endfor %}
+                </div>  
+            </div>
+
+            <div class="beurk m-1-2">
+                <h3 class="title">Quelque chose ne vous plait pas ? </h3>
+
+                {% for ingredient in product.ingredients %}
+                    <div class="ingreBeurk">
+                        <input type="checkbox" checked>
+                            <p class="faimIngredient">
+                                {{ingredient.nom}}
+                            </p>
+                    </div>
+                {% endfor %}
+    
+            </div>
+
+            <div class="btnAction">
+                <a href="{{ path('carte.index') }}" class="btn retour">
+                    <button>Retour</button>
+                </a>
+                <a href="" class="btn confirm">
+                    <button>Confirmer</button>
+                </a>
+            </div>
+        </div>
+    </div>
+    <script src="{{ asset('/assets/js/supplementPanier.js') }}"></script>
+
+{% endblock %}

@@ -36,6 +36,7 @@ class ProduitModule extends Module
 
     /**
      * @param ContainerInterface $container
+     * @param SessionInterface $session
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
@@ -49,10 +50,6 @@ class ProduitModule extends Module
         $manager = $container->get(EntityManagerInterface::class);
         $renderer->addPath('produit', __DIR__ . '/views');
         $this->renderer = $renderer;
-        $router->get('/carte', [$this, 'carte'], 'produit.carte');
-        $router->get('/panier', [$this, 'panier'], 'produit.panier');
-        $router->get('/supplement/{id:\d+}', [$this, "supplement"], 'produit.supplement');
-        $router->get('/carte/{id:\d+}', [$this, 'show'], 'produit.show');
         $this->manager = $manager;
         if ($container->has('admin.prefix')) {
             $prefix = $container->get('admin.prefix');
@@ -99,51 +96,6 @@ class ProduitModule extends Module
                 'ajax.produit.delete'
             );
         }
-    }
-
-    public function carte(ServerRequest $request): string
-    {
-        $prods = $this->manager->getRepository(Produit::class)->findAll();
-        $categories = $this->manager->getRepository(Categorie::class)->findAll();
-
-        return $this->renderer->render('@produit/carte', [
-            "products" => $prods,
-            "categorys" => $categories,
-        ]);
-
-    }
-
-    public function panier(): string
-    {
-        return $this->renderer->render('@produit/panier');
-    }
-
-    public function supplement(ServerRequest $request): string
-    {        
-        $id = $request->getAttribute('id');
-        $supplement = $this->manager->find(Produit::class, $id);
-        $typeRepository = $this->manager->getRepository(TypeIngredient::class);
-        $types = $typeRepository->findAll();
-        $ingredientRepository = $this->manager->getRepository(Ingredient::class);
-        $ingredients = $ingredientRepository->findAll();
-        // $ingredients = $this->manager->getRepository(Ingredient::class)->find($id);
-
-
-        return $this->renderer->render('@produit/supplement', [
-            "supplement" => $supplement,
-            "types" => $types,
-            "ingredients" => $ingredients,
-        ]);
-    }
-
-    public function show(ServerRequest $request): string
-    {
-        $id = $request->getAttribute('id');
-        $prod = $this->manager->find(Produit::class, $id);
-
-        return $this->renderer->render('@produit/show', [
-            "prod" => $prod
-        ]);
     }
 
     public function manage(RequestInterface $request): string

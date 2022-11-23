@@ -1,0 +1,89 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheet %}
+
+<link rel="stylesheet" href="../assets/css/panier.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+{% endblock %}
+
+{% block body %}
+
+<div class="panierContainer">
+    <h1 class="panierTitle">
+        Mon panier
+    </h1>
+    <div class="panier">
+        <section>
+            {% if total != 0 %}
+                <table>
+                    <tr>
+                        <th></th>
+                        <th>Nom</th>
+                        <th>Prix</th>
+                        <th>Quantité</th>
+                        <th>Action</th>
+                    </tr>
+
+                    {% for ligne in panier %}
+                        <tr>
+                            <td>
+                                <div class="nameImage">
+                                    <img class="image" src="{{ asset('/assets/img/ressources/produit', ligne.produit.img) }}" />
+                                </div>
+                            </td>
+                            <td>
+                                <div class="nom">
+                                    {{ ligne.produit.nom }}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="price">
+                                    {{ currencyFormat((ligne.produit.prix * ligne.quantite), '€') }}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="qte">
+                                    <a href="index.php?page=panier&action=decreaseProd&idProd=<?= $item['ID_produit'] ?>">
+                                <span class="decreaseButton">
+                                    <button role="button" id="<?= $item['ID_produit'] ?>-minus">-</button>
+                                </span>
+                                    </a>
+                                    <span>{{ ligne.quantite }}</span>
+                                    <a href="index.php?page=panier&action=increaseProd&idProd=<?= $item['ID_produit'] ?>">
+                                <span class="increaseButton">
+                                    <button role="button" id="<?= $item['ID_produit'] ?>-plus">+</button>
+                                </span>
+                                    </a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="action">
+                                    <a href="index.php?page=panier&action= ?>">
+                                        <button class="editButton" id="<?= $item['ID_produit'] ?>-delete">
+                                            <i class="bi bi-pencil-square edit"></i>
+                                        </button>
+                                    </a>
+                                    <a href="index.php?page=panier&action=supprProd&idProd=<?= $item['ID_produit'] ?>">
+                                        <button class="deleteButton" id="<?= $item['ID_produit'] ?>-delete">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+                    <tr class="total">
+                        <th>Total : {{ currencyFormat(total, '€') }}</th>
+                        <th class="commander"><a href="">Commander</a></th>
+                    </tr>
+                </table>
+            {% else %}
+                <div class="empty">
+                    <h3>Votre panier est vide</h3>
+                </div>
+            {% endif %}
+        </section>
+    </div>
+</div>
+{% endblock %}

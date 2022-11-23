@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use App\Entity\Panier;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -58,20 +57,23 @@ class PanierLigne
 
     /**
      * @param int $quantite
+     * @return PanierLigne
      */
-    public function setQuantite(int $quantite): void
+    public function setQuantite(int $quantite): self
     {
         $this->quantite = $quantite;
+
+        return $this;
     }
 
     /**
      * Set panier.
      *
-     * @param int $panier
+     * @param Panier $panier
      *
      * @return PanierLigne
      */
-    public function setPanier($panier)
+    public function setPanier(Panier $panier): self
     {
         $this->panier = $panier;
 
@@ -81,9 +83,9 @@ class PanierLigne
     /**
      * Get panier.
      *
-     * @return int
+     * @return Panier
      */
-    public function getPanier()
+    public function getPanier(): Panier
     {
         return $this->panier;
     }
@@ -91,11 +93,11 @@ class PanierLigne
     /**
      * Set produit.
      *
-     * @param int $produit
+     * @param Produit $produit
      *
      * @return PanierLigne
      */
-    public function setProduit($produit)
+    public function setProduit(Produit $produit): self
     {
         $this->produit = $produit;
 
@@ -105,9 +107,9 @@ class PanierLigne
     /**
      * Get produit.
      *
-     * @return int
+     * @return Produit
      */
-    public function getProduit()
+    public function getProduit(): Produit
     {
         return $this->produit;
     }

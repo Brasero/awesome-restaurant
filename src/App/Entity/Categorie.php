@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\Table;
@@ -57,10 +59,12 @@ class Categorie
 
     /**
      * @param string $nom
+     * @return Categorie
      */
-    public function setNom(string $nom): void
+    public function setNom(string $nom): self
     {
         $this->nom = strtolower(htmlentities($nom));
+        return $this;
     }
 
     /**
@@ -73,10 +77,12 @@ class Categorie
 
     /**
      * @param string $img
+     * @return Categorie
      */
-    public function setImg(string $img): void
+    public function setImg(string $img): self
     {
         $this->img = ($img);
+        return $this;
     }
     /**
      * Constructor
@@ -89,11 +95,11 @@ class Categorie
     /**
      * Add produit.
      *
-     * @param \App\Entity\Produit $produit
+     * @param Produit $produit
      *
      * @return Categorie
      */
-    public function addProduit(\App\Entity\Produit $produit)
+    public function addProduit(Produit $produit): self
     {
         $this->produits[] = $produit;
 
@@ -103,11 +109,11 @@ class Categorie
     /**
      * Remove produit.
      *
-     * @param \App\Entity\Produit $produit
+     * @param Produit $produit
      *
      * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
      */
-    public function removeProduit(\App\Entity\Produit $produit)
+    public function removeProduit(Produit $produit): bool
     {
         return $this->produits->removeElement($produit);
     }
@@ -115,9 +121,9 @@ class Categorie
     /**
      * Get produits.
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return ArrayCollection
      */
-    public function getProduits()
+    public function getProduits(): ArrayCollection
     {
         return $this->produits;
     }

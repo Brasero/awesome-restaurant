@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Entity\Offre;
 use App\Entity\Categorie;
 use App\Entity\Ingredient;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
 use Doctrine\ORM\Mapping as ORM;
@@ -54,12 +56,12 @@ class Produit
      * @ORM\JoinTable(name="categorie_id")
      * @ORM\JoinColumn(onDelete="CASCADE")
      */
-    private Categorie $categorie;
+    private $categorie;
 
     /**
      * @ORM\ManyToMany(targetEntity="Ingredient")
      * @ORM\JoinTable(name="ingredient_produit",
-     * joinColumns={@ORM\JoinColumn(name="produit_id",referencedColumnName="id")},
+     * joinColumns={@ORM\JoinColumn(name="produit_id",referencedColumnName="id", onDelete="CASCADE")},
      * inverseJoinColumns={@ORM\JoinColumn(name="ingredient_id", referencedColumnName="id")}
      * )
      */
@@ -69,13 +71,13 @@ class Produit
      * @ORM\ManyToOne(targetEntity="Taxe", inversedBy="produits")
      * @ORM\JoinColumn(name="taxe_id", referencedColumnName="id", onDelete="CASCADE")
      */
-    private Taxe $taxe;
+    private $taxe;
 
     /**
      * @Column(type="string", name="description_produit", nullable="true")
-     * @var string
+     * @var string|null
      */
-    private string $description;
+    private ?string $description = null;
 
 
     /**
@@ -89,7 +91,7 @@ class Produit
      */
     public function __construct()
     {
-        $this->ingredients = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->ingredients = new ArrayCollection();
     }
 
     public function setPrix(string $prix): self
@@ -102,13 +104,13 @@ class Produit
 
     public function setNom(string $nom): self
     {
-        $this->nom = strtolower($nom);
+        $this->nom = htmlentities(strtolower($nom));
         return $this;
     }
 
     public function setDescription(string $description): self
     {
-        $this->description = strtolower($description);
+        $this->description = htmlentities(strtolower($description));
         return $this;
     }
 
@@ -142,12 +144,12 @@ class Produit
 
     public function getNom()
     {
-        return ucfirst($this->nom);
+        return ucfirst(html_entity_decode($this->nom));
     }
 
     public function getDescription()
     {
-        return ucfirst($this->description);
+        return ucfirst(html_entity_decode($this->description));
     }
 
     public function getId()
@@ -171,6 +173,7 @@ class Produit
 
     /**
      * @param Categorie $categorie
+     * @return Produit
      */
     public function setCategorie(Categorie $categorie): self
     {
@@ -179,9 +182,9 @@ class Produit
     }
 
     /**
-     * @return Ingredient[]
+     * @return ArrayCollection
      */
-    public function getIngredients()
+    public function getIngredients(): ArrayCollection
     {
         return $this->ingredients;
     }
@@ -241,11 +244,11 @@ class Produit
     /**
      * Add panierLigne.
      *
-     * @param \App\Entity\PanierLigne $panierLigne
+     * @param PanierLigne $panierLigne
      *
      * @return Produit
      */
-    public function addPanierLigne(\App\Entity\PanierLigne $panierLigne)
+    public function addPanierLigne(PanierLigne $panierLigne)
     {
         $this->panier_ligne[] = $panierLigne;
 
@@ -255,11 +258,11 @@ class Produit
     /**
      * Remove panierLigne.
      *
-     * @param \App\Entity\PanierLigne $panierLigne
+     * @param PanierLigne $panierLigne
      *
      * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
      */
-    public function removePanierLigne(\App\Entity\PanierLigne $panierLigne)
+    public function removePanierLigne(PanierLigne $panierLigne)
     {
         return $this->panier_ligne->removeElement($panierLigne);
     }
@@ -267,7 +270,7 @@ class Produit
     /**
      * Get panierLigne.
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
     public function getPanierLigne()
     {

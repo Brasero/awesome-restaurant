@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Entity\PanierLigne;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -57,17 +58,17 @@ class Panier
      */
     public function __construct()
     {
-        $this->panier_ligne = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->panier_ligne = new ArrayCollection();
     }
 
     /**
      * Add panierLigne.
      *
-     * @param \App\Entity\PanierLigne $panierLigne
+     * @param PanierLigne $panierLigne
      *
      * @return Panier
      */
-    public function addPanierLigne(\App\Entity\PanierLigne $panierLigne)
+    public function addPanierLigne(PanierLigne $panierLigne)
     {
         $this->panier_ligne[] = $panierLigne;
 
@@ -77,11 +78,11 @@ class Panier
     /**
      * Remove panierLigne.
      *
-     * @param \App\Entity\PanierLigne $panierLigne
+     * @param PanierLigne $panierLigne
      *
      * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
      */
-    public function removePanierLigne(\App\Entity\PanierLigne $panierLigne)
+    public function removePanierLigne(PanierLigne $panierLigne)
     {
         return $this->panier_ligne->removeElement($panierLigne);
     }
@@ -89,9 +90,9 @@ class Panier
     /**
      * Get panierLigne.
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return ArrayCollection
      */
-    public function getPanierLigne()
+    public function getPanierLigne(): ArrayCollection
     {
         return $this->panier_ligne;
     }

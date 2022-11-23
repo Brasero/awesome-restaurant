@@ -24,7 +24,7 @@
             <!-- debut pour boucle produit -->
             {% for prod in products %}
                 <div class="cardProd">
-                    <img src="../assets/img/ressources/background/carte/test.png" alt="">
+                    <img src="{{ asset('/assets/img/ressources/produit', prod.img) }}" alt="">
                     <div>
                         <h2>{{ prod.nom }}</h2>
                         {% if prod.description is not null %}
@@ -37,12 +37,12 @@
                     </div>
                     <div class="cardButtonGroup">
                         <button class="cardButtonAdd">
-                            <a href="/supplement/{{prod.id}}">
+                            <a href="{{ path('carte.show', {id: prod.id}) }}">
                                 <img src="../assets/img/ressources/icon/carte/tomate.svg" alt="">
                             </a>
                         </button>
                         <button class="cardButtonAdd">
-                            <a href="/carte/{{prod.id}}">
+                            <a href="{{ path('panier.add', {id: prod.id}) }}">
                                 <iconify-icon id="cartIcone" icon="noto-v1:shopping-cart"></iconify-icon>
                             </a>
                         </button>
@@ -84,5 +84,5 @@
 
         </div>
 
-        <script src="../assets/js/togglePanier.js"></script>
+        <script src="{{ asset('/assets/js/togglePanier.js') }}"></script>
 {% endblock %}
