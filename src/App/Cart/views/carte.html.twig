@@ -22,7 +22,7 @@
             <h1>{{ category.nom }}</h1>
             <span></span>
             <!-- debut pour boucle produit -->
-            {% for prod in products %}
+            {% for prod in category.produits %}
                 <div class="cardProd">
                     <img src="{{ asset('/assets/img/ressources/produit', prod.img) }}" alt="">
                     <div>

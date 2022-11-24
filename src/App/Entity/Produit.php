@@ -182,15 +182,16 @@ class Produit
     }
 
     /**
-     * @return ArrayCollection
+     * @return Collection
      */
-    public function getIngredients(): ArrayCollection
+    public function getIngredients(): Collection
     {
         return $this->ingredients;
     }
 
     /**
      * @param Ingredient $ingredient
+     * @return Produit
      */
     public function setIngredients(Ingredient $ingredient): self
     {

@@ -13,6 +13,7 @@ use Psr\Container\ContainerInterface;
 class CartModule extends \Framework\Module
 {
 
+    public const DEFINITIONS = __DIR__ . DIRECTORY_SEPARATOR . 'config.php';
 
     private ContainerInterface $container;
     private Toaster $toaster;

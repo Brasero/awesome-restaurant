@@ -121,9 +121,9 @@ class Categorie
     /**
      * Get produits.
      *
-     * @return ArrayCollection
+     * @return Collection
      */
-    public function getProduits(): ArrayCollection
+    public function getProduits(): Collection
     {
         return $this->produits;
     }
