@@ -6,6 +6,8 @@ use App\Entity\Panier;
 use App\Entity\PanierLigne;
 use App\Entity\Produit;
 use Doctrine\ORM\EntityManagerInterface;
+use Framework\Auth\UserAuth;
+use Framework\Cart\Cart;
 use Framework\Renderer\RendererInterface;
 use Framework\Router\RedirectTrait;
 use Framework\Router\Router;
@@ -27,6 +29,8 @@ class PanierAction
     private ContainerInterface $container;
     private SessionInterface $session;
     private RendererInterface $renderer;
+    private UserAuth $userAuth;
+    private Cart $panier;
 
     public function __construct(ContainerInterface $container)
     {
@@ -37,6 +41,8 @@ class PanierAction
         $this->repository = $this->manager->getRepository(Produit::class);
         $this->session = $container->get(SessionInterface::class);
         $this->renderer = $container->get(RendererInterface::class);
+        $this->userAuth = $container->get(UserAuth::class);
+        $this->panier = $container->get(Cart::class);
     }
 
     public function index(RequestInterface $request): string
@@ -59,6 +65,48 @@ class PanierAction
 
     public function add(RequestInterface $request)
     {
+        $product = $this->retrieveProduct($request);
+
+        if ($this->userAuth->isLogged()) {
+        } else {
+            return $this->panier->addSession($product);
+        }
+    }
+
+    public function decrease(RequestInterface $request)
+    {
+
+        $product = $this->retrieveProduct($request);
+
+        if ($this->userAuth->isLogged()) {
+        } else {
+            return $this->panier->decreaseSession($product);
+        }
+    }
+
+    public function increase(RequestInterface $request)
+    {
+
+        $product = $this->retrieveProduct($request);
+
+        if ($this->userAuth->isLogged()) {
+        } else {
+            return $this->panier->increaseSession($product);
+        }
+    }
+
+    public function remove(RequestInterface $request)
+    {
+        $product = $this->retrieveProduct($request);
+
+        if ($this->userAuth->isLogged()) {
+        } else {
+            return $this->panier->removeSession($product);
+        }
+    }
+
+    private function retrieveProduct(RequestInterface $request)
+    {
         $id = $request->getAttribute('id', null);
         $product = $this->repository->find($id);
 
@@ -67,25 +115,6 @@ class PanierAction
             return $this->redirect('carte.index');
         }
 
-        if ($this->session->has("auth")) {
-        } else {
-            $panier = $this->session->get("panier", []);
-            foreach ($panier as $ligne) {
-                if ($ligne->getProduit()->getId() === $product->getId()) {
-                    $ligne->setQuantite($ligne->getQuantite() + 1);
-                    $this->session->set("panier", $panier);
-                    $this->toaster->createToast('Produit ajouté au panier', Toaster::SUCCESS);
-                    return $this->redirect('carte.index');
-                }
-            }
-            $panierLigne = new PanierLigne();
-            $panierLigne->setProduit($product)
-                ->setQuantite(1);
-            $panier[] = $panierLigne;
-            $this->session->set("panier", $panier);
-        }
-
-        $this->toaster->createToast('Produit ajouté au panier', Toaster::SUCCESS);
-        return $this->redirect('carte.index');
+        return $product;
     }
 }

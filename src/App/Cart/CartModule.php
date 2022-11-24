@@ -35,5 +35,8 @@ class CartModule extends \Framework\Module
         $this->router->get('/carte', [$carteAction, 'index'], 'carte.index');
         $this->router->get('/carte/show/{id:\d+}', [$carteAction, 'show'], 'carte.show');
         $this->router->get('/panier/add/{id:\d+}', [$panierAction, 'add'], 'panier.add');
+        $this->router->get('/panier/less/{id:\d+}', [$panierAction, 'decrease'], 'panier.decrease');
+        $this->router->get('/panier/more/{id:\d+}', [$panierAction, 'increase'], 'panier.increase');
+        $this->router->get('/panier/remove/{id:\d+}', [$panierAction, 'remove'], 'panier.remove');
     }
 }

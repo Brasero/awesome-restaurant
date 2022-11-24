@@ -43,15 +43,15 @@
                             </td>
                             <td>
                                 <div class="qte">
-                                    <a href="index.php?page=panier&action=decreaseProd&idProd=<?= $item['ID_produit'] ?>">
+                                    <a href="{{ path('panier.decrease', {id: ligne.produit.id}) }}">
                                 <span class="decreaseButton">
-                                    <button role="button" id="<?= $item['ID_produit'] ?>-minus">-</button>
+                                    <button role="button" id="{{ ligne.produit.id }}-minus">-</button>
                                 </span>
                                     </a>
                                     <span>{{ ligne.quantite }}</span>
-                                    <a href="index.php?page=panier&action=increaseProd&idProd=<?= $item['ID_produit'] ?>">
+                                    <a href="{{ path('panier.increase', {id: ligne.produit.id}) }}">
                                 <span class="increaseButton">
-                                    <button role="button" id="<?= $item['ID_produit'] ?>-plus">+</button>
+                                    <button role="button" id="{{ ligne.produit.id }}-plus">+</button>
                                 </span>
                                     </a>
                                 </div>
@@ -63,8 +63,8 @@
                                             <i class="bi bi-pencil-square edit"></i>
                                         </button>
                                     </a>
-                                    <a href="index.php?page=panier&action=supprProd&idProd=<?= $item['ID_produit'] ?>">
-                                        <button class="deleteButton" id="<?= $item['ID_produit'] ?>-delete">
+                                    <a href="{{ path('panier.remove', {id: ligne.produit.id}) }}">
+                                        <button class="deleteButton" id="{{ ligne.produit.id }}-delete">
                                             <i class="bi bi-trash"></i>
                                         </button>
                                     </a>
