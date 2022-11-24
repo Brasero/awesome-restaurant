@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-    <div class="containerSupplement">
+    <form action="{{ path('panier.add', {id: product.id}) }}" method="POST" class="containerSupplement">
         <div class="name">
             <div class="nameBurger">
                 {{product.nom}}
@@ -54,8 +54,8 @@
 
                         <ul class="menu">
                             {% for extras in ingreType.ingredients  %}
-                                <div class="faim" id="faim">
-                                    <input type="checkbox">
+                                <div class="faim" id="faim-{{ extras.id }}">
+                                    <input name="extra[]" value="{{ extras.id }}" type="checkbox">
                                     <p class="faimIngredient">{{extras.nom}}</p>
                                     <p class="prix">
                                         {{ currencyFormat(extras.prix , "€") }}
@@ -73,7 +73,7 @@
 
                 {% for ingredient in product.ingredients %}
                     <div class="ingreBeurk">
-                        <input type="checkbox" checked>
+                        <input type="checkbox">
                             <p class="faimIngredient">
                                 {{ingredient.nom}}
                             </p>
@@ -86,12 +86,10 @@
                 <a href="{{ path('carte.index') }}" class="btn retour">
                     <button>Retour</button>
                 </a>
-                <a href="" class="btn confirm">
-                    <button>Confirmer</button>
-                </a>
+                <button role="button" class="btn confirm">Confirmer</button>
             </div>
         </div>
-    </div>
+    </form>
     <script src="{{ asset('/assets/js/supplementPanier.js') }}"></script>
 
 {% endblock %}

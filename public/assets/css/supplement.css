@@ -105,7 +105,7 @@ label,
     justify-content: space-around;
 }
 
-.btn button {
+.btn button, button.btn {
     padding: 1rem;
     border-radius: 4px;
     border: none;
@@ -118,7 +118,7 @@ label,
     background-color: var(--color-red);
 }
 
-.btnAction .confirm button {
+.btnAction > button.confirm  {
     background-color: var(--color-primary);
 }
 

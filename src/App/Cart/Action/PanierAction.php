@@ -2,6 +2,7 @@
 
 namespace App\Cart\Action;
 
+use App\Entity\Ingredient;
 use App\Entity\Panier;
 use App\Entity\PanierLigne;
 use App\Entity\Produit;
@@ -65,11 +66,25 @@ class PanierAction
 
     public function add(RequestInterface $request)
     {
+        $method = $request->getMethod();
         $product = $this->retrieveProduct($request);
+        $panierLigne = new PanierLigne();
+        $panierLigne->setProduit($product)
+            ->setQuantite(1);
+
+        if ($method === 'POST') {
+            $extras = $request->getParsedBody()['extra'] ?? null;
+            if ($extras) {
+                foreach ($extras as $extra) {
+                    $ingredient = $this->manager->getRepository(Ingredient::class)->find($extra);
+                    $panierLigne->addIngredient($ingredient);
+                }
+            }
+        }
 
         if ($this->userAuth->isLogged()) {
         } else {
-            return $this->panier->addSession($product);
+            return $this->panier->addSession($panierLigne);
         }
     }
 

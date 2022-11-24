@@ -38,5 +38,6 @@ class CartModule extends \Framework\Module
         $this->router->get('/panier/less/{id:\d+}', [$panierAction, 'decrease'], 'panier.decrease');
         $this->router->get('/panier/more/{id:\d+}', [$panierAction, 'increase'], 'panier.increase');
         $this->router->get('/panier/remove/{id:\d+}', [$panierAction, 'remove'], 'panier.remove');
+        $this->router->post("/panier/add/{id:\d+}", [$panierAction, 'add']);
     }
 }

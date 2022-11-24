@@ -26,21 +26,19 @@ class Cart
         $this->router = $container->get(Router::class);
     }
     
-    public function addSession(Produit $product)
+    public function addSession(PanierLigne $newLigne)
     {
         $panier = $this->session->get("panier", []);
         foreach ($panier as $ligne) {
-            if ($ligne->getProduit()->getId() === $product->getId()) {
+            if ($ligne->getProduit()->getId() === $newLigne->getProduit()->getId()
+                && $ligne->getIngredients() === $newLigne->getIngredients()) {
                 $ligne->setQuantite($ligne->getQuantite() + 1);
                 $this->session->set("panier", $panier);
                 $this->toaster->createToast('Produit ajouté au panier', Toaster::SUCCESS);
                 return $this->redirect('carte.index');
             }
         }
-        $panierLigne = new PanierLigne();
-        $panierLigne->setProduit($product)
-            ->setQuantite(1);
-        $panier[] = $panierLigne;
+        $panier[] = $newLigne;
         $this->session->set("panier", $panier);
 
         $this->toaster->createToast('Produit ajouté au panier', Toaster::SUCCESS);

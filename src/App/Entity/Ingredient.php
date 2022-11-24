@@ -42,9 +42,8 @@ class Ingredient
      * @ORM\ManyToOne(targetEntity="TypeIngredient", inversedBy="ingredients")
      * @ORM\JoinTable(name="type_id")
      * @ORM\JoinColumn(onDelete="CASCADE")
-     * @var TypeIngredient
      */
-    private TypeIngredient $type;
+    private $type;
 
 
 
@@ -112,16 +111,14 @@ class Ingredient
         return $this;
     }
 
-    /**
-     * @return TypeIngredient
-     */
-    public function getType(): TypeIngredient
+    public function getType()
     {
         return $this->type;
     }
 
     /**
      * @param TypeIngredient $type
+     * @return Ingredient
      */
     public function setType(TypeIngredient $type): self
     {
@@ -134,7 +131,7 @@ class Ingredient
      *
      * @return bool
      */
-    public function getDispo()
+    public function getDispo(): bool
     {
         return $this->dispo;
     }

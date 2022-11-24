@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -32,6 +33,15 @@ class PanierLigne
      */
     private Produit $produit;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Ingredient", inversedBy="panier_ligne")
+     * @ORM\JoinTable(name="panier_ligne_ingredient",
+     *     joinColumns={@ORM\JoinColumn(name="panier_ligne_id", referencedColumnName="id_panier_ligne")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="ingredient_id", referencedColumnName="id")}
+     *     )
+     * @var Collection
+     */
+    private $ingredients;
 
     /**
      * @ORM\Column(type="integer", name="quantite")
@@ -112,5 +122,24 @@ class PanierLigne
     public function getProduit(): Produit
     {
         return $this->produit;
+    }
+
+    public function addIngredient(Ingredient $ingredient): self
+    {
+        $this->ingredients[] = $ingredient;
+
+        return $this;
+    }
+
+    public function removeIngredient(Ingredient $ingredient): self
+    {
+        $this->ingredients->removeElement($ingredient);
+
+        return $this;
+    }
+
+    public function getIngredients()
+    {
+        return $this->ingredients;
     }
 }
