@@ -98,5 +98,4 @@ class TypeIngredient
     {
         $this->ingredients = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
 }

@@ -179,5 +179,4 @@ class Offre
     {
         $this->produits = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
 }
