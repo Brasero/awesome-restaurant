@@ -62,7 +62,7 @@ class ProduitAction
         $data = $request->getParsedBody();
         $file = $request->getUploadedFiles()['image'];
         $validator = new Validator($data);
-        $errors = $validator->required('produitNom', 'produitPrix', 'categorie')
+        $errors = $validator->required('produitNom', 'produitPrix', 'categorie', 'taxe')
             ->strLength('produitNom', 3, 50)
             ->intLength('produitPrix', 0.01, 100)
             ->float('produitPrix')
@@ -86,7 +86,8 @@ class ProduitAction
         $prod = new Produit();
         $prod->setNom($data['produitNom']);
         $prod->setImg($fileName);
-        if (isset($data['ingredients']) &&
+        if (
+            isset($data['ingredients']) &&
             sizeof($data['ingredients']) > 0
         ) {
             foreach ($data['ingredients'] as $id) {
