@@ -59,8 +59,8 @@
                             <span>Catégorie</span>
                         </label>
                         <select name="categorie" id="categorieType" class="inputItem" placeholder="Categorie"
-                                default="false" required>
-                            <option value="false" class="typeOption">....</option>
+                                 required>
+                            <option selected class="typeOption" disabled>....</option>
                             {% for categorie in categories %}
                                 <option value={{ categorie.ID }}>{{ categorie.nom }}</option>
                             {% endfor %}
@@ -103,8 +103,8 @@
                             <span>Taxe</span>
                         </label>
                         <select name="taxe" id="taxeType" class="inputItem" placeholder="Taxe"
-                                default="false" required>
-                            <option value="false" class="typeOption">....</option>
+                                 required>
+                            <option selected  class="typeOption" disabled>....</option>
                             {% for taxe in taxes %}
                                 <option value={{ taxe.id }}>{{ taxe.taux }}</option>
                             {% endfor %}
