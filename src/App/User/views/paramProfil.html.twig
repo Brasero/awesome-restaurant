@@ -9,11 +9,12 @@
     <nav class="navAdresse">
         <ul>
             <div class="toggleButton active" onclick="toggleNav(event)">
-                <div class="top"></div>
-                <div class="bottom"></div>
             </div>
+            <div class="top"></div>
+            <div class="bottom"></div>
+
             <li>
-                <a href="">
+                <a href="{{ path('user.commande') }}">
                     <img src="../assets/img/ressources/icon/commande/commandeIcon.svg" alt="" id="commandeImg">
                     <span>Mes commande</span>
                 </a>
@@ -36,7 +37,7 @@
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="{{ path('user.aide') }}">
                     <img src="../assets/img/ressources/icon/Aide/Aide.svg" alt="" id="aideImg">
                     <span>Aide et question</span>
                 </a>

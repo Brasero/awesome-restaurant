@@ -1,19 +1,73 @@
-.navAdresse{
-    width:98px;
+.navAdresse {
+    width: 98px;
     top: 60px;
     position: sticky;
     height: 92.8vh;
     transition: var(--transition);
 }
 
-.navAdresse.expanded{
-    width:20%;
+.top, .bottom {
+    z-index: 0;
+    width: 30px;
+    height: 3px;
+    background-color: white;
+    transition: var(--transition);
+    z-index: 0;
+    position: absolute;
+    top: 15px;
+    right: 10px;
+}
+
+.bottom {
+    top: 25px;
+}
+
+.navAdresse.expanded {
+    width: 25%;
     top: 60px;
     transition: var(--transition);
     position: sticky;
     height: 92.8vh;
 }
-.navAdresse > ul{
+
+.toggleButton {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    position: absolute;
+    cursor: pointer;
+    top: 15px;
+    width: 30px;
+    right: 10px;
+    min-height: 16px;
+    z-index: 1;
+}
+
+.navAdresse.expanded > ul>.toggleButton {
+    top: 6px;
+    right: 25px;
+    height: 30px;
+}
+
+
+.navAdresse.expanded > ul > .top {
+    transform: translate(-50%, -50%) rotate(585deg);
+    transform-origin: center;
+    transition: var(--transition);
+    transform-origin: center;
+    top: 20px;
+}
+
+.navAdresse.expanded > ul > .bottom {
+    transform: translate(-50%, -50%) rotate(-585deg);
+    transition: var(--transition);
+    top: 20px;
+
+
+}
+
+
+.navAdresse > ul {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -22,7 +76,8 @@
     height: 100%;
 
 }
-.navAdresse > ul > li{
+
+.navAdresse > ul > li {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
@@ -33,17 +88,18 @@
     height: 100%;
 
 }
-.navAdresse > ul > li>a{
+
+.navAdresse > ul > li > a {
     display: flex;
     justify-content: space-between;
     width: 80%;
     align-items: center;
     overflow: hidden;
-    gap: 10px;
+    gap: 11px;
 }
 
 
-.navAdresse > ul > li>a>span{
+.navAdresse > ul > li > a > span {
     font-family: var(--font-secondary);
     font-weight: bolder;
     font-size: 1.5rem;
@@ -54,25 +110,6 @@
 
 }
 
-.toggleButton {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    cursor: pointer;
-    top: 0;
-    right: 10px;
-    height: 5%;
-}
-
-.toggleButton > div {
-    width: 30px;
-    height: 5px;
-    background-color: white;
-    border-radius: 10px;
-}
-
 #paramNav {
     border-top: white solid 2px;
     border-bottom: white solid 2px;
@@ -80,24 +117,22 @@
 
 }
 
-#commandeImg{
+#commandeImg {
     width: 58px;
     height: 62px;
-
-
 }
-#adresseImg{
+
+#adresseImg {
     width: 79px;
     height: 58px;
-
 }
-#profilImg{
+
+#profilImg {
     width: 80px;
     height: 67px;
-
 }
 
-#aideImg{
+#aideImg {
     width: 48px;
     height: 73px;
     margin-left: 10px;

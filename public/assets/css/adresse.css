@@ -129,7 +129,7 @@ main >#formAjout{
 .title>h1{
     font-family: var(--font-primary);
     font-size: 3.5rem;
-    font-weight: 700;
+    font-weight: normal;
     color: var(--color-primary);
     margin-top: 2rem;
     text-align: center;

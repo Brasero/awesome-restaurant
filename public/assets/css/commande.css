@@ -1,0 +1,73 @@
+.container{
+    display: flex;
+}
+
+#paramNav{
+    border-top:none  ;
+}
+.commandeContainer{
+    width: 100%;
+}
+.commandeContainer>main>.title{
+    margin-top: 6%;
+    margin-bottom: 6%;
+}
+
+.commandeContainer>main>.title>h1{
+    font-family: var(--font-primary);
+    filter: drop-shadow(var(--shadow-1));
+    font-size: 3.5rem;
+    font-weight: normal;
+
+}
+
+.categorie-title{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2%;
+    width: 100%;
+    font-family: var(--font-secondary);
+}
+
+.triangleCard{
+    right: 50px;
+}
+
+.commandeContainer .question{
+    width: 100%;
+}
+.commandeContainer .question{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 2%;
+}
+table {
+    width: 95%;
+    margin: 1% 0;
+    border-collapse: collapse;
+}
+table>thead>tr>th {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: var(--font-secondary);
+    color: var(--color-primary);
+    padding-bottom: 2%;
+}
+
+table>tbody>tr>td {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: normal;
+    padding-bottom: 1%;
+    border-right: white 1px solid;
+}
+table>tbody>tr>td:last-child {
+    border-right: none;
+}
+
+table>tbody>tr>td:last-child {
+text-decoration: underline ;
+}

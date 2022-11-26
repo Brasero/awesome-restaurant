@@ -1,0 +1,190 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="../assets/css/aide.css">
+    <link rel="stylesheet" href="../assets/css/navBarUser.css">
+    <link rel="stylesheet" href="../assets/css/commande.css">
+{% endblock %}
+
+{% block body %}
+    <nav class="navAdresse">
+        <ul>
+            <div class="toggleButton active" onclick="toggleNav(event)">
+            </div>
+            <div class="top"></div>
+            <div class="bottom"></div>
+
+            <li id="paramNav">
+                <a href="">
+                    <img src="../assets/img/ressources/icon/commande/commandeIcon.svg" alt="" id="commandeImg">
+                    <span>Mes commande</span>
+                </a>
+            </li>
+
+            <li>
+                <a href=" {{ path('user.adresse') }}">
+                    <div>
+                        <img src="../assets/img/ressources/icon/Adresse/Adresse.png" alt="" id="adresseImg">
+                    </div>
+                    <span>Mes adresse</span>
+                </a>
+            </li>
+
+
+            <li>
+                <a href="{{ path('user.paramProfil') }}">
+                    <img src="../assets/img/ressources/icon/Param/Param.svg" alt="" id="profilImg">
+                    <span>Mon profil</span>
+                </a>
+            </li>
+            <li >
+                <a href="{{ path('user.aide') }}">
+                    <img src="../assets/img/ressources/icon/Aide/Aide.svg" alt="" id="aideImg">
+                    <span>Aide et question</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div class="commandeContainer">
+
+
+        <main>
+            <div class="title">
+                <h1>Liste des commandes</h1>
+            </div>
+            <div class="categorie-card">
+                <div class="categorie-title">
+                    <p>Date: 31/10/22</p>
+                    <p>Numéro de commande: 2555415</p>
+                    <p>Prix: 20€</p>
+                </div>
+                <div class="triangleCard">
+                    <div class="triangle" onclick="toggleNav(event)">
+                        <img src="../assets/img/ressources/icon/fleche/fleche.png" alt="">
+                    </div>
+                </div>
+                <div class="barre"></div>
+                <div class="question">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Produit</th>
+                                <th>Quantité</th>
+                                <th>Prix</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Produit 1</td>
+                                <td>1</td>
+                                <td>10€</td>
+                                <td>Facture</td>
+                            </tr>
+                            <tr>
+                                <td>Produit 2</td>
+                                <td>1</td>
+                                <td>10€</td>
+                                <td>Facture</td>
+                            </tr>
+
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+
+            <div class="categorie-card">
+                <div class="categorie-title">
+                    <p>Date: 31/10/22</p>
+                    <p>Numéro de commande: 2555415</p>
+                    <p>Prix: 20€</p>
+                </div>
+                <div class="triangleCard">
+                    <div class="triangle" onclick="toggleNav(event)">
+                        <img src="../assets/img/ressources/icon/fleche/fleche.png" alt="">
+                    </div>
+                </div>
+                <div class="barre"></div>
+                <div class="question">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Produit</th>
+                            <th>Quantité</th>
+                            <th>Prix</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Produit 1</td>
+                            <td>1</td>
+                            <td>10€</td>
+                            <td>Facture</td>
+                        </tr>
+                        <tr>
+                            <td>Produit 2</td>
+                            <td>1</td>
+                            <td>10€</td>
+                            <td>Facture</td>
+                        </tr>
+
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+
+            <div class="categorie-card">
+                <div class="categorie-title">
+                    <p>Date: 31/10/22</p>
+                    <p>Numéro de commande: 2555415</p>
+                    <p>Prix: 20€</p>
+                </div>
+                <div class="triangleCard">
+                    <div class="triangle" onclick="toggleNav(event)">
+                        <img src="../assets/img/ressources/icon/fleche/fleche.png" alt="">
+                    </div>
+                </div>
+                <div class="barre"></div>
+                <div class="question">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Produit</th>
+                            <th>Quantité</th>
+                            <th>Prix</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Produit 1</td>
+                            <td>1</td>
+                            <td>10€</td>
+                            <td>Facture</td>
+                        </tr>
+                        <tr>
+                            <td>Produit 2</td>
+                            <td>1</td>
+                            <td>10€</td>
+                            <td>Facture</td>
+                        </tr>
+
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+{% endblock %}

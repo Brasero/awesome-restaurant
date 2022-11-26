@@ -24,10 +24,11 @@ main > #title {
     justify-content: center;
     margin-top: 1%;
     width: 100%;
+    filter: drop-shadow(var(--shadow-1));
 }
 
 main > #title > h1 {
-    font-family: var(--font-secondary);
+    font-family: var(--font-primary);
     font-weight: normal;
     font-size: 3.5rem;
     color: var(--color-primary);
