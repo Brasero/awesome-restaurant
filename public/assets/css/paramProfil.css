@@ -66,18 +66,29 @@ label {
     display: flex;
 }
 
-input {
+.inputText {
     width: 582px;
     height: 80px;
     border-radius: 20px;
     border: none;
     background: rgba(255, 255, 255, 0.34);
+    font-size: 2rem;
+    color: white;
+    font-family: Redressed;
+    padding-left: 20px;
+    text-align: center;
+}
+input:focus-visible {
+    outline: none;
 }
 .buttonChamp{
-    background: none;
-    border: none;
+    display: flex;
+    justify-content: center;
     margin-left: 2%;
     cursor: pointer;
+}
+.buttonChamp>img{
+    width: 120%;
 }
 #valider{
     position: absolute;

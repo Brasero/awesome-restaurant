@@ -54,33 +54,33 @@
                     <div class="inputBasique">
                         <label for="nom">Nom</label>
                         <div class="positionChamp">
-                            <input type="text" id="nom" disabled>
-                            <button class="buttonChamp"><img src="../assets/img/ressources/icon/edit/edit.svg" alt="">
-                            </button>
+                            <input type="text" id="nom" class="inputText" disabled>
+                            <div class="buttonChamp" onclick="unlockInput(event)"><img src="../assets/img/ressources/icon/edit/edit.svg" alt="">
+                            </div>
                         </div>
                     </div>
                     <div class="inputBasique">
                         <label for="prenom">Prénom</label>
                         <div class="positionChamp">
-                            <input type="text" id="prenom" disabled>
-                            <button class="buttonChamp"><img src="../assets/img/ressources/icon/edit/edit.svg" alt="">
-                            </button>
+                            <input type="text" id="prenom " class="inputText" disabled>
+                            <div class="buttonChamp" onclick="unlockInput(event)"><img src="../assets/img/ressources/icon/edit/edit.svg" alt="">
+                            </div>
                         </div>
                     </div>
                     <div class="inputBasique">
                         <label for="email">Email</label>
                         <div class="positionChamp">
-                            <input type="email" id="email" disabled>
-                            <button class="buttonChamp"><img src="../assets/img/ressources/icon/edit/edit.svg" alt="">
-                            </button>
+                            <input type="email" id="email" class="inputText" disabled>
+                            <div class="buttonChamp" onclick="unlockInput(event)"><img src="../assets/img/ressources/icon/edit/edit.svg" alt="">
+                            </div>
                         </div>
                     </div>
                     <div class="inputBasique">
                         <label for="telephone">Numéro de téléphone</label>
                         <div class="positionChamp">
-                            <input type="tel" id="telephone" disabled>
-                            <button class="buttonChamp"><img src="../assets/img/ressources/icon/edit/edit.svg" alt="">
-                            </button>
+                            <input type="tel" id="telephone" class="inputText" disabled>
+                            <div class="buttonChamp" onclick="unlockInput(event)"><img src="../assets/img/ressources/icon/edit/edit.svg" alt="">
+                            </div>
                         </div>
 
                     </div>
@@ -88,8 +88,8 @@
                 <div class="positionChamp mdp">
                     <label for="password" id="passwordLabel">Modifier <br>mon<br> mot de passe</label>
                     <div class="positionChamp">
-                        <input type="password" id="password" disabled>
-                        <button class="buttonChamp"><img src="../assets/img/ressources/icon/edit/edit.svg" alt=""></button>
+                        <input type="password" id="password" class="inputText" disabled>
+                        <div class="buttonChamp" onclick="unlockInput(event)"><img src="../assets/img/ressources/icon/edit/edit.svg" alt=""></div>
                     </div>
                     <input type="button" id="valider" value="Valider"></input>
                 </div>
@@ -99,4 +99,7 @@
 
     </div>
 
+{% endblock %}
+{% block script %}
+    <script src="../assets/js/unlockInput.js"></script>
 {% endblock %}
