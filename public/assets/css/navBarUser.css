@@ -12,7 +12,6 @@
     height: 3px;
     background-color: white;
     transition: var(--transition);
-    z-index: 0;
     position: absolute;
     top: 15px;
     right: 10px;
@@ -43,7 +42,7 @@
     z-index: 1;
 }
 
-.navAdresse.expanded > ul>.toggleButton {
+.navAdresse.expanded > ul > .toggleButton {
     top: 6px;
     right: 25px;
     height: 30px;
@@ -137,3 +136,63 @@
     height: 73px;
     margin-left: 10px;
 }
+
+@media screen and (max-width: 768px) {
+    .top {
+        top: 25px;
+    }
+
+    .bottom {
+        top: 30px;
+    }
+
+    .navAdresse > ul > .toggleButton {
+        top: 20px;
+        width: 50px;
+    }
+
+    .navAdresse.expanded > ul > .toggleButton {
+        right: 30px;
+    }
+
+    .navAdresse.expanded > ul > .top {
+        top: 30px;
+    }
+
+    .navAdresse.expanded > ul > .bottom {
+        top: 30px;
+    }
+
+
+
+    .navAdresse {
+        width: 10%;
+
+        position: fixed;
+        top: 55px;
+        left: 35px;
+        z-index: 1;
+    }
+
+    .navAdresse > ul > li {
+        display: none;
+    }
+
+    .navAdresse.expanded {
+        width: 100% !important;
+
+    }
+
+    .navAdresse.expanded > ul > li {
+        display: flex;
+
+        border: none;
+    }
+
+
+
+
+}
+
+
+

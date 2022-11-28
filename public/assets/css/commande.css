@@ -72,3 +72,101 @@ table>tbody>tr>td:last-child {
 table>tbody>tr>td:last-child {
 text-decoration: underline ;
 }
+
+@media screen and (max-width: 1024px) {
+    .navAdresse.expanded {
+        width: 37%;
+    }
+    .commandeContainer>main>.title{
+        margin-top: 10%;
+        margin-bottom: 10%;
+    }
+    .commandeContainer>main>.title>h1{
+        font-size: 3rem;
+    }
+    .categorie-title{
+        flex-direction: column;
+        align-items: center;
+    }
+    .categorie-title>h1{
+        margin-bottom: 2%;
+    }
+    .categorie-title>div{
+        margin-bottom: 2%;
+    }
+    .commandeContainer .question{
+        flex-direction: column;
+        align-items: center;
+    }
+    .commandeContainer .question>div{
+        margin-bottom: 2%;
+    }
+    table>thead>tr>th {
+        font-size: 1.5rem;
+    }
+    table>tbody>tr>td {
+        font-size: 1.2rem;
+    }
+
+}
+@media screen and (max-width: 768px){
+    .navAdresse.expanded + .commandeContainer {
+        display: none;
+    }
+    .categorie-card {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .commandeContainer>main>.title{
+        margin-top: 15%;
+        margin-bottom: 15%;
+    }
+    .commandeContainer>main>.title>h1{
+        font-size: 2.5rem;
+    }
+    .categorie-title{
+        flex-direction: column;
+        align-items: center;
+    }
+    .categorie-title>h1{
+        margin-bottom: 2%;
+    }
+    .categorie-title>div{
+        margin-bottom: 2%;
+    }
+    .commandeContainer .question{
+        flex-direction: column;
+        align-items: center;
+    }
+    .commandeContainer .question>div{
+        margin-bottom: 2%;
+    }
+    table>thead>tr>th {
+        font-size: 1.2rem;
+    }
+    table>tbody>tr>td {
+        font-size: 1rem;
+    }
+    .triangle{
+        border-top: 20px solid white;
+        border-right: 10px solid transparent;
+        border-left: 10px solid transparent;
+        right: -36px;
+        top: 7px;
+    }
+}
+
+@media screen and(max-width: 326px) {
+    .triangle{
+        border-top: 20px solid white;
+        border-right: 10px solid transparent;
+        border-left: 10px solid transparent;
+        right: -22px;
+        top: -20px;
+    }
+    .categorie-title>p{
+        font-size: 1.3rem;
+    }
+}

@@ -9,12 +9,11 @@ body {
 
 .container {
     display: flex;
-    overflow-x: hidden;
 }
 
 main {
     display: flex;
-    width: 100%;
+    width: 90%;
     flex-wrap: wrap;
     justify-content: center;
 }
@@ -38,7 +37,6 @@ main > #title > h1 {
 form {
     display: flex;
     width: 80%;
-
     gap: 5%;
 }
 
@@ -110,3 +108,63 @@ input:focus-visible {
     background: var(--color-primary);
     transition: var(--transition);
 }
+
+@media screen and (max-width: 1024px){
+    form{
+        flex-direction: column;
+        width: 100%;
+    }
+    .formPartie1{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 5%;
+        width: 100%;
+    }
+
+    #valider{
+        position: initial;
+        margin-top: 10%;
+        margin-bottom: 2%;
+    }
+}
+@media screen and (max-width: 769px){
+
+    .paramProfilContainer{
+        display: flex;
+        justify-content: center;
+    }
+    .paramProfilContainer>main{
+        width: 100%;
+    }
+    .paramProfilContainer>main>#title>h1{
+        width: 95%;
+        text-align: right;
+    }
+    .navAdresse.expanded + .paramProfilContainer{
+        display: none;
+    }
+    .navAdresse{
+        left: 0 !important;
+    }
+}
+
+@media screen and (max-width: 426px){
+
+    main>#title>h1{
+        font-size: 1.5rem;
+    }
+    .inputText{
+        width: 100%;
+        height: 50px;
+    }
+    .buttonChamp>img{
+        width: 100%;
+
+    }
+
+    label{
+        font-size: 1rem;
+    }
+}
+

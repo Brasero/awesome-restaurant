@@ -97,8 +97,8 @@ main > .title > h1 {
 }
 
 .categorie-card.expanded>.barre{
-    position: absolute;
-    top: 75px;
+    position: relative;
+    top: 9px;
     width: 100%;
     height: 2px;
     background: var(--color-primary);
@@ -151,4 +151,46 @@ main > .title > h1 {
     color: var(--color-primary);
     transition: var(--transition);
     font-size: 3rem;
+}
+
+@media screen and (max-width: 426px) {
+    .navAdresse.expanded + main{
+        display: none;
+    }
+    main>.title>h1{
+        font-size: 2.5rem;
+    }
+    .sous-titre{
+        font-size: 1.5rem;
+    }
+    .categorie-card{
+        width: 98%;
+        height: 60px;
+    }
+    .triangle{
+        top: -10px;
+    }
+}
+
+@media screen and (max-width: 321px) {
+    .categorie-card{
+        width: 80%;
+        height: 45px;
+    }
+    .triangle{
+        border-top: 20px solid white;
+        border-right: 10px solid transparent;
+        border-left: 10px solid transparent;
+        right: -44px;
+        top: -16px;
+    }
+    main>.title>h1{
+        font-size: 2rem;
+    }
+    .sous-titre{
+        font-size: 1rem;
+    }
+    .categorie-card>h3{
+        font-size: 1.5rem;
+    }
 }
