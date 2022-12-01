@@ -1,0 +1,18 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheet %}
+
+{% endblock %}
+
+{% block navSecondary %}
+    <nav class="navAdresse">
+        <ul>
+            <div class="toggleButton active" onclick="toggleNav(event)">
+            </div>
+            <div class="top"></div>
+            <div class="bottom"></div>
+
+            {{ user_menu() }}
+        </ul>
+    </nav>
+{% endblock %}

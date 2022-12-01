@@ -1,4 +1,4 @@
-{% extends 'layout.html.twig' %}
+{% extends '@user/userEspace.html.twig' %}
 
 {% block stylesheet %}
     <link rel="stylesheet" href="../assets/css/aide.css">
@@ -7,44 +7,6 @@
 {% endblock %}
 
 {% block body %}
-    <nav class="navAdresse">
-        <ul>
-            <div class="toggleButton active" onclick="toggleNav(event)">
-            </div>
-            <div class="top"></div>
-            <div class="bottom"></div>
-
-            <li id="paramNav">
-                <a href="">
-                    <img src="../assets/img/ressources/icon/commande/commandeIcon.svg" alt="" id="commandeImg">
-                    <span>Mes commande</span>
-                </a>
-            </li>
-
-            <li>
-                <a href=" {{ path('user.adresse') }}">
-                    <div>
-                        <img src="../assets/img/ressources/icon/Adresse/Adresse.png" alt="" id="adresseImg">
-                    </div>
-                    <span>Mes adresse</span>
-                </a>
-            </li>
-
-
-            <li>
-                <a href="{{ path('user.paramProfil') }}">
-                    <img src="../assets/img/ressources/icon/Param/Param.svg" alt="" id="profilImg">
-                    <span>Mon profil</span>
-                </a>
-            </li>
-            <li >
-                <a href="{{ path('user.aide') }}">
-                    <img src="../assets/img/ressources/icon/Aide/Aide.svg" alt="" id="aideImg">
-                    <span>Aide et question</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
     <div class="commandeContainer">
 
 

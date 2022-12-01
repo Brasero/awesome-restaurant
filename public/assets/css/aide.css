@@ -9,6 +9,9 @@ body {
 
 
 
+.container{
+    display: flex;
+}
 .aideContainer {
     width: 100%;
     display: flex;
