@@ -12,6 +12,11 @@ body {
 .container{
     display: flex;
 }
+
+#aideButton{
+    border-top: 2px solid white;
+    border-right: none !important;
+}
 .aideContainer {
     width: 100%;
     display: flex;

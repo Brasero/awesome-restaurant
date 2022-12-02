@@ -11,6 +11,11 @@ body {
     display: flex;
 }
 
+#paramProfilButton {
+    border-top: 2px solid white;
+    border-bottom: white 2px solid;
+    border-right: none !important;
+}
 main {
     display: flex;
     width: 90%;

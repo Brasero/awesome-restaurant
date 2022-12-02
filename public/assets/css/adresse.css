@@ -6,127 +6,37 @@ body {
     backdrop-filter: blur(20px);
     min-height: 100vh;
 }
-.container{
+
+.container {
     display: flex;
 }
-.adresseContainer{
+
+.adresseContainer {
     display: flex;
     width: 100%;
 
 }
-.navAdresse{
-    width:98px;
-    top: 60px;
-    position: sticky;
-    height: 92.8vh;
-    transition: var(--transition);
+
+#adresseButton {
+    border-top: 2px solid white;
+    border-bottom: white 2px solid;
+    border-right: none !important;
 }
 
-.navAdresse.expanded{
-    width:20%;
-    top: 60px;
-    transition: var(--transition);
-    position: sticky;
-    height: 92.8vh;
-}
-.navAdresse > ul{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    height: 100%;
-
-}
-.navAdresse > ul > li{
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-content: center;
-    border-right: white solid 2px;
+main {
     width: 100%;
-    height: 100%;
-
-}
-.navAdresse > ul > li>a{
-    display: flex;
-    justify-content: space-between;
-    width: 80%;
-    align-items: center;
-    overflow: hidden;
-    gap: 10px;
 }
 
-
-.navAdresse > ul > li>a>span{
-    font-family: var(--font-secondary);
-    font-weight: bolder;
-    font-size: 1.5rem;
-    text-decoration: underline;
-    color: white;
-    white-space: nowrap;
-    padding: 10px;
-
-}
-
-
-.toggleButton{
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    cursor: pointer;
-    top: 0;
-    right: 10px;
-    height: 5%;
-}
-.toggleButton > div{
-    width: 30px;
-    height: 5px;
-    background-color: white;
-    border-radius: 10px;
-}
-#adresseNav{
-    border-top: white solid 2px;
-    border-bottom: white solid 2px;
-    border-right: none;
-
-}
-#commandeImg{
-    width: 58px;
-    height: 62px;
-
-
-}
-#adresseImg{
-    width: 79px;
-    height: 58px;
-
-}
-#profilImg{
-    width: 80px;
-    height: 67px;
-
-}
-
-#aideImg{
-    width: 48px;
-    height: 73px;
-    margin-left: 10px;
-}
-main{
-    width:100%;
-}
-main >#formAjout{
+main > #formAjout {
     display: flex;
     flex-wrap: wrap;
 }
-.title{
+
+.title {
     width: 100%;
 }
-.title>h1{
+
+.title > h1 {
     font-family: var(--font-primary);
     font-size: 3.5rem;
     font-weight: normal;
@@ -135,24 +45,28 @@ main >#formAjout{
     text-align: center;
     filter: drop-shadow(var(--shadow-1));
 }
-#listeAdresse>.title>h1{
+
+#listeAdresse > .title > h1 {
     text-align: left;
     margin-left: 13%;
 }
-form{
+
+form {
     display: flex;
     width: 100%;
     justify-content: center;
     gap: 50px;
 }
-form>div>div{
+
+form > div > div {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     width: 100%;
 }
-form>div>div>label{
+
+form > div > div > label {
     font-family: Redressed;
     font-weight: normal;
     font-size: 2rem;
@@ -160,7 +74,8 @@ form>div>div>label{
     color: white;
 
 }
-form>div>div>input{
+
+form > div > div > input {
     width: 307px;
     height: 52px;
     border-radius: 20px;
@@ -169,16 +84,19 @@ form>div>div>input{
     background: rgba(255, 255, 255, 0.34);
 
 }
-form>div>div>input:focus{
+
+form > div > div > input:focus {
     outline: none;
     color: white;
 }
-#placeButton{
+
+#placeButton {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-form>#placeButton>button{
+
+form > #placeButton > button {
     width: 223px;
     height: 50px;
     border-radius: 33px;
@@ -188,34 +106,39 @@ form>#placeButton>button{
     font-size: 2rem;
     font-family: Redressed;
 }
-form>#placeButton>button:hover{
- background-color: var(--color-primary);
+
+form > #placeButton > button:hover {
+    background-color: var(--color-primary);
     transition: var(--transition);
 }
 
-#listeAdresse{
+#listeAdresse {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     width: 100%;
 }
-#tableauAdresse{
-    width:80%;
+
+#tableauAdresse {
+    width: 80%;
     border-radius: 20px;
     background: rgba(255, 255, 255, 0.34);
     margin-bottom: 2%;
 
 }
-#tableauAdresse>table{
+
+#tableauAdresse > table {
     width: 100%;
     border-collapse: collapse;
 
 }
-#tableauAdresse>table>thead>tr>th:first-child{
+
+#tableauAdresse > table > thead > tr > th:first-child {
     width: 8%;
 }
-#tableauAdresse>table>thead>tr>th{
+
+#tableauAdresse > table > thead > tr > th {
     font-family: var(--font-primary);
     font-weight: normal;
     font-size: 2rem;
@@ -225,7 +148,8 @@ form>#placeButton>button:hover{
     padding: 15px;
     border-bottom: var(--color-primary) solid 1px;
 }
-#tableauAdresse>table>tbody>tr>td{
+
+#tableauAdresse > table > tbody > tr > td {
     font-family: var(--font-secondary);
     font-weight: normal;
     font-size: 1.5rem;
@@ -234,28 +158,32 @@ form>#placeButton>button:hover{
 
 }
 
-#tableauAdresse>table>tbody>tr{
+#tableauAdresse > table > tbody > tr {
     border-bottom: var(--color-primary) solid 1px;
 }
 
-#tableauAdresse>table>tbody>tr:last-child{
+#tableauAdresse > table > tbody > tr:last-child {
     border-bottom: none;
 }
-td>button{
-background-color: transparent;
+
+td > button {
+    background-color: transparent;
     border: none;
     cursor: pointer;
 }
-td>button>img{
+
+td > button > img {
     width: 70%;
 }
-@media screen and (max-width: 1024px){
-    form{
+
+@media screen and (max-width: 1024px) {
+    form {
         flex-direction: column;
         align-items: center;
     }
 }
-@media screen and (max-width: 768px){
+
+@media screen and (max-width: 768px) {
     .navAdresse.expanded + main {
         display: none;
     }
@@ -263,36 +191,44 @@ td>button>img{
 
 @media screen and (max-width: 426px) {
 
-  #tableauAdresse{
-    width: 90%;
-  }
-    #tableauAdresse>table>thead>tr>th{
+    #tableauAdresse {
+        width: 90%;
+    }
+
+    #tableauAdresse > table > thead > tr > th {
         font-size: 1.5rem;
     }
-    #tableauAdresse>table>tbody>tr>td{
+
+    #tableauAdresse > table > tbody > tr > td {
         font-size: 1rem;
     }
 
 }
-@media screen and (max-width: 376px){
-    #tableauAdresse{
+
+@media screen and (max-width: 376px) {
+    #tableauAdresse {
         width: 90%;
     }
-    #tableauAdresse>table>thead>tr>th{
+
+    #tableauAdresse > table > thead > tr > th {
         font-size: 1.3rem;
     }
-    #tableauAdresse>table>tbody>tr>td{
+
+    #tableauAdresse > table > tbody > tr > td {
         font-size: 0.9rem;
     }
 }
-@media screen and (max-width: 321px){
-    #tableauAdresse{
+
+@media screen and (max-width: 321px) {
+    #tableauAdresse {
         width: 95%;
     }
-    #tableauAdresse>table>thead>tr>th{
+
+    #tableauAdresse > table > thead > tr > th {
         font-size: 1rem;
     }
-    #tableauAdresse>table>tbody>tr>td{
+
+    #tableauAdresse > table > tbody > tr > td {
         font-size: 0.8rem;
     }
 }
