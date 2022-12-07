@@ -40,10 +40,5 @@ class AdminTwigExtension extends AbstractExtension
         }, '');
     }
 
-    public function userMenu(): string
-    {
-        return array_reduce($this->widgets, function (string $html,  $widget) {
-            return $html . $widget->menuButtonUser();
-        }, '');
-    }
+
 }
