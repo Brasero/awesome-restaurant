@@ -1,19 +1,27 @@
-.container{
+.container {
     display: flex;
 }
 
-#paramNav{
-    border-top:none  ;
+#commandeButton {
+    border-bottom: white 2px solid;
+    border-right: none !important;
 }
-.commandeContainer{
+
+#aideButton{
+    border-top: none;
+    border-bottom: none;
+    border-right: 2px solid white !important;
+}
+.commandeContainer {
     width: 100%;
 }
-.commandeContainer>main>.title{
+
+.commandeContainer > main > .title {
     margin-top: 6%;
     margin-bottom: 6%;
 }
 
-.commandeContainer>main>.title>h1{
+.commandeContainer > main > .title > h1 {
     font-family: var(--font-primary);
     filter: drop-shadow(var(--shadow-1));
     font-size: 3.5rem;
@@ -21,7 +29,7 @@
 
 }
 
-.categorie-title{
+.categorie-title {
     display: flex;
     justify-content: space-around;
     margin-top: 2%;
@@ -30,26 +38,29 @@
 
 }
 
-.triangleCard{
+.triangleCard {
     right: 50px;
 }
 
-.commandeContainer .question{
+.commandeContainer .question {
     width: 100%;
 }
-.commandeContainer .question{
+
+.commandeContainer .question {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
     margin-top: 2%;
 }
+
 table {
     width: 95%;
     margin: 1% 0;
     border-collapse: collapse;
 }
-table>thead>tr>th {
+
+table > thead > tr > th {
     text-align: center;
     font-size: 2rem;
     font-weight: bold;
@@ -58,98 +69,119 @@ table>thead>tr>th {
     padding-bottom: 2%;
 }
 
-table>tbody>tr>td {
+table > tbody > tr > td {
     text-align: center;
     font-size: 1.5rem;
     font-weight: normal;
     padding-bottom: 1%;
     border-right: white 1px solid;
 }
-table>tbody>tr>td:last-child {
+
+table > tbody > tr > td:last-child {
     border-right: none;
 }
 
-table>tbody>tr>td:last-child {
-text-decoration: underline ;
+table > tbody > tr > td:last-child {
+    text-decoration: underline;
 }
 
 @media screen and (max-width: 1024px) {
     .navAdresse.expanded {
         width: 37%;
     }
-    .commandeContainer>main>.title{
+
+    .commandeContainer > main > .title {
         margin-top: 10%;
         margin-bottom: 10%;
     }
-    .commandeContainer>main>.title>h1{
+
+    .commandeContainer > main > .title > h1 {
         font-size: 3rem;
     }
-    .categorie-title{
+
+    .categorie-title {
         flex-direction: column;
         align-items: center;
     }
-    .categorie-title>h1{
+
+    .categorie-title > h1 {
         margin-bottom: 2%;
     }
-    .categorie-title>div{
+
+    .categorie-title > div {
         margin-bottom: 2%;
     }
-    .commandeContainer .question{
+
+    .commandeContainer .question {
         flex-direction: column;
         align-items: center;
     }
-    .commandeContainer .question>div{
+
+    .commandeContainer .question > div {
         margin-bottom: 2%;
     }
-    table>thead>tr>th {
+
+    table > thead > tr > th {
         font-size: 1.5rem;
     }
-    table>tbody>tr>td {
+
+    table > tbody > tr > td {
         font-size: 1.2rem;
     }
 
 }
-@media screen and (max-width: 768px){
+
+@media screen and (max-width: 768px) {
     .navAdresse.expanded + .commandeContainer {
         display: none;
     }
+
     .categorie-card {
         width: 100%;
     }
 }
 
 @media screen and (max-width: 425px) {
-    .commandeContainer>main>.title{
+    .commandeContainer > main > .title {
         margin-top: 15%;
         margin-bottom: 15%;
     }
-    .commandeContainer>main>.title>h1{
+
+    .commandeContainer > main > .title > h1 {
         font-size: 2.5rem;
     }
-    .categorie-title{
+
+    .categorie-title {
         flex-direction: column;
         align-items: center;
     }
-    .categorie-title>h1{
+
+    .categorie-title > h1 {
         margin-bottom: 2%;
     }
-    .categorie-title>div{
+
+    .categorie-title > div {
         margin-bottom: 2%;
     }
-    .commandeContainer .question{
+
+    .commandeContainer .question {
         flex-direction: column;
         align-items: center;
     }
-    .commandeContainer .question>div{
+
+    .commandeContainer .question > div {
         margin-bottom: 2%;
     }
-    table>thead>tr>th {
+
+    table > thead > tr > th {
         font-size: 1.2rem;
     }
-    table>tbody>tr>td {
+
+    table > tbody > tr > td {
         font-size: 1rem;
     }
-    .triangle{
+
+    .triangle {
         border-top: 20px solid white;
         border-right: 10px solid transparent;
         border-left: 10px solid transparent;
@@ -159,14 +191,15 @@ text-decoration: underline ;
 }
 
 @media screen and(max-width: 326px) {
-    .triangle{
+    .triangle {
         border-top: 20px solid white;
         border-right: 10px solid transparent;
         border-left: 10px solid transparent;
         right: -22px;
         top: -20px;
     }
-    .categorie-title>p{
+
+    .categorie-title > p {
         font-size: 1.3rem;
     }
 }
