@@ -22,6 +22,7 @@ class AdminTwigExtension extends AbstractExtension
         return [
             new TwigFunction('admin_menu', [$this, 'adminMenu'], ['is_safe' => ['html']]),
             new TwigFunction('admin_widget', [$this, 'adminWidget'], ['is_safe' => ['html']]),
+            new TwigFunction('user_menu', [$this, 'userMenu'], ['is_safe' => ['html']]),
         ];
     }
 
@@ -38,4 +39,6 @@ class AdminTwigExtension extends AbstractExtension
             return $html . $widget->menuButtonAdmin();
         }, '');
     }
+
+
 }

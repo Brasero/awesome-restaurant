@@ -1,0 +1,197 @@
+body {
+    background-image: url("../img/ressources/background/connexion/connexion@3.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    backdrop-filter: blur(20px);
+    min-height: 100vh;
+}
+
+.container {
+    display: flex;
+}
+
+#paramProfilButton {
+    border-top: 2px solid white;
+    border-bottom: white 2px solid;
+    border-right: none !important;
+}
+main {
+    display: flex;
+    width: 90%;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+main > #title {
+    display: flex;
+    justify-content: center;
+    margin-top: 1%;
+    width: 100%;
+    filter: drop-shadow(var(--shadow-1));
+}
+
+main > #title > h1 {
+    font-family: var(--font-primary);
+    font-weight: normal;
+    font-size: 3.5rem;
+    color: var(--color-primary);
+
+}
+
+form {
+    display: flex;
+    width: 80%;
+    gap: 5%;
+}
+
+label {
+    font-family: var(--font-secondary);
+    font-weight: normal;
+    font-size: 50px;
+    text-align: left;
+    color: white;
+
+}
+
+.positionChamp.mdp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.positionChamp.mdp> label {
+    text-align: center;
+    display: contents;
+}
+
+.positionChamp {
+    display: flex;
+}
+
+.inputText {
+    width: 582px;
+    height: 80px;
+    border-radius: 20px;
+    border: none;
+    background: rgba(255, 255, 255, 0.34);
+    font-size: 2rem;
+    color: white;
+    font-family: Redressed;
+    padding-left: 20px;
+    text-align: center;
+}
+input:focus-visible {
+    outline: none;
+}
+.buttonChamp{
+    display: flex;
+    justify-content: center;
+    margin-left: 2%;
+    cursor: pointer;
+}
+.buttonChamp>img{
+    width: 120%;
+}
+#valider{
+    position: absolute;
+    bottom: 90px;
+    right: 155px;
+    width: 286px;
+    height: 67px;
+    border-radius: 33.5px;
+    background: transparent;
+    border: 1px solid var(--color-primary);
+    font-family: var(--font-secondary);
+    font-weight: normal;
+    font-size: 50px;
+    text-align: center;
+    color: white;
+}
+
+#valider:hover{
+    background: var(--color-primary);
+    transition: var(--transition);
+}
+
+@media screen and (max-width: 1024px){
+    form{
+        flex-direction: column;
+        width: 100%;
+    }
+    .positionChamp.mdp> label {
+        width: 77%;
+        text-align: left;
+        display: initial;
+    }
+    .formPartie1{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 5%;
+        width: 100%;
+    }
+
+    #valider{
+        position: initial;
+        margin-top: 10%;
+        margin-bottom: 2%;
+    }
+}
+@media screen and (max-width: 769px){
+
+    .paramProfilContainer{
+        display: flex;
+        justify-content: center;
+    }
+    .paramProfilContainer>main{
+        width: 100%;
+    }
+    .paramProfilContainer>main>#title>h1{
+        width: 95%;
+        text-align: right;
+    }
+    .navAdresse.expanded + .paramProfilContainer{
+        display: none;
+    }
+    .navAdresse{
+        left: 0 !important;
+    }
+    .positionChamp.mdp> label {
+        width: 83%;
+
+    }
+}
+
+@media screen and (max-width: 426px){
+
+    main>#title>h1{
+        font-size: 1.5rem;
+    }
+    .inputText{
+        width: 100%;
+        height: 50px;
+    }
+    .buttonChamp>img{
+        width: 100%;
+
+    }
+
+    label{
+        font-size: 1rem;
+    }
+    .positionChamp.mdp> label {
+        width: 87%;
+        text-align: left;
+        display: initial;
+    }
+}
+@media screen and (max-width: 376px){
+    .positionChamp.mdp> label {
+        width: 100%;
+    }
+}
+
+
+

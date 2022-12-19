@@ -1,0 +1,235 @@
+body {
+    background-image: url("../img/ressources/background/connexion/connexion@3.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    backdrop-filter: blur(20px);
+    min-height: 100vh;
+}
+
+.container {
+    display: flex;
+}
+
+.adresseContainer {
+    display: flex;
+    width: 100%;
+
+}
+
+#adresseButton {
+    border-top: 2px solid white;
+    border-bottom: white 2px solid;
+    border-right: none !important;
+}
+
+main {
+    width: 100%;
+}
+
+main > #formAjout {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.title {
+    width: 100%;
+}
+
+.title > h1 {
+    font-family: var(--font-primary);
+    font-size: 3.5rem;
+    font-weight: normal;
+    color: var(--color-primary);
+    margin-top: 2rem;
+    text-align: center;
+    filter: drop-shadow(var(--shadow-1));
+}
+
+#listeAdresse > .title > h1 {
+    text-align: left;
+    margin-left: 13%;
+}
+
+form {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 50px;
+}
+
+form > div > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+form > div > div > label {
+    font-family: Redressed;
+    font-weight: normal;
+    font-size: 2rem;
+    text-align: center;
+    color: white;
+
+}
+
+form > div > div > input {
+    width: 307px;
+    height: 52px;
+    border-radius: 20px;
+    border: none;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.34);
+
+}
+
+form > div > div > input:focus {
+    outline: none;
+    color: white;
+}
+
+#placeButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form > #placeButton > button {
+    width: 223px;
+    height: 50px;
+    border-radius: 33px;
+    background: transparent;
+    border: 1px solid var(--color-primary);
+    color: white;
+    font-size: 2rem;
+    font-family: Redressed;
+}
+
+form > #placeButton > button:hover {
+    background-color: var(--color-primary);
+    transition: var(--transition);
+}
+
+#listeAdresse {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+#tableauAdresse {
+    width: 80%;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.34);
+    margin-bottom: 2%;
+
+}
+
+#tableauAdresse > table {
+    width: 100%;
+    border-collapse: collapse;
+
+}
+
+#tableauAdresse > table > thead > tr > th:first-child {
+    width: 8%;
+}
+
+#tableauAdresse > table > thead > tr > th {
+    font-family: var(--font-primary);
+    font-weight: normal;
+    font-size: 2rem;
+    text-align: start;
+    color: var(--color-primary);
+    filter: drop-shadow(var(--shadow-1));
+    padding: 15px;
+    border-bottom: var(--color-primary) solid 1px;
+}
+
+#tableauAdresse > table > tbody > tr > td {
+    font-family: var(--font-secondary);
+    font-weight: normal;
+    font-size: 1.5rem;
+    color: white;
+    padding: 10px;
+
+}
+
+#tableauAdresse > table > tbody > tr {
+    border-bottom: var(--color-primary) solid 1px;
+}
+
+#tableauAdresse > table > tbody > tr:last-child {
+    border-bottom: none;
+}
+
+td > button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+td > button > img {
+    width: 70%;
+}
+
+@media screen and (max-width: 1024px) {
+    form {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .navAdresse.expanded + main {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 426px) {
+
+    #tableauAdresse {
+        width: 90%;
+    }
+
+    #tableauAdresse > table > thead > tr > th {
+        font-size: 1.5rem;
+    }
+
+    #tableauAdresse > table > tbody > tr > td {
+        font-size: 1rem;
+    }
+
+}
+
+@media screen and (max-width: 376px) {
+    #tableauAdresse {
+        width: 90%;
+    }
+
+    #tableauAdresse > table > thead > tr > th {
+        font-size: 1.3rem;
+    }
+
+    #tableauAdresse > table > tbody > tr > td {
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-width: 321px) {
+    #tableauAdresse {
+        width: 95%;
+    }
+
+    #tableauAdresse > table > thead > tr > th {
+        font-size: 1rem;
+    }
+
+    #tableauAdresse > table > tbody > tr > td {
+        font-size: 0.8rem;
+    }
+}
+

@@ -1,0 +1,48 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheet %}
+
+{% endblock %}
+
+{% block navSecondary %}
+    <nav class="navAdresse">
+        <ul>
+            <div class="toggleButton active" onclick="toggleNav(event)">
+            </div>
+            <div class="top"></div>
+            <div class="bottom"></div>
+
+            <li id="commandeButton">
+                <a href="{{ path('user.commande') }}">
+                    <img src="../assets/img/ressources/icon/commande/commandeIcon.svg" alt="" id="commandeImg">
+                    <span>Mes commandes</span>
+                </a>
+            </li>
+
+            <li id="adresseButton">
+                <a href=" {{ path('user.adresse') }}">
+                    <div>
+                        <img src="../assets/img/ressources/icon/Adresse/Adresse.png" alt="" id="adresseImg">
+                    </div>
+                    <span>Mes adresses</span>
+                </a>
+            </li>
+
+            <li id="paramProfilButton" >
+                <a href="{{ path('user.paramProfil') }}">
+                    <img src="../assets/img/ressources/icon/Param/Param.svg" alt="" id="profilImg">
+                    <span>Mon profil</span>
+                </a>
+            </li>
+
+            <li id="aideButton">
+                <a href="{{ path('user.aide') }}">
+                    <img src="../assets/img/ressources/icon/Aide/Aide.svg" alt="" id="aideImg">
+                    <span>Aide et question</span>
+                </a>
+            </li>
+
+
+        </ul>
+    </nav>
+{% endblock %}

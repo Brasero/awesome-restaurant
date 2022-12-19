@@ -1,0 +1,198 @@
+.navAdresse {
+    width: 98px;
+    top: 60px;
+    position: sticky;
+    height: 92.8vh;
+    transition: var(--transition);
+}
+
+.top, .bottom {
+    z-index: 0;
+    width: 30px;
+    height: 3px;
+    background-color: white;
+    transition: var(--transition);
+    position: absolute;
+    top: 15px;
+    right: 10px;
+}
+
+.bottom {
+    top: 25px;
+}
+
+.navAdresse.expanded {
+    width: 25%;
+    top: 60px;
+    transition: var(--transition);
+    position: sticky;
+    height: 92.8vh;
+}
+
+.toggleButton {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    position: absolute;
+    cursor: pointer;
+    top: 15px;
+    width: 30px;
+    right: 10px;
+    min-height: 16px;
+    z-index: 1;
+}
+
+.navAdresse.expanded > ul > .toggleButton {
+    top: 6px;
+    right: 25px;
+    height: 30px;
+}
+
+
+.navAdresse.expanded > ul > .top {
+    transform: translate(-50%, -50%) rotate(585deg);
+    transform-origin: center;
+    transition: var(--transition);
+    transform-origin: center;
+    top: 20px;
+}
+
+.navAdresse.expanded > ul > .bottom {
+    transform: translate(-50%, -50%) rotate(-585deg);
+    transition: var(--transition);
+    top: 20px;
+
+
+}
+
+
+.navAdresse > ul {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+
+}
+
+.navAdresse > ul > li {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    border-right: white solid 2px;
+    width: 100%;
+    height: 100%;
+
+}
+
+.navAdresse > ul > li > a {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    align-items: center;
+    overflow: hidden;
+    gap: 11px;
+}
+
+
+.navAdresse > ul > li > a > span {
+    font-family: var(--font-secondary);
+    font-weight: bolder;
+    font-size: 1.5rem;
+    text-decoration: underline;
+    color: white;
+    white-space: nowrap;
+    padding: 10px;
+
+}
+
+#paramNav {
+    border-top: white solid 2px;
+    border-bottom: white solid 2px;
+    border-right: none;
+
+}
+
+#commandeImg {
+    width: 58px;
+    height: 62px;
+}
+
+#adresseImg {
+    width: 79px;
+    height: 58px;
+}
+
+#profilImg {
+    width: 80px;
+    height: 67px;
+}
+
+#aideImg {
+    width: 48px;
+    height: 73px;
+    margin-left: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    .top {
+        top: 25px;
+    }
+
+    .bottom {
+        top: 30px;
+    }
+
+    .navAdresse > ul > .toggleButton {
+        top: 20px;
+        width: 50px;
+    }
+
+    .navAdresse.expanded > ul > .toggleButton {
+        right: 30px;
+    }
+
+    .navAdresse.expanded > ul > .top {
+        top: 30px;
+    }
+
+    .navAdresse.expanded > ul > .bottom {
+        top: 30px;
+    }
+
+
+
+    .navAdresse {
+        width: 10%;
+
+        position: fixed;
+        top: 55px;
+        left: 35px;
+        z-index: 1;
+    }
+
+    .navAdresse > ul > li {
+        display: none;
+    }
+
+    .navAdresse.expanded {
+        width: 100% !important;
+
+    }
+
+    .navAdresse.expanded > ul > li {
+        display: flex;
+
+        border: none;
+    }
+
+
+
+
+}
+
+
+

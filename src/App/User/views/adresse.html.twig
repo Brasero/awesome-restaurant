@@ -1,0 +1,82 @@
+{% extends '@user/userEspace.html.twig' %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="../assets/css/adresse.css">
+    <link rel="stylesheet" href="../assets/css/navBarUser.css">
+{% endblock %}
+
+{% block body %}
+
+    <div class="adresseContainer">
+        <main>
+            <div id="formAjout">
+                <div class="title">
+                    <h1>Ajouter une adresse</h1>
+                </div>
+                <form action="">
+                    <div>
+                        <div>
+                            <label for="numero">n°</label>
+                            <input type="number" id="numero">
+                        </div>
+                        <div>
+                            <label for="rue">Rue</label>
+                            <input type="text" id="rue">
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <label for="ville">Ville</label>
+                            <input type="text" id="ville">
+                        </div>
+                        <div>
+                            <label for="codePostal">Code postal</label>
+                            <input type="number" id="codePostal">
+                        </div>
+                    </div>
+                    <div id="placeButton">
+                        <button type="submit">Ajouter</button>
+                    </div>
+
+                </form>
+            </div>
+            <div id="listeAdresse">
+                <div class="title">
+                    <h1>Liste des adresses</h1>
+                </div>
+
+                <div id="tableauAdresse">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>n°</th>
+                            <th>Rue</th>
+                            <th>Ville</th>
+                            <th>Code postal</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Chemin de la croix</td>
+                            <td>Montpellier</td>
+                            <td>34000</td>
+                            <td>
+                                <button><img src="../assets/img/ressources/icon/edit/edit.svg" alt=""></button>
+                                <button><img src="../assets/img/ressources/icon/bin/bin.svg" alt=""></button>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+        </main>
+
+    </div>
+
+{% endblock %}

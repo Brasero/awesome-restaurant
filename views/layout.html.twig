@@ -20,7 +20,7 @@
 
   <header class="navContainer">
     <nav class="navBar">
-      <button class="toggleButton" role="button" onclick="toggleNav()">
+      <button class="toggleButton" role="button" onclick="toggleNav(event)">
         <svg xmlns="http://www.w3.org/2000/svg" width="35" height="25" fill="currentColor" class="bi bi-list"
           viewBox="0 0 35 16">
           <path fill-rule="evenodd"
@@ -43,16 +43,23 @@
       {% endfor %}
     </div>
     {% endif %}
+
+    {% block navSecondary %}
+
+    {% endblock %}
+
     {% block body %}
+
+
 
     {% endblock %}
   </div>
 
+
+  {% block script %}
   <script src="{{ asset('/assets/js/onscrollFunction.js') }}"></script>
   <script src="{{ asset('/assets/js/toggleNavBar.js') }}"></script>
-  <script src="{{ asset('/assets/js/admin/toastController.js') }}"></script>
-
-  {% block javascript %}
+  <script src="{{ asset('/assets/js/admin/toastController.js') }}"></script>z
   {% endblock %}
 </body>
 

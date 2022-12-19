@@ -1,0 +1,68 @@
+{% extends '@user/userEspace.html.twig' %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="../assets/css/paramProfil.css">
+    <link rel="stylesheet" href="../assets/css/navBarUser.css">
+{% endblock %}
+
+{% block body %}
+
+    <div class="paramProfilContainer">
+        <main>
+            <div id="title">
+                <h1>Gérer les paramétre de mon profil</h1>
+            </div>
+            <form id="form" action="">
+                <div class="formPartie1">
+                    <div class="inputBasique">
+                        <label for="nom">Nom</label>
+                        <div class="positionChamp">
+                            <input type="text" id="nom" class="inputText" disabled>
+                            <div class="buttonChamp" onclick="unlockInput(event)"><img src="../assets/img/ressources/icon/edit/edit.svg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inputBasique">
+                        <label for="prenom">Prénom</label>
+                        <div class="positionChamp">
+                            <input type="text" id="prenom " class="inputText" disabled>
+                            <div class="buttonChamp" onclick="unlockInput(event)"><img src="../assets/img/ressources/icon/edit/edit.svg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inputBasique">
+                        <label for="email">Email</label>
+                        <div class="positionChamp">
+                            <input type="email" id="email" class="inputText" disabled>
+                            <div class="buttonChamp" onclick="unlockInput(event)"><img src="../assets/img/ressources/icon/edit/edit.svg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inputBasique">
+                        <label for="telephone">Numéro de téléphone</label>
+                        <div class="positionChamp">
+                            <input type="tel" id="telephone" class="inputText" disabled>
+                            <div class="buttonChamp" onclick="unlockInput(event)"><img src="../assets/img/ressources/icon/edit/edit.svg" alt="">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="positionChamp mdp">
+                    <label for="password" id="passwordLabel">Modifier <span>mon</span> mot de passe</label>
+                    <div class="positionChamp">
+                        <input type="password" id="password" class="inputText" disabled>
+                        <div class="buttonChamp" onclick="unlockInput(event)"><img src="../assets/img/ressources/icon/edit/edit.svg" alt=""></div>
+                    </div>
+                    <input type="button" id="valider" value="Valider"></input>
+                </div>
+
+            </form>
+        </main>
+
+    </div>
+
+{% endblock %}
+{% block script %}
+    <script src="../assets/js/unlockInput.js"></script>
+{% endblock %}

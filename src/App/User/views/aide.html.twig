@@ -1,0 +1,49 @@
+{% extends '@user/userEspace.html.twig' %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="../assets/css/aide.css">
+    <link rel="stylesheet" href="../assets/css/navBarUser.css">
+{% endblock %}
+
+{% block body %}
+
+    <div class="aideContainer">
+        <main>
+            <div class="title">
+                <h1>Aide et question</h1>
+            </div>
+            <div class="sous-titre">
+                <h2>Question frequente</h2>
+            </div>
+
+
+            <div class="categorie-card">
+                <h3>Categorie</h3>
+                <div class="triangleCard">
+                    <div class="triangle" onclick="toggleNav(event)">
+                        <img src="../assets/img/ressources/icon/fleche/fleche.png" alt="">
+                    </div>
+                </div>
+                <div class="barre"></div>
+                <div class="question">
+                    <a href="">Lorem ipsum dolor sit amet.</a>
+                    <a href="">Lorem ipsum dolor sit amet.</a>
+                    <a href="">Lorem ipsum dolor sit amet.</a>
+                    <a href="">Lorem ipsum dolor sit amet.</a>
+                    <a href="">Lorem ipsum dolor sit amet.</a>
+
+                </div>
+            </div>
+
+
+            <div class="contact">
+                <h2>Vous n'avez pas trouver de réponse</h2>
+                <a href="">Contactez nous</a>
+            </div>
+
+
+        </main>
+
+    </div>
+
+{% endblock %}
