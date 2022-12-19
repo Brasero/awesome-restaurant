@@ -56,8 +56,10 @@ class AdminAuthMiddleware extends AbstractMiddleware
                 $toaster = $this->container->get(Toaster::class);
                 if (!$auth->isLogged()) {
                     $toaster->createToast('Vous devez être connecté pour accéder à cette page', Toaster::ERROR);
+                } elseif (!$auth->isAdmin()) {
+                    $toaster->createToast('Vous n\'avez pas les droits pour accéder à cette page', Toaster::ERROR);
                 } else {
-                    $toaster->createToast('Vous avez déconnecté pour inactivité.', Toaster::WARNING);
+                    $toaster->createToast('Votre session a expiré', Toaster::ERROR);
                 }
                 return $this->redirect('admin.auth');
             }

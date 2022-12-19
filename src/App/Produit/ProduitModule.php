@@ -1,12 +1,15 @@
 <?php
+
 namespace App\Produit;
 
 use App\Entity\Categorie;
 use App\Entity\Ingredient;
 use App\Entity\Produit;
+use App\Entity\Taxe;
 use App\Entity\TypeIngredient;
 use Framework\TwigExtension\MenuTwigExtension;
 use App\Produit\Action\CategorieAction;
+use App\Produit\Action\ProduitAction;
 use Doctrine\ORM\EntityManagerInterface;
 use Framework\Module;
 use Framework\Renderer\RendererInterface;
@@ -36,6 +39,7 @@ class ProduitModule extends Module
      */
     public function __construct(ContainerInterface $container)
     {
+        $produitAction = $container->get(ProduitAction::class);
         $categorieAction = new CategorieAction($container);
         $renderer = $container->get(RendererInterface::class);
         $router = $container->get(Router::class);
@@ -44,6 +48,7 @@ class ProduitModule extends Module
         $this->renderer = $renderer;
         $router->get('/carte', [$this, 'carte'], 'produit.carte');
         $router->get('/panier', [$this, 'panier'], 'produit.panier');
+        $router->get('/supplement', [$this, "supplement"], 'produit.supplement');
         $router->get('/carte/{id:[0-9]}', [$this, 'show'], 'produit.show');
         $this->manager = $manager;
         if ($container->has('admin.prefix')) {
@@ -71,6 +76,25 @@ class ProduitModule extends Module
                 [$categorieAction, 'delete'],
                 'ajax.category.delete'
             );
+            $router->post(
+                $prefix . '/produit/addProduit',
+                [$produitAction, 'add'],
+                'admin.produit.add'
+            );
+            $router->get(
+                $prefix . '/produit/manage/updateProduit/{id:\d+}',
+                [$produitAction, 'update'],
+                'admin.produit.update'
+            );
+            $router->post(
+                $prefix . '/produit/manage/updateProduit/{id:\d+}',
+                [$produitAction, 'update']
+            );
+            $router->get(
+                "/ajax/produit/delete/{id:\d+}",
+                [$produitAction, 'delete'],
+                'ajax.produit.delete'
+            );
         }
     }
 
@@ -90,6 +114,10 @@ class ProduitModule extends Module
         return $this->renderer->render('@produit/panier');
     }
 
+    public function supplement(): string
+    {
+        return $this->renderer->render('@produit/supplement');
+    }
 
     public function show(ServerRequest $request): string
     {
@@ -106,6 +134,8 @@ class ProduitModule extends Module
         $produits = $prodRepository->findAll();
         $catRepository = $this->manager->getRepository(Categorie::class);
         $categories = $catRepository->findAll();
+        $taxeRepository = $this->manager->getRepository(Taxe::class);
+        $taxes = $taxeRepository->findAll();
         $typeRepository = $this->manager->getRepository(TypeIngredient::class);
         $types = $typeRepository->findAll();
         $ingredientRepository = $this->manager->getRepository(Ingredient::class);
@@ -113,6 +143,7 @@ class ProduitModule extends Module
         return $this->renderer->render('@produit_admin/manage', [
             "produits" => $produits,
             "categories" => $categories,
+            "taxes" => $taxes,
             "types" => $types,
             "ingredients" => $ingredients,
             "active" => "produit"

@@ -1,21 +1,27 @@
 {% extends '@admin/layout.html.twig' %}
 
 {% block stylesheet %}
-    <link rel="shortcut icon" href="../../assets/icon/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../../assets/css/admin/style.css">
-    <link rel="stylesheet" href="../../assets/css/admin/formulaire.css">
-    <link rel="stylesheet" href="../../assets/css/admin/toast.css">
-    <link rel="stylesheet" href="../../assets/css/admin/modalIngredient.css">
-    <link rel="stylesheet" href="../../assets/css/admin/adminConnexion.css">
-    <link rel="stylesheet" href="../../assets/css/admin/dashboard.css">
-    <link rel="stylesheet" href="../../assets/css/admin/produit.css">
-    <link rel="stylesheet" href="../../assets/css/admin/ingredient.css">
-    <link rel="stylesheet" href="../../assets/css/admin/taxe.css">
-    <link rel="stylesheet" href="../../assets/css/admin/stats.css">
+    <link rel="shortcut icon" href="{{asset('/assets/icon/favicon.ico')}}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ asset('/assets/css/admin/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/admin/formulaire.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/admin/toast.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/admin/modalIngredient.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/admin/adminConnexion.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/admin/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/admin/produit.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/admin/ingredient.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/admin/taxe.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/admin/stats.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/admin/user.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/admin/modificationProduit.css') }}">
 {% endblock %}
 
 {% block content %}
     <div class="main">
+        <div class="navBurger">
+            <i class="bi bi-list open"></i>
+            <i class="bi bi-x-lg close"></i>
+        </div>
         <nav class="navBar active">
             <ul class="navLinks active">
                 <div class="toggleButton active" onclick="toggleNav()">
@@ -36,13 +42,13 @@
             </ul>
         </nav>
         <div class="container">
-            {% if hasToast() %}
-                <div class="toastContainer">
+            <div class="toastContainer">
+                {% if hasToast() %}
                 {% for toast in renderToast() %}
                     {{ toast | raw }}
                 {% endfor %}
+                {% endif %}
                 </div>
-            {% endif %}
             {% block body %}
             {% endblock %}
         </div>

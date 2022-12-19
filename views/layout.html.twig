@@ -55,9 +55,11 @@
     {% endblock %}
   </div>
 
-  <script src="../assets/js/onscrollFunction.js"></script>
-  <script src="../assets/js/toggleNavBar.js"></script>
+
   {% block script %}
+  <script src="{{ asset('/assets/js/onscrollFunction.js') }}"></script>
+  <script src="{{ asset('/assets/js/toggleNavBar.js') }}"></script>
+  <script src="{{ asset('/assets/js/admin/toastController.js') }}"></script>z
   {% endblock %}
 </body>
 

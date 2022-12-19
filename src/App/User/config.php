@@ -1,5 +1,6 @@
 <?php
 
+
 use App\User\UserWidget;
 use function DI\get;
 use App\User\UserModule;

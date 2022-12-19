@@ -3,6 +3,51 @@
 
 {% block body %}
 
+    <h1 class="pageTitle">
+        <span class="top" style="transform: translateY(-30px);">Gestion des</span>
+        <span class="bottom" style="transform: translateY(30px);">utilisateurs</span>
+    </h1>
+
+    <div class="input-control">
+        <label for="search"><i class="bi bi-search"></i></label>
+        <input type="text" id="search" placeholder="Rechercher un utilisateur" onkeyup="search_client()">
+    </div>
+
+    <div class="nbUser">
+        {% if users|length <= 1 %}
+            Il y a {{nbUsers}} utilisateur inscrit
+        {% else %}
+            Il y a {{nbUsers}} utilisateurs inscrits
+        {% endif %}
+    </div>
+
+    <table class="userTable">
+        <tr class="tableUser">
+            <th class="tableTitle"> Nom</th>
+            <th class="tableTitle"> Prénom</th>
+            <th class="tableTitle"> Email</th>
+            <th class="tableTitle"> Téléphone</th>
+            <th class="tableTitle"> Gestion</th>
+        </tr>
+
+        {% for user in users %}
+            <tr class="show" id="user-{{user.id}}">
+                <td class="tdResult">{{user.nom}}</td>
+                <td class="tdResult">{{user.prenom}}</td>
+                <td class="tdResult">{{user.email}}</td>
+                <td class="tdResult">{{user.telephone}}</td>
+                <td class="tdResult">
+                    <button
+                    class="actionButton deleteButton" onclick="supprItem('user',{{user.id}})"
+                >
+                    Supprimer
+                </button>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+
 
 {% endblock %}
 
@@ -13,4 +58,6 @@
 <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
 <script type="text/javascript" src="../../assets/js/admin/isotope_packery.js"></script>
 <script type="text/javascript" src="../../assets/js/admin/isotope_dashboard.js"></script>
+<script type="text/javascript" src="../../assets/js/admin/searchClient.js"></script>
+<script type="text/javascript" src="../../assets/js/admin/suppressionAjax.js"></script>
 {% endblock %}

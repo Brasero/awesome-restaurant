@@ -36,7 +36,7 @@ class RouteurTwigExtension extends \Twig\Extension\AbstractExtension
     {
         $uri = $_SERVER['REQUEST_URI'] ?? '/';
         $expectedUri = $this->routeur->generateUrl($path);
-        return str_contains($expectedUri, $uri);
+        return str_contains($uri, $expectedUri);
     }
 
     public function isActiveStrict(string $path, array $params = []): bool

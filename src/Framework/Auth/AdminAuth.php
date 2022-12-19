@@ -35,8 +35,14 @@ class AdminAuth
     public function login(string $username, string $password): bool
     {
         $admin = $this->manager->getRepository(Admin::class)->findOneBy(['nom' => $username]);
-        if ($admin && password_verify($password, $admin->getPassword()) or $this->isLogged()) {
-            $this->session->set('auth', $admin->getId());
+        if ($admin
+            && password_verify($password, $admin->getPassword())
+            or (
+                $this->isLogged()
+                and $this->isAdmin()
+                )
+            ) {
+            $this->session->set('auth', $admin);
             $this->setTimestamp();
             return true;
         }
@@ -60,6 +66,18 @@ class AdminAuth
     public function isLogged(): bool
     {
         return $this->session->has('auth');
+    }
+
+    /**
+     * Vérifie si l'utilisateur est bien un administrateur
+     * @return bool
+     */
+    public function isAdmin(): bool
+    {
+        if ($this->isLogged()) {
+            return $this->session->get('auth') instanceof Admin;
+        }
+        return false;
     }
 
     /**

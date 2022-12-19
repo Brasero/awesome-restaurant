@@ -14,24 +14,6 @@
     flex: 2;
 }
 
-.main > .container .container__dahsboard .pageTitle {
-    text-align: left;
-    text-transform: uppercase;
-    display: flex;
-    flex-direction: row;
-    gap: 40px;;
-    align-items: center;
-    justify-content: flex-start;
-    overflow: hidden;
-}
-
-.main > .container .container__dahsboard .pageTitle .bottom {
-    color: var(--color-primary);
-    font-family: var(--font-primary);
-    text-shadow: var(--shadow-1);
-    transition: var(--transition);
-}
-
 .main > .container .container__dahsboard .pageTitle .message .hello {
     font-family: var(--font-primary);
     color: var(--color-primary);

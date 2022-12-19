@@ -33,7 +33,7 @@ class UserAuth
     public function connexion(string $email, string $mdp): bool
     {
         $user = $this->manager->getRepository(User::class)->findOneBy(["email" => $email]);
-        if ($user && password_verify($mdp, $user->getPassword()) 
+        if ($user && password_verify($mdp, $user->getPassword())
         or $this->isLogged()) {
             $this->session->set("auth", $user);
             return true;
@@ -63,7 +63,7 @@ class UserAuth
 
 
     /**
-     * Inscription de l'utilisateur 
+     * Inscription de l'utilisateur
      *
      * @param array $data
      * @return void

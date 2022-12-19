@@ -23,6 +23,14 @@ function supprItem(type, idItem)
             elementToSuppr = document.querySelector('#taxe-' + idItem);
             req.open('GET', '/ajax/Taxe/delete/' + idItem)
             break;
+        case 'user':
+            elementToSuppr = document.querySelector('#user-' + idItem);
+            req.open('GET', "/ajax/user/delete/" + idItem)
+            break;
+        case 'produit':
+            elementToSuppr = document.querySelector('#produit-' + idItem);
+            req.open('GET','/ajax/produit/delete/' + idItem)
+            break;
     }
 
     req.send()

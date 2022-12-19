@@ -1,0 +1,59 @@
+.produitUpdate{
+    min-height: 600px;
+    width: 100%;
+}
+
+/* CSS Form */
+.formUpdateTitle {
+    background-color: transparent;
+    color: var(--color-primary);
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    align-items: center;
+    text-align: right;
+    padding: 25px 10px;
+}
+
+.typeUpdateChoice{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 200px;
+    text-shadow: var(--shadow-1);
+    background-color: white;
+}
+.inputUpdateGroup{
+    border: none !important;
+}
+
+.inputUpdateLabel{
+   color: var(--color-primary);
+}
+.inputUpdate{
+    width: 25%;
+    padding: 10px 5px;
+    border: 1px solid transparent;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 300;
+    border-radius: 3px;
+    outline: none;
+    background: white;
+}
+
+.ingredientGroup .typeIngredientGroupItem .groupItem {
+    text-shadow: var(--shadow-1);
+    height: 0px;
+    overflow-y: hidden;
+    width: 100%;
+    transition: var(--transition);
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    align-items: center;
+}
+.typeIngredientGroupItem.expand .groupItem {
+    height: unset;
+}
+/* FIN CSS From */
