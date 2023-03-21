@@ -17,6 +17,8 @@ Installation
 
 Installer la base de données
 
+>**Crée une base de données (phpMyAdmin) puis modifie le nom de l'index "database.dbname" du tableau de config dans le dossier config, pour y mettre le nom de la base
+puis
 >**./vendor/bin/doctrine** orm:schema-tool:create
 
 Appliquer les modification sur la base de données
