@@ -91,11 +91,4 @@ class TypeIngredient
     {
         return $this->ingredients->removeElement($ingredient);
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->ingredients = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 }

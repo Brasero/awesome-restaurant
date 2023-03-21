@@ -51,7 +51,7 @@ body {
     transition: 0.125s ease-in-out;
 }
 
-.panier td .qte:hover button {
+.panier td .qte button:hover {
     opacity: 0.5;
 }
 
@@ -76,8 +76,8 @@ body {
     margin-right: 0.5rem;
 }
 
-.panier td .action:hover .deleteButton i,
-.panier td .action:hover .editButton i {
+.panier td .action .deleteButton:hover i,
+.panier td .action .editButton:hover i {
     opacity: 0.5;
 }
 

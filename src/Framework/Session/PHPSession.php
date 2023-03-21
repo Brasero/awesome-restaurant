@@ -47,6 +47,11 @@ class PHPSession implements SessionInterface
         $this->ensureStarted();
     }
 
+    public function destroy(): void
+    {
+        session_destroy();
+    }
+
     private function ensureStarted(): void
     {
         if (session_status() === PHP_SESSION_NONE) {

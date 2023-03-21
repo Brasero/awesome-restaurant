@@ -71,7 +71,7 @@ class AuthAction
             $mdp = $params["mdp"];
             if ($auth->connexion($email, $mdp)) {
                 $this->toaster->createToast("Vous êtes connecté", Toaster::SUCCESS);
-                return $this->redirect("produit.carte");
+                return $this->redirect("carte.index");
             }
 
             $this->toaster->createToast("Indentifiant ou mot de passe inconnu", Toaster::ERROR);

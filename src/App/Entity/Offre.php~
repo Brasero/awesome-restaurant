@@ -172,11 +172,4 @@ class Offre
     {
         return $this->produits->removeElement($produit);
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->produits = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 }

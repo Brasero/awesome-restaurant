@@ -1,5 +1,7 @@
+
 <?php
 
+use Framework\Cart\Cart;
 use Framework\Format\TwigFormatExtension;
 use Framework\Session\PHPSession;
 use Framework\Session\SessionInterface;
@@ -35,4 +37,5 @@ return [
     EntityManagerInterface::class => \DI\factory(DatabaseFactory::class),
     SessionInterface::class => \DI\get(PHPSession::class),
     AssetsTwigExtension::class => \DI\create(),
+    Cart::class => \DI\autowire(),
 ];

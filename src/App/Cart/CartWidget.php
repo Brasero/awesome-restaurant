@@ -1,16 +1,13 @@
 <?php
 
-namespace App\Produit;
+namespace App\Cart;
 
 use App\Admin\AdminWidgetInterface;
 use Framework\Renderer\RendererInterface;
 
-class ProduitWidget implements AdminWidgetInterface
+class CartWidget implements AdminWidgetInterface
 {
 
-    /**
-     * @var RendererInterface
-     */
     private RendererInterface $renderer;
 
     public function __construct(RendererInterface $renderer)
@@ -20,16 +17,16 @@ class ProduitWidget implements AdminWidgetInterface
 
     public function render(): string
     {
-        return $this->renderer->render('@produit/admin/widget');
+        return '';
     }
 
     public function menuButtonAdmin(): string
     {
-        return $this->renderer->render('@produit/admin/button');
+        return '';
     }
 
     public function menuButtonClient(): string
     {
-        return '';
+        return $this->renderer->render('@carte/button');
     }
 }

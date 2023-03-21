@@ -1,6 +1,7 @@
 <?php
 
 use App\Admin\AdminModule;
+use App\Cart\CartModule;
 use App\Clients\ClientsModule;
 use App\Dashboard\DashboardModule;
 use Framework\Middleware\AdminAuthMiddleware;
@@ -31,6 +32,7 @@ $app->addModule(AdminModule::class)
     ->addModule(IngredientModule::class)
     ->addModule(TaxeModule::class)
     ->addModule(StatsModule::class)
+    ->addModule(CartModule::class)
     ->linkMiddleware(new TrailingSlashMiddleware())
     ->linkWith(new RouterMiddleware($app->getContainer()))
     ->linkWith(new RedirectAuthMiddleware($app->getContainer()))

@@ -17,9 +17,13 @@ class AssetsTwigExtension extends \Twig\Extension\AbstractExtension
     /**
      * @throws Exception
      */
-    public function asset(string $path): string
+    public function asset(string $path, ?string $name = null): string
     {
         $file = dirname(__DIR__, 3) . '/public' . $path;
+        if (!is_null($name)) {
+            $file .= '/' . $name;
+            $path .= '/' . $name;
+        }
         if (!file_exists($file)) {
             throw new Exception('File "' . $file . '" not found');
         }
